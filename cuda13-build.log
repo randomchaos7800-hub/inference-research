@@ -1,0 +1,580 @@
+make: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[1]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[2]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+[  0%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o
+[  0%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o
+[  0%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.o
+[  0%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o
+[  0%] Building CXX object vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.o
+[  0%] Building CXX object common/CMakeFiles/llama-common-base.dir/build-info.cpp.o
+[  0%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o
+[  0%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend-meta.cpp.o
+[  0%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/gguf.cpp.o
+[  1%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o
+[  1%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o
+[  3%] Linking CXX static library libllama-common-base.a
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+[  3%] Built target llama-common-base
+[  3%] Linking CXX shared library ../../bin/libggml-base.so
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+[  3%] Built target ggml-base
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Leaving directory '/home/dino/llama.cpp/build-cuda13'
+make[3]: Entering directory '/home/dino/llama.cpp/build-cuda13'
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/repack.cpp.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/traits.cpp.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/hbm.cpp.o
+[  3%] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.o
+[  4%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.o
+[  4%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/binary-ops.cpp.o
+[  4%] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/vec.cpp.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/unary-ops.cpp.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.o
+[  6%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/acc.cu.o
+[  6%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/add-id.cu.o
+[  6%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/arange.cu.o
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/repack.cpp.o
+[  9%] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/quants.c.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/argmax.cu.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/argsort.cu.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/binbcast.cu.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/clamp.cu.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/concat.cu.o
+[  9%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/conv-transpose-1d.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/conv2d-dw.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/conv2d-transpose.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/conv2d.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/convert.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/count-equal.cu.o
+[ 10%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/cpy.cu.o
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/cross-entropy-loss.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/cumsum.cu.o
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/diag.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/diagmask.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fattn-tile.cu.o
+[ 12%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fattn-wmma-f16.cu.o
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fattn.cu.o
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fill.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/gated_delta_net.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/getrows.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/ggml-cuda.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 13%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/gla.cu.o
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/im2col.cu.o
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mean.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmf.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmid.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmq.cu.o
+[ 15%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmvf.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmvq.cu.o
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/norm.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/opt-step-adamw.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/opt-step-sgd.cu.o
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/out-prod.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+[ 16%] Building CUDA object ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/pad.cu.o
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+make[3]: *** [ggml/src/CMakeFiles/ggml-cpu.dir/build.make:230: ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:632: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/out-prod.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:392: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fattn.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:437: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/getrows.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:452: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/ggml-cuda.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:617: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/opt-step-sgd.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:647: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/pad.cu.o] Terminated
+make[2]: *** [CMakeFiles/Makefile2:1893: ggml/src/CMakeFiles/ggml-cpu.dir/all] Terminated
+make[1]: *** [CMakeFiles/Makefile2:4586: tools/server/CMakeFiles/llama-server.dir/rule] Terminated
+make[3]: *** [vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/build.make:76: vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.o] Terminated
+make: *** [Makefile:1674: llama-server] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:137: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/argsort.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:377: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/fattn-wmma-f16.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:497: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mean.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:512: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmf.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:527: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmid.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:542: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmq.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:557: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmvf.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:587: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/norm.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:602: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/opt-step-adamw.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:152: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/binbcast.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:317: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/cumsum.cu.o] Terminated
+make[3]: *** [ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/build.make:572: ggml/src/ggml-cuda/CMakeFiles/ggml-cuda.dir/mmvq.cu.o] Terminated
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__nv_fp4_storage_t __nv_cvt_double_to_fp4(double, __nv_fp4_interpretation_t, cudaRoundMode)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:107:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  106 | __nv_cvt_double_to_fp4(const double x,
+      |                                       
+  107 |                        const __nv_fp4_interpretation_t fp4_interpretation,
+      | ^                 
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp: In function ‘__half_raw __nv_cvt_fp4_to_halfraw(__nv_fp4_storage_t, __nv_fp4_interpretation_t)’:
+/usr/local/cuda-13.0/bin/../targets/x86_64-linux/include/cuda_fp4.hpp:335:1: warning: unused parameter ‘fp4_interpretation’ [-Wunused-parameter]
+  334 | __nv_cvt_fp4_to_halfraw(const __nv_fp4_storage_t x,
+      |                                                    
+  335 |                         const __nv_fp4_interpretation_t fp4_interpretation) {
+      | ^                 
