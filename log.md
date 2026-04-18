@@ -235,3 +235,18 @@ Build started in background at ~/llama.cpp/build-cuda13/
 | KV quality | q8_0 | q8_0 | same |
 | VRAM used | 3,710 MiB | 15,785 MiB | +12.1 GB (experts on GPU) |
 
+
+---
+
+## Context expansion: 32768 → 65536 (2026-04-18)
+
+**Change**: `--ctx-size 65536 -ctk q4_0 -ctv q4_0`
+
+**Why**: Only 5 non-SWA global attention layers scale with ctx size (~5.5 MiB per 1024 tokens). 25 SWA layers use fixed 5120-cell ring buffer regardless of ctx.
+
+**VRAM budget**:
+- q8_0 at 65536 failed: compute buffer needed 1065 MiB, only 526 MiB free
+- q4_0 at 65536: KV halves (1211 → ~606 MiB), fits with 516 MiB free
+- q4_0 KV trade-off already validated in Exp 4: 69.4 vs 69.8 tok/s (noise level)
+
+**Result**: Active, 15,324 MiB VRAM, 516 MiB free. Gen speed unchanged (~69.8 tok/s).
