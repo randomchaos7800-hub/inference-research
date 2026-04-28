@@ -1,0 +1,18 @@
+iter	name	variable	value	depth	tg512	delta_tg512	pp512	outcome
+1	no-kv-offload	nkvo	1	0	14.68	-82.66	1533	NO_CHANGE
+2	flash-attn off	flash_attn	0	0	97.34	+0.00	2426	FAILED
+3	depth 4096	n_depth	4096	4096	93.52	-3.82	2311	DEPTH_INFO
+4	depth 131000	n_depth	131000	131000	39.72	-57.62	1093	DEPTH_INFO
+5	ubatch 2048	ubatch_size	2048	0	97.51	+0.17	2416	NO_CHANGE
+6	batch 4096	batch_size	4096	0	96.68	-0.66	2414	NO_CHANGE
+7	threads 16 d32k	threads	16	32768	71.75	-25.59	1847	NO_CHANGE
+8	main-gpu 1	main_gpu	1	0	97.57	+0.23	2418	NO_CHANGE
+9	threads 20 d32k	threads	20	32768	71.54	-25.80	1847	NO_CHANGE
+10	no-mmap	extra	['-mmp', '0']	0	97.30	-0.04	2417	NO_CHANGE
+11	depth 16384	n_depth	16384	16384	82.44	-14.90	2076	DEPTH_INFO
+12	depth 32768	n_depth	32768	32768	71.62	-25.72	1846	DEPTH_INFO
+13	depth 65536	n_depth	65536	65536	56.50	-40.84	1501	DEPTH_INFO
+14	depth 98304	n_depth	98304	98304	46.95	-50.39	1270	DEPTH_INFO
+15	ubatch 1024	ubatch_size	1024	0	97.61	+0.27	2413	NO_CHANGE
+16	no mlock	mlock	False	0	96.74	-0.60	2415	NO_CHANGE
+17	threads 12 d32k	threads	12	32768	71.70	-25.64	1842	NO_CHANGE
