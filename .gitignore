@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
 server-*.log
+server-genesis-*.log
+server-aeon-*.log
 server-current.log
 server-final.log
 exp*.log
