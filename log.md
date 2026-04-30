@@ -250,3 +250,96 @@ Build started in background at ~/llama.cpp/build-cuda13/
 - q4_0 KV trade-off already validated in Exp 4: 69.4 vs 69.8 tok/s (noise level)
 
 **Result**: Active, 15,324 MiB VRAM, 516 MiB free. Gen speed unchanged (~69.8 tok/s).
+
+---
+
+## 2026-04-29 — Crush Integration + Local Inference Coding Agent
+
+### Goal
+
+Build a production-grade local coding agent: Crush (v0.64.0 by Charmbracelet) wired to AEON-NVFP4 (Qwen3.6-27B, dual RTX 5060 Ti, fp4+fp8 KV, 122,880 ctx) via a thin Starlette proxy harness. Secondary goal: teach jr (Chatbox + AEON) to build its own harness using the "Thin Harness, Fat Skills" philosophy from Gary Tan's gbrain.
+
+### Stack at Session Start
+
+- vLLM AEON-NVFP4: port 8023, `--enable-auto-tool-choice --tool-call-parser qwen3_coder`
+- local-proxy: port 8010 (transparent passthrough, hot-reload backend config)
+- harness (port 8011): Chatbox soul+memory injection
+- harness-code (port 8012): Crush soul+memory injection
+- Both harnesses: same harness.py, differentiated by HARNESS_SOUL / HARNESS_MEMORY / HARNESS_PORT env vars
+
+### What Was Built (harness side)
+
+**Context files for Crush** (`soul_code.md`, `memory_code.md`):
+- Soul: 5 directives, 4 intent-switched modes, full stack section (Python path, inference ports, shell whitelist, service locations), explicit TOOL USE directive requiring commands before answering diagnostic questions
+- Memory: #LONG_TERM pre-populated with stack facts, harness internals, conventions, benchmark results
+
+**harness.py fixes:**
+1. `inject_context` was stripping Crush's system prompt entirely — replaced with append-after-soul behavior so Crush's tool definitions survive
+2. `HARNESS_MAX_TOKENS` env var — harness-code runs at 16384, chat harness stays at 4096
+3. Shell whitelist: added `ip`, `ifconfig`
+4. `sse_gen` transparent proxy mode: when `tools` in payload, force non-streaming toward vLLM to bypass `qwen3_coder` streaming parser bug (`list index out of range` on tool call deltas), re-emit as single SSE chunk to Crush
+5. Multi-turn tool conversation support: `inject_context` previously returned 400 when last message was `tool` role (not `user`). Fixed to track `ends_with_user`, pass full history without re-appending the user message, use last user message for memory logging only
+
+**MCP servers configured** (`~/.config/crush/crush.json`):
+- `shell`: mcp-shell-tools (PyPI, vllm-env Python, STDIO)
+- `filesystem`: @modelcontextprotocol/server-filesystem (npx, rooted at /home/dino)
+
+**Firefox GPU crash diagnosed and fixed:**
+- Root cause: Firefox CanvasRenderer competing for VRAM; vLLM holds 95%+ of both GPUs
+- Fix: `user.js` written to snap Firefox profile disabling WebRender and hardware acceleration
+
+### Crush Benchmark (before MCP work)
+
+5-task coding benchmark, all Python, all runnable:
+
+| Task | Result | Notes |
+|------|--------|-------|
+| parse_log_line (regex + asserts) | Pass | Clean, 3 meaningful asserts |
+| binary_search bug fix | Pass | Found the only bug, explained it |
+| two_sum O(n) | Pass | Hash map, correct, includes edge case |
+| refactor (10 lines → 1) | Pass | Best answer — one clean comprehension |
+| /v1/models table (live HTTP) | Pass | Dynamic field discovery, graceful empty |
+| LRU Cache (medium-hard, no hint) | Fail | Only produced asserts, no class, wrong eviction logic |
+| LRU Cache (with OrderedDict hint) | Partial | Correct impl, one broken assert |
+| retry decorator | Pass | Best response — correct backoff, 3 meaningful asserts |
+
+Pattern: strong on implementation and refactor, weak on self-verification and open-ended agentic tasks.
+
+### The Tool Calling Problem
+
+**Symptom**: Crush sends a diagnostic request, model responds with intent text ("Let me check...") instead of tool calls. No commands execute.
+
+**Root cause investigation**:
+- Confirmed vLLM supports tool calling: `finish_reason: tool_calls`, correct JSON ✓
+- Confirmed harness passes `tools` through to vLLM ✓
+- Direct test with `tool_choice: auto` + "firefox keeps dying what gives?": model returned `finish_reason: stop` with 4-paragraph generic browser support text, `tool_calls: []`
+- Same prompt with explicit action phrasing works; casual phrasing does not
+
+**Research finding** (deep dive into Crush issues + vLLM tracker):
+- Nobody has a reliably working Crush + vLLM + Qwen3 setup with consistent tool calling
+- Crush always sends `tool_choice: required` (not configurable) — this is the exact trigger for vLLM issue #19051 (Qwen3 + reasoning parser + required = 400, fixed in vLLM 0.9.0)
+- `qwen3_coder` streaming parser drops tool calls intermittently (vLLM issue #22975, closed stale)
+- Qwen3 thinking + tool calls = ~60% failure rate even with `enable_thinking: False` (QwenLM issue #1817)
+- The bugs are split across three layers (Crush, vLLM, model) with maintainers on both sides closing reports as not planned
+
+**vLLM version**: 0.19.2rc1.dev228+gebf862c35 (Genesis fork — may have its own behavior)
+
+**Mitigations applied**:
+- Force non-streaming for tool requests in harness (bypasses streaming parser bug)
+- Added TOOL USE directive to soul_code.md (commands before text for diagnostic questions)
+- `enable_thinking: False` already set in all payloads
+
+**Status**: Partially functional. MCP shell server executes (confirmed `Shell Sysinfo` call returned real data). Full tool loop (call → result → model continuation) blocked by harness 400 on tool result turns — fixed during session but not yet confirmed end-to-end.
+
+### Next Session
+
+- Try Qwen2.5-Coder-32B as Crush backend — reportedly more stable for tool use, no thinking/tool conflict
+- Verify full MCP tool loop works end-to-end with new model
+- If tool loop works: run the coding benchmark again and compare
+
+### Lessons
+
+1. Local inference coding agents are not plug-and-play. The Crush + vLLM + Qwen3 tool-call stack has known unfixed bugs at every layer.
+2. The "thin harness" pattern works — soul/memory injection, context preservation, and shell execution all function correctly. The ceiling is the model's tool-calling reliability.
+3. Benchmark scores (5/5 coding tasks) don't predict agentic reliability. A model can write perfect code and still fail to reach for tools on casual prompts.
+4. MCP doesn't bypass the tool-calling problem — it still requires the model to emit structured `tool_calls`. It standardizes *what* gets called, not *whether* the model calls anything.
