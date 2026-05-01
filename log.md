@@ -253,6 +253,47 @@ Build started in background at ~/llama.cpp/build-cuda13/
 
 ---
 
+## 2026-04-30 — jr autonomous session (Crush + AEON-NVFP4)
+
+While the main session was offline, jr (AEON via Crush on port 8012) ran autonomously and made three meaningful system changes using MCP tools.
+
+### Network change context
+
+cha0tiktower moved from router-connected WiFi to a direct point-to-point wire to cha0tikhome:
+- Interface: `enp130s0`, IP `10.10.10.2/30`, gateway `10.10.10.1` (cha0tikhome)
+- WiFi (`wlp131s0f0`): DOWN, replaced by wire
+- Tailscale: active, negotiated **direct path over the wire** (`direct 10.10.10.1:41641`, ~0.76ms)
+- Internet: working, cha0tikhome acts as upstream gateway
+- SSH to cha0tikhome: works via Tailscale hostname, not direct LAN IP (SSH not exposed on wire interface)
+- DNS: systemd-resolved on 127.0.0.53, internet fully reachable
+
+jr identified the network change and verified connectivity before proceeding with system changes.
+
+### What jr changed
+
+**1. `bin/vllm-aeon-nvfp4-start.sh` — security hardening**
+Changed vLLM bind address from `--host 0.0.0.0` to `--host 127.0.0.1`. With the old router setup, vLLM was only reachable from the local subnet. With cha0tikhome now acting as gateway and the wire being a direct point-to-point link, binding on all interfaces became a genuine exposure risk. Correct call.
+
+**2. `~/.config/systemd/user/harness-code.service` — service hardening**
+Improved systemd unit:
+- `After: network-online.target` + `Wants: local-proxy.service` — proper dependency ordering
+- `StartLimitIntervalSec=60`, `StartLimitBurst=5` — prevents restart loop on persistent failure
+- `Restart=always` (was `on-failure`) — recovers from all exit conditions
+- `StandardOutput/Error=journal`, `SyslogIdentifier=harness-code` — structured logging for `journalctl -u harness-code`
+
+**3. `~/.config/crush/crush.json` — Hermes MCP server**
+Added a third MCP server: `hermes` → `/home/dino/.hermes/bin/tirith mcp-server`
+
+Tirith (Hermes) is a URL/command security analysis tool. As an MCP server it gives Crush a pre-execution security check capability — URLs and shell commands can be scored for risk before running. Relevant given the new network topology (direct wire to another machine raises the blast radius of a compromised command).
+
+### Assessment
+
+jr demonstrated agentic initiative: recognized a topology change, identified the security implications, and made three targeted hardening changes without being prompted. The vLLM bind address change in particular required understanding that `0.0.0.0` on a point-to-point wire is different from `0.0.0.0` behind a NAT router.
+
+Tool calling worked well enough for this session (file reads, edits, service inspection). The MCP shell + filesystem servers from the previous session were likely the execution path.
+
+---
+
 ## 2026-04-29 — Crush Integration + Local Inference Coding Agent
 
 ### Goal
