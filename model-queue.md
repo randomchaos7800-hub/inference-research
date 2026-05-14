@@ -4,7 +4,7 @@
 - **Qwen3.6-27B INT4 AutoRound** (dense, GDN hybrid) — `~/vllm-genesis-start.sh` — alias `qwen3627b` — **systemd default (vllm-genesis.service, port 8022)**
   - vLLM 0.19.2rc1.dev228 + Genesis v7.53, gptq_marlin, MTP n=3, fp8 KV, ctx 32768
   - **83 t/s** (3.8x over llama.cpp), TP=2, 82% GMU (~26.8GB / 32GB)
-  - Frank substrate: cha0tikhome frank.toml → `:8022/v1`, model alias `qwen3627b` (promoted 2026-04-27)
+  - Frank substrate: home-server frank.toml → `:8022/v1`, model alias `qwen3627b` (promoted 2026-04-27)
   - AIME 94.1, SWE-bench 77.2 — competitive with 2024 frontier closed models
   - Remaining blockers: FlashInfer CUDA graph PIECEWISE (not FULL) with spec-decode; ctx limited to 32K (OOM above)
 

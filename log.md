@@ -259,12 +259,12 @@ While the main session was offline, jr (AEON via Crush on port 8012) ran autonom
 
 ### Network change context
 
-cha0tiktower moved from router-connected WiFi to a direct point-to-point wire to cha0tikhome:
-- Interface: `enp130s0`, IP `10.10.10.2/30`, gateway `10.10.10.1` (cha0tikhome)
+tower moved from router-connected WiFi to a direct point-to-point wire to home-server:
+- Interface: `enp130s0`, IP `[redacted]`, gateway `[redacted]` (home-server)
 - WiFi (`wlp131s0f0`): DOWN, replaced by wire
-- Tailscale: active, negotiated **direct path over the wire** (`direct 10.10.10.1:41641`, ~0.76ms)
-- Internet: working, cha0tikhome acts as upstream gateway
-- SSH to cha0tikhome: works via Tailscale hostname, not direct LAN IP (SSH not exposed on wire interface)
+- Tailscale: active, negotiated **direct path over the wire** (`direct [redacted]`, ~0.76ms)
+- Internet: working, home-server acts as upstream gateway
+- SSH to home-server: works via Tailscale hostname, not direct LAN IP (SSH not exposed on wire interface)
 - DNS: systemd-resolved on 127.0.0.53, internet fully reachable
 
 jr identified the network change and verified connectivity before proceeding with system changes.
@@ -272,7 +272,7 @@ jr identified the network change and verified connectivity before proceeding wit
 ### What jr changed
 
 **1. `bin/vllm-aeon-nvfp4-start.sh` — security hardening**
-Changed vLLM bind address from `--host 0.0.0.0` to `--host 127.0.0.1`. With the old router setup, vLLM was only reachable from the local subnet. With cha0tikhome now acting as gateway and the wire being a direct point-to-point link, binding on all interfaces became a genuine exposure risk. Correct call.
+Changed vLLM bind address from `--host 0.0.0.0` to `--host 127.0.0.1`. With the old router setup, vLLM was only reachable from the local subnet. With home-server now acting as gateway and the wire being a direct point-to-point link, binding on all interfaces became a genuine exposure risk. Correct call.
 
 **2. `~/.config/systemd/user/harness-code.service` — service hardening**
 Improved systemd unit:

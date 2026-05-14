@@ -97,7 +97,6 @@ Tower is headless (no monitor attached). Intel Core Ultra 7 265F has no iGPU. MS
 | **After killing vLLM, wait for VRAM < 500 MiB before restart** | CUDA contexts persist after process death; new instance OOMs at startup |
 | **Kernel pin to 6.17.0-22 until nvidia-kernel-common >= 580.142 is in repos** | 6.17.0-23 boots but has no NVIDIA driver |
 | **TPLink plug cycle needs 3+ seconds off** | < 1s doesn't register as AC loss on Z890 Tomahawk |
-| **mollydog bootstrap works over SSH** | `~/bin/mollydog` uses the bootstrap sudoers rule — no interactive terminal needed |
 
 ---
 
