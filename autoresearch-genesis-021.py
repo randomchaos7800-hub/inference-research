@@ -49,11 +49,16 @@ IMPROVE_THRESHOLD = 1.0   # t/s to call a win
 CLEAN_VRAM_MIB    = 500   # both GPUs must be below this to consider GPU clean
 GPU_DRAIN_TIMEOUT = 60
 
-PROMPT = (
-    "Explain in technical detail how CUDA tensor cores accelerate matrix multiplication "
-    "on Blackwell GPU architecture. Cover the hardware pipeline, NVFP4 vs FP8 precision "
-    "handling, KV cache memory implications, and tensor parallel communication patterns."
-)
+PROMPTS = [
+    "Explain in technical detail how CUDA tensor cores accelerate matrix multiplication on Blackwell GPU architecture. Cover the hardware pipeline, NVFP4 vs FP8 precision handling, KV cache memory implications, and tensor parallel communication patterns.",
+    "Describe the engineering challenges of running large language model inference at scale, covering batching strategies, KV cache management, quantization approaches, and tensor parallel communication patterns.",
+    "Explain the architecture of a Retrieval Augmented Generation system, covering embedding models, vector databases, chunking strategies, hybrid search, reranking, and prompt construction for grounded generation.",
+    "Describe how speculative decoding works to accelerate autoregressive inference, covering draft models, token verification, acceptance rates, and Multi-Token Prediction approaches in modern inference engines.",
+    "Explain CUDA memory management for deep learning, covering cudaMalloc, memory pools, VRAM fragmentation, unified memory, and best practices for managing GPU memory in multi-GPU inference workloads.",
+    "Describe how prefix caching works in LLM inference servers, covering KV cache reuse, hash-based cache lookup, cache eviction policies, and the throughput impact on production workloads.",
+    "Explain the Mamba state space model architecture, covering selective state spaces, input-dependent transitions, parallel scan computation, and how SSMs compare to attention for long-context inference.",
+]
+PROMPT = PROMPTS[0]  # kept for compat; run_benchmark uses PROMPTS rotation
 
 # ── experiments ───────────────────────────────────────────────────────────────
 
@@ -175,15 +180,38 @@ def wait_clean_gpu(timeout=GPU_DRAIN_TIMEOUT):
     return False
 
 
+def kill_port_procs(port=PORT):
+    """Kill any process listening on PORT (catches APIServer which has no GPU context)."""
+    r = subprocess.run(["ss", "-tlnpH", f"sport = :{port}"],
+                       capture_output=True, text=True)
+    killed = []
+    for line in r.stdout.strip().splitlines():
+        # format: LISTEN 0 N *:PORT *:* users:(("vllm",pid=N,fd=M))
+        import re as _re
+        m = _re.search(r'pid=(\d+)', line)
+        if m:
+            pid = int(m.group(1))
+            try:
+                os.kill(pid, signal.SIGKILL)
+                killed.append(pid)
+            except (ProcessLookupError, PermissionError):
+                pass
+    if killed:
+        log(f"  killed port-{port} procs: {killed}")
+    return killed
+
+
 def stop_service_and_clean():
     subprocess.run(["systemctl", "--user", "stop", f"{GENESIS_SERVICE}.service"],
                    check=False, capture_output=True)
     time.sleep(3)
     killed = kill_gpu_procs()
+    kill_port_procs()
     if killed:
         log(f"  killed GPU procs: {killed}")
         time.sleep(5)
-        kill_gpu_procs()  # second pass for stragglers
+        kill_gpu_procs()
+        kill_port_procs()
         time.sleep(3)
     wait_clean_gpu()
 
@@ -227,14 +255,35 @@ def make_test_script(exp):
     return Path(tmp.name)
 
 
-def wait_ready(timeout=READY_TIMEOUT):
+def port_owner_pid(port=PORT):
+    """Return the PID listening on PORT, or None."""
+    import re as _re
+    r = subprocess.run(["ss", "-tlnpH", f"sport = :{port}"],
+                       capture_output=True, text=True)
+    for line in r.stdout.strip().splitlines():
+        m = _re.search(r'pid=(\d+)', line)
+        if m:
+            return int(m.group(1))
+    return None
+
+
+def wait_ready(test_pgid, timeout=READY_TIMEOUT):
+    """Wait until /health returns 200 AND port 8022 is owned by a process in test_pgid's group."""
     import urllib.request, urllib.error
     deadline = time.time() + timeout
     while time.time() < deadline:
         try:
-            resp = urllib.request.urlopen(HEALTH, timeout=5)
-            if resp.status == 200:
-                return True
+            owner = port_owner_pid()
+            if owner is not None:
+                # Verify owner is in the test process group
+                try:
+                    owner_pgid = os.getpgid(owner)
+                except ProcessLookupError:
+                    owner_pgid = -1
+                if owner_pgid == test_pgid:
+                    resp = urllib.request.urlopen(HEALTH, timeout=5)
+                    if resp.status == 200:
+                        return True
         except Exception:
             pass
         elapsed = int(time.time() - (deadline - timeout))
@@ -244,10 +293,10 @@ def wait_ready(timeout=READY_TIMEOUT):
     return False
 
 
-def one_inference():
+def one_inference(prompt):
     import urllib.request, urllib.error, json
     body = json.dumps({
-        "model": MODEL, "prompt": PROMPT,
+        "model": MODEL, "prompt": prompt,
         "max_tokens": BENCH_TOKENS, "temperature": 0, "stream": False
     }).encode()
     req = urllib.request.Request(URL, data=body, headers=HEADERS, method="POST")
@@ -263,7 +312,7 @@ def run_benchmark():
     log(f"  warmup x{N_WARMUP}...")
     for i in range(N_WARMUP):
         try:
-            tps = one_inference()
+            tps = one_inference(PROMPTS[i % len(PROMPTS)])
             log(f"    warmup {i+1}: {tps:.2f} t/s")
         except Exception as e:
             log(f"    warmup {i+1} error: {e}")
@@ -272,7 +321,7 @@ def run_benchmark():
     results = []
     for i in range(N_BENCH):
         try:
-            tps = one_inference()
+            tps = one_inference(PROMPTS[(N_WARMUP + i) % len(PROMPTS)])
             results.append(tps)
             log(f"    run {i+1}: {tps:.2f} t/s")
         except Exception as e:
@@ -314,7 +363,7 @@ def run_experiment(exp, baseline_tps):
     pgid = os.getpgid(proc.pid)
     log(f"  pid={proc.pid} pgid={pgid}")
 
-    ready = wait_ready()
+    ready = wait_ready(test_pgid=pgid)
     if not ready:
         log("  FAIL: never became healthy")
         try:

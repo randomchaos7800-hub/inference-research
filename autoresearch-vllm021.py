@@ -41,7 +41,7 @@ AEON_SCRIPT     = Path("/home/dino/bin/vllm-aeon-nvfp4-start.sh")
 RESULTS_TSV     = Path("/home/dino/inference-research/autoresearch-vllm021-results.tsv")
 LOG_MD          = Path("/home/dino/inference-research/autoresearch-vllm021-log.md")
 
-GENESIS_SERVICE  = "vllm-genesis"
+GENESIS_SERVICE  = "vllm-backend"
 AEON_SERVICE     = "vllm-aeon"
 
 # New AEON Text-NVFP4-MTP model path — set before running if downloaded

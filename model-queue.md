@@ -1,7 +1,7 @@
 # Model Queue
 
 ## Active
-- **Qwen3.6-27B INT4 AutoRound** (dense, GDN hybrid) — `~/vllm-genesis-start.sh` — alias `qwen3627b` — **systemd default (vllm-genesis.service, port 8022)**
+- **Qwen3.6-27B INT4 AutoRound** (dense, GDN hybrid) — `~/vllm-genesis-start.sh` — alias `qwen3627b` — **systemd default (vllm-backend.service, port 8022)**
   - vLLM 0.19.2rc1.dev228 + Genesis v7.53, gptq_marlin, MTP n=3, fp8 KV, ctx 32768
   - **83 t/s** (3.8x over llama.cpp), TP=2, 82% GMU (~26.8GB / 32GB)
   - Frank substrate: home-server frank.toml → `:8022/v1`, model alias `qwen3627b` (promoted 2026-04-27)
@@ -33,7 +33,7 @@
 
 **Infra deployed** (2026-04-27):
 - venv: `/opt/ai/vllm-env` (vLLM 0.19.2rc1.dev228, Genesis v7.53, gptq_marlin)
-- Launch: `~/vllm-genesis-start.sh` → `vllm-genesis.service` on port 8022
+- Launch: `~/vllm-genesis-start.sh` → `vllm-backend.service` on port 8022
 - Revert model (llama.cpp): `systemctl --user start llama-server` (kills GPU sharing with vLLM)
 - P8 stub fix: `token_capacity_kv_cache_groups` appended to kv_cache_utils.py
 
