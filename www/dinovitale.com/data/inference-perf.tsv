@@ -1,0 +1,18 @@
+date	host	cpu	model	load_time_ms	ttft_ms	gen_tps	pp_tps	server_rss_gib	swap_used_gib	mem_avail_gib
+2026-04-02	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-it-Q4_K_M.gguf	0	626	11.68	9.0	24.0	7.0	16.1
+2026-04-03	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-it-Q4_K_M.gguf	0	2224	11.2	8.58	19.0	4.6	11.5
+2026-04-04	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-it-Q4_K_M.gguf	0	1357	11.64	8.21	25.4	6.4	12.9
+2026-04-05	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	874	10.37	7.45	19.8	6.7	6.5
+2026-04-06	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	905	10.13	7.49	21.9	9.3	5.1
+2026-04-07	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	16183	753	10.7	7.63	19.7	8.0	26.5
+2026-04-08	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	2022	10.6	7.04	22.1	12.5	4.2
+2026-04-09	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	1630	10.44	7.26	22.9	12.8	2.0
+2026-04-10	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	797	10.01	7.59	18.5	7.9	21.5
+2026-04-11	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	1453	5.02	3.86	19.1	8.2	18.8
+2026-04-12	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	831	10.17	7.58	19.4	7.6	19.8
+2026-04-13	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	804	10.01	7.03	19.3	7.4	20.7
+2026-04-14	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	618	11.52	9.25	24.0	8.3	13.5
+2026-04-15	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	613	11.12	8.93	24.7	10.7	14.0
+2026-04-16	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	694	10.58	8.13	20.8	8.8	10.8
+2026-04-17	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	640	11.47	9.58	20.7	8.7	11.1
+2026-04-18	cha0tikhome	12th Gen Intel(R) Core(TM) i5-1235U	gemma-4-26B-A4B-APEX-Balanced.gguf	0	616	11.72	9.56	18.1	7.7	11.9

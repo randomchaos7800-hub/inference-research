@@ -1,0 +1,20 @@
+{
+  "date": "2026-04-18",
+  "host": "cha0tikhome",
+  "arch": "x86_64",
+  "kernel": "6.17.0",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+  "cpu_cores": 12,
+  "ram_total_gib": 31.1,
+  "model": "gemma-4-26B-A4B-APEX-Balanced.gguf",
+  "ctx_size": 32768,
+  "load_time_ms": 0,
+  "server_rss_gib": "18.1",
+  "swap_used_gib": 7.7,
+  "mem_available_gib": 11.9,
+  "ttft_ms": 616,
+  "gen_tps": 11.72,
+  "pp_tps": 9.56,
+  "gen_tokens": 84,
+  "load_avg_1_5_15": "2.43/1.36/1.17"
+}
