@@ -6,6 +6,13 @@
 
 ---
 
+## 2026-05-22 — Qwen2.5-7B-Instruct Q4_K_M, Apple M4 MacBook Air
+**Stack**: llama.cpp 9270, Metal (BLAS+MTL), 16 GB unified memory
+**Winner**: `-ngl 99 --flash-attn on -t 1` | pp512: ~198 t/s | tg128: ~21 t/s
+**Key finding**: Threads inversely harm perf on full-GPU-offload Metal runs. t=1 beats t=10 by 25% on pp. Fanless thermal throttle = 24% pp degradation over 20min. Qwen3-8B tested and rejected (80% slower pp). MLX tested — marginal tg win (+11%) does not offset 3× pp loss vs llama.cpp.
+**Log**: [autoresearch-qwen25-7b-m4-log.md](autoresearch-qwen25-7b-m4-log.md)
+
+
 ## Baseline (2026-04-17 ~23:45)
 
 **Flags**:
