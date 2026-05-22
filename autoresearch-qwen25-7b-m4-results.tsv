@@ -22,3 +22,5 @@ kv_q4_k_only	ctk=q4_0 ctv=f16 flash=on t=1	165.75	19.28	K-only q4_0 marginal win
 kv_q5_k_only	ctk=q5_0 ctv=f16 flash=on t=1	133.67	13.17	REJECT extreme variance
 kv_f16_q8v_fail	ctk=f16 ctv=q8_0 flash=on t=1	FAIL	FAIL	Metal flash-attn V incompatible
 kv_q8_both_fail	ctk=q8_0 ctv=q8_0 flash=on t=1	FAIL	FAIL	Metal flash-attn V incompatible
+kv_f16_pp2048	ctk=f16 ctv=f16 flash=on t=1 pp2048	141.62	16.55	thermal sat confirming
+kv_q4_pp2048	ctk=q4_0 ctv=f16 flash=on t=1 pp2048	132.43	16.18	thermal sat confirming — q4 worse at long ctx

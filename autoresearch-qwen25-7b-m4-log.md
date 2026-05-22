@@ -178,3 +178,50 @@ The actual performance difference is a **backend priority regression in HEAD**: 
 **Verdict**: ❌ **No change — f16/f16 stays as default.** Maximum achievable improvement from KV quantization on this build/hardware combination is noise-level. The Metal backend limitation (V cache incompatible with flash-attn) blocks the configurations where quantization would actually help.
 
 **Note for future work**: KV quantization benefit scales with context length. At 8192 context window filling, smaller KV cache = less bandwidth per token. Worth re-testing at pp4096+ once the Metal flash-attn V-cache incompatibility is resolved in a future llama.cpp version.
+
+---
+
+## Final Summary (2026-05-22)
+
+**Hardware**: Apple M4 MacBook Air, 16 GB unified memory, fanless  
+**Stack**: llama.cpp 9270 (Homebrew), Metal (BLAS,MTL), macOS 15  
+**Model**: Qwen2.5-7B-Instruct Q4_K_M, 4.36 GiB  
+
+### Experiments run
+
+| # | Experiment | Verdict | Applied |
+|---|---|---|---|
+| 1 | Thread sweep (t=1..10) | t=1 optimal — GPU owns all compute, extra threads hurt | ✅ `-t 1` added to llm script |
+| 2 | Flash attention on vs off | ON wins +9% pp, +10% tg | ✅ already on |
+| 3 | llama.cpp vs MLX | llama.cpp wins pp 3×; MLX marginal +11% tg | ✅ llama.cpp stays |
+| 4 | Qwen3-8B MLX vs Qwen2.5-7B | Qwen3 80% slower pp, 12% slower tg — rejected | ✅ Qwen2.5-7B stays |
+| 5 | Native M4 source build | Homebrew wins both metrics — backend priority regression in HEAD | ✅ Homebrew stays |
+| 6 | KV cache sweep (f16/bf16/q8/q4/q5) | No improvement; Metal blocks V-cache quant; f16 default wins | ✅ no change |
+
+### Winning config
+
+```
+llama-server \
+  -m ~/models/Qwen2.5-7B-Instruct-Q4_K_M.gguf \
+  -ngl 99 \
+  -t 1 \
+  --flash-attn on \
+  -c 8192 \
+  --host 127.0.0.1 \
+  --port 8080
+```
+
+**Control**: `llm {start|stop|status|restart}` at `~/bin/llm`  
+**API**: `http://127.0.0.1:8080/v1` (OpenAI-compatible)
+
+### Cold performance (machine fully rested)
+- pp512: ~209 t/s
+- tg128: ~21 t/s
+
+### Thermal reality
+Fanless Air loses ~24% pp after 20 minutes sustained use. tg more stable. For critical use: start cold.
+
+### Open items
+- KV V-cache quantization: blocked by Metal flash-attn in this build — revisit when upstream fixes it
+- Long-context tg: KV quantization benefit is theoretically larger at 4K+ tokens but q4_0-K confirmed worse even at pp2048 on thermal-saturated machine
+- llama.cpp HEAD backend priority flip (BLAS→MTL order change): watch b9291+ for fix before upgrading Homebrew
