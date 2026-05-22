@@ -148,7 +148,7 @@ def _parse_usec(val: str) -> float | None:
 
 
 def _stale_threshold(expr: str) -> float:
-    parts = expr.split()
+    parts = expr.split()[:5]
     if len(parts) != 5:
         return 26.0
     minute, hour, dom, _month, dow = parts
