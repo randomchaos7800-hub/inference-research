@@ -120,3 +120,31 @@
 - KV cache quantization (q8_0, q4_0) — sweep results were lost to output buffering; should re-run
 - Larger model (Qwen2.5-14B) — would require ~9 GB, leaving only 7 GB for OS+context; likely thermal-throttles hard on Air
 - Batch size tuning for llama-server `--ubatch-size`
+
+---
+
+## Experiment 5: Native M4 source build vs Homebrew bottle (2026-05-22)
+
+**Hypothesis**: Homebrew bottle compiled with generic ARM flags. Building from source with `-mcpu=native` (targeting Apple M4 specifically) should recover 15-25% throughput via M4-specific SIMD and CPU path optimizations.
+
+**Method**: Cloned `ggml-org/llama.cpp` HEAD (build 200, commit 1acee6b), configured with:
+```
+cmake -DCMAKE_C_FLAGS="-mcpu=native" -DCMAKE_CXX_FLAGS="-mcpu=native"
+     -DGGML_METAL=ON -DGGML_BLAS=ON -DGGML_BLAS_VENDOR=Apple
+```
+Benchmarked back-to-back on same thermal state (warm), same flags, same model.
+
+| build | version | backend order | pp512 t/s | tg128 t/s |
+|---|---|---|---|---|
+| Homebrew bottle | 9270 (7ea23ddf7) | **BLAS,MTL** | **181.57 ± 2.65** | **20.39 ± 0.26** |
+| Native M4 source | HEAD (1acee6b) | MTL,BLAS | 158.91 ± 5.93 | 17.92 ± 1.15 |
+
+**Delta (native vs Homebrew)**: pp -12.5%, tg -12.1%. Native build is strictly worse on both metrics.
+
+**Root cause**: `-mcpu=native` is irrelevant. Metal GPU shaders are compiled at runtime by the Metal compiler — host CPU compile flags do not affect GPU kernel performance. With `-ngl 99` offloading all 28 transformer layers to Metal, there is almost no CPU compute path to optimize.
+
+The actual performance difference is a **backend priority regression in HEAD**: Homebrew 9270 loads `BLAS,MTL` (Apple Accelerate/AMX first), HEAD loads `MTL,BLAS` (Metal first). For prompt processing (batched matrix multiplication), Apple's AMX coprocessor via Accelerate is faster than the Metal batch path on M4. A code change between b9270 and b9291 flipped the default loading order.
+
+**Verdict**: ❌ **REJECT native build** — Homebrew 9270 is faster on both pp and tg. Do not upgrade to HEAD until backend priority is confirmed fixed or reverted.
+
+**Note**: Native build at `~/llama-m4-src/` — retained for future experiments, not used in production.

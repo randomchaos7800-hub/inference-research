@@ -11,3 +11,7 @@ flash_off	ngl=99 flash=off t=1	155.23	18.28	warmed
 mlx_qwen25	MLX 4bit Qwen2.5-7B	70.44	23.15	peak_mem=4.4GB
 mlx_qwen3	MLX 4bit Qwen3-8B	14.10	20.48	peak_mem=4.8GB
 thermal_hot	ngl=99 flash=on t=1 pp1024	152.52	17.77	after 20min sustained bench
+native_m4_pp	native build mcpu=native HEAD ngl=99 flash=on t=1	171.48	19.27	run1 warm
+native_m4_pp2	native build mcpu=native HEAD ngl=99 flash=on t=1	158.91	17.92	run2 warm
+homebrew_r2	homebrew 9270 ngl=99 flash=on t=1	192.60	17.77	run1 warm
+homebrew_r3	homebrew 9270 ngl=99 flash=on t=1	181.57	20.39	run2 warm
