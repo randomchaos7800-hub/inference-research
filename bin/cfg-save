@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+    echo "Usage: cfg-save <filepath>" >&2
+    exit 1
+fi
+
+FILE="$(realpath "$1")"
+
+if [ ! -f "$FILE" ]; then
+    echo "cfg-save: file not found: $FILE" >&2
+    exit 1
+fi
+
+SERVICE=$(basename "$(dirname "$FILE")")
+FILENAME=$(basename "$FILE")
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+SNAPSHOT_DIR="$HOME/.cfg-snapshots/$SERVICE"
+
+mkdir -p "$SNAPSHOT_DIR"
+DEST="$SNAPSHOT_DIR/${FILENAME}.${TIMESTAMP}"
+cp "$FILE" "$DEST"
+echo "Saved → $DEST"

@@ -6,9 +6,11 @@ import json
 import subprocess
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 
 import httpx
 import psutil
+import yaml
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 
@@ -16,32 +18,12 @@ TOWER_METRICS_URL = "http://100.120.50.35:8010/metrics/daily?days=8"
 
 app = FastAPI()
 
-AGENTS = [
-    ("frank-api",       "Frank API", "user"),
-    ("mike",            "Mike",      "user"),
-    ("hermes-gateway",  "Hermes",    "system"),
-    ("localfamouscoffee", "LFC",     "user"),
-]
+_cfg_path = Path(__file__).parent / "monitor.yaml"
+_cfg = yaml.safe_load(_cfg_path.read_text())
 
-SERVICES = [
-    ("nginx",         "nginx",      "system"),
-    ("tailscaled",    "Tailscale",  "system"),
-    ("postgresql",    "PostgreSQL", "system"),
-    ("vaultwarden",   "Vaultwarden","system"),
-    ("jellyfin",      "Jellyfin",   "system"),
-    ("paperless-web", "Paperless",  "system"),
-    ("qbittorrent",   "qBit",       "system"),
-]
-
-WATCHED_TIMERS = [
-    ("pandorica-extract.timer",  "pandorica-extract",  26.0),
-    ("pandorica-sync.timer",     "pandorica-sync",     26.0),
-    ("chronicle.timer",          "chronicle",          26.0),
-    ("mike-daily-report.timer",  "mike-daily-report",  26.0),
-    ("mike-lighthouse.timer",    "mike-lighthouse",    26.0),
-    ("mike-consolidation.timer", "mike-consolidation", 26.0),
-    ("cha0tikwiki-compile.timer","wiki-compile",       26.0),
-]
+AGENTS = [(a["id"], a["label"], a["scope"]) for a in _cfg.get("agents", [])]
+SERVICES = [(s["id"], s["label"], s["scope"]) for s in _cfg.get("services", [])]
+WATCHED_TIMERS = [(t["unit"], t["label"], float(t["stale_hours"])) for t in _cfg.get("timers", [])]
 
 TOWER_HOST = "dino@100.120.50.35"
 
@@ -783,8 +765,8 @@ async function refresh() {
       }
     }
 
-    // Overall dot
-    const anyDown = [...d.agents, ...d.services].some(i => i.state === 'failed');
+    // Overall dot — red if any agent or service is not active (catches both failed and inactive)
+    const anyDown = [...d.agents, ...d.services].some(i => i.state !== 'active');
     document.getElementById('overall-dot').style.background = anyDown ? 'var(--red)' : 'var(--green)';
     document.getElementById('overall-dot').style.boxShadow = anyDown ? '0 0 10px var(--red)' : '0 0 10px var(--green)';
 

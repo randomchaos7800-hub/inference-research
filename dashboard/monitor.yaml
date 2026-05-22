@@ -1,0 +1,64 @@
+# Boundary Labs Status Dashboard — watched items
+# Add/remove agents, services, and timers here.
+# main.py reads this at startup — restart the dashboard service after editing.
+
+agents:
+  - id: frank-api
+    label: Frank API
+    scope: user
+  - id: mike
+    label: Mike
+    scope: user
+  - id: hermes-gateway
+    label: Hermes
+    scope: system
+  - id: localfamouscoffee
+    label: LFC
+    scope: user
+
+services:
+  - id: nginx
+    label: nginx
+    scope: system
+  - id: tailscaled
+    label: Tailscale
+    scope: system
+  - id: postgresql
+    label: PostgreSQL
+    scope: system
+  - id: vaultwarden
+    label: Vaultwarden
+    scope: system
+  - id: jellyfin
+    label: Jellyfin
+    scope: system
+  - id: paperless-web
+    label: Paperless
+    scope: system
+  - id: qbittorrent
+    label: qBit
+    scope: system
+
+# systemd user timers — stale_hours is how long since last trigger before yellow dot
+timers:
+  - unit: pandorica-extract.timer
+    label: pandorica-extract
+    stale_hours: 26
+  - unit: pandorica-sync.timer
+    label: pandorica-sync
+    stale_hours: 26
+  - unit: chronicle.timer
+    label: chronicle
+    stale_hours: 26
+  - unit: mike-daily-report.timer
+    label: mike-daily-report
+    stale_hours: 26
+  - unit: mike-lighthouse.timer
+    label: mike-lighthouse
+    stale_hours: 26
+  - unit: mike-consolidation.timer
+    label: mike-consolidation
+    stale_hours: 26
+  - unit: cha0tikwiki-compile.timer
+    label: wiki-compile
+    stale_hours: 26
