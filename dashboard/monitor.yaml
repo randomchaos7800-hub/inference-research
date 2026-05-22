@@ -62,3 +62,29 @@ timers:
   - unit: cha0tikwiki-compile.timer
     label: wiki-compile
     stale_hours: 26
+
+# artifact_checks — verify a job actually delivered, not just ran
+# glob supports * and ** wildcards; ~ expands to home dir
+# stale_hours: file must exist and be newer than this many hours
+artifacts:
+  - label: perf-log
+    glob: "~/logs/perf/*-cha0tikhome.json"
+    stale_hours: 26
+  - label: chronicle
+    glob: "/mnt/jellyfin-backups/records/*/*/*.md"
+    stale_hours: 26
+  - label: backup-system
+    glob: "/mnt/jellyfin-backups/system/system-backup-*.tar.gz"
+    stale_hours: 26
+  - label: backup-www
+    glob: "/mnt/jellyfin-backups/www/www-backup-*.tar.gz"
+    stale_hours: 26
+  - label: backup-vault
+    glob: "/mnt/jellyfin-backups/vault/vault-backup-*.tar.gz"
+    stale_hours: 26
+  - label: backup-mike
+    glob: "/mnt/jellyfin-backups/mike/mike-backup-*.tar.gz"
+    stale_hours: 26
+  - label: backup-repos
+    glob: "/mnt/jellyfin-backups/repos/frank.git/FETCH_HEAD"
+    stale_hours: 26

@@ -2,6 +2,7 @@
 """Boundary Labs — Live Status Dashboard"""
 
 import asyncio
+import glob as _glob
 import json
 import subprocess
 import time
@@ -24,10 +25,20 @@ _cfg = yaml.safe_load(_cfg_path.read_text())
 AGENTS = [(a["id"], a["label"], a["scope"]) for a in _cfg.get("agents", [])]
 SERVICES = [(s["id"], s["label"], s["scope"]) for s in _cfg.get("services", [])]
 WATCHED_TIMERS = [(t["unit"], t["label"], float(t["stale_hours"])) for t in _cfg.get("timers", [])]
+ARTIFACTS = _cfg.get("artifacts", [])
 
 TOWER_HOST = "dino@100.120.50.35"
 
 INFERENCE_URL = "http://100.120.50.35:8010/health"
+
+
+def check_artifact(glob_pat: str, stale_hours: float) -> dict:
+    pattern = glob_pat.replace("~", str(Path.home()))
+    matches = sorted(_glob.glob(pattern), key=lambda p: Path(p).stat().st_mtime, reverse=True)
+    if not matches:
+        return {"status": "missing", "age_h": None}
+    age_h = (time.time() - Path(matches[0]).stat().st_mtime) / 3600
+    return {"status": "ok" if age_h < stale_hours else "stale", "age_h": round(age_h, 1)}
 
 
 def check_systemd(service: str, scope: str) -> str:
@@ -227,6 +238,17 @@ async def get_crons():
             "age_h": round(age_h, 1) if age_h is not None else None,
             "status": status,
             "source": "timer",
+        })
+
+    # Append artifact checks
+    for art in ARTIFACTS:
+        result = check_artifact(art["glob"], float(art["stale_hours"]))
+        jobs_out.append({
+            "name": art["label"],
+            "schedule": "",
+            "age_h": result["age_h"],
+            "status": result["status"],
+            "source": "artifact",
         })
 
     return JSONResponse({"jobs": jobs_out})
@@ -491,7 +513,7 @@ HTML = r"""<!DOCTYPE html>
       <div id="agents"></div>
     </div>
     <div class="panel" style="flex:1;overflow-y:auto;">
-      <div class="panel-title">Hermes Crons</div>
+      <div class="panel-title">Scheduled Jobs</div>
       <div id="crons"><div style="color:var(--muted);font-size:12px;padding:8px 0;">loading…</div></div>
     </div>
   </div>
@@ -796,10 +818,11 @@ function ageStr(age_h) {
 }
 
 function cronDot(status) {
-  if (status === 'ok')     return '<div class="dot dot-ok"></div>';
-  if (status === 'error')  return '<div class="dot dot-err"></div>';
-  if (status === 'stale')  return '<div class="dot dot-unk"></div>';
-  if (status === 'never')  return '<div class="dot dot-never"></div>';
+  if (status === 'ok')      return '<div class="dot dot-ok"></div>';
+  if (status === 'error')   return '<div class="dot dot-err"></div>';
+  if (status === 'stale')   return '<div class="dot dot-unk"></div>';
+  if (status === 'missing') return '<div class="dot dot-err" style="animation:pulse 1s infinite"></div>';
+  if (status === 'never')   return '<div class="dot dot-never"></div>';
   return '<div class="dot dot-unk"></div>';
 }
 
@@ -810,15 +833,21 @@ async function refreshCrons() {
     if (d.error) return;
     let html = '';
     let timerDividerAdded = false;
+    let artifactDividerAdded = false;
     for (const j of d.jobs) {
       if (j.source === 'timer' && !timerDividerAdded) {
         html += `<div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);padding:8px 14px 4px;border-top:1px solid var(--border);margin-top:4px;">system timers</div>`;
         timerDividerAdded = true;
       }
+      if (j.source === 'artifact' && !artifactDividerAdded) {
+        html += `<div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);padding:8px 14px 4px;border-top:1px solid var(--border);margin-top:4px;">artifacts</div>`;
+        artifactDividerAdded = true;
+      }
+      const ageLabel = j.source === 'artifact' && j.status === 'missing' ? 'MISSING' : ageStr(j.age_h);
       html += `<div class="cron-row">
         ${cronDot(j.status)}
         <span class="cron-name">${j.name}</span>
-        <span class="cron-age">${ageStr(j.age_h)}</span>
+        <span class="cron-age" style="${j.status === 'missing' ? 'color:var(--red)' : ''}">${ageLabel}</span>
       </div>`;
     }
     document.getElementById('crons').innerHTML = html;
