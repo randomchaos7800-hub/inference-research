@@ -1,0 +1,433 @@
+[13:10:11] bench-trtllm-nemotron start — 2026-05-21T13:10:11.296676
+[13:10:11] TRT-LLM LLM API, FP8 model, tensor_parallel_size=2
+[13:10:11] Loading TRT-LLM...
+Authorization required, but no authorization protocol specified
+
+Authorization required, but no authorization protocol specified
+
+Authorization required, but no authorization protocol specified
+
+Authorization required, but no authorization protocol specified
+
+/opt/ai/trtllm-env/lib/python3.12/site-packages/modelopt/torch/__init__.py:36: UserWarning: transformers version 4.57.3 is incompatible with nvidia-modelopt and may cause issues. Please install recommended version with `pip install nvidia-modelopt[hf]` if working with HF models.
+  _warnings.warn(
+[TensorRT-LLM] TensorRT LLM version: 1.2.1
+[13:10:17] Initializing LLM (first load will compile — may take a few minutes)...
+[05/21/2026-13:10:17] [TRT-LLM] [I] Using LLM with PyTorch backend
+[05/21/2026-13:10:17] [TRT-LLM] [W] Using default gpus_per_node: 2
+[05/21/2026-13:10:17] [TRT-LLM] [I] neither checkpoint_format nor checkpoint_loader were provided, checkpoint_format will be set to HF.
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+You are using a model of type nemotron_h to instantiate a model of type . This is not supported for all configurations of models and can yield errors.
+`torch_dtype` is deprecated! Use `dtype` instead!
+[33;20mrank 0 using MpiPoolSession to spawn MPI processes
+[0mAuthorization required, but no authorization protocol specified
+
+Authorization required, but no authorization protocol specified
+
+Multiple distributions found for package optimum. Picked distribution: optimum
+Multiple distributions found for package optimum. Picked distribution: optimum
+Multiple distributions found for package modelopt. Picked distribution: nvidia-modelopt
+Multiple distributions found for package modelopt. Picked distribution: nvidia-modelopt
+/opt/ai/trtllm-env/lib/python3.12/site-packages/modelopt/torch/__init__.py:36: UserWarning: transformers version 4.57.3 is incompatible with nvidia-modelopt and may cause issues. Please install recommended version with `pip install nvidia-modelopt[hf]` if working with HF models.
+  _warnings.warn(
+/opt/ai/trtllm-env/lib/python3.12/site-packages/modelopt/torch/__init__.py:36: UserWarning: transformers version 4.57.3 is incompatible with nvidia-modelopt and may cause issues. Please install recommended version with `pip install nvidia-modelopt[hf]` if working with HF models.
+  _warnings.warn(
+[TensorRT-LLM] TensorRT LLM version: 1.2.1
+[TensorRT-LLM] TensorRT LLM version: 1.2.1
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/serve/openai_protocol.py:104: UserWarning: Field name "schema" in "ResponseFormat" shadows an attribute in parent "OpenAIBaseModel"
+  class ResponseFormat(OpenAIBaseModel):
+/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/serve/openai_protocol.py:104: UserWarning: Field name "schema" in "ResponseFormat" shadows an attribute in parent "OpenAIBaseModel"
+  class ResponseFormat(OpenAIBaseModel):
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+[05/21/2026-13:10:24] [TRT-LLM] [RANK 1] [E] Failed to initialize executor on rank 1: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.48
+Free GPU memory before component creation attempt (GiB): 15.33
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+[05/21/2026-13:10:24] [TRT-LLM] [RANK 1] [E] Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 155, in observe_creation_stage
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 332, in allocation_scope
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 342, in create_py_executor
+    model_engine = PyTorchModelEngine(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 204, in __init__
+    self.model, moe_load_balancer = self.model_loader.load(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_loader.py", line 260, in load
+    model.to("cuda")
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1371, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 957, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1357, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 336.00 MiB. GPU 1 has a total capacity of 15.48 GiB of which 219.44 MiB is free. Including non-PyTorch memory, this process has 15.24 GiB memory in use. 15.48 GiB allowed; Of the allocated memory 14.91 GiB is allocated by PyTorch, and 121.31 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 281, in worker_main
+    worker: GenerationExecutorWorker = worker_cls(
+                                       ^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 62, in __init__
+    self.setup_engine()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 257, in setup_engine
+    self.engine = _create_py_executor(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 228, in _create_py_executor
+    _executor = create_executor(**args)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 340, in create_py_executor
+    with allocation_scope(ExecutorMemoryType.MODEL_ENGINE_MAIN,
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 329, in allocation_scope
+    with mem_monitor.observe_creation_stage(current_stage):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 163, in observe_creation_stage
+    raise RuntimeError(explanation) from e
+RuntimeError: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.48
+Free GPU memory before component creation attempt (GiB): 15.33
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+
+[05/21/2026-13:10:24] [TRT-LLM] [RANK 0] [E] Failed to initialize executor on rank 0: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+[05/21/2026-13:10:24] [TRT-LLM] [RANK 0] [E] Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 155, in observe_creation_stage
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 332, in allocation_scope
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 342, in create_py_executor
+    model_engine = PyTorchModelEngine(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 204, in __init__
+    self.model, moe_load_balancer = self.model_loader.load(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_loader.py", line 260, in load
+    model.to("cuda")
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1371, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 957, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1357, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 336.00 MiB. GPU 0 has a total capacity of 15.47 GiB of which 249.69 MiB is free. Process 3158741 has 198.00 MiB memory in use. Including non-PyTorch memory, this process has 14.94 GiB memory in use. 15.47 GiB allowed; Of the allocated memory 14.61 GiB is allocated by PyTorch, and 119.81 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 281, in worker_main
+    worker: GenerationExecutorWorker = worker_cls(
+                                       ^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 62, in __init__
+    self.setup_engine()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 257, in setup_engine
+    self.engine = _create_py_executor(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 228, in _create_py_executor
+    _executor = create_executor(**args)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 340, in create_py_executor
+    with allocation_scope(ExecutorMemoryType.MODEL_ENGINE_MAIN,
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 329, in allocation_scope
+    with mem_monitor.observe_creation_stage(current_stage):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 163, in observe_creation_stage
+    raise RuntimeError(explanation) from e
+RuntimeError: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+
+[05/21/2026-13:10:24] [TRT-LLM] [E] Executor worker initialization error: Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 155, in observe_creation_stage
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 332, in allocation_scope
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 342, in create_py_executor
+    model_engine = PyTorchModelEngine(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 204, in __init__
+    self.model, moe_load_balancer = self.model_loader.load(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_loader.py", line 260, in load
+    model.to("cuda")
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1371, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 957, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1357, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 336.00 MiB. GPU 0 has a total capacity of 15.47 GiB of which 249.69 MiB is free. Process 3158741 has 198.00 MiB memory in use. Including non-PyTorch memory, this process has 14.94 GiB memory in use. 15.47 GiB allowed; Of the allocated memory 14.61 GiB is allocated by PyTorch, and 119.81 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 281, in worker_main
+    worker: GenerationExecutorWorker = worker_cls(
+                                       ^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 62, in __init__
+    self.setup_engine()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 257, in setup_engine
+    self.engine = _create_py_executor(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 228, in _create_py_executor
+    _executor = create_executor(**args)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 340, in create_py_executor
+    with allocation_scope(ExecutorMemoryType.MODEL_ENGINE_MAIN,
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 329, in allocation_scope
+    with mem_monitor.observe_creation_stage(current_stage):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 163, in observe_creation_stage
+    raise RuntimeError(explanation) from e
+RuntimeError: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+
+[13:10:24] FAIL: LLM init error: Executor worker returned error
+[13:10:24] Trying tensor_parallel_size=1...
+[05/21/2026-13:10:24] [TRT-LLM] [I] Using LLM with PyTorch backend
+[05/21/2026-13:10:24] [TRT-LLM] [W] Using default gpus_per_node: 2
+[05/21/2026-13:10:24] [TRT-LLM] [I] neither checkpoint_format nor checkpoint_loader were provided, checkpoint_format will be set to HF.
+Exception ignored in: <function PyTorchModelEngine.__del__ at 0x701cc39763e0>
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1147, in __del__
+    self._release_cuda_graphs()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1235, in _release_cuda_graphs
+    self.cuda_graph_runner.clear()
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PyTorchModelEngine' object has no attribute 'cuda_graph_runner'
+Exception ignored in: <function PyTorchModelEngine.__del__ at 0x74e67c54e2a0>
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1147, in __del__
+    self._release_cuda_graphs()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1235, in _release_cuda_graphs
+    self.cuda_graph_runner.clear()
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PyTorchModelEngine' object has no attribute 'cuda_graph_runner'
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+You are using a model of type nemotron_h to instantiate a model of type . This is not supported for all configurations of models and can yield errors.
+[33;20mrank 0 using MpiPoolSession to spawn MPI processes
+[0mAuthorization required, but no authorization protocol specified
+
+Multiple distributions found for package optimum. Picked distribution: optimum
+Multiple distributions found for package modelopt. Picked distribution: nvidia-modelopt
+/opt/ai/trtllm-env/lib/python3.12/site-packages/modelopt/torch/__init__.py:36: UserWarning: transformers version 4.57.3 is incompatible with nvidia-modelopt and may cause issues. Please install recommended version with `pip install nvidia-modelopt[hf]` if working with HF models.
+  _warnings.warn(
+[TensorRT-LLM] TensorRT LLM version: 1.2.1
+[TensorRT-LLM][INFO] Refreshed the MPI local session
+/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/serve/openai_protocol.py:104: UserWarning: Field name "schema" in "ResponseFormat" shadows an attribute in parent "OpenAIBaseModel"
+  class ResponseFormat(OpenAIBaseModel):
+`torch_dtype` is deprecated! Use `dtype` instead!
+[05/21/2026-13:10:31] [TRT-LLM] [E] Failed to initialize executor on rank 0: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+[05/21/2026-13:10:31] [TRT-LLM] [E] Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 155, in observe_creation_stage
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 332, in allocation_scope
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 342, in create_py_executor
+    model_engine = PyTorchModelEngine(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 204, in __init__
+    self.model, moe_load_balancer = self.model_loader.load(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_loader.py", line 260, in load
+    model.to("cuda")
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1371, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 957, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1357, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 672.00 MiB. GPU 0 has a total capacity of 15.47 GiB of which 183.69 MiB is free. Process 3158741 has 198.00 MiB memory in use. Including non-PyTorch memory, this process has 15.01 GiB memory in use. 15.47 GiB allowed; Of the allocated memory 14.76 GiB is allocated by PyTorch, and 30.66 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 281, in worker_main
+    worker: GenerationExecutorWorker = worker_cls(
+                                       ^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 62, in __init__
+    self.setup_engine()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 257, in setup_engine
+    self.engine = _create_py_executor(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 228, in _create_py_executor
+    _executor = create_executor(**args)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 340, in create_py_executor
+    with allocation_scope(ExecutorMemoryType.MODEL_ENGINE_MAIN,
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 329, in allocation_scope
+    with mem_monitor.observe_creation_stage(current_stage):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 163, in observe_creation_stage
+    raise RuntimeError(explanation) from e
+RuntimeError: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+
+[05/21/2026-13:10:31] [TRT-LLM] [E] Executor worker initialization error: Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 155, in observe_creation_stage
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 332, in allocation_scope
+    yield
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 342, in create_py_executor
+    model_engine = PyTorchModelEngine(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 204, in __init__
+    self.model, moe_load_balancer = self.model_loader.load(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_loader.py", line 260, in load
+    model.to("cuda")
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1371, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    module._apply(fn)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 957, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1357, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 672.00 MiB. GPU 0 has a total capacity of 15.47 GiB of which 183.69 MiB is free. Process 3158741 has 198.00 MiB memory in use. Including non-PyTorch memory, this process has 15.01 GiB memory in use. 15.47 GiB allowed; Of the allocated memory 14.76 GiB is allocated by PyTorch, and 30.66 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 281, in worker_main
+    worker: GenerationExecutorWorker = worker_cls(
+                                       ^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/worker.py", line 62, in __init__
+    self.setup_engine()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 257, in setup_engine
+    self.engine = _create_py_executor(
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/executor/base_worker.py", line 228, in _create_py_executor
+    _executor = create_executor(**args)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 340, in create_py_executor
+    with allocation_scope(ExecutorMemoryType.MODEL_ENGINE_MAIN,
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 329, in allocation_scope
+    with mem_monitor.observe_creation_stage(current_stage):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/py_executor_creator.py", line 163, in observe_creation_stage
+    raise RuntimeError(explanation) from e
+RuntimeError: Executor creation failed due to insufficient GPU memory.
+
+The following component could not be created: Model
+Total GPU memory (GiB): 15.47
+Free GPU memory before component creation attempt (GiB): 15.06
+
+Previously created components and free GPU memory before/after creation (GiB):
+
+Please refer to the TensorRT LLM documentation for information on how to control the memory usage through TensorRT LLM configuration options. Possible options include:
+  model: reduce max_num_tokens and/or shard the model weights across GPUs by enabling pipeline and/or tensor parallelism
+
+[13:10:31] FAIL: single GPU also failed: Executor worker returned error
+Exception ignored in: <function PyTorchModelEngine.__del__ at 0x7a6f7772e3e0>
+Traceback (most recent call last):
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1147, in __del__
+    self._release_cuda_graphs()
+  File "/opt/ai/trtllm-env/lib/python3.12/site-packages/tensorrt_llm/_torch/pyexecutor/model_engine.py", line 1235, in _release_cuda_graphs
+    self.cuda_graph_runner.clear()
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PyTorchModelEngine' object has no attribute 'cuda_graph_runner'

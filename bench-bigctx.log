@@ -1,0 +1,17 @@
+[14:32:35] bench-bigctx start — 2026-05-21T14:32:35.854164
+[14:32:35] target: proxy :8010 → nemotron ctx=65536
+[14:32:35] baseline: 123.6 t/s
+[14:32:35] Warmup...
+[14:32:43]   ctx~ 1000:  104.3 t/s  prompt=1228tok  gen=400tok  3.8s  (-19.3 vs baseline)
+[14:32:47]   ctx~ 4000:   87.6 t/s  prompt=5291tok  gen=400tok  4.6s  (-36.0 vs baseline)
+[14:32:52]   ctx~ 8000:   82.2 t/s  prompt=10788tok  gen=400tok  4.9s  (-41.4 vs baseline)
+[14:32:59]   ctx~16000:   63.5 t/s  prompt=21543tok  gen=400tok  6.3s  (-60.1 vs baseline)
+[14:33:08]   ctx~32000:   42.3 t/s  prompt=43053tok  gen=400tok  9.5s  (-81.3 vs baseline)
+[14:33:18]   ctx~48000:   38.3 t/s  prompt=64802tok  gen=400tok  10.4s  (-85.3 vs baseline)
+[14:33:18] 
+==================================================
+[14:33:18] ctx range: 1228–64802 tokens
+[14:33:18] tps range: 38.3–104.3 t/s
+[14:33:18] degradation 1k→32k+: 104.3 → 38.3 t/s  (-63.2%)
+[14:33:18] ==================================================
+[14:33:18] bench-bigctx complete
