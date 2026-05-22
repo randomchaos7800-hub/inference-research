@@ -3,6 +3,6 @@
   "active": "nemotron",
   "model_id": "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf",
   "model": "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf",
-  "tok_s": 86.0,
-  "updated": "2026-05-22T20:00:01Z"
+  "tok_s": 86.1,
+  "updated": "2026-05-22T20:15:01Z"
 }
