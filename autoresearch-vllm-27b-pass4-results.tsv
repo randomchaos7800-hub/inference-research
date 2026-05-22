@@ -1,0 +1,2 @@
+iter	name	max_model_len	gmu	kv	tg_median	tg_p90	delta	ctx_probe	outcome
+0	baseline	32768	0.82	auto	67.22	67.27	+0.00	OK	BASELINE

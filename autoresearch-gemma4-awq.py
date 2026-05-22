@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+"""
+Gemma 4 31B AWQ autoresearch — dual RTX 5060 Ti (32GB).
+Sweeps: gmu, ctx, kv_dtype, batched_tokens, seqs, enforce_eager, prealloc.
+Baseline: current start config (65536 ctx, gmu=0.90, fp8 KV, no MTP).
+Writes best config back to vllm-gemma4-awq-start.sh at end.
+"""
+import datetime, os, statistics, subprocess, sys, time, signal
+import requests
+
+LOG      = "/home/dino/inference-research/autoresearch-gemma4-awq-log.md"
+TSV      = "/home/dino/inference-research/autoresearch-gemma4-awq-results.tsv"
+SCRIPT   = "/home/dino/bin/vllm-gemma4-awq-start.sh"
+BASE_URL = "http://localhost:8025"
+API_KEY  = "genesis-local"
+MODEL    = "gemma4-31b"
+HEADERS  = {"Content-Type": "application/json", "Authorization": f"Bearer {API_KEY}"}
+
+BASELINE = {
+    "gpu_memory_utilization":        0.90,
+    "max_model_len":                 65536,
+    "max_num_seqs":                  2,
+    "max_num_batched_tokens":        4096,
+    "kv_cache_dtype":                "fp8",
+    "enforce_eager":                 False,
+    "GENESIS_PREALLOC_TOKEN_BUDGET": "4096",
+    "VLLM_FLASHINFER_WORKSPACE_BUFFER_SIZE": str(433 * 1024 * 1024),
+    "NCCL_BUFFSIZE":                 "4194304",
+    "PYTORCH_MAX_SPLIT_MB":          "512",
+}
+
+EXPERIMENTS = [
+    # KV dtype — fp8 vs auto (bf16); big impact on memory/speed tradeoff
+    ("kv=auto",          {"kv_cache_dtype": "auto"}),
+
+    # GMU — more headroom for KV cache with AWQ's lighter weight footprint
+    ("gmu=0.92",         {"gpu_memory_utilization": 0.92}),
+    ("gmu=0.95",         {"gpu_memory_utilization": 0.95}),
+    ("gmu=0.88",         {"gpu_memory_utilization": 0.88}),
+
+    # Context expansion — AWQ should have room vs NVFP4
+    ("ctx=131072",       {"max_model_len": 131072}),
+    ("ctx=32768",        {"max_model_len": 32768}),
+
+    # enforce_eager — skips cuda graph capture, saves VRAM during init
+    ("eager",            {"enforce_eager": True}),
+
+    # Batched tokens
+    ("batched=8192",     {"max_num_batched_tokens": 8192}),
+    ("batched=2048",     {"max_num_batched_tokens": 2048}),
+
+    # Seqs
+    ("seqs=1",           {"max_num_seqs": 1}),
+    ("seqs=4",           {"max_num_seqs": 4}),
+
+    # Prealloc
+    ("prealloc=8192",    {"GENESIS_PREALLOC_TOKEN_BUDGET": "8192"}),
+    ("prealloc=2048",    {"GENESIS_PREALLOC_TOKEN_BUDGET": "2048"}),
+
+    # Combos (filled after sweep)
+    ("gmu=0.95+ctx=131072",   {"gpu_memory_utilization": 0.95, "max_model_len": 131072}),
+    ("gmu=0.92+batched=8192", {"gpu_memory_utilization": 0.92, "max_num_batched_tokens": 8192}),
+    ("eager+gmu=0.92",        {"enforce_eager": True, "gpu_memory_utilization": 0.92}),
+]
+
+TECH_PROMPT = (
+    "Write a comprehensive technical deep-dive on transformer attention mechanisms, "
+    "covering scaled dot-product attention, multi-head attention, positional encodings, "
+    "and how attention patterns emerge during training. Include pseudocode and complexity analysis."
+)
+
+
+def ts():
+    return datetime.datetime.now().strftime("%H:%M:%S")
+
+
+def log(msg):
+    line = f"[{ts()}] {msg}"
+    print(line, flush=True)
+    with open(LOG, "a") as f:
+        f.write(line + "\n")
+
+
+def chat(prompt, max_tokens=512):
+    t0 = time.perf_counter()
+    r = requests.post(f"{BASE_URL}/v1/chat/completions", headers=HEADERS, json={
+        "model": MODEL,
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user",   "content": prompt},
+        ],
+        "max_tokens":  max_tokens,
+        "temperature": 0.0,
+        "stream":      False,
+    }, timeout=300)
+    elapsed = time.perf_counter() - t0
+    data = r.json()
+    if "error" in data:
+        return 0.0, 0
+    toks = data["usage"]["completion_tokens"]
+    return (toks / elapsed if elapsed > 0 else 0.0), toks
+
+
+def wait_healthy(timeout=240):
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            r = requests.get(f"{BASE_URL}/health", timeout=5)
+            if r.status_code == 200:
+                return True
+        except Exception:
+            pass
+        time.sleep(5)
+    return False
+
+
+def write_launch_script(cfg):
+    gmu      = cfg["gpu_memory_utilization"]
+    ctx      = cfg["max_model_len"]
+    seqs     = cfg["max_num_seqs"]
+    batched  = cfg["max_num_batched_tokens"]
+    kv_dtype = cfg["kv_cache_dtype"]
+    eager    = cfg.get("enforce_eager", False)
+    prealloc = str(max(int(cfg.get("GENESIS_PREALLOC_TOKEN_BUDGET", "4096")), batched))
+    fi_ws    = cfg.get("VLLM_FLASHINFER_WORKSPACE_BUFFER_SIZE", str(433 * 1024 * 1024))
+    nccl_buf = cfg.get("NCCL_BUFFSIZE", "4194304")
+    max_split= cfg.get("PYTORCH_MAX_SPLIT_MB", "512")
+    now_str  = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    eager_flag = "\\\n  --enforce-eager" if eager else ""
+
+    content = f"""#!/bin/bash
+# Gemma 4 31B AWQ — vLLM — dual RTX 5060 Ti (32GB)
+# cyankiwi/gemma-4-31B-it-AWQ-4bit (compressed-tensors), language-model-only
+# Generated by autoresearch-gemma4-awq.py — {now_str}
+# Config: {{gpu_memory_utilization: {gmu}, max_model_len: {ctx}, max_num_seqs: {seqs}, kv_cache_dtype: {kv_dtype}, enforce_eager: {eager}}}
+
+export PATH=/usr/local/cuda-13.0/bin:$PATH
+export LD_LIBRARY_PATH=${{LD_LIBRARY_PATH:-}}:/usr/local/cuda-13.0/lib64
+export CUDA_HOME=/usr/local/cuda-13.0
+
+export VLLM_NO_USAGE_STATS=1
+export VLLM_USE_FLASHINFER_SAMPLER=1
+export VLLM_FLOAT32_MATMUL_PRECISION=high
+export VLLM_ALLOW_LONG_MAX_MODEL_LEN=1
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+export VLLM_LOGGING_LEVEL=WARNING
+export VLLM_FLASHINFER_WORKSPACE_BUFFER_SIZE={fi_ws}
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:{max_split}
+export NCCL_P2P_DISABLE=1
+export NCCL_BUFFSIZE={nccl_buf}
+export OMP_NUM_THREADS=1
+export CUDA_DEVICE_MAX_CONNECTIONS=8
+
+export GENESIS_ENABLE_P60B_TRITON_KERNEL=1
+export GENESIS_ENABLE_P70_AUTO_STRICT_NGRAM=1
+export GENESIS_ENABLE_P72_PROFILE_RUN_CAP=1
+export GENESIS_ENABLE_P74_CHUNK_CLAMP=1
+export GENESIS_ENABLE_P77_ADAPTIVE_NGRAM_K=1
+export GENESIS_ENABLE_P78_TOLIST_CAPTURE_GUARD=1
+export GENESIS_ENABLE_P82=1
+export GENESIS_P82_THRESHOLD_SINGLE=0.3
+export GENESIS_BUFFER_MODE=shared
+export GENESIS_PREALLOC_TOKEN_BUDGET={prealloc}
+
+/opt/ai/vllm-env/bin/python3 -m vllm._genesis.patches.apply_all
+
+exec /opt/ai/vllm-env/bin/vllm serve \\
+  /home/dino/models/Gemma-4-31B-IT-AWQ-4bit \\
+  --quantization compressed-tensors \\
+  --tensor-parallel-size 2 \\
+  --gpu-memory-utilization {gmu} \\
+  --max-model-len {ctx} \\
+  --kv-cache-dtype {kv_dtype} \\
+  --max-num-seqs {seqs} \\
+  --max-num-batched-tokens {batched} \\
+  --enable-chunked-prefill \\
+  --enable-prefix-caching \\
+  --dtype bfloat16 \\
+  --disable-custom-all-reduce \\
+  --trust-remote-code \\
+  --language-model-only{eager_flag} \\
+  --api-key genesis-local \\
+  --served-model-name gemma4-31b \\
+  --host 0.0.0.0 \\
+  --port 8025 \\
+  --disable-log-stats
+"""
+    with open(SCRIPT, "w") as f:
+        f.write(content)
+    os.chmod(SCRIPT, 0o755)
+
+
+def restart_server():
+    subprocess.run("pkill -f 'vllm serve.*Gemma' 2>/dev/null; true", shell=True)
+    time.sleep(8)
+    proc = subprocess.Popen(
+        f"nohup {SCRIPT} >> /home/dino/inference-research/server-gemma4-awq-2026-05-06.log 2>&1 &",
+        shell=True
+    )
+    time.sleep(5)
+
+
+def bench(n=10, max_tokens=512):
+    tps_list = []
+    for _ in range(n):
+        tps, _ = chat(TECH_PROMPT, max_tokens=max_tokens)
+        if tps > 0:
+            tps_list.append(tps)
+    if not tps_list:
+        return 0.0, 0.0
+    med = statistics.median(tps_list)
+    p90 = sorted(tps_list)[int(len(tps_list) * 0.9)] if len(tps_list) >= 10 else tps_list[-1]
+    return med, p90
+
+
+def run_experiment(idx, name, overrides, baseline_median):
+    cfg = {**BASELINE, **overrides}
+    log(f"--- Exp {idx}: {name} ---")
+    write_launch_script(cfg)
+    restart_server()
+
+    if not wait_healthy(240):
+        log(f"  TIMEOUT — skipping")
+        return 0.0, 0.0, "TIMEOUT"
+
+    log("  healthy — warmup (4×128)")
+    for _ in range(4):
+        chat(TECH_PROMPT, max_tokens=128)
+
+    log("  benchmarking (10×512)")
+    median, p90 = bench(10, 512)
+    if median == 0:
+        log("  FAILED")
+        return 0.0, 0.0, "FAILED"
+
+    delta = median - baseline_median
+    pct   = delta / baseline_median * 100
+    log(f"  median={median:.2f} t/s  p90={p90:.2f}  delta={delta:+.2f} ({pct:+.1f}%)")
+    outcome = "IMPROVEMENT" if delta >= 1.0 else ("NEUTRAL" if pct >= -3.0 else "REGRESSION")
+    return median, p90, outcome
+
+
+def write_tsv_row(f, idx, name, median, p90, delta, outcome):
+    f.write(f"{idx}\t{name}\t{median:.2f}\t{p90:.2f}\t{delta:+.2f}\t{outcome}\n")
+    f.flush()
+
+
+def main():
+    now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    with open(LOG, "w") as f:
+        f.write(f"# autoresearch-gemma4-awq  started {now_str}\n\n")
+    with open(TSV, "w") as f:
+        f.write("iter\tname\ttg_median\ttg_p90\tdelta\toutcome\n")
+
+    log("=== Gemma 4 31B AWQ autoresearch ===")
+    log(f"Baseline: ctx={BASELINE['max_model_len']} gmu={BASELINE['gpu_memory_utilization']} "
+        f"kv={BASELINE['kv_cache_dtype']} seqs={BASELINE['max_num_seqs']}")
+    log(f"Experiments: {len(EXPERIMENTS)}  (~{len(EXPERIMENTS)*6} min est)")
+
+    # Baseline — server is already running, just bench it
+    log("--- Baseline (server already up) ---")
+    if not wait_healthy(60):
+        log("FATAL: baseline not healthy")
+        sys.exit(1)
+    log("  warmup (4×128)")
+    for _ in range(4):
+        chat(TECH_PROMPT, max_tokens=128)
+    baseline_median, baseline_p90 = bench(10, 512)
+    log(f"  Baseline: {baseline_median:.2f} t/s  p90={baseline_p90:.2f}")
+
+    with open(TSV, "a") as f:
+        write_tsv_row(f, 0, "baseline", baseline_median, baseline_p90, 0.0, "BASELINE")
+
+    best_cfg  = dict(BASELINE)
+    best_name = "baseline"
+    best_med  = baseline_median
+
+    for i, (name, overrides) in enumerate(EXPERIMENTS, 1):
+        with open(LOG, "a") as f:
+            f.write(f"\n## [{i}/{len(EXPERIMENTS)}] {name}\n")
+        median, p90, outcome = run_experiment(i, name, overrides, baseline_median)
+        delta = median - baseline_median
+        with open(TSV, "a") as f:
+            write_tsv_row(f, i, name, median, p90, delta, outcome)
+        if outcome == "IMPROVEMENT" and median > best_med:
+            best_cfg  = {**BASELINE, **overrides}
+            best_name = name
+            best_med  = median
+            log(f"  → new best: {name}  {median:.2f} t/s")
+
+    # Write and restart best config
+    log(f"--- Writing best config: {best_name} ({best_med:.2f} t/s) ---")
+    write_launch_script(best_cfg)
+    restart_server()
+    if wait_healthy(240):
+        log("  Best config live")
+    else:
+        log("  WARNING: best config did not restart cleanly")
+
+    gain = (best_med - baseline_median) / baseline_median * 100
+    log(f"\n=== COMPLETE ===")
+    log(f"  Baseline: {baseline_median:.2f} t/s")
+    log(f"  Best:     {best_med:.2f} t/s  ({gain:+.1f}%)  [{best_name}]")
+    log(f"  Script:   {SCRIPT}")
+
+    with open(LOG, "a") as f:
+        f.write(f"\n## COMPLETE — {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        f.write(f"Best: {best_name}  {best_med:.2f} t/s  ({gain:+.1f}%)\n")
+
+
+if __name__ == "__main__":
+    main()
