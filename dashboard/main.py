@@ -30,6 +30,7 @@ ARTIFACTS = _cfg.get("artifacts", [])
 TOWER_HOST = "dino@100.120.50.35"
 
 INFERENCE_URL = "http://100.120.50.35:8010/health"
+INFERENCE_STATUS_FILE = Path("/home/dino/www/dinovitale.com/data/inference-status.json")
 
 
 def check_artifact(glob_pat: str, stale_hours: float) -> dict:
@@ -106,18 +107,26 @@ async def check_inference() -> dict:
                 latency = int(r.elapsed.total_seconds() * 1000)
                 model = None
                 ctx = None
+                tok_s = None
                 try:
+                    ar = await client.get(f"{base}/active")
+                    ad = ar.json()
+                    model = ad.get("model") or ad.get("active")
                     mr = await client.get(f"{base}/v1/models")
-                    data = mr.json().get("data", [])
-                    if data:
-                        model = data[0].get("id")
-                        ctx = data[0].get("max_model_len")
+                    mdata = mr.json().get("data", [])
+                    if mdata:
+                        ctx = mdata[0].get("max_model_len")
                 except Exception:
                     pass
-                return {"status": "ok", "latency_ms": latency, "model": model, "ctx": ctx}
+                try:
+                    cached = json.loads(INFERENCE_STATUS_FILE.read_text())
+                    tok_s = cached.get("tok_s")
+                except Exception:
+                    pass
+                return {"status": "ok", "latency_ms": latency, "model": model, "ctx": ctx, "tok_s": tok_s}
     except Exception:
         pass
-    return {"status": "down", "latency_ms": None, "model": None, "ctx": None}
+    return {"status": "down", "latency_ms": None, "model": None, "ctx": None, "tok_s": None}
 
 
 def _fmt_tokens(n):
@@ -668,7 +677,8 @@ async function refresh() {
     if (inf.status === 'ok') {
       infEl.textContent = 'ONLINE';
       infEl.style.color = 'var(--green)';
-      document.getElementById('inf-latency').textContent = inf.latency_ms + ' ms';
+      const tokStr = inf.tok_s ? ' · ' + inf.tok_s + ' t/s' : '';
+      document.getElementById('inf-latency').textContent = inf.latency_ms + ' ms' + tokStr;
     } else {
       infEl.textContent = 'OFFLINE';
       infEl.style.color = 'var(--red)';
@@ -783,7 +793,9 @@ async function refresh() {
 
       if (inf.model) {
         document.getElementById('t-model-val').textContent = inf.model;
-        document.getElementById('t-ctx-sub').textContent = inf.ctx ? Math.round(inf.ctx/1000) + 'K ctx' : '';
+        const ctxPart = inf.ctx ? Math.round(inf.ctx/1000) + 'K ctx' : '';
+        const tokPart = inf.tok_s ? inf.tok_s + ' t/s' : '';
+        document.getElementById('t-ctx-sub').textContent = [ctxPart, tokPart].filter(Boolean).join(' · ');
       }
     }
 
