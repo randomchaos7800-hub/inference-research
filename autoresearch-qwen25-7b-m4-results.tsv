@@ -15,3 +15,10 @@ native_m4_pp	native build mcpu=native HEAD ngl=99 flash=on t=1	171.48	19.27	run1
 native_m4_pp2	native build mcpu=native HEAD ngl=99 flash=on t=1	158.91	17.92	run2 warm
 homebrew_r2	homebrew 9270 ngl=99 flash=on t=1	192.60	17.77	run1 warm
 homebrew_r3	homebrew 9270 ngl=99 flash=on t=1	181.57	20.39	run2 warm
+kv_f16_baseline	ctk=f16 ctv=f16 flash=on t=1	164.59	18.98	kv sweep baseline
+kv_bf16	ctk=bf16 ctv=bf16 flash=on t=1	151.48	16.98	native bfloat slower
+kv_q8_k_only	ctk=q8_0 ctv=f16 flash=on t=1	160.52	18.93	K-only q8_0
+kv_q4_k_only	ctk=q4_0 ctv=f16 flash=on t=1	165.75	19.28	K-only q4_0 marginal win
+kv_q5_k_only	ctk=q5_0 ctv=f16 flash=on t=1	133.67	13.17	REJECT extreme variance
+kv_f16_q8v_fail	ctk=f16 ctv=q8_0 flash=on t=1	FAIL	FAIL	Metal flash-attn V incompatible
+kv_q8_both_fail	ctk=q8_0 ctv=q8_0 flash=on t=1	FAIL	FAIL	Metal flash-attn V incompatible

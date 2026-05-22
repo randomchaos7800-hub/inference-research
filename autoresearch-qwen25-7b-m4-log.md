@@ -148,3 +148,33 @@ The actual performance difference is a **backend priority regression in HEAD**: 
 **Verdict**: ❌ **REJECT native build** — Homebrew 9270 is faster on both pp and tg. Do not upgrade to HEAD until backend priority is confirmed fixed or reverted.
 
 **Note**: Native build at `~/llama-m4-src/` — retained for future experiments, not used in production.
+
+---
+
+## Experiment 6: KV cache quantization sweep (2026-05-22)
+
+**Hypothesis**: Quantized KV cache reduces memory bandwidth for attention, potentially improving tg speed. Old Ollama config used q8_0 for both K and V.
+
+**Constraint discovered**: Metal flash-attn (in llama.cpp 9270) only supports quantization of the K cache. Any V cache quantization (`-ctv q8_0`, etc.) causes context creation failure. Tested without flash-attn: same failure. This is a Metal backend limitation in this build.
+
+**Results** (t=1, ngl=99, flash-attn on, V always f16):
+
+| ctk | ctv | pp512 t/s | tg128 t/s | notes |
+|---|---|---|---|---|
+| f16 | f16 | 164.59 ± 0.77 | 18.98 ± 0.84 | baseline |
+| bf16 | bf16 | 151.48 ± 2.62 | 16.98 ± 0.50 | -8% both — native bfloat does not help |
+| q8_0 | f16 | 160.52 ± 5.00 | 18.93 ± 0.52 | noise-level delta |
+| q4_0 | f16 | 165.75 ± 2.42 | 19.28 ± 0.59 | +0.7% pp, +1.6% tg |
+| q5_0 | f16 | 133.67 ± 22.39 | 13.17 ± 0.25 | **broken** — extreme pp variance, reject |
+| f16 | q8_0 | FAIL | FAIL | Metal flash-attn incompatible |
+| q8_0 | q8_0 | FAIL | FAIL | Metal flash-attn incompatible |
+
+**bf16 finding**: M4 has native bfloat16 in hardware (`has bfloat = true` in Metal init), but bf16 KV cache is 8% slower. Likely the Metal attention kernel is optimized for f16 paths, not bf16, in this build version.
+
+**q5_0 finding**: Extreme variance (±22 t/s on pp) and 30% tg drop indicates this code path is either buggy or hitting an unsupported Metal kernel fallback. Unusable.
+
+**q4_0 finding**: +1-2% delta is within run-to-run noise from thermal variation. Not a reliable win.
+
+**Verdict**: ❌ **No change — f16/f16 stays as default.** Maximum achievable improvement from KV quantization on this build/hardware combination is noise-level. The Metal backend limitation (V cache incompatible with flash-attn) blocks the configurations where quantization would actually help.
+
+**Note for future work**: KV quantization benefit scales with context length. At 8192 context window filling, smaller KV cache = less bandwidth per token. Worth re-testing at pp4096+ once the Metal flash-attn V-cache incompatibility is resolved in a future llama.cpp version.
