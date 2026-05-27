@@ -8,7 +8,7 @@ BACKUP_DIR="/mnt/jellyfin-backups/repos"
 mkdir -p "$BACKUP_DIR"
 
 REPOS=(
-    "/home/dino/frank"
+    "/home/dino/harness"
     "/home/dino/.claude"
     "/home/dino/mike"
     "/home/dino/mesa-benchmark"
