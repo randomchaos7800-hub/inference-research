@@ -67,6 +67,7 @@ def main():
     # map internal model IDs to display names
     display = {
         "aeon-nvfp4": "AEON NVFP4",
+        "deepseek-r1-14b": "DeepSeek-R1 14B",
         "qwen3627b":  "Qwen3 36B MoE",
         "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf": "Nemotron Nano 30B",
         "local":      "local",

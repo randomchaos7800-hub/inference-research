@@ -1,0 +1,19 @@
+[Unit]
+Description=Local proxy — stable OpenAI-compatible inference endpoint
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/dino/local-proxy
+ExecStartPre=-/bin/bash -c 'pkill -f "/home/dino/local-proxy/proxy.py" 2>/dev/null || true'
+ExecStart=/opt/ai/vllm-env/bin/python3 /home/dino/local-proxy/proxy.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=local-proxy
+
+[Install]
+WantedBy=default.target

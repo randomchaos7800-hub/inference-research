@@ -10,19 +10,19 @@ You are working in Dino Vitale's home lab. Dino is a systems architect who does 
 | Host | IP (Tailscale) | IP (LAN) | Role |
 |---|---|---|---|
 | cha0tikhome | 100.94.10.36 | 10.0.0.166 | Processes, agents, monitoring — you are here |
-| cha0tiktower | 100.120.50.35 | 10.0.0.x | GPU inference only (RTX 5060 Ti 16GB) |
-| cha0tikmac | 100.83.149.28 | — | Dev workstation (MacBook Air M4) |
+| cha0tiktower | 100.120.50.35 | 10.0.0.x | Inference-first GPU node; models, harnesses, benchmarking, and research testing live here, but fleet inference is the primary function (RTX 5060 Ti 16GB) |
+| cha0tikmac | 100.83.149.28 | — | Mac workstation / mobile operator client (MacBook Air M4) |
 
 SSH to tower: `ssh dino@100.120.50.35` (key auth, Tailscale only, no password).
 Tower sudo requires password — cannot be done non-interactively.
 
 ---
 
-## Active Agents
+## Active Services
 
-| Agent | Service | Port | Notes |
+| Service | Systemd Unit | Port | Notes |
 |---|---|---|---|
-| Frank | `harness-api.service` (user) | 8890 (Tailscale-bound) | Agentic harness, `/home/dino/harness/` |
+| Harness | `harness.service` + `harness-api.service` (user) | 8890 (Tailscale-bound) | Agentic harness, `/home/dino/harness/` |
 | Mike | `mike.service` + `mike-irc.service` + `mike-irchighway.service` (user) | — | AI agent, Discord/Telegram/Slack/IRC, `/home/dino/mike/` |
 | Forgejo | `forgejo.service` (system) | 3002 (Tailscale-bound) | Local collaboration forge, `/var/lib/forgejo/` |
 
@@ -38,7 +38,8 @@ These are masked or dead. Do not enable, start, or reference as active:
 | CJ Craig | 2026-05-09 | Masked, absorbed by Hermes |
 | Morty | 2026-05-09 | Masked, archived |
 | Dave CFO | 2026-05-09 | Masked, archived |
-| Hermes | 2026-05-27 | Nuked; old state is stale and not authoritative |
+| Frank | 2026-05-27 | Name retired; code preserved as archive; harness infrastructure continues as descriptive service |
+| Hermes | 2026-05-27 | Nuked; old state is stale and not authoritative; fresh reinstall planned |
 | Sabrina | 2026-05-27 | Not running; do not restart |
 
 The `harness-kato.service` and `harness-sabrina.service` units in the INFRA_RUNBOOK are stale — Kato is retired.
@@ -52,12 +53,18 @@ All local inference routes through the tower proxy. Never hardcode backend ports
 | Component | Host | Port | Notes |
 |---|---|---|---|
 | local-proxy | cha0tiktower | 8010 | Single entry point — use this always |
-| Genesis (vLLM) | cha0tiktower | 8022 | Active backend, Qwen3-based, ~73 t/s |
-| AEON (vLLM) | cha0tiktower | 8023 | Stopped — do NOT start while Genesis runs (VRAM conflict) |
+| Nemotron (llama.cpp) | cha0tiktower | 8022 | Active production backend |
+| DeepSeek-R1 (vLLM) | cha0tiktower | 8022 | Optional alternate backend slot; not enabled by default |
+| AEON (vLLM) | cha0tiktower | 8023 | Optional alternate backend; do NOT run alongside the active 8022 backend if VRAM conflicts |
 
 Model alias through proxy: `"local"`. Real model name from `/v1/models` returns `local`; use `/active` for the actual model ID.
 
-Switch backends: `proxy-switch genesis|aeon` on tower (stops one, starts the other).
+Switch backends: `proxy-switch nemotron|deepseek-r1|aeon|openrouter` on tower.
+
+Operational priority:
+- `cha0tiktower` is inference-first. Keep `:8010` stable for the fleet.
+- Model benchmarking, backend experimentation, and harness staging on tower are allowed, but they are secondary to production inference continuity.
+- Prefer headless/service operation over desktop-session behavior on tower.
 
 ---
 

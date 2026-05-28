@@ -1,0 +1,30 @@
+# The only line you ever change
+active = "nemotron"
+
+[backends.nemotron]
+url   = "http://localhost:8022/v1"
+key   = "genesis-local"
+model = "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf"
+
+[backends.deepseek-r1]
+url   = "http://localhost:8022/v1"
+key   = "genesis-local"
+model = "deepseek-r1-14b"
+
+[backends.aeon]
+url   = "http://localhost:8023/v1"
+key   = "genesis-local"
+model = "aeon-nvfp4"
+
+[backends.gemma4]
+url   = "http://localhost:8025/v1"
+key   = "genesis-local"
+model = "gemma4-31b"
+
+[backends.openrouter]
+url   = "https://openrouter.ai/api/v1"
+key   = "${OPENROUTER_API_KEY}"
+model = "deepseek/deepseek-v3.2"
+
+[proxy]
+port = 8010

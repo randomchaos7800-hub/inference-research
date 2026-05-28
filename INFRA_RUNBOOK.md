@@ -137,12 +137,16 @@ Current truth:
 - `nemotron.service`: owns port `8022`
 - process on `8022`: `llama-server`
 - model: `nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf`
+- `local-proxy.service`: owns port `8010` under user systemd
+- `cha0tiktower` is inference-first; benchmarking and model testing are valid, but restoring fleet inference takes priority over experiments
 
 `vllm-backend.service` may still exist on tower and may even be enabled, but it is not the active serving path while `nemotron.service` owns `8022`. Treat it as stale unless explicitly restoring a vLLM backend. `vllm-aeon.service` is inactive and should stay that way unless intentionally switching backends.
 
 Proxy switch (if you ever need to change backend):
 ```bash
 ssh dino@100.120.50.35 'proxy-switch nemotron'   # default
+ssh dino@100.120.50.35 'proxy-switch deepseek-r1' # optional alternate on 8022
+ssh dino@100.120.50.35 'proxy-switch aeon'        # optional alternate on 8023
 ssh dino@100.120.50.35 'proxy-switch openrouter'  # fallback
 ```
 
@@ -181,7 +185,7 @@ journalctl --user -u mike.service -n 20 --no-pager
 | harness-sabrina.service | Inactive | Sabrina retired |
 | vllm-genesis.service | Stopped | Replaced by nemotron.service (llama.cpp) 2026-05-20 |
 | vllm-aeon.service | Stopped/disabled | Replaced; conflicts for VRAM |
-| vllm-backend.service | Stale/failed | Not part of active nemotron serving path; only relevant if restoring vLLM-backed slot |
+| vllm-backend.service | Optional/disabled | DeepSeek-R1 alternate backend slot on tower; not enabled by default |
 | jubal.service | Inactive | In progress / on hold |
 | cj.service | Masked | RETIRED 2026-05-09 |
 | harness-cj.service | Masked | RETIRED 2026-05-09 |
