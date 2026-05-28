@@ -1,0 +1,12 @@
+alias codex-embedded='/home/dino/scripts/codex-embedded'
+alias codex-embedded-exec='/home/dino/scripts/codex-embedded-exec'
+export REAL_HOME=/home/dino
+export DINO_HOME=/home/dino
+export CODEX_KNOWLEDGE=/home/dino/CODEX-WORKING-KNOWLEDGE.md
+export CODEX_CASELAW=/home/dino/CODEX-CASELAW.md
+export LOCAL_GITHUB=/home/dino/citadel
+export ONLINE_GITHUB=https://github.com/randomchaos7800-hub
+export LOCAL_FORGE_URL=http://cha0tikhome.tailc83c25.ts.net:3002/
+export LOCAL_FORGE_ROOT=/var/lib/forgejo/data/forgejo-repositories
+export LOCAL_FORGE_ORG=cha0tik
+export CITADEL_MEMORY_ROOT=/home/dino/citadel

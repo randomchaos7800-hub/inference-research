@@ -1,0 +1,2 @@
+# Nightly Forgejo backup as root — local forge is now canonical project state.
+15 3 * * * root /home/dino/scripts/backup-forgejo.sh >> /home/dino/.logs/backup-forgejo.log 2>&1

@@ -6,11 +6,12 @@
 
 set -uo pipefail
 
-VAULT="$HOME/.vault/vault.sh"
+REAL_HOME="${REAL_HOME:-${DINO_HOME:-/home/dino}}"
+VAULT="$REAL_HOME/.vault/vault.sh"
 PROXY="http://100.120.50.35:8010"
 OPS_LOG_CHANNEL="C0AHSAE9YN9"
 LATENCY_WARN_MS=500
-INFERENCE_STATUS_FILE="$HOME/www/dinovitale.com/data/inference-status.json"
+INFERENCE_STATUS_FILE="$REAL_HOME/www/dinovitale.com/data/inference-status.json"
 INFERENCE_STALE_MINS=20
 
 FAILURES=()
@@ -64,25 +65,27 @@ tier1_checks() {
 }
 
 tier2_checks() {
-    # 3. Frank service state
-    if ! systemctl --user is-active frank-api --quiet 2>/dev/null; then
-        FAILURES+=("frank-api service is not active")
+    # 3. Harness API service state
+    if ! systemctl --user is-active harness-api.service --quiet 2>/dev/null; then
+        FAILURES+=("harness-api.service is not active")
     fi
 
-    # 4. Hermes service state
-    if ! systemctl is-active hermes-gateway --quiet 2>/dev/null; then
-        FAILURES+=("hermes-gateway service is not active")
+    # 4. Mike service state
+    if ! systemctl --user is-active mike.service --quiet 2>/dev/null; then
+        FAILURES+=("mike.service is not active")
     fi
 
-    # 5. Hermes recent log errors (last 2 hours)
-    local hermes_errors
-    hermes_errors=$(journalctl -u hermes-gateway --since "2 hours ago" --no-pager -q 2>/dev/null \
-        | grep -c "ERROR\|CRITICAL\|Traceback" 2>/dev/null || echo "0")
-    if [ "$hermes_errors" -gt 10 ] 2>/dev/null; then
-        FAILURES+=("hermes-gateway logged $hermes_errors errors in last 2 hours")
+    # 5. Mike transport service state
+    if ! systemctl --user is-active mike-irc.service --quiet 2>/dev/null; then
+        FAILURES+=("mike-irc.service is not active")
     fi
 
-    # 6. Inference status file freshness (proves update-inference-status.py is running)
+    # 6. Mike IRC highway service state
+    if ! systemctl --user is-active mike-irchighway.service --quiet 2>/dev/null; then
+        FAILURES+=("mike-irchighway.service is not active")
+    fi
+
+    # 7. Inference status file freshness (proves update-inference-status.py is running)
     if [ -f "$INFERENCE_STATUS_FILE" ]; then
         local file_age_s now_s file_mtime
         now_s=$(date +%s)

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CODEX_BIN="/snap/codex/34/bin/codex"
+HOME_ROOT="/home/dino"
+CODEX_HOME_ROOT="/home/dino/snap/codex/34"
+CODEX_KNOWLEDGE="/home/dino/CODEX-WORKING-KNOWLEDGE.md"
+CODEX_CASELAW="/home/dino/CODEX-CASELAW.md"
+LOCAL_GITHUB="/home/dino/citadel"
+ONLINE_GITHUB="https://github.com/randomchaos7800-hub"
+LOCAL_FORGE_URL="http://cha0tikhome.tailc83c25.ts.net:3002/"
+LOCAL_FORGE_ROOT="/var/lib/forgejo/data/forgejo-repositories"
+LOCAL_FORGE_ORG="cha0tik"
+CITADEL_MEMORY_ROOT="/home/dino/citadel"
+
+if [ ! -x "$CODEX_BIN" ]; then
+  echo "codex binary not found at $CODEX_BIN" >&2
+  exit 1
+fi
+
+cat <<'EOF'
+Launching Codex in embedded mode:
+  - approvals bypassed
+  - sandbox bypassed
+  - working root: /home/dino
+  - shell HOME: /home/dino
+  - Codex profile: /home/dino/snap/codex/34
+  - working knowledge: /home/dino/CODEX-WORKING-KNOWLEDGE.md
+  - case law: /home/dino/CODEX-CASELAW.md
+  - citadel memory: /home/dino/citadel
+  - local forge: http://cha0tikhome.tailc83c25.ts.net:3002/
+  - online github: https://github.com/randomchaos7800-hub
+  - web search enabled
+
+If you need root actions, make sure "mollydog is running" first.
+EOF
+
+exec env HOME="$HOME_ROOT" CODEX_HOME="$CODEX_HOME_ROOT" REAL_HOME="$HOME_ROOT" DINO_HOME="$HOME_ROOT" CODEX_KNOWLEDGE="$CODEX_KNOWLEDGE" CODEX_CASELAW="$CODEX_CASELAW" LOCAL_GITHUB="$LOCAL_GITHUB" ONLINE_GITHUB="$ONLINE_GITHUB" LOCAL_FORGE_URL="$LOCAL_FORGE_URL" LOCAL_FORGE_ROOT="$LOCAL_FORGE_ROOT" LOCAL_FORGE_ORG="$LOCAL_FORGE_ORG" CITADEL_MEMORY_ROOT="$CITADEL_MEMORY_ROOT" "$CODEX_BIN" \
+  --profile embedded \
+  --cd "$HOME_ROOT" \
+  --search \
+  --dangerously-bypass-approvals-and-sandbox \
+  "$@"

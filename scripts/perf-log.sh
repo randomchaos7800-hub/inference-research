@@ -8,7 +8,8 @@
 
 set -euo pipefail
 
-LOG_DIR="$HOME/logs/perf"
+REAL_HOME="${REAL_HOME:-${DINO_HOME:-/home/dino}}"
+LOG_DIR="$REAL_HOME/logs/perf"
 DATE=$(date +%Y-%m-%d)
 HOST=$(hostname)
 JSON_LOG="$LOG_DIR/${DATE}-${HOST}.json"

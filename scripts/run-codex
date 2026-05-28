@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MOLLYDOG="/home/dino/scripts/mollydog.sh"
+CODEX="/home/dino/scripts/codex-embedded"
+
+if [ ! -x "$CODEX" ]; then
+  echo "Missing launcher: $CODEX" >&2
+  exit 1
+fi
+
+cat <<EOF
+run-codex
+
+Simple workflow:
+1. In one terminal, run:
+   $MOLLYDOG
+   Leave that terminal open while you work.
+
+2. In this terminal, Codex will now start in embedded mode.
+EOF
+
+if [ ! -x "$MOLLYDOG" ]; then
+  cat <<EOF
+
+Note:
+- Mollydog wrapper not found or not executable at:
+  $MOLLYDOG
+- If mollydog is already running some other way, you can continue.
+EOF
+fi
+
+echo ""
+read -r -p "Press Enter to launch Codex embedded mode..."
+
+exec "$CODEX" "$@"

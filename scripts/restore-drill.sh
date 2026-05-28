@@ -6,11 +6,12 @@
 
 set -uo pipefail
 
-VAULT="$HOME/.vault/vault.sh"
+REAL_HOME="${REAL_HOME:-${DINO_HOME:-/home/dino}}"
+VAULT="$REAL_HOME/.vault/vault.sh"
 OPS_LOG_CHANNEL="C0AHSAE9YN9"
 BACKUP_BASE="/mnt/jellyfin-backups"
 DRILL_DIR="/tmp/restore-drill-test"
-CHRONICLE_LOG="$HOME/.claude/daily-logs/$(date +%Y-%m-%d).md"
+CHRONICLE_LOG="$REAL_HOME/.claude/daily-logs/$(date +%Y-%m-%d).md"
 
 MONTH=$(date +%-m)
 SERVICES=("system" "www" "vault" "mike")
