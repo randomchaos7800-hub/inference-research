@@ -6,7 +6,9 @@ import urllib.request
 import os
 
 VAULT = os.path.expanduser("~/.vault/vault.sh")
-OPS_LOG = "C0AHSAE9YN9"
+BRIEF  = "C0B6Q4525EY"   # #brief  — daily reads
+ALERTS = "C0B651Z4C0P"   # #alerts — infra, fires on failure only
+X      = "C0B6JDJMH9U"   # #x      — X post confirmations
 
 
 def _token():
@@ -14,7 +16,7 @@ def _token():
     return r.stdout.strip()
 
 
-def post(text, channel=OPS_LOG):
+def post(text, channel=ALERTS):
     token = _token()
     if not token:
         raise RuntimeError("slack_kato_bot_token not in vault")

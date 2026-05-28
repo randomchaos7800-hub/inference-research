@@ -172,48 +172,7 @@ def _stale_threshold(expr: str) -> float:
 
 @app.get("/api/crons")
 async def get_crons():
-    try:
-        result = subprocess.run(
-            ["sudo", "cat", "/home/hermes/.hermes/cron/jobs.json"],
-            capture_output=True, text=True, timeout=5
-        )
-        data = json.loads(result.stdout)
-    except Exception as e:
-        return JSONResponse({"error": str(e)})
-
-    now = datetime.now(timezone.utc)
     jobs_out = []
-    for job in data.get("jobs", []):
-        if not job.get("enabled", True):
-            continue
-        last_run = job.get("last_run_at")
-        name = job.get("name") or job.get("id", "?")
-        schedule = job.get("schedule_display") or ""
-
-        age_h = None
-        status = "never"
-        last_status = job.get("last_status")
-        if last_run:
-            try:
-                lr = datetime.fromisoformat(last_run)
-                if lr.tzinfo is None:
-                    lr = lr.replace(tzinfo=timezone.utc)
-                age_h = (now - lr).total_seconds() / 3600
-                if last_status == "error":
-                    status = "error"
-                elif age_h < _stale_threshold(schedule):
-                    status = "ok"
-                else:
-                    status = "stale"
-            except Exception:
-                status = "unknown"
-
-        jobs_out.append({
-            "name": name,
-            "schedule": schedule,
-            "age_h": round(age_h, 1) if age_h is not None else None,
-            "status": status,
-        })
 
     # Append systemd user timers
     for unit, name, threshold in WATCHED_TIMERS:

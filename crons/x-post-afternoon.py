@@ -65,7 +65,7 @@ def main():
         f"*Posted:* {tweet}\n\n"
         f"Result: {post_result[:200]}"
     )
-    slack.post(msg)
+    slack.post(msg, channel=slack.X)
     print(f"X afternoon post done — {today.isoformat()}")
 
 

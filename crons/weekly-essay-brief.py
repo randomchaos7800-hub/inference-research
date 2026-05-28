@@ -24,7 +24,7 @@ def main():
 
     if not combined:
         print("No arxiv files in last 7 days — skipping")
-        slack.post(f"*📝 Weekly Essay Brief — {today.isoformat()}*\n\nNo arxiv files found this week.")
+        slack.post(f"*📝 Weekly Essay Brief — {today.isoformat()}*\n\nNo arxiv files found this week.", channel=slack.BRIEF)
         return
 
     content = "\n\n---\n\n".join(combined)
@@ -41,7 +41,7 @@ def main():
 
     result = inference.ask(prompt, system=system, max_tokens=900, timeout=120)
     msg = f"*📝 Weekly Essay Brief — {today.isoformat()}*\n\n{result}"
-    slack.post(msg)
+    slack.post(msg, channel=slack.BRIEF)
     print(f"Essay brief posted — {today.isoformat()}")
 
 

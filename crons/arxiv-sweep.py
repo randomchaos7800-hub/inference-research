@@ -97,7 +97,7 @@ def main():
         f.write(result)
 
     msg = f"*📚 arXiv Sweep — {today}*\n\n{result}"
-    slack.post(msg)
+    slack.post(msg, channel=slack.BRIEF)
     print(f"arXiv sweep posted — {today}")
 
 

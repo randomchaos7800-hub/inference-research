@@ -8,7 +8,7 @@ import sys
 import os
 from datetime import datetime, timedelta
 
-SLACK_CHANNEL = "C0AHPBSK9SP"  # #kato-comms
+SLACK_CHANNEL = "C0B6Q4525EY"  # #brief
 VAULT = os.path.expanduser("~/.vault/vault.sh")
 
 

@@ -7,3 +7,8 @@ server-current.log
 server-final.log
 exp*.log
 cuda13-*.log
+crons/data/
+dashboard/*.bak
+scripts/*.log
+scripts/test*.py
+scripts/test.txt

@@ -46,7 +46,7 @@ def main():
     xai_key = vault_get("xai_api_key")
 
     if not xai_key:
-        slack.post(f"⚠️ x-post-morning: xai_api_key not in vault — skipped")
+        slack.post(f"⚠️ x-post-morning: xai_api_key not in vault — skipped", channel=slack.X)
         return
 
     # Get trending local AI topics via xai
@@ -84,7 +84,7 @@ def main():
         f"*Posted:* {tweet}\n\n"
         f"Result: {post_result[:200]}"
     )
-    slack.post(msg)
+    slack.post(msg, channel=slack.X)
     print(f"X morning post done — {today}")
 
 

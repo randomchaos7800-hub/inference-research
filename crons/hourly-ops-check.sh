@@ -3,7 +3,7 @@
 set -uo pipefail
 
 VAULT="$HOME/.vault/vault.sh"
-CHANNEL="C0AHSAE9YN9"
+CHANNEL="C0B651Z4C0P"
 ISSUES=()
 
 alert() {

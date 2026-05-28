@@ -46,7 +46,7 @@ def main():
         return
 
     msg = f"*🔬 Research Brief — {today.isoformat()}*\n\n{result}"
-    slack.post(msg)
+    slack.post(msg, channel=slack.BRIEF)
     print(f"Research brief posted — {today.isoformat()}")
 
 

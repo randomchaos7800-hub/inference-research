@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lib"))
 import slack
 
-CHANNEL = "C0AHPBSK9SP"  # #kato-comms
+CHANNEL = "C0B6Q4525EY"  # #brief
 
 
 def run(cmd, timeout=15):

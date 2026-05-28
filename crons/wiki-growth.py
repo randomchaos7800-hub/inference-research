@@ -33,7 +33,7 @@ def main():
             combined.append(open(path).read())
 
     if not combined:
-        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo arXiv files this week — skipped.")
+        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo arXiv files this week — skipped.", channel=slack.BRIEF)
         return
 
     content = "\n\n---\n\n".join(combined)
@@ -97,7 +97,7 @@ def main():
         written.append(topic)
 
     if not written:
-        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo new articles generated.")
+        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo new articles generated.", channel=slack.BRIEF)
         return
 
     # Trigger compile in background
@@ -115,7 +115,7 @@ def main():
         + "\n".join(f"  • {t}" for t in written)
         + "\nCompile running in background."
     )
-    slack.post(msg)
+    slack.post(msg, channel=slack.BRIEF)
     print(f"Wiki growth done — {len(written)} articles — {today.isoformat()}")
 
 

@@ -3,14 +3,20 @@
 # main.py reads this at startup — restart the dashboard service after editing.
 
 agents:
-  - id: frank-api
+  - id: harness-api
     label: Frank API
     scope: user
   - id: mike
     label: Mike
     scope: user
-  - id: localfamouscoffee
-    label: LFC
+  - id: mike-irc
+    label: Mike IRC
+    scope: user
+  - id: mike-irchighway
+    label: Mike Highway
+    scope: user
+  - id: hermes-monitor
+    label: Hermes Monitor
     scope: user
 
 services:
@@ -26,14 +32,17 @@ services:
   - id: vaultwarden
     label: Vaultwarden
     scope: system
+  - id: forgejo
+    label: Forgejo
+    scope: system
   - id: jellyfin
     label: Jellyfin
     scope: system
   - id: paperless-web
     label: Paperless
     scope: system
-  - id: qbittorrent
-    label: qBit
+  - id: adguardhome
+    label: AdGuard
     scope: system
 
 # systemd user timers — stale_hours is how long since last trigger before yellow dot
@@ -47,6 +56,18 @@ timers:
   - unit: chronicle.timer
     label: chronicle
     stale_hours: 26
+  - unit: hourly-ops-check.timer
+    label: hourly-ops-check
+    stale_hours: 2
+  - unit: nightly-context-sync.timer
+    label: nightly-context-sync
+    stale_hours: 26
+  - unit: claude-token-refresh.timer
+    label: claude-token-refresh
+    stale_hours: 6
+  - unit: mike-beat.timer
+    label: mike-beat
+    stale_hours: 3
   - unit: mike-daily-report.timer
     label: mike-daily-report
     stale_hours: 26
@@ -65,6 +86,9 @@ timers:
   - unit: arxiv-sweep.timer
     label: arxiv-sweep
     stale_hours: 26
+  - unit: daily-research-brief.timer
+    label: daily-research-brief
+    stale_hours: 26
   - unit: tower-watchdog.timer
     label: tower-watchdog
     stale_hours: 0.2
@@ -80,6 +104,12 @@ timers:
   - unit: x-post-afternoon.timer
     label: x-post-afternoon
     stale_hours: 26
+  - unit: weekly-essay-brief.timer
+    label: weekly-essay-brief
+    stale_hours: 216
+  - unit: wiki-growth.timer
+    label: wiki-growth
+    stale_hours: 216
 
 # artifact_checks — verify a job actually delivered, not just ran
 # glob supports * and ** wildcards; ~ expands to home dir
@@ -105,4 +135,7 @@ artifacts:
     stale_hours: 26
   - label: backup-repos
     glob: "/mnt/jellyfin-backups/repos/frank.git/FETCH_HEAD"
+    stale_hours: 26
+  - label: backup-forgejo
+    glob: "/mnt/jellyfin-backups/forgejo/forgejo-backup-*.tar.gz"
     stale_hours: 26
