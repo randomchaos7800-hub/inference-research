@@ -37,9 +37,14 @@ def check_artifact(glob_pat: str, stale_hours: float) -> dict:
     pattern = glob_pat.replace("~", str(Path.home()))
     matches = sorted(_glob.glob(pattern), key=lambda p: Path(p).stat().st_mtime, reverse=True)
     if not matches:
-        return {"status": "missing", "age_h": None}
+        return {"status": "missing", "age_h": None, "detail": "no artifact"}
     age_h = (time.time() - Path(matches[0]).stat().st_mtime) / 3600
-    return {"status": "ok" if age_h < stale_hours else "stale", "age_h": round(age_h, 1)}
+    latest = Path(matches[0])
+    return {
+        "status": "ok" if age_h < stale_hours else "stale",
+        "age_h": round(age_h, 1),
+        "detail": latest.name,
+    }
 
 
 def check_systemd(service: str, scope: str) -> str:
@@ -52,6 +57,83 @@ def check_systemd(service: str, scope: str) -> str:
         return result.stdout.strip()
     except Exception:
         return "unknown"
+
+
+def collect_jobs() -> list[dict]:
+    jobs_out = []
+
+    for unit, name, threshold in WATCHED_TIMERS:
+        try:
+            r = subprocess.run(
+                ["systemctl", "--user", "show", unit,
+                 "--property=ActiveState,LastTriggerUSec,NextElapseUSecRealtime"],
+                capture_output=True, text=True, timeout=3
+            )
+            props = dict(
+                line.split("=", 1) for line in r.stdout.strip().splitlines() if "=" in line
+            )
+            active = props.get("ActiveState", "inactive")
+            last_ts = _parse_usec(props.get("LastTriggerUSec", ""))
+            next_ts = _parse_usec(props.get("NextElapseUSecRealtime", ""))
+
+            if last_ts is None:
+                age_h = None
+                status = "never" if active != "failed" else "stale"
+            else:
+                age_h = (time.time() - last_ts) / 3600
+                status = "ok" if age_h < threshold else "stale"
+                if active == "failed":
+                    status = "stale"
+
+            detail = None
+            if next_ts:
+                mins = max(0, int(round((next_ts - time.time()) / 60)))
+                if mins < 60:
+                    detail = f"in {mins}m"
+                else:
+                    detail = f"in {round(mins / 60)}h"
+        except Exception:
+            age_h = None
+            status = "unknown"
+            detail = None
+
+        jobs_out.append({
+            "name": name,
+            "schedule": "",
+            "age_h": round(age_h, 1) if age_h is not None else None,
+            "status": status,
+            "source": "timer",
+            "detail": detail,
+        })
+
+    for art in ARTIFACTS:
+        result = check_artifact(art["glob"], float(art["stale_hours"]))
+        jobs_out.append({
+            "name": art["label"],
+            "schedule": "",
+            "age_h": result["age_h"],
+            "status": result["status"],
+            "source": "artifact",
+            "detail": result.get("detail"),
+        })
+
+    severity = {"missing": 0, "error": 0, "stale": 1, "unknown": 2, "never": 3, "ok": 4}
+    jobs_out.sort(key=lambda j: (severity.get(j["status"], 5), j["source"], j["name"]))
+    return jobs_out
+
+
+def summarize_jobs(jobs: list[dict]) -> dict:
+    counts = {"ok": 0, "stale": 0, "missing": 0, "never": 0, "unknown": 0, "error": 0}
+    for job in jobs:
+        counts[job["status"]] = counts.get(job["status"], 0) + 1
+
+    if counts["missing"] or counts["error"]:
+        status = "down"
+    elif counts["stale"] or counts["unknown"]:
+        status = "warn"
+    else:
+        status = "ok"
+    return {"status": status, "counts": counts, "total": len(jobs)}
 
 
 async def check_tower_gpu() -> dict:
@@ -172,54 +254,8 @@ def _stale_threshold(expr: str) -> float:
 
 @app.get("/api/crons")
 async def get_crons():
-    jobs_out = []
-
-    # Append systemd user timers
-    for unit, name, threshold in WATCHED_TIMERS:
-        try:
-            r = subprocess.run(
-                ["systemctl", "--user", "show", unit,
-                 "--property=ActiveState,LastTriggerUSec"],
-                capture_output=True, text=True, timeout=3
-            )
-            props = dict(
-                line.split("=", 1) for line in r.stdout.strip().splitlines() if "=" in line
-            )
-            active = props.get("ActiveState", "inactive")
-            last_ts = _parse_usec(props.get("LastTriggerUSec", ""))
-
-            if last_ts is None:
-                age_h = None
-                status = "never" if active != "failed" else "stale"
-            else:
-                age_h = (time.time() - last_ts) / 3600
-                status = "ok" if age_h < threshold else "stale"
-                if active == "failed":
-                    status = "stale"
-        except Exception:
-            age_h = None
-            status = "unknown"
-
-        jobs_out.append({
-            "name": name,
-            "schedule": "",
-            "age_h": round(age_h, 1) if age_h is not None else None,
-            "status": status,
-            "source": "timer",
-        })
-
-    # Append artifact checks
-    for art in ARTIFACTS:
-        result = check_artifact(art["glob"], float(art["stale_hours"]))
-        jobs_out.append({
-            "name": art["label"],
-            "schedule": "",
-            "age_h": result["age_h"],
-            "status": result["status"],
-            "source": "artifact",
-        })
-
-    return JSONResponse({"jobs": jobs_out})
+    jobs = collect_jobs()
+    return JSONResponse({"jobs": jobs, "summary": summarize_jobs(jobs)})
 
 
 @app.get("/api/tokens")
@@ -266,6 +302,8 @@ async def get_status():
 
     inference = await check_inference()
     tower_gpu = await check_tower_gpu()
+    jobs = collect_jobs()
+    cron_summary = summarize_jobs(jobs)
 
     cpu = psutil.cpu_percent(interval=0.5)
     mem = psutil.virtual_memory()
@@ -280,11 +318,34 @@ async def get_status():
         backup_pct = 0
         backup_ok = False
 
+    state_counts = {
+        "agents_down": sum(1 for a in agents if a["state"] != "active"),
+        "services_down": sum(1 for s in services if s["state"] != "active"),
+    }
+    overall = "ok"
+    if (
+        state_counts["agents_down"]
+        or state_counts["services_down"]
+        or inference["status"] != "ok"
+        or cron_summary["status"] == "down"
+    ):
+        overall = "down"
+    elif cron_summary["status"] == "warn":
+        overall = "warn"
+
     return JSONResponse({
         "ts": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "overall": {
+            "status": overall,
+            "agents_down": state_counts["agents_down"],
+            "services_down": state_counts["services_down"],
+            "jobs_stale": cron_summary["counts"]["stale"] + cron_summary["counts"]["unknown"],
+            "jobs_missing": cron_summary["counts"]["missing"] + cron_summary["counts"]["error"],
+        },
         "agents": agents,
         "services": services,
         "inference": inference,
+        "crons": cron_summary,
         "tower_gpu": tower_gpu,
         "system": {
             "cpu_pct": cpu,
@@ -344,6 +405,8 @@ HTML = r"""<!DOCTYPE html>
   .logo span { color: var(--muted); font-weight: 400; }
   .timestamp { font-size: 14px; color: var(--muted); letter-spacing: 2px; }
   .overall-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2s infinite; }
+  .overall-wrap { display:flex; align-items:center; gap:12px; }
+  .overall-label { font-size: 11px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
 
   /* MAIN */
   main {
@@ -470,7 +533,10 @@ HTML = r"""<!DOCTYPE html>
 <header>
   <div class="logo">Boundary Labs <span>/ STATUS</span></div>
   <div id="timestamp" class="timestamp">--:--:--</div>
-  <div id="overall-dot" class="overall-dot"></div>
+  <div class="overall-wrap">
+    <div id="overall-label" class="overall-label">all clear</div>
+    <div id="overall-dot" class="overall-dot"></div>
+  </div>
 </header>
 
 <main>
@@ -503,7 +569,7 @@ HTML = r"""<!DOCTYPE html>
       </div>
       <div class="item">
         <div class="item-left"><div class="dot dot-ok"></div><span class="item-label" id="inf-model">--</span></div>
-        <span class="badge badge-ok">LOADED</span>
+        <span id="inf-badge" class="badge badge-unknown">UNKNOWN</span>
       </div>
       <div id="token-metrics" style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
         <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Token Usage</div>
@@ -601,7 +667,8 @@ function barColor(pct) {
 
 function badge(state) {
   if (state === 'active') return '<span class="badge badge-ok">LIVE</span>';
-  if (state === 'inactive' || state === 'failed') return '<span class="badge badge-down">DOWN</span>';
+  if (state === 'failed') return '<span class="badge badge-down">FAILED</span>';
+  if (state === 'inactive') return '<span class="badge badge-down">DOWN</span>';
   return '<span class="badge badge-unknown">UNKNOWN</span>';
 }
 
@@ -626,6 +693,7 @@ async function refresh() {
     const d = await r.json();
 
     document.getElementById('timestamp').textContent = d.ts;
+    const overall = d.overall || {status: 'unknown'};
 
     renderList('agents', d.agents);
     renderList('services', d.services);
@@ -638,12 +706,16 @@ async function refresh() {
       infEl.style.color = 'var(--green)';
       const tokStr = inf.tok_s ? ' · ' + inf.tok_s + ' t/s' : '';
       document.getElementById('inf-latency').textContent = inf.latency_ms + ' ms' + tokStr;
+      document.getElementById('inf-badge').className = 'badge badge-ok';
+      document.getElementById('inf-badge').textContent = 'LOADED';
     } else {
       infEl.textContent = 'OFFLINE';
       infEl.style.color = 'var(--red)';
       document.getElementById('inf-latency').textContent = '';
+      document.getElementById('inf-badge').className = 'badge badge-down';
+      document.getElementById('inf-badge').textContent = 'DOWN';
     }
-    if (inf.model) document.getElementById('inf-model').textContent = inf.model;
+    document.getElementById('inf-model').textContent = inf.model || '--';
 
     // System stats
     const s = d.system;
@@ -759,9 +831,23 @@ async function refresh() {
     }
 
     // Overall dot — red if any agent or service is not active (catches both failed and inactive)
-    const anyDown = [...d.agents, ...d.services].some(i => i.state !== 'active');
-    document.getElementById('overall-dot').style.background = anyDown ? 'var(--red)' : 'var(--green)';
-    document.getElementById('overall-dot').style.boxShadow = anyDown ? '0 0 10px var(--red)' : '0 0 10px var(--green)';
+    const label = [];
+    if (overall.agents_down) label.push(`${overall.agents_down} agent`);
+    if (overall.services_down) label.push(`${overall.services_down} service`);
+    if (overall.jobs_missing) label.push(`${overall.jobs_missing} missing job`);
+    if (overall.jobs_stale) label.push(`${overall.jobs_stale} stale job`);
+    document.getElementById('overall-label').textContent = label.length ? label.join(' · ') : 'all clear';
+    const dot = document.getElementById('overall-dot');
+    if (overall.status === 'down') {
+      dot.style.background = 'var(--red)';
+      dot.style.boxShadow = '0 0 10px var(--red)';
+    } else if (overall.status === 'warn') {
+      dot.style.background = 'var(--yellow)';
+      dot.style.boxShadow = '0 0 10px var(--yellow)';
+    } else {
+      dot.style.background = 'var(--green)';
+      dot.style.boxShadow = '0 0 10px var(--green)';
+    }
 
   } catch(e) {
     console.error(e);
@@ -814,7 +900,8 @@ async function refreshCrons() {
         html += `<div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);padding:8px 14px 4px;border-top:1px solid var(--border);margin-top:4px;">artifacts</div>`;
         artifactDividerAdded = true;
       }
-      const ageLabel = j.source === 'artifact' && j.status === 'missing' ? 'MISSING' : ageStr(j.age_h);
+      let ageLabel = j.source === 'artifact' && j.status === 'missing' ? 'MISSING' : ageStr(j.age_h);
+      if (j.detail && j.status !== 'missing') ageLabel = `${ageLabel} · ${j.detail}`;
       html += `<div class="cron-row">
         ${cronDot(j.status)}
         <span class="cron-name">${j.name}</span>
@@ -830,7 +917,7 @@ refreshTokens();
 refreshCrons();
 setInterval(refresh, 15000);
 setInterval(refreshTokens, 60000);
-setInterval(refreshCrons, 300000);
+setInterval(refreshCrons, 60000);
 </script>
 </body>
 </html>"""
