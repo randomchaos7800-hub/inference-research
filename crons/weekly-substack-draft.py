@@ -143,6 +143,10 @@ Hard requirements:
 - Write like a practiced independent operator, not a corporate content team.
 - Do not invent benchmarks, quotes, or external facts not supported by the material below.
 - If you use a claim from the research inputs, keep it at a level Dino can stand behind after review.
+- Do not name a mechanism, architecture, or result unless it is explicitly supported by the provided materials.
+- If a paper seems suggestive but not fully clear, describe it cautiously as an exploration or signal, not as an established result.
+- Prefer themes, constraints, and operational implications over speculative technical detail.
+- Do not present any single preprint as production-ready unless the provided material directly supports that conclusion.
 - End with a short `Revision Notes` section listing 3-5 things Dino should verify, tighten, or personalize before publishing.
 
 Recent published titles to avoid repeating directly:
