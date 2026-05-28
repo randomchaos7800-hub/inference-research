@@ -21,6 +21,8 @@ CHANNEL = "C0B651Z4C0P"
 
 LOCK_PATH = Path("/tmp/tower-recover.lock")
 STATE_PATH = Path.home() / ".cache" / "tower-recover" / "state.json"
+RESEARCH_FLAG = Path.home() / ".cache" / "tower-recover" / "research-mode.json"
+RESEARCH_MAX_MINUTES = 240  # hard cap: research mode can never suppress protection longer than this
 PING_TIMEOUT = 3
 HTTP_TIMEOUT = 5
 SSH_TIMEOUT = 5
@@ -88,6 +90,52 @@ def load_state() -> dict:
 def save_state(state: dict) -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(json.dumps(state, indent=2))
+
+
+def read_research() -> dict | None:
+    """Return the research-mode flag's state, self-clearing if stale/corrupt.
+
+    Result dict carries a "state" of:
+      active  — protection is intentionally suspended (flag present, not expired)
+      expired — flag was past its expiry; removed here so protection resumes
+      corrupt — flag was unreadable; removed here so protection resumes
+    Returns None when no flag is present (normal operation).
+
+    Fail-safe by design: a forgotten or broken flag can NEVER keep protection
+    off — anything past expiry or unparseable is deleted and treated as off.
+    """
+    if not RESEARCH_FLAG.exists():
+        return None
+    try:
+        data = json.loads(RESEARCH_FLAG.read_text())
+    except Exception:
+        RESEARCH_FLAG.unlink(missing_ok=True)
+        return {"state": "corrupt"}
+    expires_ts = int(data.get("expires_ts", 0))
+    if time.time() > expires_ts:
+        RESEARCH_FLAG.unlink(missing_ok=True)
+        return {"state": "expired", **data}
+    return {"state": "active", **data}
+
+
+def set_research(minutes: int, reason: str) -> dict:
+    minutes = max(1, min(int(minutes), RESEARCH_MAX_MINUTES))
+    now = int(time.time())
+    flag = {
+        "reason": reason or "(unspecified)",
+        "set_at": now,
+        "expires_ts": now + minutes * 60,
+        "minutes": minutes,
+    }
+    RESEARCH_FLAG.parent.mkdir(parents=True, exist_ok=True)
+    RESEARCH_FLAG.write_text(json.dumps(flag, indent=2))
+    return flag
+
+
+def clear_research() -> bool:
+    existed = RESEARCH_FLAG.exists()
+    RESEARCH_FLAG.unlink(missing_ok=True)
+    return existed
 
 
 def ping_ok() -> bool:
@@ -197,6 +245,7 @@ def status_line() -> str:
         cmd = "systemctl --user is-active " + " ".join(units)
         result = run(["ssh", SSH_DEST, cmd], timeout=20)
         unit_states = dict(zip(units, [line.strip() for line in result.stdout.splitlines() if line.strip()]))
+    research = read_research()
     return json.dumps(
         {
             "ping": ping_ok(),
@@ -204,6 +253,7 @@ def status_line() -> str:
             "health": health,
             "active": active,
             "unit_states": unit_states,
+            "research_mode": research,
         },
         indent=2,
         sort_keys=True,
@@ -212,6 +262,30 @@ def status_line() -> str:
 
 def recover(auto: bool) -> int:
     state = load_state()
+
+    # Research mode: protection is intentionally suspended (e.g. an autoresearch
+    # run is holding the GPU). Stand down — no restart, no power-cycle. The flag
+    # self-expires, so this can never wedge protection off permanently.
+    research = read_research()
+    if research and research.get("state") == "active":
+        if auto and not state.get("research_announced"):
+            state["research_announced"] = True
+            save_state(state)
+            until = time.strftime("%H:%M", time.localtime(int(research.get("expires_ts", 0))))
+            alert(
+                f"Standing down — research mode active until {until} "
+                f"(reason: {research.get('reason', '?')}). No restart or power-cycle."
+            )
+        return 0
+    # Not (or no longer) in research mode — announce resumption once.
+    if state.get("research_announced"):
+        state.pop("research_announced", None)
+        save_state(state)
+        if auto:
+            alert("Research mode ended — tower protection resumed.")
+    if auto and research and research.get("state") in ("expired", "corrupt"):
+        alert(f"Research-mode flag {research['state']} and removed — tower protection resumed.")
+
     ping = ping_ok()
     ssh = ssh_ok() if ping else False
     backend = active_backend() if (ssh or health_ok()) else None
@@ -264,6 +338,35 @@ def recover(auto: bool) -> int:
 
 def main() -> int:
     mode = sys.argv[1] if len(sys.argv) > 1 else "recover"
+
+    # Research mode toggles are handled before the lock: they are quick file ops
+    # and must not be blocked by an in-flight watchdog run holding the lock.
+    if mode == "research":
+        sub = sys.argv[2] if len(sys.argv) > 2 else "status"
+        if sub == "on":
+            args = sys.argv[3:]
+            minutes = 60
+            reason = ""
+            i = 0
+            while i < len(args):
+                if args[i] == "--minutes" and i + 1 < len(args):
+                    minutes = int(args[i + 1]); i += 2
+                elif args[i] == "--reason" and i + 1 < len(args):
+                    reason = args[i + 1]; i += 2
+                else:
+                    i += 1
+            flag = set_research(minutes, reason)
+            until = time.strftime("%Y-%m-%d %H:%M", time.localtime(flag["expires_ts"]))
+            print(f"research mode ON until {until} ({flag['minutes']} min) — reason: {flag['reason']}")
+            print("watchdog will not restart or power-cycle the tower until then (auto-expires).")
+            return 0
+        if sub == "off":
+            print("research mode OFF — protection resumes next watchdog tick"
+                  if clear_research() else "research mode was not active")
+            return 0
+        print(json.dumps(read_research(), indent=2))
+        return 0
+
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open("w") as lock:
         try:
@@ -283,7 +386,8 @@ def main() -> int:
             print(detail if ok else detail, file=sys.stdout if ok else sys.stderr)
             return 0 if ok else 1
 
-        print("Usage: tower-recover.py [status|recover|watchdog|cycle]", file=sys.stderr)
+        print("Usage: tower-recover.py [status|recover|watchdog|cycle|research {on|off|status}]",
+              file=sys.stderr)
         return 1
 
 
