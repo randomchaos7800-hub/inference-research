@@ -15,6 +15,7 @@ INFERENCE_STATUS_FILE="$REAL_HOME/www/dinovitale.com/data/inference-status.json"
 INFERENCE_STALE_MINS=20
 
 FAILURES=()
+NO_ALERT=0
 
 slack_alert() {
     local msg="$1"
@@ -102,21 +103,39 @@ tier2_checks() {
 }
 
 main() {
-    local mode="${1:-}"
-    if [ -z "$mode" ] || [ "$mode" = "--tier1" ]; then
+    local mode="--tier1"
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --tier1|--tier2)
+                mode="$1"
+                ;;
+            --no-alert)
+                NO_ALERT=1
+                ;;
+            *)
+                echo "Usage: agent-smoke.sh [--tier1|--tier2] [--no-alert]" >&2
+                exit 1
+                ;;
+        esac
+        shift
+    done
+
+    if [ "$mode" = "--tier1" ]; then
         tier1_checks
     elif [ "$mode" = "--tier2" ]; then
         tier1_checks
         tier2_checks
     else
-        echo "Usage: agent-smoke.sh [--tier1|--tier2]" >&2
+        echo "Usage: agent-smoke.sh [--tier1|--tier2] [--no-alert]" >&2
         exit 1
     fi
 
     if [ ${#FAILURES[@]} -gt 0 ]; then
         local msg
         msg=$(printf "• %s\n" "${FAILURES[@]}")
-        slack_alert "$msg"
+        if [ "$NO_ALERT" -eq 0 ]; then
+            slack_alert "$msg"
+        fi
         exit 1
     fi
 

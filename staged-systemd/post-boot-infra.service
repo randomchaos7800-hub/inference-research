@@ -1,0 +1,11 @@
+[Unit]
+Description=Verify critical Tailscale-bound infrastructure after boot
+After=multi-user.target network-online.target tailscaled.service ssh.service forgejo.service
+Wants=network-online.target tailscaled.service ssh.service forgejo.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/post-boot-infra-check.sh
+StandardOutput=journal
+StandardError=journal
+RemainAfterExit=yes

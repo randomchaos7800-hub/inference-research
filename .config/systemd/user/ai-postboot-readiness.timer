@@ -1,0 +1,11 @@
+[Unit]
+Description=Run AI readiness check a few minutes after boot
+
+[Timer]
+OnBootSec=6min
+AccuracySec=30s
+Unit=ai-postboot-readiness.service
+Persistent=false
+
+[Install]
+WantedBy=timers.target

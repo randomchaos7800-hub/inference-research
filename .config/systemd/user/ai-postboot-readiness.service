@@ -1,0 +1,12 @@
+[Unit]
+Description=Post-boot AI readiness check and recovery
+After=default.target network-online.target
+Wants=default.target network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sh -c 'for i in $(seq 1 180); do [ -f /run/post-boot-infra.ready ] && exit 0; sleep 1; done; echo "/run/post-boot-infra.ready not present" >&2; exit 1'
+ExecStart=/bin/bash /home/dino/scripts/ai-postboot-readiness.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-postboot-readiness

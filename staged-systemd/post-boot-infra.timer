@@ -1,0 +1,11 @@
+[Unit]
+Description=Run critical infrastructure verification shortly after boot
+
+[Timer]
+OnBootSec=2min
+AccuracySec=30s
+Unit=post-boot-infra.service
+Persistent=false
+
+[Install]
+WantedBy=timers.target
