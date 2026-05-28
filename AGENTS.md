@@ -1,6 +1,13 @@
 # Dino's Home Lab — Codex Context
 **Last updated: 2026-05-27**
 
+**Canonical private source:** `git@cha0tikforge:cha0tik/home-infra.git`
+
+For machine roles, runbooks, recovery procedures, service placement, and infra backlog:
+- write new private infra knowledge in `home-infra` first
+- treat this file as operator context and summary, not the long-term canonical repo
+- if this file and `home-infra` disagree, `home-infra` wins
+
 You are working in Dino Vitale's home lab. Dino is a systems architect who does not write code himself — you implement, he designs. Be direct, no hedging, execute or specify exactly.
 
 ---

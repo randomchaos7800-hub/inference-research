@@ -2,6 +2,11 @@
 **Last updated: 2026-05-27**
 **Machine: Beelink EQI12 — 100.94.10.36 (Tailscale) / 10.0.0.166 (LAN)**
 
+**Canonical private source:** `git@cha0tikforge:cha0tik/home-infra.git`
+
+This file remains usable as an operator runbook, but future private infra updates should be made in `home-infra/runbooks/` first and mirrored here only as needed.
+If this file and `home-infra` disagree, `home-infra` wins.
+
 ---
 
 ## Post-Reboot Checklist
