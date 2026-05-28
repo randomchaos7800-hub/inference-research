@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
-"""
-Fetches live model + speed from local-proxy, writes data/inference-status.json
-to the web root. Runs every 15 minutes via cron.
-"""
+"""Fetch live model + canonical throughput from local-proxy."""
 import json
-import time
+import subprocess
 import urllib.request
-import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
 PROXY = "http://100.120.50.35:8010"
 OUT   = Path("/home/dino/www/dinovitale.com/data/inference-status.json")
+BENCH = Path("/home/dino/scripts/bench-inference.py")
 
-SPEED_PROMPT = "List the planets in order from the sun. One word each."
-MAX_TOKENS   = 40
+SPEED_PROMPT = "Count from 1 to 200, one number per line, no commentary."
+MAX_TOKENS   = 512
 
 
 def fetch_json(url, timeout=5):
@@ -22,27 +19,28 @@ def fetch_json(url, timeout=5):
         return json.loads(r.read())
 
 
-def measure_speed(model_alias: str) -> float | None:
-    payload = json.dumps({
-        "model":      model_alias,
-        "messages":   [{"role": "user", "content": SPEED_PROMPT}],
-        "max_tokens": MAX_TOKENS,
-        "stream":     False,
-    }).encode()
-
-    req = urllib.request.Request(
-        f"{PROXY}/v1/chat/completions",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-    )
+def measure_speed(model_alias: str) -> dict | None:
     try:
-        t0 = time.time()
-        with urllib.request.urlopen(req, timeout=60) as r:
-            resp = json.loads(r.read())
-        elapsed = time.time() - t0
-        tokens = resp.get("usage", {}).get("completion_tokens", 0)
-        if tokens > 0 and elapsed > 0:
-            return round(tokens / elapsed, 1)
+        result = subprocess.run(
+            [
+                "python3",
+                str(BENCH),
+                "--server-url",
+                PROXY,
+                "--model",
+                model_alias,
+                "--prompt",
+                SPEED_PROMPT,
+                "--max-tokens",
+                str(MAX_TOKENS),
+                "--timeout",
+                "180",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return json.loads(result.stdout)
     except Exception:
         pass
     return None
@@ -52,7 +50,8 @@ def main():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     try:
-        active = fetch_json(f"{PROXY}/health")
+        health = fetch_json(f"{PROXY}/health")
+        active = fetch_json(f"{PROXY}/active")
     except Exception as e:
         OUT.write_text(json.dumps({
             "status":  "offline",
@@ -61,19 +60,21 @@ def main():
         }, indent=2))
         return
 
-    model_id   = active.get("model", "unknown")
-    backend    = active.get("active", "unknown")
-    model_name = active.get("model", "local")
+    backend = active.get("active", health.get("active", "unknown"))
+    model_id = active.get("model", "unknown")
+    model_name = "local"
 
     # map internal model IDs to display names
     display = {
         "aeon-nvfp4": "AEON NVFP4",
         "qwen3627b":  "Qwen3 36B MoE",
+        "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf": "Nemotron Nano 30B",
         "local":      "local",
     }
     label = display.get(model_id, model_id)
 
-    tok_s = measure_speed(model_name)
+    bench = measure_speed(model_name)
+    tok_s = bench.get("gen_tps") if bench else None
 
     OUT.write_text(json.dumps({
         "status":    "online",
@@ -81,6 +82,12 @@ def main():
         "model_id":  model_id,
         "model":     label,
         "tok_s":     tok_s,
+        "ttft_ms":   bench.get("ttft_ms") if bench else None,
+        "completion_tokens": bench.get("completion_tokens") if bench else None,
+        "elapsed_s": bench.get("elapsed_s") if bench else None,
+        "gen_s":     bench.get("gen_s") if bench else None,
+        "end_to_end_tps": bench.get("end_to_end_tps") if bench else None,
+        "metric":    "completion_tps_after_first_stream_token_include_usage",
         "updated":   now,
     }, indent=2))
     print(f"{now}  {label}  {tok_s} tok/s")

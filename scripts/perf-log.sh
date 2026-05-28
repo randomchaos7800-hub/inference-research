@@ -38,46 +38,12 @@ MODEL_NAME=$(curl -s "$SERVER_URL/v1/models" | python3 -c "import json,sys; d=js
 run_inference() {
     local prompt="$1"
     local max_tokens="$2"
-    python3 - "$SERVER_URL" "$MODEL_ALIAS" "$prompt" "$max_tokens" <<'PYEOF'
-import sys, json, time, urllib.request
-
-url = sys.argv[1] + "/v1/chat/completions"
-model = sys.argv[2]
-prompt = sys.argv[3]
-max_tokens = int(sys.argv[4])
-
-payload = json.dumps({
-    "model": model,
-    "messages": [{"role": "user", "content": prompt}],
-    "max_tokens": max_tokens,
-    "stream": True,
-}).encode()
-
-req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-start = time.time()
-first_token_t = None
-tokens = 0
-
-with urllib.request.urlopen(req, timeout=120) as resp:
-    for line in resp:
-        line = line.decode().strip()
-        if line.startswith("data: ") and line != "data: [DONE]":
-            chunk = json.loads(line[6:])
-            if not chunk.get("choices"):
-                continue
-            delta = chunk["choices"][0]["delta"].get("content", "")
-            if delta:
-                if first_token_t is None:
-                    first_token_t = time.time()
-                tokens += 1
-
-end = time.time()
-ttft_ms = round((first_token_t - start) * 1000) if first_token_t else -1
-gen_tps = round(tokens / (end - first_token_t), 2) if first_token_t and tokens > 1 else 0
-pp_tps = round(len(prompt.split()) / (first_token_t - start), 2) if first_token_t else 0
-
-print(json.dumps({"ttft_ms": ttft_ms, "gen_tps": gen_tps, "pp_tps": pp_tps, "tokens": tokens}))
-PYEOF
+    python3 /home/dino/scripts/bench-inference.py \
+        --server-url "$SERVER_URL" \
+        --model "$MODEL_ALIAS" \
+        --prompt "$prompt" \
+        --max-tokens "$max_tokens" \
+        --timeout 180
 }
 
 # Short prompt (fast path)
@@ -87,8 +53,8 @@ MEDIUM=$(run_inference "Explain transformer attention in 3 sentences." 150)
 
 TTFT_MS=$(echo "$SHORT" | python3 -c "import json,sys; print(json.load(sys.stdin)['ttft_ms'])")
 GEN_TPS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['gen_tps'])")
-PP_TPS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['pp_tps'])")
-GEN_TOKENS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['tokens'])")
+PP_TPS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['end_to_end_tps'])")
+GEN_TOKENS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['completion_tokens'])")
 
 # ── Load average ───────────────────────────────────────────────────────────────
 LOAD_AVG=$(cat /proc/loadavg | awk '{print $1"/"$2"/"$3}')
