@@ -1,38 +1,12 @@
 #!/usr/bin/env python3
-"""Morning briefing — standalone script, no agent needed. Runs at 4AM via systemd timer."""
+"""Morning briefing — writes to ops dashboard. Runs at 4AM via systemd timer."""
 
 import subprocess
-import json
-import urllib.request
 import sys
 import os
 from datetime import datetime, timedelta
 
-SLACK_CHANNEL = "C0B6Q4525EY"  # #brief
-VAULT = os.path.expanduser("~/.vault/vault.sh")
-
-
-def get_slack_token():
-    r = subprocess.run([VAULT, "get", "slack_kato_bot_token"], capture_output=True, text=True)
-    return r.stdout.strip()
-
-
-def slack_post(token, text):
-    payload = json.dumps({
-        "channel": SLACK_CHANNEL,
-        "text": text,
-        "unfurl_links": False,
-        "mrkdwn": True,
-    }).encode()
-    req = urllib.request.Request(
-        "https://slack.com/api/chat.postMessage",
-        data=payload,
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=10) as r:
-        resp = json.loads(r.read())
-        if not resp.get("ok"):
-            print(f"Slack error: {resp.get('error')}", file=sys.stderr)
+OPS_WRITE = ['python3', '/home/dino/scripts/ops-write.py', 'briefing']
 
 
 def run(cmd, timeout=15):
@@ -46,10 +20,16 @@ def run(cmd, timeout=15):
         return f"(error: {e})"
 
 
-# ── Sections ──────────────────────────────────────────────────────────────────
+def h(text):
+    return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
-def section_weather():
-    return run("bash /home/dino/.kato/scripts/get-weather.sh", timeout=20)
+
+def status_row(name, cmd, ok_val="active", timeout=8):
+    status = run(cmd, timeout=timeout)
+    ok = status.strip() in (ok_val, "ok")
+    cls = "ok" if ok else "fail"
+    icon = "✓" if ok else "✗"
+    return f'<li class="{cls}"><span class="icon">{icon}</span>{h(name)}: {h(status)}</li>'
 
 
 def section_services():
@@ -57,90 +37,82 @@ def section_services():
         ("inference :8010",
          "curl -sf --max-time 5 http://100.120.50.35:8010/health "
          "| python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('status','?'))\" "
-         "2>/dev/null || echo unreachable"),
-        ("frank-api",     "systemctl --user is-active frank-api.service 2>/dev/null || echo inactive"),
-        ("mike",          "systemctl --user is-active mike.service 2>/dev/null || echo inactive"),
-        ("cloudflared",   "systemctl --user is-active cloudflared 2>/dev/null || echo inactive"),
-        ("nginx",         "systemctl is-active nginx 2>/dev/null || echo inactive"),
-        ("pandorica",     "systemctl --user is-active pandorica-sync.service 2>/dev/null || echo inactive"),
+         "2>/dev/null || echo unreachable", "ok"),
+        ("harness-api",    "systemctl --user is-active harness-api.service 2>/dev/null || echo inactive", "active"),
+        ("mike",           "systemctl --user is-active mike.service 2>/dev/null || echo inactive", "active"),
+        ("cloudflared",    "systemctl --user is-active cloudflared 2>/dev/null || echo inactive", "active"),
+        ("nginx",          "systemctl is-active nginx 2>/dev/null || echo inactive", "active"),
+        ("localfamouscoffee", "systemctl --user is-active localfamouscoffee.service 2>/dev/null || echo inactive", "active"),
     ]
-    lines = []
-    for name, cmd in checks:
-        status = run(cmd, timeout=8)
-        icon = "✅" if status in ("active", "ok") else "🔴"
-        lines.append(f"  {icon} {name}: {status}")
-    return "\n".join(lines)
+    rows = ''.join(status_row(n, c, ok) for n, c, ok in checks)
+    return f'<h3>Services</h3><ul class="checklist">{rows}</ul>'
 
 
 def section_disk():
-    raw = run("df -h 2>/dev/null | grep -E '^/dev|^tmpfs' | grep -v 'tmpfs.*tmpfs' | awk '{print $5, $6}'")
-    lines = []
+    raw = run("df -h 2>/dev/null | grep -E '^/dev' | awk '{print $5, $6}'")
+    rows = ''
     for line in raw.splitlines():
         parts = line.split()
         if len(parts) == 2:
             pct_str, mount = parts
             try:
-                pct = int(pct_str.rstrip("%"))
-                icon = "🔴" if pct >= 85 else "⚠️" if pct >= 70 else "✅"
+                pct = int(pct_str.rstrip('%'))
+                cls = 'fail' if pct >= 85 else 'warn' if pct >= 70 else 'ok'
             except ValueError:
-                icon = "  "
-            lines.append(f"  {icon} {mount}: {pct_str}")
-    return "\n".join(lines) if lines else raw
+                cls = ''
+            rows += f'<tr><td>{h(mount)}</td><td class="{cls}">{h(pct_str)}</td></tr>'
+    return f'<h3>Disk</h3><table class="data">{rows}</table>'
+
+
+def section_weather():
+    weather = run("bash /home/dino/.kato/scripts/get-weather.sh", timeout=20)
+    lines = [h(l) for l in weather.splitlines() if l.strip()]
+    return '<h3>Weather</h3><p>' + '<br>'.join(lines[:6]) + '</p>'
 
 
 def section_email():
-    return run("bash /home/dino/.kato/scripts/gmail-check.sh", timeout=30)
+    email = run("bash /home/dino/.kato/scripts/gmail-check.sh", timeout=30)
+    lines = [h(l) for l in email.splitlines() if l.strip()]
+    return '<h3>Email</h3><p>' + '<br>'.join(lines[:8]) + '</p>'
 
 
-def section_what_running():
-    lines = []
-
-    # Systemd user services that are active
-    active = run("systemctl --user list-units --state=active --type=service --no-legend --no-pager 2>/dev/null "
-                 "| awk '{print $1}' | grep -v 'dbus\\|pipewire\\|wireplumber\\|xdg\\|at-spi\\|snap'")
+def section_running():
+    active = run(
+        "systemctl --user list-units --state=active --type=service --no-legend --no-pager 2>/dev/null "
+        "| awk '{print $1}' | grep -v 'dbus\\|pipewire\\|wireplumber\\|xdg\\|at-spi\\|snap'"
+    )
+    model = run(
+        "curl -sf --max-time 5 http://100.120.50.35:8010/v1/models "
+        "| python3 -c \"import sys,json; m=json.load(sys.stdin); "
+        "print(m['data'][0]['id'] if m.get('data') else 'none')\" 2>/dev/null"
+    )
+    rows = ''
     if active and active != "(no output)":
         for svc in active.splitlines():
-            lines.append(f"  ▸ {svc.replace('.service','')}")
-
-    # Inference model currently loaded
-    model = run("curl -sf --max-time 5 http://100.120.50.35:8010/v1/models "
-                "| python3 -c \"import sys,json; m=json.load(sys.stdin); "
-                "print(m['data'][0]['id'] if m.get('data') else 'none')\" 2>/dev/null")
+            rows += f'<tr><td>{h(svc.replace(".service",""))}</td><td class="ok">active</td></tr>'
     if model and model not in ("(no output)", "(timed out)", "none"):
-        lines.append(f"  🧠 model: {model}")
-
-    return "\n".join(lines) if lines else "  (nothing notable running)"
+        rows += f'<tr><td>model</td><td>{h(model)}</td></tr>'
+    return f'<h3>Running</h3><table class="data">{rows}</table>'
 
 
 def section_overnight():
     since = (datetime.now() - timedelta(hours=12)).strftime("%Y-%m-%d %H:%M:%S")
-    # System-level errors
     errors = run(
         f'journalctl --since "{since}" -p err --no-pager --output=short 2>/dev/null '
         f'| grep -v "^--\\|audit\\|kernel\\|NetworkManager\\|bluetoothd" | tail -15'
     )
     if not errors or errors == "(no output)":
-        return "  ✅ Clean — no errors in last 12h"
-    # Summarize: count unique units
-    units = set()
-    lines = []
-    for line in errors.splitlines():
-        if ": " in line:
-            unit = line.split(": ")[0].split()[-1]
-            units.add(unit)
-        lines.append(f"  {line}")
-    summary = f"  ⚠️ Errors from: {', '.join(sorted(units))}\n"
-    return summary + "\n".join(lines[:10])
+        return '<h3>Overnight</h3><ul class="checklist"><li class="ok"><span class="icon">✓</span>Clean — no errors in last 12h</li></ul>'
+    lines = [h(l) for l in errors.splitlines()[:10]]
+    return '<h3>Overnight Errors</h3><p>' + '<br>'.join(lines) + '</p>'
 
 
 def section_schedule():
-    # Systemd timers — next fire time
     raw = run("systemctl --user list-timers --all --no-legend --no-pager 2>/dev/null")
-    lines = []
     now = datetime.now()
     cutoff = now + timedelta(days=3)
     skip = {"snap.", "launchpadlib", "claude-token-refresh"}
-
+    rows = ''
     for line in raw.splitlines():
         parts = line.split()
         if len(parts) < 8:
@@ -148,63 +120,31 @@ def section_schedule():
         unit = parts[7] if len(parts) > 7 else ""
         if any(s in unit for s in skip):
             continue
-        next_str = " ".join(parts[:4])
         try:
-            # systemd format: "Wed 2026-05-27 02:00:00 PDT"
             next_dt = datetime.strptime(" ".join(parts[1:3]), "%Y-%m-%d %H:%M:%S")
             if next_dt <= cutoff:
-                lines.append(f"  {parts[1]} {parts[2]} — {unit.replace('.timer','')}")
+                rows += f'<tr><td>{h(parts[1])} {h(parts[2])}</td><td>{h(unit.replace(".timer",""))}</td></tr>'
         except (ValueError, IndexError):
-            lines.append(f"  {next_str} — {unit.replace('.timer','')}")
+            pass
+    return f'<h3>Schedule — Next 3 Days</h3><table class="data">{rows}</table>'
 
-    # Notable cron jobs (daily/less frequent only)
-    cron_notable = [
-        "3:00 AM  — backups (mike, system, vault, www)",
-        "6:00 AM  — perf-log",
-        "8:00 AM  — disk-alert",
-    ]
-    lines += [f"  {c}" for c in cron_notable]
-
-    return "\n".join(lines) if lines else "  (no timers in next 3 days)"
-
-
-# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    token = get_slack_token()
-    if not token:
-        print("ERROR: no slack_kato_bot_token in vault", file=sys.stderr)
-        sys.exit(1)
-
     now = datetime.now().strftime("%A %B %-d, %Y — %-I:%M %p")
 
-    msg = "\n".join([
-        f"*🌅 Morning Briefing — {now}*",
-        "",
-        f"*Weather*",
-        section_weather(),
-        "",
-        f"*Services*",
-        section_services(),
-        "",
-        f"*Disk*",
-        section_disk(),
-        "",
-        f"*Email*",
-        section_email(),
-        "",
-        f"*What's Running*",
-        section_what_running(),
-        "",
-        f"*Broke Overnight*",
-        section_overnight(),
-        "",
-        f"*Schedule — Next 3 Days*",
-        section_schedule(),
-    ])
+    html = f'<div class="prose">'
+    html += f'<p style="color:var(--muted);margin-bottom:12px">{now}</p>'
+    html += section_weather()
+    html += section_services()
+    html += section_disk()
+    html += section_email()
+    html += section_running()
+    html += section_overnight()
+    html += section_schedule()
+    html += '</div>'
 
-    slack_post(token, msg)
-    print(f"Briefing posted — {now}")
+    subprocess.run(OPS_WRITE, input=html, text=True)
+    print(f"Briefing written — {now}")
 
 
 if __name__ == "__main__":

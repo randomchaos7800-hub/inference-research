@@ -46,7 +46,9 @@ def main():
     xai_key = vault_get("xai_api_key")
 
     if not xai_key:
-        slack.post(f"⚠️ x-post-morning: xai_api_key not in vault — skipped", channel=slack.X)
+        subprocess.run(['python3', '/home/dino/scripts/ops-write.py', 'content'],
+            input='<div class="post-item skipped"><div class="post-meta">morning — skipped: xai_api_key not in vault</div></div>',
+            text=True)
         return
 
     # Get trending local AI topics via xai
@@ -77,14 +79,16 @@ def main():
     # Post to X
     post_result = run(f'/home/dino/.local/bin/x-cli tweet post "{tweet}"', timeout=30)
 
-    # Report to Slack
-    msg = (
-        f"*🐦 X Morning Post — {today}*\n"
-        f"Format: _{fmt}_\n\n"
-        f"*Posted:* {tweet}\n\n"
-        f"Result: {post_result[:200]}"
+    success = "error" not in post_result.lower() and post_result != "(timed out)"
+    cls = "posted" if success else "fail"
+    html = (
+        f'<div class="post-item {cls}">'
+        f'{tweet}'
+        f'<div class="post-meta">morning &bull; {fmt} &bull; {post_result[:120]}</div>'
+        f'</div>'
     )
-    slack.post(msg, channel=slack.X)
+    subprocess.run(['python3', '/home/dino/scripts/ops-write.py', 'content'],
+                   input=html, text=True)
     print(f"X morning post done — {today}")
 
 

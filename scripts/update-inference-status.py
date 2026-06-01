@@ -58,6 +58,9 @@ def main():
             "updated": now,
             "error":   str(e),
         }, indent=2))
+        html = f'<ul class="checklist"><li class="fail"><span class="icon">✗</span>offline: {e}</li></ul>'
+        subprocess.run(['python3', '/home/dino/scripts/ops-write.py', 'inference'],
+                       input=html, text=True)
         return
 
     backend = active.get("active", health.get("active", "unknown"))
@@ -77,7 +80,7 @@ def main():
     bench = measure_speed(model_name)
     tok_s = bench.get("gen_tps") if bench else None
 
-    OUT.write_text(json.dumps({
+    data = {
         "status":    "online",
         "active":    backend,
         "model_id":  model_id,
@@ -90,7 +93,22 @@ def main():
         "end_to_end_tps": bench.get("end_to_end_tps") if bench else None,
         "metric":    "completion_tps_after_first_stream_token_include_usage",
         "updated":   now,
-    }, indent=2))
+    }
+    OUT.write_text(json.dumps(data, indent=2))
+
+    tok_display = f"{tok_s:.1f}" if tok_s else "—"
+    ttft = f"{bench.get('ttft_ms', 0):.0f}ms" if bench else "—"
+    html = f'''<div class="metrics">
+  <div class="metric"><span class="num">{tok_display}</span><span class="label">tok/s</span></div>
+  <div class="metric"><span class="num">{ttft}</span><span class="label">TTFT</span></div>
+</div>
+<table class="data">
+  <tr><td>Model</td><td>{label}</td></tr>
+  <tr><td>Backend</td><td>{backend}</td></tr>
+  <tr><td>Status</td><td class="ok">online</td></tr>
+</table>'''
+    subprocess.run(['python3', '/home/dino/scripts/ops-write.py', 'inference'],
+                   input=html, text=True)
     print(f"{now}  {label}  {tok_s} tok/s")
 
 

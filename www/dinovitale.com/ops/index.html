@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="refresh" content="300">
+  <title>Ops — Boundary Labs</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #141414;
+      --border: #252525;
+      --text: #d8d8d8;
+      --muted: #555;
+      --ok: #4caf50;
+      --warn: #ff9800;
+      --fail: #f44336;
+      --accent: #5c9eff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px; line-height: 1.5; padding: 16px;
+    }
+    header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
+    header h1 { font-size: 13px; font-weight: normal; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+    header .refresh { font-size: 11px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+    .card { background: var(--card); border: 1px solid var(--border); padding: 14px; border-radius: 3px; }
+    .card.wide { grid-column: 1 / -1; }
+    .card h2 {
+      font-size: 10px; font-weight: normal; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--muted);
+      margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .card h2 .badge {
+      font-size: 9px; padding: 1px 6px; border-radius: 2px;
+      background: var(--border); color: var(--muted); letter-spacing: 0.05em;
+    }
+    .card h2 .badge.ok { background: rgba(76,175,80,0.15); color: var(--ok); }
+    .card h2 .badge.fail { background: rgba(244,67,54,0.15); color: var(--fail); }
+    .card h2 .badge.warn { background: rgba(255,152,0,0.15); color: var(--warn); }
+    .ts { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+    .empty { color: var(--muted); font-style: italic; font-size: 12px; }
+
+    /* Metric tiles */
+    .metrics { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+    .metric { min-width: 56px; }
+    .metric .num { display: block; font-size: 24px; color: var(--accent); line-height: 1.1; }
+    .metric .label { display: block; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+    /* Checklist */
+    ul.checklist { list-style: none; }
+    ul.checklist li { padding: 3px 0; display: flex; align-items: baseline; gap: 6px; }
+    ul.checklist li .icon { flex-shrink: 0; width: 14px; }
+    ul.checklist li.ok .icon { color: var(--ok); }
+    ul.checklist li.warn .icon { color: var(--warn); }
+    ul.checklist li.fail .icon { color: var(--fail); }
+    ul.checklist li.ok { color: var(--text); }
+    ul.checklist li.warn { color: var(--warn); }
+    ul.checklist li.fail { color: var(--fail); }
+
+    /* Prose sections (briefing, research) */
+    .prose { line-height: 1.75; }
+    .prose p { margin-bottom: 8px; color: var(--text); }
+    .prose ul { padding-left: 18px; margin-bottom: 10px; }
+    .prose li { margin-bottom: 5px; }
+    .prose h3 {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--muted); margin: 14px 0 6px; padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .prose h3:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .prose strong { color: #eee; font-weight: normal; }
+
+    /* Data table */
+    table.data { width: 100%; border-collapse: collapse; }
+    table.data td { padding: 5px 0; border-bottom: 1px solid var(--border); }
+    table.data td:last-child { text-align: right; color: var(--accent); }
+    table.data tr:last-child td { border-bottom: none; }
+    table.data td.ok { color: var(--ok); }
+    table.data td.fail { color: var(--fail); }
+    table.data td.warn { color: var(--warn); }
+
+    /* X post */
+    .post-item { border-left: 2px solid var(--border); padding: 6px 10px; margin-bottom: 8px; line-height: 1.65; }
+    .post-item .post-meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
+    .post-item.posted { border-left-color: var(--ok); }
+    .post-item.skipped { opacity: 0.5; }
+
+    /* Backup rows */
+    .backup-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
+    .backup-row:last-child { border-bottom: none; }
+    .backup-row .name { color: var(--muted); }
+    .backup-row .result.ok { color: var(--ok); }
+    .backup-row .result.fail { color: var(--fail); }
+
+    @media (max-width: 640px) {
+      .metrics { gap: 12px; }
+      .metric .num { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boundary Labs — Ops</h1>
+    <span class="refresh">auto-refresh 5m</span>
+  </header>
+
+  <div class="grid">
+
+    <!-- ── LFC ── -->
+    <div class="card" id="s-lfc">
+      <h2>Local Famous Coffee <span class="badge" id="lfc-badge">–</span></h2>
+      <!-- SECTION:lfc:start -->
+<div class="ts">2026-06-01 15:00</div>
+<div class="metrics">
+  <div class="metric"><span class="num">0</span><span class="label">Visits</span></div>
+  <div class="metric"><span class="num">0</span><span class="label">Ad Clicks</span></div>
+  <div class="metric"><span class="num">0%</span><span class="label">Mobile</span></div>
+  <div class="metric"><span class="num">0</span><span class="label">Signups</span></div>
+</div>
+<!-- SECTION:lfc:end -->
+    </div>
+
+    <!-- ── Inference ── -->
+    <div class="card" id="s-inference">
+      <h2>Inference <span class="badge" id="inference-badge">–</span></h2>
+      <!-- SECTION:inference:start -->
+<div class="ts">2026-06-01 15:15</div>
+<div class="metrics">
+  <div class="metric"><span class="num">117.9</span><span class="label">tok/s</span></div>
+  <div class="metric"><span class="num">136ms</span><span class="label">TTFT</span></div>
+</div>
+<table class="data">
+  <tr><td>Model</td><td>Nemotron Nano 30B</td></tr>
+  <tr><td>Backend</td><td>nemotron</td></tr>
+  <tr><td>Status</td><td class="ok">online</td></tr>
+</table>
+<!-- SECTION:inference:end -->
+    </div>
+
+    <!-- ── Agent Smoke ── -->
+    <div class="card" id="s-smoke">
+      <h2>Agent Smoke <span class="badge" id="smoke-badge">–</span></h2>
+      <!-- SECTION:smoke:start -->
+<div class="ts">2026-06-01 15:15</div>
+<ul class="checklist"><li class="ok"><span class="icon">✓</span>proxy /health: ok (13ms)</li><li class="ok"><span class="icon">✓</span>/v1/models: 1 loaded</li></ul><div class="sub">tier1 run</div>
+<!-- SECTION:smoke:end -->
+    </div>
+
+    <!-- ── Ops Check ── -->
+    <div class="card" id="s-ops-check">
+      <h2>Ops Check <span class="badge" id="ops-badge">–</span></h2>
+      <!-- SECTION:ops-check:start -->
+<div class="ts">2026-06-01 15:00</div>
+<ul class="checklist"><li class="ok"><span class="icon">✓</span>Disk: all clear</li><li class="ok"><span class="icon">✓</span>Inference :8010: ok</li><li class="fail"><span class="icon">✗</span>Failed units: running</li></ul>
+<!-- SECTION:ops-check:end -->
+    </div>
+
+    <!-- ── Overnight ── -->
+    <div class="card" id="s-overnight">
+      <h2>Overnight <span class="badge" id="overnight-badge">–</span></h2>
+      <!-- SECTION:overnight:start -->
+      <p class="empty">No data yet.</p>
+      <!-- SECTION:overnight:end -->
+    </div>
+
+    <!-- ── Backups ── -->
+    <div class="card" id="s-backups">
+      <h2>Backups <span class="badge" id="backups-badge">–</span></h2>
+      <!-- SECTION:backups:start -->
+<div class="ts">2026-06-01 14:34</div>
+<ul class="checklist"><li class="ok"><span class="icon">✓</span><strong>mike</strong>: Mike repo pushed to GitHub</li><li class="ok"><span class="icon">✓</span><strong>system</strong>: System backup complete: /mnt/jellyfin-backups/system/system-backup-2026-06-01.ta</li><li class="fail"><span class="icon">✗</span><strong>vault</strong>: Vault key Drive backup failed (non-fatal)</li><li class="ok"><span class="icon">✓</span><strong>www</strong>: www backup complete: /mnt/jellyfin-backups/www/www-backup-2026-06-01.tar.gz (4.7</li><li class="fail"><span class="icon">✗</span><strong>repos</strong>: backup-repos: 8 updated, 2 skipped, 0 errors — 2026-06-01 03:20:02</li></ul>
+<!-- SECTION:backups:end -->
+    </div>
+
+    <!-- ── Morning Briefing ── -->
+    <div class="card wide" id="s-briefing">
+      <h2>Morning Briefing</h2>
+      <!-- SECTION:briefing:start -->
+      <p class="empty">No data yet.</p>
+      <!-- SECTION:briefing:end -->
+    </div>
+
+    <!-- ── Research ── -->
+    <div class="card wide" id="s-research">
+      <h2>Research Brief</h2>
+      <!-- SECTION:research:start -->
+      <p class="empty">No data yet.</p>
+      <!-- SECTION:research:end -->
+    </div>
+
+    <!-- ── Content / X ── -->
+    <div class="card wide" id="s-content">
+      <h2>Content</h2>
+      <!-- SECTION:content:start -->
+      <p class="empty">No data yet.</p>
+      <!-- SECTION:content:end -->
+    </div>
+
+  </div>
+</body>
+</html>

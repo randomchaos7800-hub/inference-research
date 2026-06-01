@@ -45,9 +45,18 @@ def main():
         print("Nothing new — skipping")
         return
 
-    msg = f"*🔬 Research Brief — {today.isoformat()}*\n\n{result}"
-    slack.post(msg, channel=slack.BRIEF)
-    print(f"Research brief posted — {today.isoformat()}")
+    # Convert bullet lines to HTML
+    lines = result.strip().splitlines()
+    html = f'<div class="prose"><p style="color:var(--muted);margin-bottom:10px">{today.isoformat()}</p><ul>'
+    for line in lines:
+        line = line.strip().lstrip('•-* ').strip()
+        if line:
+            html += f'<li>{line}</li>'
+    html += '</ul></div>'
+
+    subprocess.run(['python3', '/home/dino/scripts/ops-write.py', 'research'],
+                   input=html, text=True)
+    print(f"Research brief written — {today.isoformat()}")
 
 
 if __name__ == "__main__":
