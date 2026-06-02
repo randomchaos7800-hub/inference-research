@@ -3,12 +3,12 @@
 
 import json
 import os
+import subprocess
 import sys
 import urllib.request
 from datetime import date, datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lib"))
-import slack
 import inference
 
 ARXIV_DIR = os.path.expanduser("~/crons/data/arxiv")
@@ -86,19 +86,36 @@ def main():
     result = inference.ask(prompt, system=system, max_tokens=1024, timeout=120)
 
     if "[SILENT]" in result or "nothing genuinely" in result.lower():
-        print("Nothing interesting today — skipping Slack post")
+        print("Nothing interesting today — skipping")
         return
 
-    # Save to disk
+    # Save to disk for daily-research-brief to consume
     os.makedirs(ARXIV_DIR, exist_ok=True)
     out_file = os.path.join(ARXIV_DIR, f"arxiv-{today}.md")
     with open(out_file, "w") as f:
         f.write(f"---\nsource_agent: cron\ndate: {today}\ntags: [arxiv,research,{today}]\n---\n\n")
         f.write(result)
 
-    msg = f"*📚 arXiv Sweep — {today}*\n\n{result}"
-    slack.post(msg, channel=slack.BRIEF)
-    print(f"arXiv sweep posted — {today}")
+    # Write to ops dashboard
+    html_lines = ['<div class="prose">']
+    has_content = False
+    for line in result.strip().splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        has_content = True
+        if line.startswith(("- ", "• ", "* ")):
+            html_lines.append(f'<p style="margin:5px 0 5px 0">{line[2:].strip()}</p>')
+        else:
+            html_lines.append(f'<p><strong>{line}</strong></p>')
+    if not has_content:
+        html_lines.append(f'<p style="color:var(--muted);font-style:italic">No notable papers today — {today}</p>')
+    html_lines.append('</div>')
+    html = "\n".join(html_lines)
+
+    ops_write = os.path.join(os.path.dirname(__file__), "..", "scripts", "ops-write.py")
+    subprocess.run([sys.executable, ops_write, "arxiv"], input=html, text=True, check=False)
+    print(f"arXiv sweep done — {today}")
 
 
 if __name__ == "__main__":

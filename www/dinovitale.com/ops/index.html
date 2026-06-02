@@ -5,124 +5,434 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="refresh" content="300">
-  <title>Ops — Boundary Labs</title>
+  <title>Ops — cha0tik LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d0d0d;
-      --card: #141414;
-      --border: #252525;
-      --text: #d8d8d8;
-      --muted: #555;
-      --ok: #4caf50;
-      --warn: #ff9800;
-      --fail: #f44336;
-      --accent: #5c9eff;
+      --bg:          #0c0c10;
+      --surface:     #13131a;
+      --surface-2:   #1a1a24;
+      --border:      #252530;
+      --border-sub:  #1e1e28;
+      --text:        #e2e2eb;
+      --text-2:      #a0a0b8;
+      --muted:       #6b6b80;
+      --ok:          #34d399;
+      --ok-bg:       rgba(52,211,153,0.10);
+      --ok-glow:     rgba(52,211,153,0.20);
+      --warn:        #fbbf24;
+      --warn-bg:     rgba(251,191,36,0.10);
+      --fail:        #f87171;
+      --fail-bg:     rgba(248,113,113,0.10);
+      --accent:      #60a5fa;
+      --accent-bg:   rgba(96,165,250,0.10);
+      --mono:        'JetBrains Mono', 'Fira Code', monospace;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: var(--bg); color: var(--text);
-      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 13px; line-height: 1.5; padding: 16px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
+
+    /* ── Header ── */
     header {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
     }
-    header h1 { font-size: 13px; font-weight: normal; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
-    header .refresh { font-size: 11px; color: var(--muted); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
-    .card { background: var(--card); border: 1px solid var(--border); padding: 14px; border-radius: 3px; }
+    .header-left { display: flex; align-items: baseline; gap: 12px; }
+    header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    header .org {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .status-strip {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .status-pill {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 99px;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+    .status-pill.ok   { color: var(--ok);   background: var(--ok-bg);   border-color: rgba(52,211,153,0.25); }
+    .status-pill.warn { color: var(--warn); background: var(--warn-bg); border-color: rgba(251,191,36,0.25); }
+    .status-pill.fail { color: var(--fail); background: var(--fail-bg); border-color: rgba(248,113,113,0.25); }
+    .refresh-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--border);
+      border-radius: 10px 10px 0 0;
+      transition: background 0.2s;
+    }
+    .card.status-ok::before   { background: var(--ok); }
+    .card.status-warn::before { background: var(--warn); }
+    .card.status-fail::before { background: var(--fail); }
     .card.wide { grid-column: 1 / -1; }
+
+    /* ── Card Header ── */
     .card h2 {
-      font-size: 10px; font-weight: normal; text-transform: uppercase;
-      letter-spacing: 0.15em; color: var(--muted);
-      margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--text-2);
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-sub);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .card h2 .badge {
-      font-size: 9px; padding: 1px 6px; border-radius: 2px;
-      background: var(--border); color: var(--muted); letter-spacing: 0.05em;
+    .badge {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.04em;
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: inherit;
+      text-transform: none;
     }
-    .card h2 .badge.ok { background: rgba(76,175,80,0.15); color: var(--ok); }
-    .card h2 .badge.fail { background: rgba(244,67,54,0.15); color: var(--fail); }
-    .card h2 .badge.warn { background: rgba(255,152,0,0.15); color: var(--warn); }
-    .ts { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
-    .empty { color: var(--muted); font-style: italic; font-size: 12px; }
+    .badge::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+    .badge.ok   { color: var(--ok);   background: var(--ok-bg);   border-color: rgba(52,211,153,0.2);  }
+    .badge.ok::before   { background: var(--ok); box-shadow: 0 0 4px var(--ok-glow); }
+    .badge.warn { color: var(--warn); background: var(--warn-bg); border-color: rgba(251,191,36,0.2); }
+    .badge.warn::before { background: var(--warn); }
+    .badge.fail { color: var(--fail); background: var(--fail-bg); border-color: rgba(248,113,113,0.2); }
+    .badge.fail::before { background: var(--fail); }
 
-    /* Metric tiles */
-    .metrics { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+    /* ── Timestamp ── */
+    .ts {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-family: var(--mono);
+    }
+
+    .empty { color: var(--muted); font-style: italic; font-size: 13px; }
+
+    /* ── Metrics ── */
+    .metrics {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
     .metric { min-width: 56px; }
-    .metric .num { display: block; font-size: 24px; color: var(--accent); line-height: 1.1; }
-    .metric .label { display: block; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
-    .sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
+    .metric .num {
+      display: block;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric .label {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 5px;
+    }
+    .sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
 
-    /* Checklist */
-    ul.checklist { list-style: none; }
-    ul.checklist li { padding: 3px 0; display: flex; align-items: baseline; gap: 6px; }
-    ul.checklist li .icon { flex-shrink: 0; width: 14px; }
-    ul.checklist li.ok .icon { color: var(--ok); }
-    ul.checklist li.warn .icon { color: var(--warn); }
-    ul.checklist li.fail .icon { color: var(--fail); }
-    ul.checklist li.ok { color: var(--text); }
+    /* ── Checklist ── */
+    ul.checklist {
+      list-style: none;
+    }
+    ul.checklist li {
+      padding: 5px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border-sub);
+    }
+    ul.checklist li:last-child { border-bottom: none; }
+    ul.checklist li .icon {
+      flex-shrink: 0;
+      width: 16px;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    ul.checklist li.ok   { color: var(--text); }
+    ul.checklist li.ok   .icon { color: var(--ok); }
     ul.checklist li.warn { color: var(--warn); }
+    ul.checklist li.warn .icon { color: var(--warn); }
     ul.checklist li.fail { color: var(--fail); }
+    ul.checklist li.fail .icon { color: var(--fail); }
 
-    /* Prose sections (briefing, research) */
-    .prose { line-height: 1.75; }
-    .prose p { margin-bottom: 8px; color: var(--text); }
-    .prose ul { padding-left: 18px; margin-bottom: 10px; }
+    /* ── Prose ── */
+    .prose { line-height: 1.7; font-size: 13.5px; }
+    .prose p { margin-bottom: 10px; color: var(--text); }
+    .prose ul { padding-left: 18px; margin-bottom: 12px; }
     .prose li { margin-bottom: 5px; }
     .prose h3 {
-      font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--muted); margin: 14px 0 6px; padding-top: 10px;
-      border-top: 1px solid var(--border);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--muted);
+      margin: 18px 0 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-sub);
     }
     .prose h3:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-    .prose strong { color: #eee; font-weight: normal; }
+    .prose strong { color: var(--text); font-weight: 500; }
 
-    /* Data table */
-    table.data { width: 100%; border-collapse: collapse; }
-    table.data td { padding: 5px 0; border-bottom: 1px solid var(--border); }
-    table.data td:last-child { text-align: right; color: var(--accent); }
+    /* ── Data Table ── */
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table.data td {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-sub);
+      font-size: 13px;
+      vertical-align: baseline;
+    }
+    table.data td:first-child { color: var(--text-2); }
+    table.data td:last-child {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+    }
     table.data tr:last-child td { border-bottom: none; }
-    table.data td.ok { color: var(--ok); }
-    table.data td.fail { color: var(--fail); }
-    table.data td.warn { color: var(--warn); }
+    table.data td.ok   { color: var(--ok) !important; }
+    table.data td.fail { color: var(--fail) !important; }
+    table.data td.warn { color: var(--warn) !important; }
 
-    /* X post */
-    .post-item { border-left: 2px solid var(--border); padding: 6px 10px; margin-bottom: 8px; line-height: 1.65; }
-    .post-item .post-meta { font-size: 10px; color: var(--muted); margin-top: 4px; }
-    .post-item.posted { border-left-color: var(--ok); }
-    .post-item.skipped { opacity: 0.5; }
+    /* ── X/Content Post ── */
+    .post-item {
+      border-left: 3px solid var(--border);
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      line-height: 1.65;
+      border-radius: 0 6px 6px 0;
+      background: var(--surface-2);
+      font-size: 13.5px;
+    }
+    .post-item .post-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-family: var(--mono);
+    }
+    .post-item.posted  { border-left-color: var(--ok); }
+    .post-item.skipped { opacity: 0.45; }
+    .post-item.fail    { border-left-color: var(--fail); }
 
-    /* Backup rows */
-    .backup-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
+    /* ── Backup Rows ── */
+    .backup-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-sub);
+      font-size: 13px;
+      gap: 12px;
+    }
     .backup-row:last-child { border-bottom: none; }
-    .backup-row .name { color: var(--muted); }
-    .backup-row .result.ok { color: var(--ok); }
+    .backup-row .name  { color: var(--text-2); flex-shrink: 0; }
+    .backup-row .result { font-family: var(--mono); font-size: 12px; text-align: right; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .backup-row .result.ok   { color: var(--ok); }
     .backup-row .result.fail { color: var(--fail); }
 
-    @media (max-width: 640px) {
-      .metrics { gap: 12px; }
-      .metric .num { font-size: 20px; }
+    /* ── Log lines ── */
+    .log-block {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-2);
+      line-height: 1.7;
+      background: var(--surface-2);
+      border: 1px solid var(--border-sub);
+      border-radius: 6px;
+      padding: 10px 12px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+    .log-block .log-err { color: var(--fail); }
+    .log-block .log-warn { color: var(--warn); }
+
+    /* Collapse long tables (Running services) */
+    .collapsible-wrap { position: relative; }
+    .collapsible-content { max-height: 180px; overflow: hidden; }
+    .collapsible-content.expanded { max-height: none; }
+    .collapsible-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50px;
+      background: linear-gradient(transparent, var(--surface));
+      pointer-events: none;
+    }
+    .collapsible-fade.hidden { display: none; }
+    .show-more-btn {
+      margin-top: 8px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .show-more-btn:hover { color: var(--text-2); border-color: var(--muted); }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .tab-btn:hover { color: var(--text-2); }
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .card[data-tab] { display: none; }
+    .card[data-tab].tab-visible { display: block; }
+    .card.wide[data-tab].tab-visible { display: block; }
+
+    @media (max-width: 680px) {
+      body { padding: 16px; }
+      .header-right { flex-direction: column; align-items: flex-end; gap: 8px; }
+      .metrics { gap: 16px; }
+      .metric .num { font-size: 24px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Boundary Labs — Ops</h1>
-    <span class="refresh">auto-refresh 5m</span>
+    <div class="header-left">
+      <h1>Ops</h1>
+      <span class="org">cha0tik LLC</span>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="status">Status</button>
+        <button class="tab-btn" data-tab="info">Info</button>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-strip" id="status-strip"></div>
+      <span class="refresh-note">↻ 5m</span>
+    </div>
   </header>
 
   <div class="grid">
 
+    <!-- ── Morning Briefing ── -->
+    <div class="card wide" data-tab="status" id="s-briefing">
+      <h2>Morning Briefing</h2>
+      <!-- SECTION:briefing:start -->
+<div class="ts">2026-06-02 04:00</div>
+<div class="prose"><p style="color:var(--muted);margin-bottom:12px">Tuesday June 2, 2026 — 4:00 AM</p><h3>Weather</h3><p>### WEATHER<br>Overnight: 45°F, Partly Cloudy | Wind: 1 mph<br>Tuesday: 75°F, Mostly Sunny | Wind: 2 mph<br>Tuesday Night: 49°F, Mostly Clear | Wind: 2 mph</p><h3>Services</h3><ul class="checklist"><li class="ok"><span class="icon">✓</span>inference :8010: ok</li><li class="ok"><span class="icon">✓</span>harness-api: active</li><li class="ok"><span class="icon">✓</span>mike: active</li><li class="ok"><span class="icon">✓</span>cloudflared: active</li><li class="ok"><span class="icon">✓</span>nginx: active</li><li class="ok"><span class="icon">✓</span>localfamouscoffee: active</li></ul><h3>Disk</h3><table class="data"><tr><td>/</td><td class="ok">28%</td></tr><tr><td>/boot/efi</td><td class="ok">1%</td></tr><tr><td>/mnt/jellyfin-backups</td><td class="ok">1%</td></tr><tr><td>/mnt/jellyfin-media</td><td class="ok">8%</td></tr></table><h3>Email</h3><p>2 unread:<br>  - Special sale ends soon: Get 70% off sitewide! [Audible &lt;newsletters@audible.com&gt;]<br>  - A Jewish History Heist at the British Museum. Plus. . . [The Free Press &lt;bariweiss+the-front-page]</p><h3>Running</h3><table class="data"><tr><td>autoresearch</td><td class="ok">active</td></tr><tr><td>cloudflared</td><td class="ok">active</td></tr><tr><td>dashboard</td><td class="ok">active</td></tr><tr><td>dconf</td><td class="ok">active</td></tr><tr><td>evolution-addressbook-factory</td><td class="ok">active</td></tr><tr><td>evolution-calendar-factory</td><td class="ok">active</td></tr><tr><td>evolution-source-registry</td><td class="ok">active</td></tr><tr><td>filter-chain</td><td class="ok">active</td></tr><tr><td>gcr-ssh-agent</td><td class="ok">active</td></tr><tr><td>gnome-keyring-daemon</td><td class="ok">active</td></tr><tr><td>gnome-session-manager@ubuntu</td><td class="ok">active</td></tr><tr><td>gnome-session-monitor</td><td class="ok">active</td></tr><tr><td>gnome-terminal-server</td><td class="ok">active</td></tr><tr><td>gpg-agent</td><td class="ok">active</td></tr><tr><td>gvfs-afc-volume-monitor</td><td class="ok">active</td></tr><tr><td>gvfs-daemon</td><td class="ok">active</td></tr><tr><td>gvfs-goa-volume-monitor</td><td class="ok">active</td></tr><tr><td>gvfs-gphoto2-volume-monitor</td><td class="ok">active</td></tr><tr><td>gvfs-metadata</td><td class="ok">active</td></tr><tr><td>gvfs-mtp-volume-monitor</td><td class="ok">active</td></tr><tr><td>gvfs-udisks2-volume-monitor</td><td class="ok">active</td></tr><tr><td>harness-api</td><td class="ok">active</td></tr><tr><td>harness</td><td class="ok">active</td></tr><tr><td>localfamouscoffee</td><td class="ok">active</td></tr><tr><td>mike-irc</td><td class="ok">active</td></tr><tr><td>mike-irchighway</td><td class="ok">active</td></tr><tr><td>mike</td><td class="ok">active</td></tr><tr><td>org.freedesktop.IBus.session.GNOME</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.A11ySettings</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Color</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Datetime</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Housekeeping</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Keyboard</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.MediaKeys</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Power</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.PrintNotifications</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Rfkill</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.ScreensaverProxy</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Sharing</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Smartcard</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Sound</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.Wacom</td><td class="ok">active</td></tr><tr><td>org.gnome.SettingsDaemon.XSettings</td><td class="ok">active</td></tr><tr><td>org.gnome.Shell@wayland</td><td class="ok">active</td></tr><tr><td>tmux-main</td><td class="ok">active</td></tr><tr><td>tracker-miner-fs-3</td><td class="ok">active</td></tr><tr><td>model</td><td>local</td></tr></table><h3>Overnight Errors</h3><p>Jun 01 21:30:52 cha0tikhome sudo[3329900]: pam_unix(sudo:auth): conversation failed<br>Jun 01 21:30:52 cha0tikhome sudo[3329900]: pam_unix(sudo:auth): auth could not identify password for [dino]<br>Jun 01 21:30:52 cha0tikhome sudo[3329901]: pam_unix(sudo:auth): conversation failed<br>Jun 01 21:30:52 cha0tikhome sudo[3329901]: pam_unix(sudo:auth): auth could not identify password for [dino]<br>Jun 01 21:30:52 cha0tikhome sudo[3329902]: pam_unix(sudo:auth): conversation failed<br>Jun 01 21:30:52 cha0tikhome sudo[3329902]: pam_unix(sudo:auth): auth could not identify password for [dino]<br>Jun 01 21:30:52 cha0tikhome sudo[3329903]: pam_unix(sudo:auth): conversation failed<br>Jun 01 21:30:52 cha0tikhome sudo[3329903]: pam_unix(sudo:auth): auth could not identify password for [dino]<br>Jun 01 21:30:52 cha0tikhome sudo[3329905]: pam_unix(sudo:auth): conversation failed<br>Jun 01 21:30:52 cha0tikhome sudo[3329905]: pam_unix(sudo:auth): auth could not identify password for [dino]</p><h3>Schedule — Next 3 Days</h3><table class="data"><tr><td>2026-06-02 04:05:00</td><td>2026-06-02</td></tr><tr><td>2026-06-02 04:12:56</td><td>03:42:56</td></tr><tr><td>2026-06-02 04:20:00</td><td>04:20:00</td></tr><tr><td>2026-06-02 04:42:56</td><td>03:42:56</td></tr><tr><td>2026-06-02 05:00:00</td><td>04:00:05</td></tr><tr><td>2026-06-02 05:47:56</td><td>2026-06-02</td></tr><tr><td>2026-06-02 06:00:00</td><td>2026-06-01</td></tr><tr><td>2026-06-02 07:00:00</td><td>2026-06-01</td></tr><tr><td>2026-06-02 08:00:00</td><td>2026-06-01</td></tr><tr><td>2026-06-02 16:00:00</td><td>16:00:02</td></tr><tr><td>2026-06-02 19:41:36</td><td>19:41:36</td></tr><tr><td>2026-06-02 21:00:00</td><td>21:00:03</td></tr><tr><td>2026-06-02 23:55:00</td><td>23:55:01</td></tr><tr><td>2026-06-03 02:00:00</td><td>02:00:02</td></tr><tr><td>2026-06-03 02:00:00</td><td>02:00:02</td></tr><tr><td>2026-06-03 02:30:00</td><td>02:30:03</td></tr><tr><td>2026-06-03 03:00:00</td><td>03:00:04</td></tr><tr><td>2026-06-03 03:05:00</td><td>03:05:05</td></tr><tr><td>2026-06-04 09:00:00</td><td>-</td></tr></table></div>
+<!-- SECTION:briefing:end -->
+    </div>
+
     <!-- ── LFC ── -->
-    <div class="card" id="s-lfc">
+    <div class="card" data-tab="status" data-tab="status" id="s-lfc">
       <h2>Local Famous Coffee <span class="badge" id="lfc-badge">–</span></h2>
       <!-- SECTION:lfc:start -->
-<div class="ts">2026-06-01 15:00</div>
+<div class="ts">2026-06-02 05:00</div>
 <div class="metrics">
-  <div class="metric"><span class="num">0</span><span class="label">Visits</span></div>
+  <div class="metric"><span class="num">2</span><span class="label">Visits</span></div>
   <div class="metric"><span class="num">0</span><span class="label">Ad Clicks</span></div>
   <div class="metric"><span class="num">0%</span><span class="label">Mobile</span></div>
   <div class="metric"><span class="num">0</span><span class="label">Signups</span></div>
@@ -131,13 +441,13 @@
     </div>
 
     <!-- ── Inference ── -->
-    <div class="card" id="s-inference">
+    <div class="card" data-tab="status" id="s-inference">
       <h2>Inference <span class="badge" id="inference-badge">–</span></h2>
       <!-- SECTION:inference:start -->
-<div class="ts">2026-06-01 15:15</div>
+<div class="ts">2026-06-02 05:00</div>
 <div class="metrics">
-  <div class="metric"><span class="num">117.9</span><span class="label">tok/s</span></div>
-  <div class="metric"><span class="num">136ms</span><span class="label">TTFT</span></div>
+  <div class="metric"><span class="num">118.5</span><span class="label">tok/s</span></div>
+  <div class="metric"><span class="num">151ms</span><span class="label">TTFT</span></div>
 </div>
 <table class="data">
   <tr><td>Model</td><td>Nemotron Nano 30B</td></tr>
@@ -148,73 +458,244 @@
     </div>
 
     <!-- ── Agent Smoke ── -->
-    <div class="card" id="s-smoke">
+    <div class="card" data-tab="status" id="s-smoke">
       <h2>Agent Smoke <span class="badge" id="smoke-badge">–</span></h2>
       <!-- SECTION:smoke:start -->
-<div class="ts">2026-06-01 15:15</div>
+<div class="ts">2026-06-02 05:00</div>
 <ul class="checklist"><li class="ok"><span class="icon">✓</span>proxy /health: ok (13ms)</li><li class="ok"><span class="icon">✓</span>/v1/models: 1 loaded</li></ul><div class="sub">tier1 run</div>
 <!-- SECTION:smoke:end -->
     </div>
 
     <!-- ── Ops Check ── -->
-    <div class="card" id="s-ops-check">
+    <div class="card" data-tab="status" id="s-ops-check">
       <h2>Ops Check <span class="badge" id="ops-badge">–</span></h2>
       <!-- SECTION:ops-check:start -->
-<div class="ts">2026-06-01 15:00</div>
+<div class="ts">2026-06-02 05:00</div>
 <ul class="checklist"><li class="ok"><span class="icon">✓</span>Disk: all clear</li><li class="ok"><span class="icon">✓</span>Inference :8010: ok</li><li class="fail"><span class="icon">✗</span>Failed units: running</li></ul>
 <!-- SECTION:ops-check:end -->
     </div>
 
     <!-- ── Overnight ── -->
-    <div class="card" id="s-overnight">
+    <div class="card" data-tab="status" id="s-overnight">
       <h2>Overnight <span class="badge" id="overnight-badge">–</span></h2>
       <!-- SECTION:overnight:start -->
-      <p class="empty">No data yet.</p>
-      <!-- SECTION:overnight:end -->
+<div class="ts">2026-06-02 04:20</div>
+<div class="prose"><h3>Services</h3><ul class="checklist"><li class="ok"><span class="icon">✓</span>harness-api: active</li><li class="ok"><span class="icon">✓</span>mike: active</li><li class="ok"><span class="icon">✓</span>inference :8010: ok</li></ul><h3>Failed Units</h3><p style="color:var(--fail)">degraded</p><h3>Disk</h3><table class="data"><tr><td>/</td><td class="ok">28%</td></tr><tr><td>/</td><td class="ok">28%</td></tr><tr><td>/mnt/jellyfin-backups</td><td class="ok">1%</td></tr></table><h3>Errors (last 10h)</h3><ul class="checklist"><li class="fail"><span class="icon">✗</span>Jun 01 21:29:44 cha0tikhome sudo[3329294]: pam_unix(sudo:auth): conversation failed</li><li class="fail"><span class="icon">✗</span>Jun 01 21:29:44 cha0tikhome sudo[3329294]: pam_unix(sudo:auth): auth could not identify password for [dino]</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:14 cha0tikhome sudo[3329572]:     dino : a password is required ; PWD=/home/dino ; USER=root ; COMMAND=/usr/bin/true</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329900]: pam_unix(sudo:auth): conversation failed</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329900]: pam_unix(sudo:auth): auth could not identify password for [dino]</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329901]: pam_unix(sudo:auth): conversation failed</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329901]: pam_unix(sudo:auth): auth could not identify password for [dino]</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329902]: pam_unix(sudo:auth): conversation failed</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329902]: pam_unix(sudo:auth): auth could not identify password for [dino]</li><li class="fail"><span class="icon">✗</span>Jun 01 21:30:52 cha0tikhome sudo[3329903]: pam_unix(sudo:auth): conversation failed</li></ul><h3>Service Lifecycle</h3><p>Jun 02 04:00:16 cha0tikhome systemd[1]: Stopping user-runtime-dir@126.service - User Runtime Directory /run/user/126...<br>Jun 02 04:00:16 cha0tikhome systemd[1]: Stopped user-runtime-dir@126.service - User Runtime Directory /run/user/126.<br>Jun 02 04:05:07 cha0tikhome systemd[1360]: Starting tower-watchdog.service - Tower watchdog — ping + :8010 health check every 5 min...<br>Jun 02 04:10:07 cha0tikhome systemd[1360]: Starting tower-watchdog.service - Tower watchdog — ping + :8010 health check every 5 min...<br>Jun 02 04:10:07 cha0tikhome systemd[1]: Starting sysstat-collect.service - system activity accounting tool...<br>Jun 02 04:12:56 cha0tikhome systemd[1360]: Starting pandorica-sync.service - PANDORICA → Google Drive sync...<br>Jun 02 04:15:07 cha0tikhome systemd[1360]: Starting tower-watchdog.service - Tower watchdog — ping + :8010 health check every 5 min...<br>Jun 02 04:20:07 cha0tikhome systemd[1360]: Starting overnight-status.service - Overnight status report...</p></div>
+<!-- SECTION:overnight:end -->
     </div>
 
     <!-- ── Backups ── -->
-    <div class="card" id="s-backups">
+    <div class="card" data-tab="status" id="s-backups">
       <h2>Backups <span class="badge" id="backups-badge">–</span></h2>
       <!-- SECTION:backups:start -->
-<div class="ts">2026-06-01 14:34</div>
-<ul class="checklist"><li class="ok"><span class="icon">✓</span><strong>mike</strong>: Mike repo pushed to GitHub</li><li class="ok"><span class="icon">✓</span><strong>system</strong>: System backup complete: /mnt/jellyfin-backups/system/system-backup-2026-06-01.ta</li><li class="fail"><span class="icon">✗</span><strong>vault</strong>: Vault key Drive backup failed (non-fatal)</li><li class="ok"><span class="icon">✓</span><strong>www</strong>: www backup complete: /mnt/jellyfin-backups/www/www-backup-2026-06-01.tar.gz (4.7</li><li class="fail"><span class="icon">✗</span><strong>repos</strong>: backup-repos: 8 updated, 2 skipped, 0 errors — 2026-06-01 03:20:02</li></ul>
+<div class="ts">2026-06-02 03:30</div>
+<ul class="checklist"><li class="ok"><span class="icon">✓</span><strong>mike</strong>: Mike repo pushed to GitHub</li><li class="ok"><span class="icon">✓</span><strong>system</strong>: System backup complete: /mnt/jellyfin-backups/system/system-backup-2026-06-02.ta</li><li class="fail"><span class="icon">✗</span><strong>vault</strong>: Vault key Drive backup failed (non-fatal)</li><li class="ok"><span class="icon">✓</span><strong>www</strong>: www backup complete: /mnt/jellyfin-backups/www/www-backup-2026-06-02.tar.gz (4.7</li><li class="fail"><span class="icon">✗</span><strong>repos</strong>: backup-repos: 8 updated, 2 skipped, 0 errors — 2026-06-02 03:20:02</li></ul>
 <!-- SECTION:backups:end -->
     </div>
 
-    <!-- ── Morning Briefing ── -->
-    <div class="card wide" id="s-briefing">
-      <h2>Morning Briefing</h2>
-      <!-- SECTION:briefing:start -->
-      <p class="empty">No data yet.</p>
-      <!-- SECTION:briefing:end -->
+    <!-- ── Mike ── -->
+    <div class="card" data-tab="status" id="s-mike">
+      <h2>Mike <span class="badge" id="mike-badge">–</span></h2>
+      <!-- SECTION:mike:start -->
+<div class="ts">2026-06-02 04:48</div>
+<div class="metrics">
+<div class="metric"><span class="num">0</span><span class="label">Model Calls</span></div>
+<div class="metric"><span class="num">0</span><span class="label">Snapshots</span></div>
+</div>
+<ul class="checklist" style="margin-top:10px"><li class="ok"><span class="icon">✓</span>No errors</li></ul>
+<!-- SECTION:mike:end -->
     </div>
 
-    <!-- ── Research ── -->
-    <div class="card wide" id="s-research">
+    <!-- ── arXiv ── -->
+    <div class="card wide" data-tab="info" id="s-arxiv">
+      <h2>arXiv Daily</h2>
+      <!-- SECTION:arxiv:start -->
+<div class="ts">2026-06-02 04:56</div>
+<div class="prose">
+</div>
+<!-- SECTION:arxiv:end -->
+    </div>
+
+    <!-- ── HN ── -->
+    <div class="card wide" data-tab="info" id="s-hn">
+      <h2>Hacker News</h2>
+      <!-- SECTION:hn:start -->
+<div class="ts">2026-06-02 05:03</div>
+<div class="prose">
+<p><a href="https://github.com/plandex-ai/plandex" style="color:var(--accent)">Show HN: Plandex v2 – open source AI coding agent for large projects and tasks</a> <span style="color:var(--muted)">· 257 pts</span><br><span style="font-size:12px">It provides a local, open‑source coding agent that can be run on sovereign hardware for autonomous task execution.</span></p>
+<p><a href="https://github.com/cactus-compute/cactus" style="color:var(--accent)">Show HN: Cactus – Ollama for Smartphones</a> <span style="color:var(--muted)">· 231 pts</span><br><span style="font-size:12px">It brings local LLM inference to mobile devices, enabling on‑device AI agents without cloud dependence.</span></p>
+</div>
+<!-- SECTION:hn:end -->
+    </div>
+
+    <!-- ── Dev.to ── -->
+    <div class="card wide" data-tab="info" id="s-devto">
+      <h2>Dev.to</h2>
+      <!-- SECTION:devto:start -->
+<div class="ts">2026-06-02 05:04</div>
+<div class="prose">
+<p><a href="https://dev.to/trojanmocx/i-thought-ai-would-make-me-code-faster-then-i-spent-6-hours-debugging-one-line-3ffh" style="color:var(--accent)">I Thought AI Would Make Me Code Faster. Then I Spent 6 Hours Debugging One Line.</a> <span style="color:var(--muted)">· 13 ♥</span><br><span style="font-size:12px">It highlights the hidden cost of relying on AI‑generated code, a reality solo builders face when debugging autonomous agents.</span></p>
+<p><a href="https://ryantsuji.dev/posts/cortex-self-healing" style="color:var(--accent)">Fixed Before Anyone Notices, Stronger After Every Fix: Self-Healing + Recurrence Prevention (Series Part 4)</a> <span style="color:var(--muted)">· 11 ♥</span><br><span style="font-size:12px">It demonstrates an autonomous CI/CD loop where AI can self‑diagnose and self‑repair, directly supporting sovereign, self‑healing compute.</span></p>
+<p><a href="https://blog.hexabot.ai/hexabot-vs-n8n-for-ai-workflow-automation-which-one-should-you-use" style="color:var(--accent)">Hexabot vs n8n for AI Workflow Automation: Which One Should You Use?</a> <span style="color:var(--muted)">· 10 ♥</span><br><span style="font-size:12px">It compares two platforms for orchestrating AI workflows, helping you choose the right tooling for building local agent pipelines.</span></p>
+</div>
+<!-- SECTION:devto:end -->
+    </div>
+
+    <!-- ── Research Brief ── -->
+    <div class="card wide" data-tab="info" id="s-research">
       <h2>Research Brief</h2>
       <!-- SECTION:research:start -->
+<div class="ts">2026-06-02 04:49</div>
+<div class="prose">
+<p style="margin:4px 0"><span style="color:var(--ok);margin-right:8px">✓</span>Inference throughput stable at ~119 tok/s except a brief drop to 76.5 tok/s at 09:30 UTC, then recovered.</p>
+<p style="margin:4px 0"><span style="color:var(--fail);margin-right:8px">✗</span>Repeated `sudo` auth failures for user **dino** indicate missing/incorrect password for root commands.</p>
+<p style="margin:4px 0"><span style="color:var(--fail);margin-right:8px">✗</span>Two systemd services failed to start: `mike-daily-report.service` and `recall-summarization.service`.</p>
+<p style="margin:4px 0"><span style="color:var(--fail);margin-right:8px">✗</span>Infrastructure health: monitor inference spikes/dips and resolve `dino` sudo password issues; verify backup of `www` directory was successful.</p>
+</div>
+<!-- SECTION:research:end -->
+    </div>
+
+    <!-- ── Recall ── -->
+    <div class="card wide" data-tab="info" id="s-recall">
+      <h2>Ops Recall</h2>
+      <!-- SECTION:recall:start -->
+<div class="ts">2026-06-02 04:55</div>
+<div class="prose">
+<p style="margin:4px 0"><span style="color:var(--ok);margin-right:8px">✓</span>Inference: token throughput stable at ~119 tok/s; a brief drop to 76.5 tok/s at 09:30 UTC, then recovered.</p>
+<p style="margin:4px 0"><span style="color:var(--fail);margin-right:8px">✗</span>Infrastructure: repeated sudo auth failures for user **dino** and two systemd services (mike‑daily‑report.service, recall‑summarization.service) failed to start.</p>
+<p style="margin:4px 0"><span style="color:var(--ok);margin-right:8px">✓</span>Backup: www directory backup completed successfully (331 files verified).</p>
+<p style="margin:4px 0"><span style="color:var(--warn);margin-right:8px">!</span>Action: verify dino’s sudo</p>
+</div>
+<!-- SECTION:recall:end -->
+    </div>
+
+    <!-- ── Wiki ── -->
+    <div class="card" data-tab="info" id="s-wiki">
+      <h2>Wiki Growth <span class="badge" id="wiki-badge">–</span></h2>
+      <!-- SECTION:wiki:start -->
       <p class="empty">No data yet.</p>
-      <!-- SECTION:research:end -->
+      <!-- SECTION:wiki:end -->
+    </div>
+
+    <!-- ── Weekly Brief ── -->
+    <div class="card" data-tab="info" id="s-weekly">
+      <h2>Weekly Brief</h2>
+      <!-- SECTION:weekly:start -->
+      <p class="empty">No data yet.</p>
+      <!-- SECTION:weekly:end -->
     </div>
 
     <!-- ── Email ── -->
-    <div class="card wide" id="s-email">
+    <div class="card wide" data-tab="status" id="s-email">
       <h2>Email</h2>
       <!-- SECTION:email:start -->
-<div class="ts">2026-06-01 15:26</div>
-<table class="data"><tr><td>personal <span style="font-size:10px;color:var(--muted)">(dino.vitale.wa@gmail.com)</span></td><td class="ok">clear</td></tr><tr><td style="color:var(--muted)">cha0tik <span style="font-size:10px">(dvitale@cha0tik.com)</span></td><td style="color:var(--muted)">not configured</td></tr><tr><td style="color:var(--muted)">lfc <span style="font-size:10px">(hello@localfamouscoffee.com)</span></td><td style="color:var(--muted)">not configured</td></tr></table><div class="sub">window: last 35m &bull; 15:25</div>
+<div class="ts">2026-06-02 05:00</div>
+<table class="data"><tr><td>dvitale@cha0tik.com</td><td class="ok">clear</td></tr><tr><td style="vertical-align:top">dino.vitale.wa@gmail.com</td><td><ul class="checklist" style="margin:0"><li class="warn"><span class="icon">!</span><span>Report domain: localfamouscoffee.com Submitter: google.com Report-ID:
+ 17560044<span style="color:var(--muted);display:block;font-size:10px">noreply-dmarc-support@google.com</span></span></li></ul></td></tr></table><div class="sub">window: last 35m &bull; 05:00</div>
 <!-- SECTION:email:end -->
     </div>
 
     <!-- ── Content / X ── -->
-    <div class="card wide" id="s-content">
+    <div class="card wide" data-tab="info" id="s-content">
       <h2>Content</h2>
       <!-- SECTION:content:start -->
-      <p class="empty">No data yet.</p>
-      <!-- SECTION:content:end -->
+<div class="ts">2026-06-01 16:00</div>
+<div class="post-item fail"><div class="post-meta">afternoon &bull; what your self-hosted stack actually looks like after it's w &bull; Traceback (most recent call last):
+  File "/home/dino/.local/bin/x-cli", line 10, in <module>
+    sys.exit(main())
+     </div></div>
+<!-- SECTION:content:end -->
     </div>
 
   </div>
+
+  <script>
+    // ── Tab switching ──
+    const ACTIVE_TAB_KEY = 'ops-active-tab';
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabName);
+      });
+      document.querySelectorAll('.card[data-tab]').forEach(card => {
+        card.classList.toggle('tab-visible', card.dataset.tab === tabName);
+      });
+      localStorage.setItem(ACTIVE_TAB_KEY, tabName);
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    });
+
+    // Restore last tab or default to status
+    showTab(localStorage.getItem(ACTIVE_TAB_KEY) || 'status');
+
+    // ── Auto-badge ──
+    const CARD_IDS = ['lfc','inference','smoke','ops-check','overnight','backups','mike','wiki'];
+    const SECTION_MAP = {
+      'lfc': 's-lfc', 'inference': 's-inference', 'smoke': 's-smoke',
+      'ops-check': 's-ops-check', 'overnight': 's-overnight', 'backups': 's-backups',
+      'mike': 's-mike', 'wiki': 's-wiki'
+    };
+    const BADGE_IDS = {
+      'lfc': 'lfc-badge', 'inference': 'inference-badge', 'smoke': 'smoke-badge',
+      'ops-check': 'ops-badge', 'overnight': 'overnight-badge', 'backups': 'backups-badge',
+      'mike': 'mike-badge', 'wiki': 'wiki-badge'
+    };
+
+    function computeStatus(cardEl) {
+      if (cardEl.querySelectorAll('.fail').length > 0) return 'fail';
+      if (cardEl.querySelectorAll('.warn').length > 0) return 'warn';
+      if (cardEl.querySelectorAll('.ok').length > 0)   return 'ok';
+      return null;
+    }
+
+    function statusLabel(s) {
+      return s === 'ok' ? 'OK' : s === 'warn' ? 'WARN' : s === 'fail' ? 'FAIL' : '–';
+    }
+
+    const strip = document.getElementById('status-strip');
+
+    CARD_IDS.forEach(key => {
+      const card = document.getElementById(SECTION_MAP[key]);
+      const badge = document.getElementById(BADGE_IDS[key]);
+      if (!card || !badge) return;
+      const s = computeStatus(card);
+      if (!s) return;
+      badge.className = 'badge ' + s;
+      badge.textContent = statusLabel(s);
+      card.classList.add('status-' + s);
+      const pill = document.createElement('span');
+      pill.className = 'status-pill ' + s;
+      pill.title = card.querySelector('h2').textContent.trim();
+      pill.textContent = card.querySelector('h2').firstChild.textContent.trim();
+      strip.appendChild(pill);
+    });
+
+    // ── Collapse system noise in Running table ──
+    document.querySelectorAll('.prose h3').forEach(h3 => {
+      if (h3.textContent.trim() !== 'Running') return;
+      const table = h3.nextElementSibling;
+      if (!table || table.tagName !== 'TABLE') return;
+      const noise = /^(org\.|evolution-|gvfs-|tracker-|gnome-|gcr-|dconf|gpg-agent)/;
+      let hidden = 0;
+      table.querySelectorAll('tr').forEach(row => {
+        if (noise.test(row.cells[0]?.textContent || '')) { row.style.display = 'none'; hidden++; }
+      });
+      if (hidden > 0) {
+        const note = document.createElement('div');
+        note.className = 'sub';
+        note.style.marginTop = '8px';
+        note.textContent = `+ ${hidden} system services hidden`;
+        table.after(note);
+      }
+    });
+
+    // ── Strip markdown artifacts ──
+    document.querySelectorAll('.prose p').forEach(p => {
+      if (p.innerHTML.startsWith('### WEATHER<br>'))
+        p.innerHTML = p.innerHTML.replace('### WEATHER<br>', '');
+    });
+  </script>
 </body>
 </html>

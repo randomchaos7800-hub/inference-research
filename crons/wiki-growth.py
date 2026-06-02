@@ -7,8 +7,12 @@ import sys
 from datetime import date, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lib"))
-import slack
 import inference
+
+OPS_WRITE = os.path.join(os.path.dirname(__file__), "..", "scripts", "ops-write.py")
+
+def ops_write(section, html):
+    subprocess.run([sys.executable, OPS_WRITE, section], input=html, text=True, check=False)
 
 ARXIV_DIR = os.path.expanduser("~/crons/data/arxiv")
 WIKI_RAW   = os.path.expanduser("~/cha0tikwiki/raw/incoming")
@@ -33,7 +37,7 @@ def main():
             combined.append(open(path).read())
 
     if not combined:
-        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo arXiv files this week — skipped.", channel=slack.BRIEF)
+        ops_write("wiki", '<p class="empty">No arXiv files this week — skipped.</p>')
         return
 
     content = "\n\n---\n\n".join(combined)
@@ -97,7 +101,7 @@ def main():
         written.append(topic)
 
     if not written:
-        slack.post(f"*📖 Wiki Growth — {today.isoformat()}*\n\nNo new articles generated.", channel=slack.BRIEF)
+        ops_write("wiki", '<ul class="checklist"><li class="warn"><span class="icon">!</span>No new articles generated this week.</li></ul>')
         return
 
     # Trigger compile in background
@@ -109,13 +113,12 @@ def main():
             stderr=subprocess.STDOUT
         )
 
-    msg = (
-        f"*📖 Wiki Growth — {today.isoformat()}*\n"
-        f"Wrote {len(written)} articles:\n"
-        + "\n".join(f"  • {t}" for t in written)
-        + "\nCompile running in background."
-    )
-    slack.post(msg, channel=slack.BRIEF)
+    html = '<ul class="checklist">\n'
+    for t in written:
+        html += f'<li class="ok"><span class="icon">✓</span>{t}</li>\n'
+    html += '</ul>\n'
+    html += f'<div class="sub">{len(written)} articles written &bull; compile running</div>'
+    ops_write("wiki", html)
     print(f"Wiki growth done — {len(written)} articles — {today.isoformat()}")
 
 

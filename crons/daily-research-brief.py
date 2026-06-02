@@ -2,11 +2,11 @@
 """Daily research brief — synthesize last 3 days of arXiv files into opinionated bullets. Runs 8AM."""
 
 import os
+import subprocess
 import sys
 from datetime import date, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lib"))
-import slack
 import inference
 
 ARXIV_DIR = os.path.expanduser("~/crons/data/arxiv")

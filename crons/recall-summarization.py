@@ -71,9 +71,32 @@ def main():
     )
 
     result = inference.ask(prompt, system=system, max_tokens=500, timeout=90)
-    msg = f"*🔄 Recall Summary — {today}*\n\n{result}"
-    slack.post(msg)
-    print(f"Recall summary posted — {today}")
+    print(f"Recall Summary — {today}\n\n{result}")  # journal
+
+    # Write to ops dashboard
+    try:
+        html_lines = ['<div class="prose">']
+        for line in result.strip().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("- ") or line.startswith("• "):
+                text = line[2:].strip()
+                # Naive status detection
+                cls = "fail" if any(w in text.lower() for w in ["fail", "error", "degraded", "issue"]) \
+                    else "warn" if any(w in text.lower() for w in ["warn", "check", "verify", "investigate"]) \
+                    else "ok"
+                icon = "✗" if cls == "fail" else ("!" if cls == "warn" else "✓")
+                html_lines.append(f'<p style="margin:4px 0"><span style="color:var(--{cls});margin-right:8px">{icon}</span>{text}</p>')
+            else:
+                html_lines.append(f'<p>{line}</p>')
+        html_lines.append('</div>')
+        html = "\n".join(html_lines)
+
+        ops_write = os.path.join(os.path.dirname(__file__), "..", "scripts", "ops-write.py")
+        subprocess.run([sys.executable, ops_write, "recall"], input=html, text=True, check=True)
+    except Exception as e:
+        print(f"Dashboard write failed: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
