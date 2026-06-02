@@ -8,7 +8,7 @@ REPO="$HOME/.claude"
 
 alert() {
     local token
-    token=$("$VAULT" get slack_kato_bot_token 2>/dev/null) || return
+    token=$("$VAULT" get slack_ops_bot_token 2>/dev/null) || return
     curl -s -X POST https://slack.com/api/chat.postMessage \
         -H "Authorization: Bearer $token" \
         -H "Content-Type: application/json" \

@@ -10,7 +10,7 @@ OPS_LOG_CHANNEL="C0AHSAE9YN9"
 USAGE=$(df / --output=pcent | tail -1 | tr -d ' %')
 
 if [ "$USAGE" -ge "$THRESHOLD" ]; then
-    token=$("$VAULT" get slack_kato_bot_token 2>/dev/null) || exit 1
+    token=$("$VAULT" get slack_ops_bot_token 2>/dev/null) || exit 1
     curl -s -X POST https://slack.com/api/chat.postMessage \
         -H "Authorization: Bearer $token" \
         -H "Content-Type: application/json" \

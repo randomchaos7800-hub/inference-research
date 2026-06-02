@@ -175,7 +175,7 @@ def main():
 
     github_token = vault_get("github_token_mike")
     openrouter_key = vault_get("openrouter_api_key")
-    slack_token = vault_get("slack_kato_bot_token")
+    slack_token = vault_get("slack_ops_bot_token")
     slack_channel = vault_get("slack_channel_opslog")
 
     today = datetime.now()

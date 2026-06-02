@@ -53,7 +53,7 @@ def vault_get(key: str) -> str:
 
 
 def alert(message: str) -> None:
-    token = vault_get("slack_kato_bot_token")
+    token = vault_get("slack_ops_bot_token")
     if not token:
         return
     payload = json.dumps(
