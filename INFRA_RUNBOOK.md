@@ -1,11 +1,29 @@
 # cha0tikhome Infrastructure Runbook
-**Last updated: 2026-05-27**
+**Last updated: 2026-06-04 (website stack + stale cloudflared rule documented)**
 **Machine: Beelink EQI12 — 100.94.10.36 (Tailscale) / 10.0.0.166 (LAN)**
 
 **Canonical private source:** `git@cha0tikforge:cha0tik/home-infra.git`
 
 This file remains usable as an operator runbook, but future private infra updates should be made in `home-infra/runbooks/` first and mirrored here only as needed.
 If this file and `home-infra` disagree, `home-infra` wins.
+
+---
+
+## Live Websites
+
+All public sites route through: **cloudflared.service → nginx:8080 (localhost) → static files or upstream**
+
+| Domain | Doc Root | Notes |
+|---|---|---|
+| dinovitale.com | /home/dino/www/dinovitale.com/ | Personal site |
+| localfamouscoffee.com | /home/dino/www/localfamouscoffee.com/ | LFC — Stripe backend via localfamouscoffee.service |
+| boundarylabs.org | /home/dino/www/boundarylabs.org/ | Boundary Labs site |
+| cha0tik.com | /home/dino/www/cha0tik.com/ | Home lab front |
+| localfamo.us | → localfamouscoffee.com | Redirect |
+
+**If a site is down:** check (1) cloudflared.service, (2) nginx, (3) localfamouscoffee.service if LFC-specific.
+
+**Known cleanup pending:** `kato-sms.dinovitale.com` in `~/.cloudflared/config.yml` still points to `:3001` (nothing runs there — kato-sms was retired). Harmless but stale; remove when next editing cloudflared config.
 
 ---
 
@@ -179,13 +197,27 @@ curl -sf http://100.120.50.35:8010/health
 journalctl --user -u mike.service -n 20 --no-pager
 ```
 
+**Live website smoke test** (all should return 200):
+```bash
+for domain in dinovitale.com localfamouscoffee.com boundarylabs.org cha0tik.com; do
+  code=$(curl -sf -o /dev/null -w "%{http_code}" -L "https://$domain" 2>/dev/null || echo "ERR")
+  echo "$domain: $code"
+done
+```
+
+If any return ERR or non-200:
+1. Check nginx: `systemctl is-active nginx`
+2. Check cloudflared: `systemctl --user is-active cloudflared.service`
+3. Check cloudflared logs: `journalctl --user -u cloudflared.service -n 30 --no-pager`
+4. If LFC-specific: `systemctl --user is-active localfamouscoffee.service`
+
 ---
 
 ## What Is NOT Running (by design)
 
 | Service | Status | Reason |
 |---|---|---|
-| hermes-gateway.service | RETIRED 2026-05-27 | Two conflicting instances broke each other; rebuilt as standalone cron scripts |
+| hermes-gateway.service | RETIRED 2026-05-27 | Nuked + fully cleaned 2026-06-04 (dirs, service, legacy scripts using its send tools, etc.) |
 | harness-kato.service | Masked 2026-05-27 | SlackInterface API broke; #kato-comms archived; Kato cron role replaced by standalone scripts |
 | harness-sabrina.service | Inactive | Sabrina retired |
 | vllm-genesis.service | Stopped | Replaced by nemotron.service (llama.cpp) 2026-05-20 |

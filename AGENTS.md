@@ -1,5 +1,5 @@
 # Dino's Home Lab — Codex Context
-**Last updated: 2026-05-27**
+**Last updated: 2026-06-04**
 
 **Canonical private source:** `git@cha0tikforge:cha0tik/home-infra.git`
 
@@ -46,7 +46,7 @@ These are masked or dead. Do not enable, start, or reference as active:
 | Morty | 2026-05-09 | Masked, archived |
 | Dave CFO | 2026-05-09 | Masked, archived |
 | Frank | 2026-05-27 | Name retired; code preserved as archive; harness infrastructure continues as descriptive service |
-| Hermes | 2026-05-27 | Nuked; old state is stale and not authoritative; fresh reinstall planned |
+| Hermes | 2026-05-27 | Nuked; old state is stale and not authoritative; fresh reinstall planned. Runtime, gateway service, legacy scripts, .bashrc funcs, uv caches, claude memories fully cleaned 2026-06-04. |
 | Sabrina | 2026-05-27 | Not running; do not restart |
 
 The `harness-kato.service` and `harness-sabrina.service` units in the INFRA_RUNBOOK are stale — Kato is retired.
@@ -91,7 +91,7 @@ claude-token-refresh.timer mike-beat.timer mike-consolidation.timer
 mike-daily-report.timer mike-lighthouse.timer pandorica-extract.timer
 ```
 
-`hermes-gateway.service` unit is gone. Hermes was nuked on 2026-05-27; do not treat any prior Hermes runtime, monitor, or cron state as live.
+`hermes-gateway.service` unit is gone (and fully purged 2026-06-04 along with ~/.hermes, legacy send_message scripts in ~/scripts/, hermes-edit in .bashrc, etc.). Hermes was nuked on 2026-05-27; do not treat any prior Hermes runtime, monitor, or cron state as live.
 
 ---
 

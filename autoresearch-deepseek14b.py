@@ -210,7 +210,7 @@ def kill_gpu_procs():
             # spare proxy / agent processes
             with open(f"/proc/{pid}/cmdline") as f:
                 cmd = f.read()
-            if any(k in cmd for k in ["proxy.py", "frank", "mike", "kato", "hermes"]):
+            if any(k in cmd for k in ["proxy.py", "frank", "mike", "kato"]):
                 continue
             os.kill(pid, signal.SIGKILL)
             killed.append(pid)
