@@ -5,9 +5,17 @@ import argparse
 import json
 import time
 import urllib.request
+import urllib.error
 
 
-def run_benchmark(server_url: str, model: str, prompt: str, max_tokens: int, timeout: int) -> dict:
+def run_benchmark(
+    server_url: str,
+    model: str,
+    prompt: str,
+    max_tokens: int,
+    timeout: int,
+    api_key: str | None,
+) -> dict:
     payload = json.dumps(
         {
             "model": model,
@@ -19,10 +27,14 @@ def run_benchmark(server_url: str, model: str, prompt: str, max_tokens: int, tim
         }
     ).encode()
 
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
     req = urllib.request.Request(
         f"{server_url.rstrip('/')}/v1/chat/completions",
         data=payload,
-        headers={"Content-Type": "application/json"},
+        headers=headers,
     )
 
     start = time.time()
@@ -81,9 +93,21 @@ def main() -> None:
     parser.add_argument("--prompt", required=True)
     parser.add_argument("--max-tokens", type=int, required=True)
     parser.add_argument("--timeout", type=int, default=180)
+    parser.add_argument("--api-key")
     args = parser.parse_args()
 
-    print(json.dumps(run_benchmark(args.server_url, args.model, args.prompt, args.max_tokens, args.timeout)))
+    print(
+        json.dumps(
+            run_benchmark(
+                args.server_url,
+                args.model,
+                args.prompt,
+                args.max_tokens,
+                args.timeout,
+                args.api_key,
+            )
+        )
+    )
 
 
 if __name__ == "__main__":

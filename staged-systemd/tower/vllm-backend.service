@@ -1,12 +1,12 @@
 [Unit]
-Description=DeepSeek-R1 backend (optional, port 8022)
+Description=Genesis production backend (Qwen3.6-27B INT4, port 8022)
 After=network-online.target
 Wants=network-online.target
 StartLimitIntervalSec=0
 
 [Service]
 Type=simple
-ExecStart=/home/dino/bin/vllm-deepseek-r1-start.sh
+ExecStart=/home/dino/bin/vllm-genesis-start.sh
 Restart=on-failure
 RestartSec=15
 LimitMEMLOCK=infinity

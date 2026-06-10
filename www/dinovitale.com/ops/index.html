@@ -439,7 +439,7 @@
     <div class="card" data-tab="status" data-tab="status" id="s-lfc">
       <h2>Local Famous Coffee <span class="badge" id="lfc-badge">–</span></h2>
       <!-- SECTION:lfc:start -->
-<div class="ts">2026-06-10 10:30</div>
+<div class="ts">2026-06-10 16:30</div>
 <div class="metrics">
   <div class="metric"><span class="num">0</span><span class="label">Visits</span></div>
   <div class="metric"><span class="num">0</span><span class="label">Ad Clicks</span></div>
@@ -454,14 +454,14 @@
     <div class="card" data-tab="status" id="s-inference">
       <h2>Inference <span class="badge" id="inference-badge">–</span></h2>
       <!-- SECTION:inference:start -->
-<div class="ts">2026-06-10 10:30</div>
+<div class="ts">2026-06-10 16:30</div>
 <div class="metrics">
-  <div class="metric"><span class="num">97.8</span><span class="label">tok/s</span></div>
-  <div class="metric"><span class="num">120ms</span><span class="label">TTFT</span></div>
+  <div class="metric"><span class="num">97.7</span><span class="label">tok/s</span></div>
+  <div class="metric"><span class="num">125ms</span><span class="label">TTFT</span></div>
 </div>
 <table class="data">
   <tr><td>Model</td><td>unknown</td></tr>
-  <tr><td>Backend</td><td>nemotron</td></tr>
+  <tr><td>Backend</td><td>genesis</td></tr>
   <tr><td>Status</td><td class="ok">online</td></tr>
 </table>
 <!-- SECTION:inference:end -->
@@ -471,7 +471,7 @@
     <div class="card" data-tab="status" id="s-smoke">
       <h2>Agent Smoke <span class="badge" id="smoke-badge">–</span></h2>
       <!-- SECTION:smoke:start -->
-<div class="ts">2026-06-10 10:45</div>
+<div class="ts">2026-06-10 16:30</div>
 <ul class="checklist"><li class="ok"><span class="icon">✓</span>proxy /health: ok (13ms)</li><li class="ok"><span class="icon">✓</span>/v1/models: 1 loaded</li></ul><div class="sub">tier1 run</div>
 <!-- SECTION:smoke:end -->
     </div>
@@ -480,8 +480,8 @@
     <div class="card" data-tab="status" id="s-ops-check">
       <h2>Ops Check <span class="badge" id="ops-badge">–</span></h2>
       <!-- SECTION:ops-check:start -->
-<div class="ts">2026-06-10 10:00</div>
-<ul class="checklist"><li class="ok"><span class="icon">✓</span>Disk: all clear</li><li class="ok"><span class="icon">✓</span>Inference :8010: ok</li><li class="fail"><span class="icon">✗</span>Failed units: running</li></ul>
+<div class="ts">2026-06-10 16:00</div>
+<ul class="checklist"><li class="ok"><span class="icon">✓</span>Disk: all clear</li><li class="fail"><span class="icon">✗</span>Failed units: degraded</li><li class="fail"><span class="icon">✗</span>Inference :8010 unreachable</li></ul>
 <!-- SECTION:ops-check:end -->
     </div>
 
@@ -644,8 +644,8 @@
     <div class="card wide" data-tab="status" id="s-email">
       <h2>Email</h2>
       <!-- SECTION:email:start -->
-<div class="ts">2026-06-10 10:30</div>
-<table class="data"><tr><td>dvitale@cha0tik.com</td><td class="warn">2 unread</td></tr><tr><td>dino.vitale.wa@gmail.com</td><td class="warn">1 unread</td></tr></table><div class="sub">window: last 35m &bull; 10:30</div>
+<div class="ts">2026-06-10 16:30</div>
+<table class="data"><tr><td>dvitale@cha0tik.com</td><td class="ok">clear</td></tr><tr><td>dino.vitale.wa@gmail.com</td><td class="warn">6 unread</td></tr></table><div class="sub">window: last 35m &bull; 16:30</div>
 <!-- SECTION:email:end -->
     </div>
 
@@ -653,8 +653,8 @@
     <div class="card wide" data-tab="info" id="s-content">
       <h2>Content</h2>
       <!-- SECTION:content:start -->
-<div class="ts">2026-06-10 06:00</div>
-<div class="post-item fail">QUESTION: Running 42 agents locally on a 3090 is fun until VRAM hits the wall. At what concurrency does context switching overhead kill latency for a single-user stack? I’m seeing 120ms spikes at 8 concurrent requests. Is this llama.cpp or just memory bandwidth limits?<div class="post-meta">morning &bull; QUESTION: a genuine open question to the local AI community &bull; Traceback (most recent call last):
+<div class="ts">2026-06-10 16:00</div>
+<div class="post-item fail">RTX 4090 marketing: 1000+ t/s for Llama 3 8B. Reality? 140-150 t/s on a well-tuned ExLlamaV2 setup. That’s with aggressive quantization. Marketing uses perfect, unrealistic conditions. My rig never sees their numbers.<div class="post-meta">afternoon &bull; consumer GPU performance: actual t/s numbers vs marketing cl &bull; Traceback (most recent call last):
   File "/home/dino/.local/bin/x-cli", line 10, in <module>
     sys.exit(main())
      </div></div>

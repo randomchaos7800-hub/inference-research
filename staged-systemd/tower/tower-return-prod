@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-exec /home/dino/bin/proxy-switch nemotron
+exec /home/dino/bin/proxy-switch genesis
