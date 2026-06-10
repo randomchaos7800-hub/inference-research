@@ -26,7 +26,7 @@ RESEARCH_MAX_MINUTES = 240  # hard cap: research mode can never suppress protect
 PING_TIMEOUT = 3
 HTTP_TIMEOUT = 5
 SSH_TIMEOUT = 5
-RECOVERY_WAIT = 120
+RECOVERY_WAIT = 480
 BOOT_WAIT = 480
 POWER_CYCLE_COOLDOWN = 1800
 
@@ -201,8 +201,11 @@ def remote_units_active(units: list[str]) -> bool:
 
 
 def remote_restart(backend: str | None) -> tuple[bool, str]:
-    units = units_for_backend(backend)
-    quoted = " ".join(units)
+    # Only restart local-proxy. The inference backend manages its own lifecycle:
+    # vllm-backend has Restart=always; nemotron has a no-restart drop-in.
+    # Restarting the backend here resets a 5-8 min model-load clock and feeds
+    # the watchdog restart loop we are trying to prevent.
+    quoted = "local-proxy.service"
     cmd = (
         f"systemctl --user daemon-reload && "
         f"systemctl --user reset-failed {quoted} || true; "
@@ -212,7 +215,7 @@ def remote_restart(backend: str | None) -> tuple[bool, str]:
     if result.returncode != 0:
         detail = (result.stderr or result.stdout).strip()
         return False, detail or "remote restart failed"
-    return True, f"restarted {' '.join(units)}"
+    return True, f"restarted {quoted}"
 
 
 def power_cycle() -> tuple[bool, str]:
@@ -289,13 +292,15 @@ def recover(auto: bool) -> int:
     ping = ping_ok()
     ssh = ssh_ok() if ping else False
     backend = active_backend() if (ssh or health_ok()) else None
-    units = units_for_backend(backend)
-    if health_ok() and ((not ssh) or remote_units_active(units)):
+    # Proxy health endpoint already confirms backend status — trust it over
+    # systemd unit state (a backend can be in "failed" with no-restart drop-in
+    # but still be serving through a different process on the same port).
+    if health_ok():
         return 0
 
     if ping and ssh:
         ok, detail = remote_restart(backend)
-        if ok and wait_for(lambda: health_ok() and remote_units_active(units), RECOVERY_WAIT):
+        if ok and wait_for(health_ok, RECOVERY_WAIT):
             mark_action(state, "remote_restart")
             if auto:
                 alert(f"Recovered tower without power cycle. Backend: `{backend or 'unknown'}`. Action: {detail}")
