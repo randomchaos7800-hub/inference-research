@@ -1,0 +1,10 @@
+iter	name	score	outcome	ts
+0	baseline	4.555555555555555	BASELINE	2026-04-26T20:45:56.623453
+1	explicit_port_check_rule	3.0	-1.56	REVERT	2026-04-26T20:49:13.672180
+2	explicit_failure_stop	4.0	-0.56	REVERT	2026-04-26T20:51:51.563546
+3	explicit_uncertain_fact_rule	3.888888888888889	-0.67	REVERT	2026-04-26T20:54:39.656709
+5	explicit_uncertain_fact_tool	1.6666666666666667	-2.89	REVERT	2026-04-26T21:04:02.014802
+6	explicit_uncertain_fact_tool_requirement	2.5555555555555554	-2.00	REVERT	2026-04-26T21:06:49.175796
+7	explicit_process_check_rule	4.111111111111111	-0.44	REVERT	2026-04-26T21:08:58.447406
+8	explicit_process_check_tool	3.4444444444444446	-1.11	REVERT	2026-04-26T21:18:03.227834
+9	explicit_process_check_requirement	4.555555555555555	+0.00	REVERT	2026-04-26T21:20:37.230952

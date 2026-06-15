@@ -32,8 +32,6 @@ if ! curl -s "$SERVER_URL/health" 2>/dev/null | grep -q "ok"; then
     exit 1
 fi
 
-MODEL_NAME=$(curl -s "$SERVER_URL/v1/models" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['data'][0]['id'])" 2>/dev/null || echo "$MODEL_ALIAS")
-
 # ── Benchmark: TTFT + generation speed ────────────────────────────────────────
 run_inference() {
     local prompt="$1"
@@ -51,6 +49,7 @@ SHORT=$(run_inference "What is 2+2?" 30)
 # Medium prompt (typical use)
 MEDIUM=$(run_inference "Explain transformer attention in 3 sentences." 150)
 
+MODEL_ID=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['model_id'])")
 TTFT_MS=$(echo "$SHORT" | python3 -c "import json,sys; print(json.load(sys.stdin)['ttft_ms'])")
 GEN_TPS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['gen_tps'])")
 PP_TPS=$(echo "$MEDIUM" | python3 -c "import json,sys; print(json.load(sys.stdin)['end_to_end_tps'])")
@@ -72,7 +71,7 @@ data = {
     "cpu": "$CPU_MODEL",
     "cpu_cores": $CPU_CORES,
     "ram_total_gib": $RAM_TOTAL_GIB,
-    "model": "$MODEL_NAME",
+    "model": "$MODEL_ID",
     "ttft_ms": $TTFT_MS,
     "gen_tps": $GEN_TPS,
     "pp_tps": $PP_TPS,
@@ -90,7 +89,7 @@ PYEOF
 if [ ! -f "$TSV_LOG" ]; then
     echo -e "date\thost\tcpu\tmodel\tttft_ms\tgen_tps\tpp_tps\tswap_used_gib\tmem_avail_gib" > "$TSV_LOG"
 fi
-echo -e "${DATE}\t${HOST}\t${CPU_MODEL}\t${MODEL_NAME}\t${TTFT_MS}\t${GEN_TPS}\t${PP_TPS}\t${SWAP_USED_GIB}\t${MEM_AVAILABLE_GIB}" >> "$TSV_LOG"
+echo -e "${DATE}\t${HOST}\t${CPU_MODEL}\t${MODEL_ID}\t${TTFT_MS}\t${GEN_TPS}\t${PP_TPS}\t${SWAP_USED_GIB}\t${MEM_AVAILABLE_GIB}" >> "$TSV_LOG"
 echo "TSV appended: $TSV_LOG"
 
-echo "Done: gen=${GEN_TPS}t/s ttft=${TTFT_MS}ms model=${MODEL_NAME}"
+echo "Done: gen=${GEN_TPS}t/s ttft=${TTFT_MS}ms model=${MODEL_ID}"

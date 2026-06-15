@@ -64,21 +64,21 @@ def main():
         return
 
     backend = active.get("active", health.get("active", "unknown"))
-    model_id = active.get("model", "unknown")
     model_name = "local"
 
     # map internal model IDs to display names
     display = {
         "aeon-nvfp4": "AEON NVFP4",
         "deepseek-r1-14b": "DeepSeek-R1 14B",
-        "qwen3627b":  "Qwen3 36B MoE",
+        "qwen3627b": "Qwen3.6-27B",
         "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf": "Nemotron Nano 30B",
         "local":      "local",
     }
-    label = display.get(model_id, model_id)
 
     bench = measure_speed(model_name)
     tok_s = bench.get("gen_tps") if bench else None
+    model_id = (bench.get("model_id") if bench else None) or active.get("model_effective") or active.get("model_config") or active.get("model") or "unknown"
+    label = display.get(model_id, model_id)
 
     data = {
         "status":    "online",
