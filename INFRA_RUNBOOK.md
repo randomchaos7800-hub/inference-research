@@ -184,6 +184,20 @@ If UFW is inactive after reboot:
 ssh dino@100.120.50.35 'sudo ufw --force enable'
 ```
 
+**Sudo policy (updated 2026-06-12)**
+
+`cha0tiktower` runs a single-purpose workload (local inference only) with no PII, no customer data, and no internet exposure. It is connected internally to cha0tikhome via ethernet/Tailscale.
+
+Because of the narrow blast radius, the dino user has permanent passwordless sudo:
+
+```bash
+dino ALL=(ALL) NOPASSWD: ALL
+```
+
+This is implemented via `/etc/sudoers.d/mollydog-session`.
+
+The previous limited NOPASSWD carve-outs (llama-server, ufw, reboot, etc.) have been superseded by the broad rule. `mollydog` is no longer required as a separate step — `sudo` commands now work directly without password.
+
 ### Step 6 — Quick sanity checks
 
 ```bash
