@@ -59,14 +59,14 @@ These commands are normal and expected for this machine:
   - `CODEX_HOME=/home/dino/snap/codex/34`
   - `REAL_HOME=/home/dino`
   - `DINO_HOME=/home/dino`
-  - `CODEX_KNOWLEDGE=/home/dino/CODEX-WORKING-KNOWLEDGE.md`
-  - `CODEX_CASELAW=/home/dino/CODEX-CASELAW.md`
-  - `LOCAL_GITHUB=/home/dino/citadel`
+  - `CITADEL_ROOT=/home/dino/citadel`
+  - `CITADEL_PROTOCOL=/home/dino/citadel/shared/PROTOCOL.md`
   - `LOCAL_FORGE_URL=http://cha0tikhome.tailc83c25.ts.net:3002/`
   - `LOCAL_FORGE_ROOT=/var/lib/forgejo/data/forgejo-repositories`
   - `LOCAL_FORGE_ORG=cha0tik`
-  - `CITADEL_MEMORY_ROOT=/home/dino/citadel`
   - `ONLINE_GITHUB=https://github.com/randomchaos7800-hub`
+  - `REAL_HOME=/home/dino`
+  - `DINO_HOME=/home/dino`
 
 ## Important Boundary
 
