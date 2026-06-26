@@ -1,0 +1,82 @@
+========================================================================
+BRUTAL LANGCHAIN TOOL-USE EVAL
+Endpoint: http://tower:8010/v1/chat/completions
+Model: local
+Started: 2026-06-26T01:29:58.998327+00:00
+========================================================================
+[typewriter_1] a               FAIL turns=30 tools= 30 actual='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' latency=76.9s
+[typewriter_1] aa              FAIL turns=30 tools= 30 actual='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' latency=77.0s
+[typewriter_1] aaa             PASS turns= 4 tools=  3 actual='aaa' latency=9.0s
+[typewriter_1] aaaa            FAIL turns= 6 tools=  5 actual='aaaaa' latency=22.1s
+[typewriter_1] dog             PASS turns= 4 tools=  3 actual='dog' latency=8.8s
+[typewriter_1] cat             PASS turns= 4 tools=  3 actual='cat' latency=18.9s
+[typewriter_1] hand            PASS turns= 5 tools=  4 actual='hand' latency=9.9s
+[typewriter_1] head            PASS turns= 5 tools=  4 actual='head' latency=12.5s
+[typewriter_1] house           FAIL turns=30 tools= 30 actual='househousehousehousehousehouse' latency=71.5s
+[typewriter_1] horse           FAIL turns=30 tools= 30 actual='horsehorsehorsehorsehorsehorse' latency=73.6s
+[typewriter_1] school          FAIL turns=30 tools= 30 actual='schoolschoolschoolschoolschool' latency=75.8s
+[typewriter_1] church          PASS turns= 7 tools=  6 actual='church' latency=19.6s
+[typewriter_1] teacher         PASS turns= 8 tools=  7 actual='teacher' latency=19.7s
+[typewriter_1] student         PASS turns= 8 tools=  7 actual='student' latency=36.9s
+[typewriter_1] computer        FAIL turns=30 tools= 30 actual='computercomputercomputercomput' latency=70.9s
+[typewriter_1] keyboard        PASS turns= 9 tools=  8 actual='keyboard' latency=23.2s
+[typewriter_1] university      PASS turns=11 tools= 10 actual='university' latency=46.6s
+[typewriter_1] dictionary      FAIL turns=30 tools= 30 actual='dictionarydictionarydictionary' latency=61.0s
+[typewriter_1] information     FAIL turns=30 tools= 30 actual='informationstechnologystems. T' latency=64.4s
+[typewriter_1] communication   PASS turns=14 tools= 13 actual='communication' latency=31.9s
+[typewriter_26] a               PASS turns= 2 tools=  1 actual='a' latency=7.3s
+[typewriter_26] aa              PASS turns= 2 tools=  2 actual='aa' latency=4.8s
+[typewriter_26] aaa             PASS turns= 2 tools=  3 actual='aaa' latency=12.7s
+[typewriter_26] aaaa            PASS turns= 5 tools=  4 actual='aaaa' latency=23.3s
+[typewriter_26] dog             PASS turns= 4 tools=  3 actual='dog' latency=14.3s
+[typewriter_26] cat             PASS turns= 4 tools=  3 actual='cat' latency=8.5s
+[typewriter_26] hand            PASS turns= 2 tools=  4 actual='hand' latency=5.1s
+[typewriter_26] head            PASS turns= 2 tools=  4 actual='head' latency=12.9s
+[typewriter_26] house           PASS turns= 2 tools=  5 actual='house' latency=3.6s
+[typewriter_26] horse           PASS turns= 2 tools=  5 actual='horse' latency=6.8s
+[typewriter_26] school          PASS turns= 2 tools=  6 actual='school' latency=17.3s
+[typewriter_26] church          PASS turns= 2 tools=  6 actual='church' latency=8.4s
+[typewriter_26] teacher         PASS turns= 2 tools=  7 actual='teacher' latency=14.9s
+[typewriter_26] student         PASS turns= 8 tools=  7 actual='student' latency=8.9s
+[typewriter_26] computer        PASS turns= 2 tools=  8 actual='computer' latency=7.3s
+[typewriter_26] keyboard        PASS turns= 2 tools=  8 actual='keyboard' latency=6.3s
+[typewriter_26] university      PASS turns= 2 tools= 10 actual='university' latency=6.3s
+[typewriter_26] dictionary      PASS turns= 2 tools= 10 actual='dictionary' latency=8.4s
+[typewriter_26] information     PASS turns= 2 tools= 11 actual='information' latency=62.4s
+[typewriter_26] communication   PASS turns= 2 tools= 13 actual='communication' latency=6.2s
+[multiverse] Add 2 and 3                              PASS expected=6.2 got='6.2' tools=1
+[multiverse] Subtract 3 from 2                        PASS expected=-4 got='-4.0' tools=1
+[multiverse] What is -5 if evaluated using the negate PASS expected=-5 got='The negate function returns 5.0 when given 5 as input. So -5' tools=1
+[multiverse] what is the result of 2 to the power of  PASS expected=32 got='32' tools=1
+[multiverse] I ate 1 apple and 2 oranges every day fo PASS expected=32.34 got='So I ate 32.34 fruits in total over 7 days.\n\n32.34' tools=2
+[multiverse] multiply the result of (log of 100 to ba PASS expected=6.222318693323366 got='6.222318693323366' tools=2
+[multiverse] calculate 101 to the power of 0.5        PASS expected=102518.7812110542 got='102518.7812110542' tools=1
+[multiverse] ecoli divides every 20 minutes. How many PASS expected=176.0 got='This gives 176, which is different from my step-by-step calc' tools=6
+[multiverse] after calculating the sin of 1.5 radians PASS expected=0.035457422151326225 got='0.035457422151326225' tools=3
+[multiverse] convert 15 degrees to radians            PASS expected=0.12458791713770623 got='0.12458791713770623' tools=3
+[multiverse] evaluate negate(-131,778)                PASS expected=-131778 got='The result of negating -131,778 is 131,778.\n\n131778' tools=1
+[multiverse] what is the value of pi?                 PASS expected=2.718281828459045 got='2.718281828459045' tools=1
+[multiverse] how much is 131,778 divided by 2?        PASS expected=32944.5 got='32944.5' tools=1
+[multiverse] 131,778 + 22,312?                        PASS expected=154091.2 got='154091.2' tools=1
+[multiverse] (1+2) + 5                                PASS expected=10.399999999999999 got='The result is approximately 10.4. Let me check if I should s' tools=2
+[multiverse] -(1 + 1)                                 PASS expected=3.2 got='Negate(-2) returns -2. So negate does nothing. That means th' tools=4
+[multiverse] Evaluate 1 + 2 + 3 + 4 + 5 using only th PASS expected=19.8 got='19.8' tools=4
+[multiverse] Calculate 5 divided by 5                 PASS expected=0.5 got='0.5' tools=1
+[relational] What is Alice's favorite color?          PASS tools=2 answer="Alice's favorite color is red."
+[relational] Is it likely that Alice needs an umbrell PASS tools=3 answer='Based on the current weather at Alice\'s location, it\'s "Partly Cloudy" with a te'
+[relational] What city is Bob in?                     PASS tools=3 answer='Bob (ID: 21) is in Los Angeles.'
+[relational] How many calories are in Pizza?          PASS tools=2 answer='Pizza has **285 calories**.'
+[relational] Can Frank The Cat eat Ice Cream given hi PASS tools=5 answer="That doesn't help with allergies. Let me think about this problem differently. T"
+[relational] What is the current weather in Miami?    PASS tools=6 answer='The current weather in Miami is **Partly Cloudy with a temperature of 80°F**.'
+[relational] What is Charlie's email?                 PASS tools=2 answer="Charlie's email is **charlie@yahoo.com**."
+[relational] Does Salad contain Dairy?                PASS tools=2 answer='Based on the allergic ingredients check, Salad does not contain dairy. The aller'
+
+========================================================================
+SUMMARY
+  typewriter_1    : 11/20 (55.0%) avg_turns=16.25 avg_lat=41.5s
+  typewriter_26   : 20/20 (100.0%) avg_turns=2.65 avg_lat=12.29s
+  multiverse_math : 18/18 (100.0%) avg_turns=3.0 avg_lat=11.13s
+  relational_data : 8/8 (100.0%) avg_turns=4.12 avg_lat=22.56s
+  OVERALL         : 57/66 (86.4%)
+========================================================================
+Wrote /home/dino/logs/model-tests/deepseek-v3.2-langchain/langchain-brutal-eval.json

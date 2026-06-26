@@ -1,0 +1,1157 @@
+{
+  "summary": {
+    "passed": 72,
+    "total": 164,
+    "pass_rate": 0.43902439024390244
+  },
+  "results": [
+    {
+      "task_id": "HumanEval/0",
+      "ok": true,
+      "raw": "    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+      "completion": "    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/1",
+      "ok": false,
+      "raw": "```python\n    groups = []\n    current = []\n    balance = 0\n\n    for ch in paren_string:\n        if ch == '(':\n            current.append(ch)\n            balance += 1\n        elif ch == ')':\n            current.append(ch)\n            balance -= 1\n        elif ch == ' ':\n            continue\n\n        if balance == 0 and current:\n            groups.append(''.join(current))\n            current.clear()\n\n    return groups\n```",
+      "completion": "    current = []\n    balance = 0\n\n    for ch in paren_string:\n        if ch == '(':\n            current.append(ch)\n            balance += 1\n        elif ch == ')':\n            current.append(ch)\n            balance -= 1\n        elif ch == ' ':\n            continue\n\n        if balance == 0 and current:\n            groups.append(''.join(current))\n            current.clear()\n\n    return groups",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpbnozt82_.py\", line 52, in <module>\n    check(separate_paren_groups)\n  File \"/tmp/tmpbnozt82_.py\", line 40, in check\n    assert candidate('(()()) ((())) () ((())()())') == [\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpbnozt82_.py\", line 26, in separate_paren_groups\n    groups.append(''.join(current))\n    ^^^^^^\nNameError: name 'groups' is not defined"
+    },
+    {
+      "task_id": "HumanEval/2",
+      "ok": false,
+      "raw": "```python\n    return number - int(number)\n```",
+      "completion": "return number - int(number)",
+      "detail": "File \"/tmp/tmpbzzufvju.py\", line 12\n    return number - int(number)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/3",
+      "ok": false,
+      "raw": "```python\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n```",
+      "completion": "    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpd6178pry.py\", line 36, in <module>\n    check(below_zero)\n  File \"/tmp/tmpd6178pry.py\", line 29, in check\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpd6178pry.py\", line 14, in below_zero\n    balance += op\n    ^^^^^^^\nUnboundLocalError: cannot access local variable 'balance' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/4",
+      "ok": false,
+      "raw": "```python\n    mean = sum(numbers) / len(numbers)\n    return sum(abs(x - mean) for x in numbers) / len(numbers)\n```",
+      "completion": "    return sum(abs(x - mean) for x in numbers) / len(numbers)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpfxjk5gat.py\", line 30, in <module>\n    check(mean_absolute_deviation)\n  File \"/tmp/tmpfxjk5gat.py\", line 24, in check\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpfxjk5gat.py\", line 13, in mean_absolute_deviation\n    return sum(abs(x - mean) for x in numbers) / len(numbers)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpfxjk5gat.py\", line 13, in <genexpr>\n    return sum(abs(x - mean) for x in numbers) / len(numbers)\n                       ^^^^\nNameError: name 'mean' is not defined"
+    },
+    {
+      "task_id": "HumanEval/5",
+      "ok": false,
+      "raw": "```python\n    if not numbers:\n        return []\n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    return result\n```",
+      "completion": "        return []\n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    return result",
+      "detail": "File \"/tmp/tmpuey5e4ex.py\", line 11\n    return []\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/6",
+      "ok": false,
+      "raw": "```python\n    groups = paren_string.split()\n    result = []\n    for group in groups:\n        max_depth = 0\n        current_depth = 0\n        for ch in group:\n            if ch == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif ch == ')':\n                current_depth -= 1\n        result.append(max_depth)\n    return result\n```",
+      "completion": "    result = []\n    for group in groups:\n        max_depth = 0\n        current_depth = 0\n        for ch in group:\n            if ch == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif ch == ')':\n                current_depth -= 1\n        result.append(max_depth)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpl3v16yab.py\", line 39, in <module>\n    check(parse_nested_parens)\n  File \"/tmp/tmpl3v16yab.py\", line 34, in check\n    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpl3v16yab.py\", line 13, in parse_nested_parens\n    for group in groups:\n                 ^^^^^^\nNameError: name 'groups' is not defined. Did you mean: 'group'?"
+    },
+    {
+      "task_id": "HumanEval/7",
+      "ok": false,
+      "raw": "```python\n    return [s for s in strings if substring in s]\n```",
+      "completion": "return [s for s in strings if substring in s]",
+      "detail": "File \"/tmp/tmphv7edt0u.py\", line 11\n    return [s for s in strings if substring in s]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/8",
+      "ok": true,
+      "raw": "    if not numbers:\n        return (0, 1)\n    total_sum = 0\n    total_product = 1\n    for num in numbers:\n        total_sum += num\n        total_product *= num\n    return (total_sum, total_product)",
+      "completion": "    if not numbers:\n        return (0, 1)\n    total_sum = 0\n    total_product = 1\n    for num in numbers:\n        total_sum += num\n        total_product *= num\n    return (total_sum, total_product)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/9",
+      "ok": false,
+      "raw": "```python\n    result = []\n    current_max = None\n    for num in numbers:\n        if current_max is None or num > current_max:\n            current_max = num\n        result.append(current_max)\n    return result\n```",
+      "completion": "    current_max = None\n    for num in numbers:\n        if current_max is None or num > current_max:\n            current_max = num\n        result.append(current_max)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpdtlufheb.py\", line 32, in <module>\n    check(rolling_max)\n  File \"/tmp/tmpdtlufheb.py\", line 26, in check\n    assert candidate([]) == []\n           ^^^^^^^^^^^^^\n  File \"/tmp/tmpdtlufheb.py\", line 15, in rolling_max\n    return result\n           ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/10",
+      "ok": true,
+      "raw": "```python\ndef make_palindrome(string: str) -> str:\n    if not string:\n        return string\n    for i in range(len(string)):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n    return string + string[:-1][::-1]\n```",
+      "completion": "def make_palindrome(string: str) -> str:\n    if not string:\n        return string\n    for i in range(len(string)):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n    return string + string[:-1][::-1]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/11",
+      "ok": false,
+      "raw": "```python\n    result = []\n    for i in range(len(a)):\n        if a[i] == b[i]:\n            result.append('0')\n        else:\n            result.append('1')\n    return ''.join(result)\n```",
+      "completion": "    for i in range(len(a)):\n        if a[i] == b[i]:\n            result.append('0')\n        else:\n            result.append('1')\n    return ''.join(result)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmppt1_v4cr.py\", line 31, in <module>\n    check(string_xor)\n  File \"/tmp/tmppt1_v4cr.py\", line 26, in check\n    assert candidate('111000', '101010') == '010010'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmppt1_v4cr.py\", line 12, in string_xor\n    result.append('0')\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/12",
+      "ok": true,
+      "raw": "    if not strings:\n        return None\n    longest_str = strings[0]\n    for s in strings[1:]:\n        if len(s) > len(longest_str):\n            longest_str = s\n    return longest_str",
+      "completion": "    if not strings:\n        return None\n    longest_str = strings[0]\n    for s in strings[1:]:\n        if len(s) > len(longest_str):\n            longest_str = s\n    return longest_str",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/13",
+      "ok": false,
+      "raw": "```python\n    while b:\n        a, b = b, a % b\n    return abs(a)\n```",
+      "completion": "        a, b = b, a % b\n    return abs(a)",
+      "detail": "File \"/tmp/tmpth9gpjlf.py\", line 10\n    a, b = b, a % b\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/14",
+      "ok": true,
+      "raw": "    prefixes = []\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    return prefixes",
+      "completion": "    prefixes = []\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    return prefixes",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/15",
+      "ok": true,
+      "raw": "    return ' '.join(str(i) for i in range(n + 1))",
+      "completion": "    return ' '.join(str(i) for i in range(n + 1))",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/16",
+      "ok": false,
+      "raw": "```python\n    return len(set(string.lower()))\n```",
+      "completion": "return len(set(string.lower()))",
+      "detail": "File \"/tmp/tmp28gqwsm4.py\", line 10\n    return len(set(string.lower()))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/17",
+      "ok": false,
+      "raw": "```python\n    mapping = {'o': 4, 'o|': 2, '.|': 1}\n    notes = music_string.split()\n    return [mapping[note] for note in notes]\n```",
+      "completion": "    notes = music_string.split()\n    return [mapping[note] for note in notes]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpoghi3okf.py\", line 36, in <module>\n    check(parse_music)\n  File \"/tmp/tmpoghi3okf.py\", line 30, in check\n    assert candidate('o o o o') == [4, 4, 4, 4]\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpoghi3okf.py\", line 18, in parse_music\n    return [mapping[note] for note in notes]\n            ^^^^^^^\nNameError: name 'mapping' is not defined"
+    },
+    {
+      "task_id": "HumanEval/18",
+      "ok": false,
+      "raw": "```python\n    count = 0\n    sub_len = len(substring)\n    for i in range(len(string) - sub_len + 1):\n        if string[i:i+sub_len] == substring:\n            count += 1\n    return count\n```",
+      "completion": "    sub_len = len(substring)\n    for i in range(len(string) - sub_len + 1):\n        if string[i:i+sub_len] == substring:\n            count += 1\n    return count",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpdf5xobdn.py\", line 33, in <module>\n    check(how_many_times)\n  File \"/tmp/tmpdf5xobdn.py\", line 27, in check\n    assert candidate('', 'x') == 0\n           ^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpdf5xobdn.py\", line 16, in how_many_times\n    return count\n           ^^^^^\nUnboundLocalError: cannot access local variable 'count' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/19",
+      "ok": false,
+      "raw": "```python\n    mapping = {\n        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n    reverse_mapping = {v: k for k, v in mapping.items()}\n    words = numbers.split()\n    nums = [mapping[w] for w in words]\n    nums.sort()\n    sorted_words = [reverse_mapping[n] for n in nums]\n    return ' '.join(sorted_words)\n```",
+      "completion": "        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n    reverse_mapping = {v: k for k, v in mapping.items()}\n    words = numbers.split()\n    nums = [mapping[w] for w in words]\n    nums.sort()\n    sorted_words = [reverse_mapping[n] for n in nums]\n    return ' '.join(sorted_words)",
+      "detail": "File \"/tmp/tmp1m2gsava.py\", line 11\n    'zero': 0,\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/20",
+      "ok": true,
+      "raw": "    sorted_nums = sorted(numbers)\n    min_diff = float('inf')\n    result = (0.0, 0.0)\n    for i in range(len(sorted_nums) - 1):\n        diff = sorted_nums[i + 1] - sorted_nums[i]\n        if diff < min_diff:\n            min_diff = diff\n            result = (sorted_nums[i], sorted_nums[i + 1])\n    return result",
+      "completion": "    sorted_nums = sorted(numbers)\n    min_diff = float('inf')\n    result = (0.0, 0.0)\n    for i in range(len(sorted_nums) - 1):\n        diff = sorted_nums[i + 1] - sorted_nums[i]\n        if diff < min_diff:\n            min_diff = diff\n            result = (sorted_nums[i], sorted_nums[i + 1])\n    return result",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/21",
+      "ok": false,
+      "raw": "```python\n    min_val = min(numbers)\n    max_val = max(numbers)\n    range_val = max_val - min_val\n    if range_val == 0:\n        return [0.0] * len(numbers)\n    return [(x - min_val) / range_val for x in numbers]\n```",
+      "completion": "    max_val = max(numbers)\n    range_val = max_val - min_val\n    if range_val == 0:\n        return [0.0] * len(numbers)\n    return [(x - min_val) / range_val for x in numbers]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpe39q92af.py\", line 32, in <module>\n    check(rescale_to_unit)\n  File \"/tmp/tmpe39q92af.py\", line 25, in check\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpe39q92af.py\", line 11, in rescale_to_unit\n    range_val = max_val - min_val\n                          ^^^^^^^\nNameError: name 'min_val' is not defined. Did you mean: 'max_val'?"
+    },
+    {
+      "task_id": "HumanEval/22",
+      "ok": true,
+      "raw": "    return [value for value in values if isinstance(value, int)]",
+      "completion": "    return [value for value in values if isinstance(value, int)]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/23",
+      "ok": true,
+      "raw": "    return len(string)",
+      "completion": "    return len(string)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/24",
+      "ok": true,
+      "raw": "```python\ndef largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i\n    return 1\n```",
+      "completion": "def largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i\n    return 1",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/25",
+      "ok": false,
+      "raw": "```python\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1 if d == 2 else 2\n    if n > 1:\n        factors.append(n)\n    return factors\n```",
+      "completion": "    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1 if d == 2 else 2\n    if n > 1:\n        factors.append(n)\n    return factors",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpmqhttf60.py\", line 44, in <module>\n    check(factorize)\n  File \"/tmp/tmpmqhttf60.py\", line 34, in check\n    assert candidate(2) == [2]\n           ^^^^^^^^^^^^\n  File \"/tmp/tmpmqhttf60.py\", line 22, in factorize\n    factors.append(n)\n    ^^^^^^^\nNameError: name 'factors' is not defined. Did you mean: 'factorize'?"
+    },
+    {
+      "task_id": "HumanEval/26",
+      "ok": false,
+      "raw": "```python\n    seen = {}\n    for num in numbers:\n        if num in seen:\n            seen[num] += 1\n        else:\n            seen[num] = 1\n    result = []\n    for num in numbers:\n        if seen[num] == 1:\n            result.append(num)\n    return result\n```",
+      "completion": "    for num in numbers:\n        if num in seen:\n            seen[num] += 1\n        else:\n            seen[num] = 1\n    result = []\n    for num in numbers:\n        if seen[num] == 1:\n            result.append(num)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpv1q9w2yo.py\", line 35, in <module>\n    check(remove_duplicates)\n  File \"/tmp/tmpv1q9w2yo.py\", line 31, in check\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpv1q9w2yo.py\", line 11, in remove_duplicates\n    if num in seen:\n              ^^^^\nNameError: name 'seen' is not defined"
+    },
+    {
+      "task_id": "HumanEval/27",
+      "ok": false,
+      "raw": "```python\n    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n```",
+      "completion": "return ''.join(c.lower() if c.isupper() else c.upper() for c in string)",
+      "detail": "File \"/tmp/tmp23ks_8oy.py\", line 8\n    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/28",
+      "ok": false,
+      "raw": "return ''.join(strings)",
+      "completion": "return ''.join(strings)",
+      "detail": "File \"/tmp/tmpcdmg_9p9.py\", line 11\n    return ''.join(strings)\n    ^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/29",
+      "ok": false,
+      "raw": "```python\n    return [s for s in strings if s.startswith(prefix)]\n```",
+      "completion": "return [s for s in strings if s.startswith(prefix)]",
+      "detail": "File \"/tmp/tmpwo41utnx.py\", line 11\n    return [s for s in strings if s.startswith(prefix)]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/30",
+      "ok": false,
+      "raw": "```python\n    return [x for x in l if x > 0]\n```",
+      "completion": "return [x for x in l if x > 0]",
+      "detail": "File \"/tmp/tmp2lk4c8lp.py\", line 10\n    return [x for x in l if x > 0]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/31",
+      "ok": false,
+      "raw": "```python\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n```",
+      "completion": "        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+      "detail": "File \"/tmp/tmpv5etlcl5.py\", line 20\n    return False\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/32",
+      "ok": true,
+      "raw": "    # Use bisection method to find a root\n    # Since polynomial has even degree and leading coefficient non-zero,\n    # it goes to +inf or -inf at both ends, so there is at least one root.\n    # We'll search in a symmetric interval [-bound, bound] where bound is large enough.\n    bound = 10.0\n    left = -bound\n    right = bound\n    f_left = poly(xs, left)\n    f_right = poly(xs, right)\n    \n    # Ensure we have opposite signs (or at least one zero)\n    # If not, increase bound until we do.\n    while f_left * f_right > 0:\n        bound *= 2\n        left = -bound\n        right = bound\n        f_left = poly(xs, left)\n        f_right = poly(xs, right)\n    \n    # Bisection\n    for _ in range(100):  # enough iterations for good precision\n        mid = (left + right) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if f_left * f_mid <= 0:\n            right = mid\n            f_right = f_mid\n        else:\n            left = mid\n            f_left = f_mid\n    return (left + right) / 2",
+      "completion": "    # Use bisection method to find a root\n    # Since polynomial has even degree and leading coefficient non-zero,\n    # it goes to +inf or -inf at both ends, so there is at least one root.\n    # We'll search in a symmetric interval [-bound, bound] where bound is large enough.\n    bound = 10.0\n    left = -bound\n    right = bound\n    f_left = poly(xs, left)\n    f_right = poly(xs, right)\n    \n    # Ensure we have opposite signs (or at least one zero)\n    # If not, increase bound until we do.\n    while f_left * f_right > 0:\n        bound *= 2\n        left = -bound\n        right = bound\n        f_left = poly(xs, left)\n        f_right = poly(xs, right)\n    \n    # Bisection\n    for _ in range(100):  # enough iterations for good precision\n        mid = (left + right) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if f_left * f_mid <= 0:\n            right = mid\n            f_right = f_mid\n        else:\n            left = mid\n            f_left = f_mid\n    return (left + right) / 2",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/33",
+      "ok": false,
+      "raw": "```python\n    result = l[:]\n    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    divisible_by_three.sort()\n    idx = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result[i] = divisible_by_three[idx]\n            idx += 1\n    return result\n```",
+      "completion": "    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    divisible_by_three.sort()\n    idx = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result[i] = divisible_by_three[idx]\n            idx += 1\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpu992f3o6.py\", line 37, in <module>\n    check(sort_third)\n  File \"/tmp/tmpu992f3o6.py\", line 27, in check\n    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\n                 ^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpu992f3o6.py\", line 17, in sort_third\n    result[i] = divisible_by_three[idx]\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/34",
+      "ok": false,
+      "raw": "```python\n    return sorted(set(l))\n```",
+      "completion": "return sorted(set(l))",
+      "detail": "File \"/tmp/tmpmeph9bxy.py\", line 8\n    return sorted(set(l))\n    ^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/35",
+      "ok": false,
+      "raw": "```python\n    if not l:\n        return None\n    max_val = l[0]\n    for num in l[1:]:\n        if num > max_val:\n            max_val = num\n    return max_val\n```",
+      "completion": "        return None\n    max_val = l[0]\n    for num in l[1:]:\n        if num > max_val:\n            max_val = num\n    return max_val",
+      "detail": "File \"/tmp/tmpauyyh8jr.py\", line 10\n    return None\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/36",
+      "ok": false,
+      "raw": "```python\n    count = 0\n    for i in range(1, n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count\n```",
+      "completion": "    for i in range(1, n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpvovs0t3y.py\", line 34, in <module>\n    check(fizz_buzz)\n  File \"/tmp/tmpvovs0t3y.py\", line 23, in check\n    assert candidate(50) == 0\n           ^^^^^^^^^^^^^\n  File \"/tmp/tmpvovs0t3y.py\", line 14, in fizz_buzz\n    count += str(i).count('7')\n    ^^^^^\nUnboundLocalError: cannot access local variable 'count' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/37",
+      "ok": false,
+      "raw": "```python\n    even_vals = sorted([l[i] for i in range(0, len(l), 2)])\n    result = l[:]\n    idx = 0\n    for i in range(0, len(l), 2):\n        result[i] = even_vals[idx]\n        idx += 1\n    return result\n```",
+      "completion": "    result = l[:]\n    idx = 0\n    for i in range(0, len(l), 2):\n        result[i] = even_vals[idx]\n        idx += 1\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmplkfxavt9.py\", line 31, in <module>\n    check(sort_even)\n  File \"/tmp/tmplkfxavt9.py\", line 25, in check\n    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])\n                 ^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmplkfxavt9.py\", line 15, in sort_even\n    result[i] = even_vals[idx]\n                ^^^^^^^^^\nNameError: name 'even_vals' is not defined"
+    },
+    {
+      "task_id": "HumanEval/38",
+      "ok": false,
+      "raw": "```python\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n```",
+      "completion": "    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpihir7mhv.py\", line 38, in <module>\n    check(decode_cyclic)\n  File \"/tmp/tmpihir7mhv.py\", line 34, in check\n    assert candidate(encoded_str) == str\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpihir7mhv.py\", line 18, in decode_cyclic\n    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]\n                                                                                  ^^^^^^\nUnboundLocalError: cannot access local variable 'groups' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/39",
+      "ok": true,
+      "raw": "    fib = [0, 1]\n    primes = []\n    while len(primes) < n:\n        fib.append(fib[-1] + fib[-2])\n        candidate = fib[-1]\n        if candidate > 1:\n            is_prime = True\n            for i in range(2, int(candidate**0.5) + 1):\n                if candidate % i == 0:\n                    is_prime = False\n                    break\n            if is_prime:\n                primes.append(candidate)\n    return primes[n-1]",
+      "completion": "    fib = [0, 1]\n    primes = []\n    while len(primes) < n:\n        fib.append(fib[-1] + fib[-2])\n        candidate = fib[-1]\n        if candidate > 1:\n            is_prime = True\n            for i in range(2, int(candidate**0.5) + 1):\n                if candidate % i == 0:\n                    is_prime = False\n                    break\n            if is_prime:\n                primes.append(candidate)\n    return primes[n-1]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/40",
+      "ok": true,
+      "raw": "```python\ndef triples_sum_to_zero(l: list):\n    n = len(l)\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False\n```",
+      "completion": "def triples_sum_to_zero(l: list):\n    n = len(l)\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/41",
+      "ok": false,
+      "raw": "```python\n    return n * n\n```",
+      "completion": "return n * n",
+      "detail": "File \"/tmp/tmpfhyzkqtf.py\", line 15\n    return n * n\n    ^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/42",
+      "ok": false,
+      "raw": "```python\n    return [x + 1 for x in l]\n```",
+      "completion": "return [x + 1 for x in l]",
+      "detail": "File \"/tmp/tmpmi3tsput.py\", line 10\n    return [x + 1 for x in l]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/43",
+      "ok": true,
+      "raw": "    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False",
+      "completion": "    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/44",
+      "ok": true,
+      "raw": "    if x == -1:\n        return '-1'\n    if x == 0:\n        return '0'\n    negative = x < 0\n    x = abs(x)\n    digits = []\n    while x > 0:\n        digits.append(str(x % base))\n        x //= base\n    if negative:\n        digits.append('-')\n    return ''.join(reversed(digits))",
+      "completion": "    if x == -1:\n        return '-1'\n    if x == 0:\n        return '0'\n    negative = x < 0\n    x = abs(x)\n    digits = []\n    while x > 0:\n        digits.append(str(x % base))\n        x //= base\n    if negative:\n        digits.append('-')\n    return ''.join(reversed(digits))",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/45",
+      "ok": false,
+      "raw": "```python\n    return a * h / 2.0\n```",
+      "completion": "return a * h / 2.0",
+      "detail": "File \"/tmp/tmpagu08joq.py\", line 8\n    return a * h / 2.0\n    ^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/46",
+      "ok": false,
+      "raw": "```python\n    if n < 2:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(4, n + 1):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n```",
+      "completion": "        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(4, n + 1):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d",
+      "detail": "File \"/tmp/tmpsbaqvbdx.py\", line 18\n    return 0\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/47",
+      "ok": false,
+      "raw": "```python\n    sorted_l = sorted(l)\n    n = len(sorted_l)\n    mid = n // 2\n    if n % 2 == 1:\n        return sorted_l[mid]\n    else:\n        return (sorted_l[mid - 1] + sorted_l[mid]) / 2.0\n```",
+      "completion": "    n = len(sorted_l)\n    mid = n // 2\n    if n % 2 == 1:\n        return sorted_l[mid]\n    else:\n        return (sorted_l[mid - 1] + sorted_l[mid]) / 2.0",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpprx7rieo.py\", line 31, in <module>\n    check(median)\n  File \"/tmp/tmpprx7rieo.py\", line 23, in check\n    assert candidate([3, 1, 2, 4, 5]) == 3\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpprx7rieo.py\", line 10, in median\n    n = len(sorted_l)\n            ^^^^^^^^\nNameError: name 'sorted_l' is not defined. Did you mean: 'sorted'?"
+    },
+    {
+      "task_id": "HumanEval/48",
+      "ok": true,
+      "raw": "    cleaned = ''.join(ch.lower() for ch in text if ch.isalnum())\n    return cleaned == cleaned[::-1]",
+      "completion": "    cleaned = ''.join(ch.lower() for ch in text if ch.isalnum())\n    return cleaned == cleaned[::-1]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/49",
+      "ok": false,
+      "raw": "```python\n    if n == 0:\n        return 1 % p\n    result = 1\n    base = 2 % p\n    while n > 0:\n        if n % 2 == 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        n //= 2\n    return result\n```",
+      "completion": "        return 1 % p\n    result = 1\n    base = 2 % p\n    while n > 0:\n        if n % 2 == 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        n //= 2\n    return result",
+      "detail": "File \"/tmp/tmptfvaoqa6.py\", line 16\n    return 1 % p\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/50",
+      "ok": false,
+      "raw": "```python\n    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n```",
+      "completion": "return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])",
+      "detail": "File \"/tmp/tmpixlbz26c.py\", line 14\n    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/51",
+      "ok": false,
+      "raw": "```python\n    vowels = set('aeiouAEIOU')\n    return ''.join(char for char in text if char not in vowels)\n```",
+      "completion": "    return ''.join(char for char in text if char not in vowels)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp7ag8sj3v.py\", line 37, in <module>\n    check(remove_vowels)\n  File \"/tmp/tmp7ag8sj3v.py\", line 28, in check\n    assert candidate(\"abcdef\\nghijklm\") == 'bcdf\\nghjklm'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp7ag8sj3v.py\", line 19, in remove_vowels\n    return ''.join(char for char in text if char not in vowels)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp7ag8sj3v.py\", line 19, in <genexpr>\n    return ''.join(char for char in text if char not in vowels)\n                                                        ^^^^^^\nNameError: name 'vowels' is not defined"
+    },
+    {
+      "task_id": "HumanEval/52",
+      "ok": true,
+      "raw": "    for num in l:\n        if num >= t:\n            return False\n    return True",
+      "completion": "    for num in l:\n        if num >= t:\n            return False\n    return True",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/53",
+      "ok": true,
+      "raw": "    return x + y",
+      "completion": "    return x + y",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/54",
+      "ok": false,
+      "raw": "```python\n    return sorted(s0) == sorted(s1)\n```",
+      "completion": "return sorted(s0) == sorted(s1)",
+      "detail": "File \"/tmp/tmpynd2hipn.py\", line 19\n    return sorted(s0) == sorted(s1)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/55",
+      "ok": true,
+      "raw": "```python\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n```",
+      "completion": "def fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/56",
+      "ok": false,
+      "raw": "```python\n    balance = 0\n    for ch in brackets:\n        if ch == '<':\n            balance += 1\n        elif ch == '>':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```",
+      "completion": "    for ch in brackets:\n        if ch == '<':\n            balance += 1\n        elif ch == '>':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpp1vernps.py\", line 46, in <module>\n    check(correct_bracketing)\n  File \"/tmp/tmpp1vernps.py\", line 31, in check\n    assert candidate(\"<>\")\n           ^^^^^^^^^^^^^^^\n  File \"/tmp/tmpp1vernps.py\", line 18, in correct_bracketing\n    balance += 1\n    ^^^^^^^\nUnboundLocalError: cannot access local variable 'balance' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/57",
+      "ok": false,
+      "raw": "```python\n    if len(l) <= 2:\n        return True\n    inc = True\n    dec = True\n    for i in range(1, len(l)):\n        if l[i] < l[i-1]:\n            inc = False\n        if l[i] > l[i-1]:\n            dec = False\n    return inc or dec\n```",
+      "completion": "        return True\n    inc = True\n    dec = True\n    for i in range(1, len(l)):\n        if l[i] < l[i-1]:\n            inc = False\n        if l[i] > l[i-1]:\n            dec = False\n    return inc or dec",
+      "detail": "File \"/tmp/tmpccaud2k3.py\", line 12\n    return True\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/58",
+      "ok": false,
+      "raw": "```python\n    common_set = set(l1) & set(l2)\n    return sorted(common_set)\n```",
+      "completion": "    return sorted(common_set)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpm3zx5pqm.py\", line 26, in <module>\n    check(common)\n  File \"/tmp/tmpm3zx5pqm.py\", line 19, in check\n    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpm3zx5pqm.py\", line 11, in common\n    return sorted(common_set)\n                  ^^^^^^^^^^\nNameError: name 'common_set' is not defined"
+    },
+    {
+      "task_id": "HumanEval/59",
+      "ok": false,
+      "raw": "```python\n    i = 2\n    while i * i <= n:\n        while n % i == 0:\n            n //= i\n        i += 1 if i == 2 else 2\n    return n\n```",
+      "completion": "    while i * i <= n:\n        while n % i == 0:\n            n //= i\n        i += 1 if i == 2 else 2\n    return n",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp73ku3w7d.py\", line 30, in <module>\n    check(largest_prime_factor)\n  File \"/tmp/tmp73ku3w7d.py\", line 22, in check\n    assert candidate(15) == 5\n           ^^^^^^^^^^^^^\n  File \"/tmp/tmp73ku3w7d.py\", line 10, in largest_prime_factor\n    while i * i <= n:\n          ^\nUnboundLocalError: cannot access local variable 'i' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/60",
+      "ok": true,
+      "raw": "    return n * (n + 1) // 2",
+      "completion": "    return n * (n + 1) // 2",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/61",
+      "ok": true,
+      "raw": "    count = 0\n    for b in brackets:\n        if b == '(':\n            count += 1\n        elif b == ')':\n            count -= 1\n        if count < 0:\n            return False\n    return count == 0",
+      "completion": "    count = 0\n    for b in brackets:\n        if b == '(':\n            count += 1\n        elif b == ')':\n            count -= 1\n        if count < 0:\n            return False\n    return count == 0",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/62",
+      "ok": false,
+      "raw": "```python\n    result = []\n    for i in range(1, len(xs)):\n        result.append(xs[i] * i)\n    return result\n```",
+      "completion": "    for i in range(1, len(xs)):\n        result.append(xs[i] * i)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp5xayl4cv.py\", line 30, in <module>\n    check(derivative)\n  File \"/tmp/tmp5xayl4cv.py\", line 22, in check\n    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp5xayl4cv.py\", line 13, in derivative\n    result.append(xs[i] * i)\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/63",
+      "ok": false,
+      "raw": "```python\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n    a, b, c = 0, 0, 1\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c\n```",
+      "completion": "        return 0\n    if n == 2:\n        return 1\n    a, b, c = 0, 0, 1\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c",
+      "detail": "File \"/tmp/tmp3ww8f5hq.py\", line 17\n    return 0\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/64",
+      "ok": false,
+      "raw": "```python\n    vowels = set(\"aeiouAEIOU\")\n    count = 0\n    for i, ch in enumerate(s):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y' or ch == 'Y':\n            if i == len(s) - 1:\n                count += 1\n    return count\n```",
+      "completion": "    count = 0\n    for i, ch in enumerate(s):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y' or ch == 'Y':\n            if i == len(s) - 1:\n                count += 1\n    return count",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp8rij96ix.py\", line 43, in <module>\n    check(vowels_count)\n  File \"/tmp/tmp8rij96ix.py\", line 30, in check\n    assert candidate(\"abcde\") == 2, \"Test 1\"\n           ^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp8rij96ix.py\", line 20, in vowels_count\n    if ch in vowels:\n             ^^^^^^\nNameError: name 'vowels' is not defined"
+    },
+    {
+      "task_id": "HumanEval/65",
+      "ok": false,
+      "raw": "```python\n    digits = str(x)\n    n = len(digits)\n    \n    if shift > n:\n        return digits[::-1]\n    \n    shift %= n\n    if shift == 0:\n        return digits\n    return digits[-shift:] + digits[:-shift]\n```",
+      "completion": "    n = len(digits)\n    \n    if shift > n:\n        return digits[::-1]\n    \n    shift %= n\n    if shift == 0:\n        return digits\n    return digits[-shift:] + digits[:-shift]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpn86ue9sq.py\", line 34, in <module>\n    check(circular_shift)\n  File \"/tmp/tmpn86ue9sq.py\", line 24, in check\n    assert candidate(100, 2) == \"001\"\n           ^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpn86ue9sq.py\", line 11, in circular_shift\n    n = len(digits)\n            ^^^^^^\nNameError: name 'digits' is not defined"
+    },
+    {
+      "task_id": "HumanEval/66",
+      "ok": false,
+      "raw": "```python\n    total = 0\n    for ch in s:\n        if ch.isupper():\n            total += ord(ch)\n    return total\n```",
+      "completion": "    for ch in s:\n        if ch.isupper():\n            total += ord(ch)\n    return total",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp2_sqs0x3.py\", line 38, in <module>\n    check(digitSum)\n  File \"/tmp/tmp2_sqs0x3.py\", line 24, in check\n    assert candidate(\"\") == 0, \"Error\"\n           ^^^^^^^^^^^^^\n  File \"/tmp/tmp2_sqs0x3.py\", line 18, in digitSum\n    return total\n           ^^^^^\nUnboundLocalError: cannot access local variable 'total' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/67",
+      "ok": true,
+      "raw": "```python\ndef fruit_distribution(s,n):\n    import re\n    numbers = re.findall(r'\\d+', s)\n    apples = int(numbers[0])\n    oranges = int(numbers[1])\n    return n - apples - oranges\n```",
+      "completion": "def fruit_distribution(s,n):\n    import re\n    numbers = re.findall(r'\\d+', s)\n    apples = int(numbers[0])\n    oranges = int(numbers[1])\n    return n - apples - oranges",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/68",
+      "ok": true,
+      "raw": "    if not arr:\n        return []\n    min_even = None\n    min_index = None\n    for i, val in enumerate(arr):\n        if val % 2 == 0:\n            if min_even is None or val < min_even or (val == min_even and i < min_index):\n                min_even = val\n                min_index = i\n    if min_even is None:\n        return []\n    return [min_even, min_index]",
+      "completion": "    if not arr:\n        return []\n    min_even = None\n    min_index = None\n    for i, val in enumerate(arr):\n        if val % 2 == 0:\n            if min_even is None or val < min_even or (val == min_even and i < min_index):\n                min_even = val\n                min_index = i\n    if min_even is None:\n        return []\n    return [min_even, min_index]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/69",
+      "ok": true,
+      "raw": "```python\ndef search(lst):\n    from collections import Counter\n    freq = Counter(lst)\n    candidates = [num for num, count in freq.items() if count >= num and num > 0]\n    return max(candidates) if candidates else -1\n```",
+      "completion": "def search(lst):\n    from collections import Counter\n    freq = Counter(lst)\n    candidates = [num for num, count in freq.items() if count >= num and num > 0]\n    return max(candidates) if candidates else -1",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/70",
+      "ok": false,
+      "raw": "```python\n    result = []\n    while lst:\n        min_val = min(lst)\n        result.append(min_val)\n        lst.remove(min_val)\n        if lst:\n            max_val = max(lst)\n            result.append(max_val)\n            lst.remove(max_val)\n    return result\n```",
+      "completion": "    while lst:\n        min_val = min(lst)\n        result.append(min_val)\n        lst.remove(min_val)\n        if lst:\n            max_val = max(lst)\n            result.append(max_val)\n            lst.remove(max_val)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpq02opyr4.py\", line 41, in <module>\n    check(strange_sort_list)\n  File \"/tmp/tmpq02opyr4.py\", line 26, in check\n    assert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpq02opyr4.py\", line 15, in strange_sort_list\n    result.append(min_val)\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/71",
+      "ok": true,
+      "raw": "    if a <= 0 or b <= 0 or c <= 0:\n        return -1\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    return round(area, 2)",
+      "completion": "    if a <= 0 or b <= 0 or c <= 0:\n        return -1\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    s = (a + b + c) / 2\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    return round(area, 2)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/72",
+      "ok": true,
+      "raw": "    if q != q[::-1]:\n        return False\n    if sum(q) > w:\n        return False\n    return True",
+      "completion": "    if q != q[::-1]:\n        return False\n    if sum(q) > w:\n        return False\n    return True",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/73",
+      "ok": false,
+      "raw": "```python\n    n = len(arr)\n    changes = 0\n    for i in range(n // 2):\n        if arr[i] != arr[n - 1 - i]:\n            changes += 1\n    return changes\n```",
+      "completion": "    changes = 0\n    for i in range(n // 2):\n        if arr[i] != arr[n - 1 - i]:\n            changes += 1\n    return changes",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpnsqgkmdf.py\", line 35, in <module>\n    check(smallest_change)\n  File \"/tmp/tmpnsqgkmdf.py\", line 22, in check\n    assert candidate([1,2,3,5,4,7,9,6]) == 4\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpnsqgkmdf.py\", line 14, in smallest_change\n    for i in range(n // 2):\n                   ^\nNameError: name 'n' is not defined"
+    },
+    {
+      "task_id": "HumanEval/74",
+      "ok": true,
+      "raw": "    total_chars1 = sum(len(s) for s in lst1)\n    total_chars2 = sum(len(s) for s in lst2)\n    if total_chars1 <= total_chars2:\n        return lst1\n    else:\n        return lst2",
+      "completion": "    total_chars1 = sum(len(s) for s in lst1)\n    total_chars2 = sum(len(s) for s in lst2)\n    if total_chars1 <= total_chars2:\n        return lst1\n    else:\n        return lst2",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/75",
+      "ok": true,
+      "raw": "```python\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    primes = [i for i in range(2, 100) if is_prime(i)]\n    \n    for i in range(len(primes)):\n        for j in range(i, len(primes)):\n            for k in range(j, len(primes)):\n                if primes[i] * primes[j] * primes[k] == a:\n                    return True\n    return False\n```",
+      "completion": "def is_multiply_prime(a):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    primes = [i for i in range(2, 100) if is_prime(i)]\n    \n    for i in range(len(primes)):\n        for j in range(i, len(primes)):\n            for k in range(j, len(primes)):\n                if primes[i] * primes[j] * primes[k] == a:\n                    return True\n    return False",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/76",
+      "ok": false,
+      "raw": "```python\n    if n == 1:\n        return x == 1\n    power = 0\n    while n ** power <= x:\n        if n ** power == x:\n            return True\n        power += 1\n    return False\n```",
+      "completion": "        return x == 1\n    power = 0\n    while n ** power <= x:\n        if n ** power == x:\n            return True\n        power += 1\n    return False",
+      "detail": "File \"/tmp/tmpk13v1cor.py\", line 14\n    return x == 1\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/77",
+      "ok": true,
+      "raw": "```python\n    a = int(a)\n    if a >= 0:\n        return round(a ** (1/3)) ** 3 == a\n    else:\n        return -round((-a) ** (1/3)) ** 3 == a\n```",
+      "completion": "    if a >= 0:\n        return round(a ** (1/3)) ** 3 == a\n    else:\n        return -round((-a) ** (1/3)) ** 3 == a",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/78",
+      "ok": false,
+      "raw": "```python\n    prime_digits = {'2', '3', '5', '7', 'B', 'D'}\n    count = 0\n    for ch in num:\n        if ch in prime_digits:\n            count += 1\n    return count\n```",
+      "completion": "    count = 0\n    for ch in num:\n        if ch in prime_digits:\n            count += 1\n    return count",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpsv6t5xp7.py\", line 42, in <module>\n    check(hex_key)\n  File \"/tmp/tmpsv6t5xp7.py\", line 29, in check\n    assert candidate(\"AB\") == 1, \"First test error: \" + str(candidate(\"AB\"))      \n           ^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsv6t5xp7.py\", line 22, in hex_key\n    if ch in prime_digits:\n             ^^^^^^^^^^^^\nNameError: name 'prime_digits' is not defined"
+    },
+    {
+      "task_id": "HumanEval/79",
+      "ok": false,
+      "raw": "```python\n    if decimal == 0:\n        return \"db0db\"\n    binary = \"\"\n    n = decimal\n    while n > 0:\n        binary = str(n % 2) + binary\n        n //= 2\n    return \"db\" + binary + \"db\"\n```",
+      "completion": "        return \"db0db\"\n    binary = \"\"\n    n = decimal\n    while n > 0:\n        binary = str(n % 2) + binary\n        n //= 2\n    return \"db\" + binary + \"db\"",
+      "detail": "File \"/tmp/tmpn60zcpiw.py\", line 14\n    return \"db0db\"\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/80",
+      "ok": true,
+      "raw": "```python\ndef is_happy(s):\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n            return False\n    return True\n```",
+      "completion": "def is_happy(s):\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n            return False\n    return True",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/81",
+      "ok": false,
+      "raw": "```python\n    letter_grades = []\n    for gpa in grades:\n        if gpa == 4.0:\n            letter_grades.append('A+')\n        elif gpa > 3.7:\n            letter_grades.append('A')\n        elif gpa > 3.3:\n            letter_grades.append('A-')\n        elif gpa > 3.0:\n            letter_grades.append('B+')\n        elif gpa > 2.7:\n            letter_grades.append('B')\n        elif gpa > 2.3:\n            letter_grades.append('B-')\n        elif gpa > 2.0:\n            letter_grades.append('C+')\n        elif gpa > 1.7:\n            letter_grades.append('C')\n        elif gpa > 1.3:\n            letter_grades.append('C-')\n        elif gpa > 1.0:\n            letter_grades.append('D+')\n        elif gpa > 0.7:\n            letter_grades.append('D')\n        elif gpa > 0.0:\n            letter_grades.append('D-')\n        else:\n            letter_grades.append('E')\n    return letter_grades\n```",
+      "completion": "    for gpa in grades:\n        if gpa == 4.0:\n            letter_grades.append('A+')\n        elif gpa > 3.7:\n            letter_grades.append('A')\n        elif gpa > 3.3:\n            letter_grades.append('A-')\n        elif gpa > 3.0:\n            letter_grades.append('B+')\n        elif gpa > 2.7:\n            letter_grades.append('B')\n        elif gpa > 2.3:\n            letter_grades.append('B-')\n        elif gpa > 2.0:\n            letter_grades.append('C+')\n        elif gpa > 1.7:\n            letter_grades.append('C')\n        elif gpa > 1.3:\n            letter_grades.append('C-')\n        elif gpa > 1.0:\n            letter_grades.append('D+')\n        elif gpa > 0.7:\n            letter_grades.append('D')\n        elif gpa > 0.0:\n            letter_grades.append('D-')\n        else:\n            letter_grades.append('E')\n    return letter_grades",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpsrndyrfj.py\", line 71, in <module>\n    check(numerical_letter_grade)\n  File \"/tmp/tmpsrndyrfj.py\", line 59, in check\n    assert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpsrndyrfj.py\", line 29, in numerical_letter_grade\n    letter_grades.append('A+')\n    ^^^^^^^^^^^^^\nNameError: name 'letter_grades' is not defined"
+    },
+    {
+      "task_id": "HumanEval/82",
+      "ok": false,
+      "raw": "```python\n    n = len(string)\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n```",
+      "completion": "    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp689yuw72.py\", line 42, in <module>\n    check(prime_length)\n  File \"/tmp/tmp689yuw72.py\", line 21, in check\n    assert candidate('Hello') == True\n           ^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp689yuw72.py\", line 11, in prime_length\n    if n < 2:\n       ^\nNameError: name 'n' is not defined"
+    },
+    {
+      "task_id": "HumanEval/83",
+      "ok": false,
+      "raw": "```python\ndef starts_one_ends(n):\n    if n == 1:\n        return 1\n    total = 0\n    total += 10 ** (n - 1)  # numbers starting with 1\n    total += 9 * 10 ** (n - 2)  # numbers ending with 1 but not starting with 1\n    return total\n```",
+      "completion": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    total = 0\n    total += 10 ** (n - 1)  # numbers starting with 1\n    total += 9 * 10 ** (n - 2)  # numbers ending with 1 but not starting with 1\n    return total",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp3a6l61k9.py\", line 30, in <module>\n    check(starts_one_ends)\n  File \"/tmp/tmp3a6l61k9.py\", line 20, in check\n    assert candidate(2) == 18\n           ^^^^^^^^^^^^^^^^^^\nAssertionError"
+    },
+    {
+      "task_id": "HumanEval/84",
+      "ok": true,
+      "raw": "```python\ndef solve(N):\n    total = sum(int(d) for d in str(N))\n    return bin(total)[2:]\n```",
+      "completion": "def solve(N):\n    total = sum(int(d) for d in str(N))\n    return bin(total)[2:]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/85",
+      "ok": true,
+      "raw": "    total = 0\n    for i in range(len(lst)):\n        if i % 2 == 1 and lst[i] % 2 == 0:\n            total += lst[i]\n    return total",
+      "completion": "    total = 0\n    for i in range(len(lst)):\n        if i % 2 == 1 and lst[i] % 2 == 0:\n            total += lst[i]\n    return total",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/86",
+      "ok": false,
+      "raw": "```python\n    words = s.split(' ')\n    ordered_words = []\n    for word in words:\n        sorted_chars = sorted(word)\n        ordered_word = ''.join(sorted_chars)\n        ordered_words.append(ordered_word)\n    return ' '.join(ordered_words)\n```",
+      "completion": "    ordered_words = []\n    for word in words:\n        sorted_chars = sorted(word)\n        ordered_word = ''.join(sorted_chars)\n        ordered_words.append(ordered_word)\n    return ' '.join(ordered_words)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpys7r6pzy.py\", line 37, in <module>\n    check(anti_shuffle)\n  File \"/tmp/tmpys7r6pzy.py\", line 25, in check\n    assert candidate('Hi') == 'Hi'\n           ^^^^^^^^^^^^^^^\n  File \"/tmp/tmpys7r6pzy.py\", line 16, in anti_shuffle\n    for word in words:\n                ^^^^^\nNameError: name 'words' is not defined. Did you mean: 'word'?"
+    },
+    {
+      "task_id": "HumanEval/87",
+      "ok": false,
+      "raw": "```python\n    result = []\n    for i, row in enumerate(lst):\n        for j, val in enumerate(row):\n            if val == x:\n                result.append((i, j))\n    result.sort(key=lambda t: (t[0], -t[1]))\n    return result\n```",
+      "completion": "    for i, row in enumerate(lst):\n        for j, val in enumerate(row):\n            if val == x:\n                result.append((i, j))\n    result.sort(key=lambda t: (t[0], -t[1]))\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp8gy_hbj1.py\", line 63, in <module>\n    check(get_row)\n  File \"/tmp/tmp8gy_hbj1.py\", line 32, in check\n    assert candidate([\n           ^^^^^^^^^^^\n  File \"/tmp/tmp8gy_hbj1.py\", line 25, in get_row\n    result.append((i, j))\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/88",
+      "ok": false,
+      "raw": "```python\n    if not array:\n        return []\n    first = array[0]\n    last = array[-1]\n    total = first + last\n    sorted_arr = sorted(array)\n    if total % 2 == 0:\n        sorted_arr.reverse()\n    return sorted_arr\n```",
+      "completion": "        return []\n    first = array[0]\n    last = array[-1]\n    total = first + last\n    sorted_arr = sorted(array)\n    if total % 2 == 0:\n        sorted_arr.reverse()\n    return sorted_arr",
+      "detail": "File \"/tmp/tmpdfwc5cc5.py\", line 17\n    return []\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/89",
+      "ok": true,
+      "raw": "```python\ndef encrypt(s):\n    result = []\n    for ch in s:\n        base = ord('a')\n        offset = ord(ch) - base\n        new_offset = (offset + 2 * 2) % 26\n        result.append(chr(base + new_offset))\n    return ''.join(result)\n```",
+      "completion": "def encrypt(s):\n    result = []\n    for ch in s:\n        base = ord('a')\n        offset = ord(ch) - base\n        new_offset = (offset + 2 * 2) % 26\n        result.append(chr(base + new_offset))\n    return ''.join(result)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/90",
+      "ok": true,
+      "raw": "```python\ndef next_smallest(lst):\n    if len(lst) < 2:\n        return None\n    unique_sorted = sorted(set(lst))\n    if len(unique_sorted) < 2:\n        return None\n    return unique_sorted[1]\n```",
+      "completion": "def next_smallest(lst):\n    if len(lst) < 2:\n        return None\n    unique_sorted = sorted(set(lst))\n    if len(unique_sorted) < 2:\n        return None\n    return unique_sorted[1]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/91",
+      "ok": true,
+      "raw": "```python\ndef is_bored(S):\n    count = 0\n    sentences = []\n    current = []\n    for ch in S:\n        if ch in '.?!':\n            if current:\n                sentences.append(''.join(current).strip())\n                current = []\n        else:\n            current.append(ch)\n    if current:\n        sentences.append(''.join(current).strip())\n    for sent in sentences:\n        words = sent.split()\n        if words and words[0] == 'I':\n            count += 1\n    return count\n```",
+      "completion": "def is_bored(S):\n    count = 0\n    sentences = []\n    current = []\n    for ch in S:\n        if ch in '.?!':\n            if current:\n                sentences.append(''.join(current).strip())\n                current = []\n        else:\n            current.append(ch)\n    if current:\n        sentences.append(''.join(current).strip())\n    for sent in sentences:\n        words = sent.split()\n        if words and words[0] == 'I':\n            count += 1\n    return count",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/92",
+      "ok": false,
+      "raw": "```python\n    if not all(isinstance(i, int) for i in (x, y, z)):\n        return False\n    return any(x == y + z or y == x + z or z == x + y)\n```",
+      "completion": "        return False\n    return any(x == y + z or y == x + z or z == x + y)",
+      "detail": "File \"/tmp/tmp60dsvrzr.py\", line 20\n    return False\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/93",
+      "ok": true,
+      "raw": "```python\n    vowels = 'aeiouAEIOU'\n    result = []\n    for ch in message:\n        if ch.isalpha():\n            if ch.lower() in 'aeiou':\n                base = ord('A') if ch.isupper() else ord('a')\n                new_ch = chr(base + (ord(ch.lower()) - ord('a') + 2) % 26)\n                result.append(new_ch.swapcase())\n            else:\n                result.append(ch.swapcase())\n        else:\n            result.append(ch)\n    return ''.join(result)\n```",
+      "completion": "    result = []\n    for ch in message:\n        if ch.isalpha():\n            if ch.lower() in 'aeiou':\n                base = ord('A') if ch.isupper() else ord('a')\n                new_ch = chr(base + (ord(ch.lower()) - ord('a') + 2) % 26)\n                result.append(new_ch.swapcase())\n            else:\n                result.append(ch.swapcase())\n        else:\n            result.append(ch)\n    return ''.join(result)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/94",
+      "ok": true,
+      "raw": "```python\ndef skjkasdkd(lst):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    max_prime = -1\n    for num in lst:\n        if is_prime(num) and num > max_prime:\n            max_prime = num\n\n    if max_prime == -1:\n        return 0\n\n    return sum(int(d) for d in str(max_prime))\n```",
+      "completion": "def skjkasdkd(lst):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    max_prime = -1\n    for num in lst:\n        if is_prime(num) and num > max_prime:\n            max_prime = num\n\n    if max_prime == -1:\n        return 0\n\n    return sum(int(d) for d in str(max_prime))",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/95",
+      "ok": true,
+      "raw": "```python\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n    if not dict:\n        return False\n    keys = list(dict.keys())\n    if not all(isinstance(k, str) for k in keys):\n        return False\n    lower = all(k.islower() for k in keys)\n    upper = all(k.isupper() for k in keys)\n    return lower or upper\n```",
+      "completion": "def check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n    if not dict:\n        return False\n    keys = list(dict.keys())\n    if not all(isinstance(k, str) for k in keys):\n        return False\n    lower = all(k.islower() for k in keys)\n    upper = all(k.isupper() for k in keys)\n    return lower or upper",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/96",
+      "ok": true,
+      "raw": "```python\ndef count_up_to(n):\n    if n <= 2:\n        return []\n    primes = []\n    for num in range(2, n):\n        is_prime = True\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                is_prime = False\n                break\n        if is_prime:\n            primes.append(num)\n    return primes\n```",
+      "completion": "def count_up_to(n):\n    if n <= 2:\n        return []\n    primes = []\n    for num in range(2, n):\n        is_prime = True\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                is_prime = False\n                break\n        if is_prime:\n            primes.append(num)\n    return primes",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/97",
+      "ok": false,
+      "raw": "```python\n    return (abs(a) % 10) * (abs(b) % 10)\n```",
+      "completion": "return (abs(a) % 10) * (abs(b) % 10)",
+      "detail": "File \"/tmp/tmpfz8w00o3.py\", line 12\n    return (abs(a) % 10) * (abs(b) % 10)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/98",
+      "ok": true,
+      "raw": "```python\ndef count_upper(s):\n    count = 0\n    vowels = set('AEIOU')\n    for i, char in enumerate(s):\n        if i % 2 == 0 and char in vowels:\n            count += 1\n    return count\n```",
+      "completion": "def count_upper(s):\n    count = 0\n    vowels = set('AEIOU')\n    for i, char in enumerate(s):\n        if i % 2 == 0 and char in vowels:\n            count += 1\n    return count",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/99",
+      "ok": true,
+      "raw": "    value = float(value)\n    if value >= 0:\n        return int(value + 0.5)\n    else:\n        return int(value - 0.5)",
+      "completion": "    value = float(value)\n    if value >= 0:\n        return int(value + 0.5)\n    else:\n        return int(value - 0.5)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/100",
+      "ok": false,
+      "raw": "```python\ndef make_a_pile(n):\n    result = [n]\n    current = n\n    for i in range(1, n):\n        if current % 2 == 0:\n            current += 1\n        else:\n            current += 2\n        result.append(current)\n    return result\n```",
+      "completion": "def make_a_pile(n):\n    result = [n]\n    current = n\n    for i in range(1, n):\n        if current % 2 == 0:\n            current += 1\n        else:\n            current += 2\n        result.append(current)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpjzs4nbr5.py\", line 41, in <module>\n    check(make_a_pile)\n  File \"/tmp/tmpjzs4nbr5.py\", line 31, in check\n    assert candidate(4) == [4,6,8,10], \"Test 4\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 4"
+    },
+    {
+      "task_id": "HumanEval/101",
+      "ok": false,
+      "raw": "```python\n    return s.replace(',', ' ').split()\n```",
+      "completion": "return s.replace(',', ' ').split()",
+      "detail": "File \"/tmp/tmp0n4nsru7.py\", line 11\n    return s.replace(',', ' ').split()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: 'return' outside function"
+    },
+    {
+      "task_id": "HumanEval/102",
+      "ok": true,
+      "raw": "    if x > y:\n        return -1\n    # Find the largest even number <= y\n    if y % 2 == 0:\n        largest_even = y\n    else:\n        largest_even = y - 1\n    if largest_even >= x:\n        return largest_even\n    else:\n        return -1",
+      "completion": "    if x > y:\n        return -1\n    # Find the largest even number <= y\n    if y % 2 == 0:\n        largest_even = y\n    else:\n        largest_even = y - 1\n    if largest_even >= x:\n        return largest_even\n    else:\n        return -1",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/103",
+      "ok": false,
+      "raw": "```python\n    if n > m:\n        return -1\n    avg = (n + m) / 2\n    rounded = round(avg)\n    return bin(rounded)\n```",
+      "completion": "        return -1\n    avg = (n + m) / 2\n    rounded = round(avg)\n    return bin(rounded)",
+      "detail": "File \"/tmp/tmp559ry5f3.py\", line 13\n    return -1\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/104",
+      "ok": true,
+      "raw": "    result = []\n    for num in x:\n        digits = str(num)\n        has_even = False\n        for d in digits:\n            if int(d) % 2 == 0:\n                has_even = True\n                break\n        if not has_even:\n            result.append(num)\n    result.sort()\n    return result",
+      "completion": "    result = []\n    for num in x:\n        digits = str(num)\n        has_even = False\n        for d in digits:\n            if int(d) % 2 == 0:\n                has_even = True\n                break\n        if not has_even:\n            result.append(num)\n    result.sort()\n    return result",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/105",
+      "ok": false,
+      "raw": "```python\n    names = [\"Zero\", \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\"]\n    filtered = [x for x in arr if 1 <= x <= 9]\n    filtered.sort()\n    filtered.reverse()\n    return [names[x] for x in filtered]\n```",
+      "completion": "    filtered = [x for x in arr if 1 <= x <= 9]\n    filtered.sort()\n    filtered.reverse()\n    return [names[x] for x in filtered]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpl1eq97o_.py\", line 44, in <module>\n    check(by_length)\n  File \"/tmp/tmpl1eq97o_.py\", line 33, in check\n    assert candidate([2, 1, 1, 4, 5, 8, 2, 3]) == [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpl1eq97o_.py\", line 27, in by_length\n    return [names[x] for x in filtered]\n            ^^^^^\nNameError: name 'names' is not defined"
+    },
+    {
+      "task_id": "HumanEval/106",
+      "ok": false,
+      "raw": "```python\n    result = []\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            fact = 1\n            for j in range(1, i + 1):\n                fact *= j\n            result.append(fact)\n        else:\n            total = 0\n            for j in range(1, i + 1):\n                total += j\n            result.append(total)\n    return result\n```",
+      "completion": "    for i in range(1, n + 1):\n        if i % 2 == 0:\n            fact = 1\n            for j in range(1, i + 1):\n                fact *= j\n            result.append(fact)\n        else:\n            total = 0\n            for j in range(1, i + 1):\n                total += j\n            result.append(total)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpymj3n_pg.py\", line 32, in <module>\n    check(f)\n  File \"/tmp/tmpymj3n_pg.py\", line 26, in check\n    assert candidate(5) == [1, 2, 6, 24, 15]\n           ^^^^^^^^^^^^\n  File \"/tmp/tmpymj3n_pg.py\", line 21, in f\n    result.append(total)\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/107",
+      "ok": false,
+      "raw": "```python\n    even_count = 0\n    odd_count = 0\n    for i in range(1, n + 1):\n        s = str(i)\n        if s == s[::-1]:\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    return (even_count, odd_count)\n```",
+      "completion": "    odd_count = 0\n    for i in range(1, n + 1):\n        s = str(i)\n        if s == s[::-1]:\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    return (even_count, odd_count)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpzlgh5x7d.py\", line 51, in <module>\n    check(even_odd_palindrome)\n  File \"/tmp/tmpzlgh5x7d.py\", line 38, in check\n    assert candidate(123) == (8, 13)\n           ^^^^^^^^^^^^^^\n  File \"/tmp/tmpzlgh5x7d.py\", line 30, in even_odd_palindrome\n    even_count += 1\n    ^^^^^^^^^^\nUnboundLocalError: cannot access local variable 'even_count' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/108",
+      "ok": false,
+      "raw": "    total_count = 0\n    for num in arr:\n        s = str(num)\n        digit_sum = 0\n        i = 0\n        while i < len(s):\n            if s[i] == '-':\n                # start of a negative number\n                i += 1\n                # build the full signed digit\n                start = i-1\n                while i < len(s) and s[i].isdigit():\n                    i += 1\n                signed_digit = int(s[start:i])\n                digit_sum += signed_digit\n            else:\n                # positive digit\n                digit_sum += int(s[i])\n                i += 1\n        if digit_sum > 0:\n            total_count += 1\n    return total_count",
+      "completion": "    total_count = 0\n    for num in arr:\n        s = str(num)\n        digit_sum = 0\n        i = 0\n        while i < len(s):\n            if s[i] == '-':\n                # start of a negative number\n                i += 1\n                # build the full signed digit\n                start = i-1\n                while i < len(s) and s[i].isdigit():\n                    i += 1\n                signed_digit = int(s[start:i])\n                digit_sum += signed_digit\n            else:\n                # positive digit\n                digit_sum += int(s[i])\n                i += 1\n        if digit_sum > 0:\n            total_count += 1\n    return total_count",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp8jy9wf4g.py\", line 52, in <module>\n    check(count_nums)\n  File \"/tmp/tmp8jy9wf4g.py\", line 43, in check\n    assert candidate([12, 23, 34, -45, -56, 0]) == 5\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+    },
+    {
+      "task_id": "HumanEval/109",
+      "ok": false,
+      "raw": "```python\n    if not arr:\n        return True\n    \n    n = len(arr)\n    sorted_arr = sorted(arr)\n    \n    for i in range(n):\n        if arr == sorted_arr:\n            return True\n        arr = [arr[-1]] + arr[:-1]\n    \n    return False\n```",
+      "completion": "        return True\n    \n    n = len(arr)\n    sorted_arr = sorted(arr)\n    \n    for i in range(n):\n        if arr == sorted_arr:\n            return True\n        arr = [arr[-1]] + arr[:-1]\n    \n    return False",
+      "detail": "File \"/tmp/tmp0u5ipu8h.py\", line 29\n    return True\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/110",
+      "ok": false,
+      "raw": "```python\n    odd_count = sum(1 for x in lst1 if x % 2 != 0)\n    even_in_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n    return \"YES\" if even_in_lst2 >= odd_count else \"NO\"\n```",
+      "completion": "    even_in_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n    return \"YES\" if even_in_lst2 >= odd_count else \"NO\"",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpvar7elio.py\", line 33, in <module>\n    check(exchange)\n  File \"/tmp/tmpvar7elio.py\", line 21, in check\n    assert candidate([1, 2, 3, 4], [1, 2, 3, 4]) == \"YES\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpvar7elio.py\", line 16, in exchange\n    return \"YES\" if even_in_lst2 >= odd_count else \"NO\"\n                                    ^^^^^^^^^\nNameError: name 'odd_count' is not defined"
+    },
+    {
+      "task_id": "HumanEval/111",
+      "ok": false,
+      "raw": "```python\n    if not test:\n        return {}\n    letters = test.split()\n    counts = {}\n    for letter in letters:\n        counts[letter] = counts.get(letter, 0) + 1\n    max_count = max(counts.values())\n    return {k: v for k, v in counts.items() if v == max_count}\n```",
+      "completion": "        return {}\n    letters = test.split()\n    counts = {}\n    for letter in letters:\n        counts[letter] = counts.get(letter, 0) + 1\n    max_count = max(counts.values())\n    return {k: v for k, v in counts.items() if v == max_count}",
+      "detail": "File \"/tmp/tmpbu4mbcp0.py\", line 15\n    return {}\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/112",
+      "ok": true,
+      "raw": "```python\ndef reverse_delete(s,c):\n    result = ''.join(ch for ch in s if ch not in c)\n    return (result, result == result[::-1])\n```",
+      "completion": "def reverse_delete(s,c):\n    result = ''.join(ch for ch in s if ch not in c)\n    return (result, result == result[::-1])",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/113",
+      "ok": false,
+      "raw": "```python\n    result = []\n    for i, s in enumerate(lst):\n        count = sum(1 for ch in s if int(ch) % 2 == 1)\n        # Replace all 'i' with count in the template string\n        template = \"the number of odd elements in the string i of the input.\"\n        # Replace 'i' with count, but also handle the word 'in' -> count + 'n'\n        # We need to replace all occurrences of 'i' with count, but careful with 'in' -> count + 'n'\n        # Actually, the examples show that 'in' becomes count + 'n', and 'input' becomes count + 'nput'\n        # So we replace every 'i' with count, but if the next character is 'n', we keep the 'n'\n        # However, the examples show that 'in' becomes '4n', '1n', '8n' etc.\n        # So we simply replace all 'i' with count, and then adjust 'in' to be count + 'n'? \n        # Actually, the template has 'in' and 'input', so after replacing 'i' with count, \n        # we get e.g., \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n        # So we just do a global replace of 'i' with str(count)\n        replaced = template.replace('i', str(count))\n        result.append(replaced)\n    return result\n```",
+      "completion": "    for i, s in enumerate(lst):\n        count = sum(1 for ch in s if int(ch) % 2 == 1)\n        # Replace all 'i' with count in the template string\n        template = \"the number of odd elements in the string i of the input.\"\n        # Replace 'i' with count, but also handle the word 'in' -> count + 'n'\n        # We need to replace all occurrences of 'i' with count, but careful with 'in' -> count + 'n'\n        # Actually, the examples show that 'in' becomes count + 'n', and 'input' becomes count + 'nput'\n        # So we replace every 'i' with count, but if the next character is 'n', we keep the 'n'\n        # However, the examples show that 'in' becomes '4n', '1n', '8n' etc.\n        # So we simply replace all 'i' with count, and then adjust 'in' to be count + 'n'? \n        # Actually, the template has 'in' and 'input', so after replacing 'i' with count, \n        # we get e.g., \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n        # So we just do a global replace of 'i' with str(count)\n        replaced = template.replace('i', str(count))\n        result.append(replaced)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpoqrpjpdt.py\", line 47, in <module>\n    check(odd_count)\n  File \"/tmp/tmpoqrpjpdt.py\", line 34, in check\n    assert candidate(['1234567']) == [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"], \"Test 1\"\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpoqrpjpdt.py\", line 28, in odd_count\n    result.append(replaced)\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/114",
+      "ok": false,
+      "raw": "```python\n    n = len(nums)\n    min_sum = float('inf')\n    current_sum = 0\n    for i in range(n):\n        current_sum = min(nums[i], current_sum + nums[i])\n        min_sum = min(min_sum, current_sum)\n    return min_sum\n```",
+      "completion": "    min_sum = float('inf')\n    current_sum = 0\n    for i in range(n):\n        current_sum = min(nums[i], current_sum + nums[i])\n        min_sum = min(min_sum, current_sum)\n    return min_sum",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpvdkkxmcl.py\", line 36, in <module>\n    check(minSubArraySum)\n  File \"/tmp/tmpvdkkxmcl.py\", line 20, in check\n    assert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpvdkkxmcl.py\", line 12, in minSubArraySum\n    for i in range(n):\n                   ^\nNameError: name 'n' is not defined"
+    },
+    {
+      "task_id": "HumanEval/115",
+      "ok": false,
+      "raw": "```python\n    total = 0\n    for row in grid:\n        water = sum(row)\n        if water > 0:\n            total += math.ceil(water / capacity)\n    return total\n```",
+      "completion": "    for row in grid:\n        water = sum(row)\n        if water > 0:\n            total += math.ceil(water / capacity)\n    return total",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpt7a9vzw5.py\", line 59, in <module>\n    check(max_fill)\n  File \"/tmp/tmpt7a9vzw5.py\", line 48, in check\n    assert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpt7a9vzw5.py\", line 40, in max_fill\n    total += math.ceil(water / capacity)\n    ^^^^^\nUnboundLocalError: cannot access local variable 'total' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/116",
+      "ok": false,
+      "raw": "```python\ndef sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x if x >= 0 else (1 << 32) + x).count('1'), x))\n```",
+      "completion": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x if x >= 0 else (1 << 32) + x).count('1'), x))",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpvz74ibzv.py\", line 34, in <module>\n    check(sort_array)\n  File \"/tmp/tmpvz74ibzv.py\", line 21, in check\n    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+    },
+    {
+      "task_id": "HumanEval/117",
+      "ok": true,
+      "raw": "```python\ndef select_words(s, n):\n    if not s:\n        return []\n    vowels = set(\"aeiouAEIOU\")\n    words = s.split()\n    result = []\n    for word in words:\n        cons_count = sum(1 for ch in word if ch.isalpha() and ch not in vowels)\n        if cons_count == n:\n            result.append(word)\n    return result\n```",
+      "completion": "def select_words(s, n):\n    if not s:\n        return []\n    vowels = set(\"aeiouAEIOU\")\n    words = s.split()\n    result = []\n    for word in words:\n        cons_count = sum(1 for ch in word if ch.isalpha() and ch not in vowels)\n        if cons_count == n:\n            result.append(word)\n    return result",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/118",
+      "ok": false,
+      "raw": "```python\n    vowels = set('aeiouAEIOU')\n    consonants = set('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ')\n    n = len(word)\n    for i in range(n-2, 0, -1):\n        if word[i] in vowels:\n            if word[i-1] in consonants and word[i+1] in consonants:\n                return word[i]\n    return \"\"\n```",
+      "completion": "    consonants = set('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ')\n    n = len(word)\n    for i in range(n-2, 0, -1):\n        if word[i] in vowels:\n            if word[i-1] in consonants and word[i+1] in consonants:\n                return word[i]\n    return \"\"",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp_2d527_0.py\", line 47, in <module>\n    check(get_closest_vowel)\n  File \"/tmp/tmp_2d527_0.py\", line 28, in check\n    assert candidate(\"yogurt\") == \"u\"\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp_2d527_0.py\", line 20, in get_closest_vowel\n    if word[i] in vowels:\n                  ^^^^^^\nNameError: name 'vowels' is not defined"
+    },
+    {
+      "task_id": "HumanEval/119",
+      "ok": true,
+      "raw": "```python\ndef match_parens(lst):\n    s1, s2 = lst[0], lst[1]\n    \n    def is_balanced(s):\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False, bal\n        return True, bal\n    \n    # Try both orders\n    for order in [(s1, s2), (s2, s1)]:\n        first_balanced, first_bal = is_balanced(order[0])\n        if not first_balanced:\n            continue\n        # Check if concatenation can be balanced\n        temp_bal = first_bal\n        valid = True\n        for ch in order[1]:\n            if ch == '(':\n                temp_bal += 1\n            else:\n                temp_bal -= 1\n            if temp_bal < 0:\n                valid = False\n                break\n        if valid and temp_bal == 0:\n            return 'Yes'\n    \n    return 'No'\n```",
+      "completion": "def match_parens(lst):\n    s1, s2 = lst[0], lst[1]\n    \n    def is_balanced(s):\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False, bal\n        return True, bal\n    \n    # Try both orders\n    for order in [(s1, s2), (s2, s1)]:\n        first_balanced, first_bal = is_balanced(order[0])\n        if not first_balanced:\n            continue\n        # Check if concatenation can be balanced\n        temp_bal = first_bal\n        valid = True\n        for ch in order[1]:\n            if ch == '(':\n                temp_bal += 1\n            else:\n                temp_bal -= 1\n            if temp_bal < 0:\n                valid = False\n                break\n        if valid and temp_bal == 0:\n            return 'Yes'\n    \n    return 'No'",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/120",
+      "ok": false,
+      "raw": "```python\n    sorted_arr = sorted(arr)\n    return sorted_arr[-k:]\n```",
+      "completion": "    return sorted_arr[-k:]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmp9cxn8lka.py\", line 48, in <module>\n    check(maximum)\n  File \"/tmp/tmp9cxn8lka.py\", line 32, in check\n    assert candidate([-3, -4, 5], 3) == [-4, -3, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmp9cxn8lka.py\", line 27, in maximum\n    return sorted_arr[-k:]\n           ^^^^^^^^^^\nNameError: name 'sorted_arr' is not defined"
+    },
+    {
+      "task_id": "HumanEval/121",
+      "ok": false,
+      "raw": "```python\n    total = 0\n    for i, num in enumerate(lst):\n        if i % 2 == 0 and num % 2 != 0:\n            total += num\n    return total\n```",
+      "completion": "    for i, num in enumerate(lst):\n        if i % 2 == 0 and num % 2 != 0:\n            total += num\n    return total",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmplyt2roin.py\", line 31, in <module>\n    check(solution)\n  File \"/tmp/tmplyt2roin.py\", line 19, in check\n    assert candidate([5, 8, 7, 1])    == 12\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmplyt2roin.py\", line 13, in solution\n    total += num\n    ^^^^^\nUnboundLocalError: cannot access local variable 'total' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/122",
+      "ok": true,
+      "raw": "    total = 0\n    for i in range(min(k, len(arr))):\n        if abs(arr[i]) < 100:\n            total += arr[i]\n    return total",
+      "completion": "    total = 0\n    for i in range(min(k, len(arr))):\n        if abs(arr[i]) < 100:\n            total += arr[i]\n    return total",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/123",
+      "ok": true,
+      "raw": "```python\ndef get_odd_collatz(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n = n // 2\n        else:\n            n = 3 * n + 1\n        sequence.append(n)\n    odd_numbers = sorted([x for x in sequence if x % 2 == 1])\n    return odd_numbers\n```",
+      "completion": "def get_odd_collatz(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n = n // 2\n        else:\n            n = 3 * n + 1\n        sequence.append(n)\n    odd_numbers = sorted([x for x in sequence if x % 2 == 1])\n    return odd_numbers",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/124",
+      "ok": true,
+      "raw": "```python\ndef valid_date(date):\n    if not date:\n        return False\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    month_str, day_str, year_str = parts\n    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):\n        return False\n    month = int(month_str)\n    day = int(day_str)\n    year = int(year_str)\n    if month < 1 or month > 12:\n        return False\n    days_in_month = {\n        1: 31, 3: 31, 5: 31, 7: 31, 8: 31, 10: 31, 12: 31,\n        4: 30, 6: 30, 9: 30, 11: 30,\n        2: 29\n    }\n    if day < 1 or day > days_in_month.get(month, 0):\n        return False\n    return True\n```",
+      "completion": "def valid_date(date):\n    if not date:\n        return False\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    month_str, day_str, year_str = parts\n    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):\n        return False\n    month = int(month_str)\n    day = int(day_str)\n    year = int(year_str)\n    if month < 1 or month > 12:\n        return False\n    days_in_month = {\n        1: 31, 3: 31, 5: 31, 7: 31, 8: 31, 10: 31, 12: 31,\n        4: 30, 6: 30, 9: 30, 11: 30,\n        2: 29\n    }\n    if day < 1 or day > days_in_month.get(month, 0):\n        return False\n    return True",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/125",
+      "ok": true,
+      "raw": "```python\ndef split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for ch in txt:\n            if ch.islower():\n                if (ord(ch) - ord('a')) % 2 == 1:\n                    count += 1\n        return count\n```",
+      "completion": "def split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for ch in txt:\n            if ch.islower():\n                if (ord(ch) - ord('a')) % 2 == 1:\n                    count += 1\n        return count",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/126",
+      "ok": false,
+      "raw": "```python\n    if len(lst) <= 1:\n        return True\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n    # Check for more than one duplicate of the same number\n    from collections import Counter\n    counts = Counter(lst)\n    for count in counts.values():\n        if count > 2:\n            return False\n    return True\n```",
+      "completion": "        return True\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n    # Check for more than one duplicate of the same number\n    from collections import Counter\n    counts = Counter(lst)\n    for count in counts.values():\n        if count > 2:\n            return False\n    return True",
+      "detail": "File \"/tmp/tmpvbiu_654.py\", line 18\n    return True\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/127",
+      "ok": true,
+      "raw": "```python\ndef intersection(interval1, interval2):\n    start1, end1 = interval1\n    start2, end2 = interval2\n    inter_start = max(start1, start2)\n    inter_end = min(end1, end2)\n    if inter_start > inter_end:\n        return \"NO\"\n    length = inter_end - inter_start\n    if length <= 1:\n        return \"NO\"\n    for i in range(2, int(length**0.5) + 1):\n        if length % i == 0:\n            return \"NO\"\n    return \"YES\"\n```",
+      "completion": "def intersection(interval1, interval2):\n    start1, end1 = interval1\n    start2, end2 = interval2\n    inter_start = max(start1, start2)\n    inter_end = min(end1, end2)\n    if inter_start > inter_end:\n        return \"NO\"\n    length = inter_end - inter_start\n    if length <= 1:\n        return \"NO\"\n    for i in range(2, int(length**0.5) + 1):\n        if length % i == 0:\n            return \"NO\"\n    return \"YES\"",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/128",
+      "ok": true,
+      "raw": "```python\ndef prod_signs(arr):\n    if not arr:\n        return None\n    product = 1\n    magnitude_sum = 0\n    for num in arr:\n        magnitude_sum += abs(num)\n        if num > 0:\n            product *= 1\n        elif num < 0:\n            product *= -1\n        else:\n            product *= 0\n    return magnitude_sum * product\n```",
+      "completion": "def prod_signs(arr):\n    if not arr:\n        return None\n    product = 1\n    magnitude_sum = 0\n    for num in arr:\n        magnitude_sum += abs(num)\n        if num > 0:\n            product *= 1\n        elif num < 0:\n            product *= -1\n        else:\n            product *= 0\n    return magnitude_sum * product",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/129",
+      "ok": true,
+      "raw": "```python\ndef minPath(grid, k):\n    n = len(grid)\n    # Flatten grid to map value -> (r, c)\n    pos = {}\n    for r in range(n):\n        for c in range(n):\n            pos[grid[r][c]] = (r, c)\n    # All values from 1 to n*n\n    all_vals = list(range(1, n * n + 1))\n    # Precompute neighbors for each cell\n    neighbors = {}\n    for r in range(n):\n        for c in range(n):\n            nb = []\n            for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n:\n                    nb.append((nr, nc))\n            neighbors[(r, c)] = nb\n    # DP: dp[(r, c, steps)] = best list of length steps starting at (r, c)\n    # We'll store as tuple for lexicographic comparison\n    from functools import lru_cache\n    @lru_cache(None)\n    def dfs(r, c, steps):\n        if steps == 1:\n            return (grid[r][c],)\n        best = None\n        for nr, nc in neighbors[(r, c)]:\n            cand = (grid[r][c],) + dfs(nr, nc, steps - 1)\n            if best is None or cand < best:\n                best = cand\n        return best\n    # Try all starting cells\n    best_path = None\n    for r in range(n):\n        for c in range(n):\n            cand = dfs(r, c, k)\n            if best_path is None or cand < best_path:\n                best_path = cand\n    return list(best_path)\n```",
+      "completion": "def minPath(grid, k):\n    n = len(grid)\n    # Flatten grid to map value -> (r, c)\n    pos = {}\n    for r in range(n):\n        for c in range(n):\n            pos[grid[r][c]] = (r, c)\n    # All values from 1 to n*n\n    all_vals = list(range(1, n * n + 1))\n    # Precompute neighbors for each cell\n    neighbors = {}\n    for r in range(n):\n        for c in range(n):\n            nb = []\n            for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n:\n                    nb.append((nr, nc))\n            neighbors[(r, c)] = nb\n    # DP: dp[(r, c, steps)] = best list of length steps starting at (r, c)\n    # We'll store as tuple for lexicographic comparison\n    from functools import lru_cache\n    @lru_cache(None)\n    def dfs(r, c, steps):\n        if steps == 1:\n            return (grid[r][c],)\n        best = None\n        for nr, nc in neighbors[(r, c)]:\n            cand = (grid[r][c],) + dfs(nr, nc, steps - 1)\n            if best is None or cand < best:\n                best = cand\n        return best\n    # Try all starting cells\n    best_path = None\n    for r in range(n):\n        for c in range(n):\n            cand = dfs(r, c, k)\n            if best_path is None or cand < best_path:\n                best_path = cand\n    return list(best_path)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/130",
+      "ok": false,
+      "raw": "```python\n    if n == 0:\n        return [1]\n    memo = {1: 3}\n    def tri_helper(k):\n        if k in memo:\n            return memo[k]\n        if k % 2 == 0:\n            res = 1 + k // 2\n        else:\n            res = tri_helper(k - 1) + tri_helper(k - 2) + tri_helper(k + 1)\n        memo[k] = res\n        return res\n    for i in range(1, n + 1):\n        tri_helper(i)\n    return [memo.get(i, 1) for i in range(n + 1)]\n```",
+      "completion": "        return [1]\n    memo = {1: 3}\n    def tri_helper(k):\n        if k in memo:\n            return memo[k]\n        if k % 2 == 0:\n            res = 1 + k // 2\n        else:\n            res = tri_helper(k - 1) + tri_helper(k - 2) + tri_helper(k + 1)\n        memo[k] = res\n        return res\n    for i in range(1, n + 1):\n        tri_helper(i)\n    return [memo.get(i, 1) for i in range(n + 1)]",
+      "detail": "File \"/tmp/tmpfxsvgr67.py\", line 19\n    return [1]\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/131",
+      "ok": false,
+      "raw": "```python\n    product = 1\n    has_odd = False\n    for digit in str(n):\n        d = int(digit)\n        if d % 2 == 1:\n            product *= d\n            has_odd = True\n    return product if has_odd else 0\n```",
+      "completion": "    has_odd = False\n    for digit in str(n):\n        d = int(digit)\n        if d % 2 == 1:\n            product *= d\n            has_odd = True\n    return product if has_odd else 0",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpa97ow95g.py\", line 33, in <module>\n    check(digits)\n  File \"/tmp/tmpa97ow95g.py\", line 21, in check\n    assert candidate(5) == 5\n           ^^^^^^^^^^^^\n  File \"/tmp/tmpa97ow95g.py\", line 14, in digits\n    product *= d\n    ^^^^^^^\nUnboundLocalError: cannot access local variable 'product' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/132",
+      "ok": false,
+      "raw": "```python\ndef is_nested(string):\n    stack = []\n    for ch in string:\n        if ch == '[':\n            stack.append(ch)\n        else:  # ch == ']'\n            if stack:\n                stack.pop()\n                if stack:  # at least one '[' remains, meaning nesting exists\n                    return True\n    return False\n```",
+      "completion": "def is_nested(string):\n    stack = []\n    for ch in string:\n        if ch == '[':\n            stack.append(ch)\n        else:  # ch == ']'\n            if stack:\n                stack.pop()\n                if stack:  # at least one '[' remains, meaning nesting exists\n                    return True\n    return False",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpr8fx_dng.py\", line 49, in <module>\n    check(is_nested)\n  File \"/tmp/tmpr8fx_dng.py\", line 31, in check\n    assert candidate('[]]]]]]][[[[[]') == False\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError"
+    },
+    {
+      "task_id": "HumanEval/133",
+      "ok": true,
+      "raw": "```python\ndef sum_squares(lst):\n    import math\n    total = 0\n    for num in lst:\n        total += math.ceil(num) ** 2\n    return total\n```",
+      "completion": "def sum_squares(lst):\n    import math\n    total = 0\n    for num in lst:\n        total += math.ceil(num) ** 2\n    return total",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/134",
+      "ok": true,
+      "raw": "    if not txt:\n        return False\n    last_char = txt[-1]\n    if not last_char.isalpha():\n        return False\n    # Check if the last character is part of a word (i.e., preceded by a non-space)\n    if len(txt) > 1 and txt[-2] != ' ':\n        return False\n    return True",
+      "completion": "    if not txt:\n        return False\n    last_char = txt[-1]\n    if not last_char.isalpha():\n        return False\n    # Check if the last character is part of a word (i.e., preceded by a non-space)\n    if len(txt) > 1 and txt[-2] != ' ':\n        return False\n    return True",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/135",
+      "ok": true,
+      "raw": "```python\ndef can_arrange(arr):\n    for i in range(len(arr)-1, 0, -1):\n        if arr[i] <= arr[i-1]:\n            return i\n    return -1\n```",
+      "completion": "def can_arrange(arr):\n    for i in range(len(arr)-1, 0, -1):\n        if arr[i] <= arr[i-1]:\n            return i\n    return -1",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/136",
+      "ok": true,
+      "raw": "```python\ndef largest_smallest_integers(lst):\n    neg = [x for x in lst if x < 0]\n    pos = [x for x in lst if x > 0]\n    a = max(neg) if neg else None\n    b = min(pos) if pos else None\n    return (a, b)\n```",
+      "completion": "def largest_smallest_integers(lst):\n    neg = [x for x in lst if x < 0]\n    pos = [x for x in lst if x > 0]\n    a = max(neg) if neg else None\n    b = min(pos) if pos else None\n    return (a, b)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/137",
+      "ok": true,
+      "raw": "```python\ndef compare_one(a, b):\n    def to_float(val):\n        if isinstance(val, str):\n            val = val.replace(',', '.')\n        return float(val)\n    \n    a_float = to_float(a)\n    b_float = to_float(b)\n    \n    if a_float == b_float:\n        return None\n    elif a_float > b_float:\n        return a\n    else:\n        return b\n```",
+      "completion": "def compare_one(a, b):\n    def to_float(val):\n        if isinstance(val, str):\n            val = val.replace(',', '.')\n        return float(val)\n    \n    a_float = to_float(a)\n    b_float = to_float(b)\n    \n    if a_float == b_float:\n        return None\n    elif a_float > b_float:\n        return a\n    else:\n        return b",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/138",
+      "ok": false,
+      "raw": "```python\n    if n < 8:\n        return False\n    # The sum of 4 positive even numbers is at least 2+2+2+2 = 8\n    # For n to be representable as sum of 4 positive even numbers,\n    # n must be even and at least 8.\n    if n % 2 != 0:\n        return False\n    # If n is even and >= 8, we can always represent it as:\n    # 2 + 2 + 2 + (n-6)  (since n-6 is even and >= 2)\n    return True\n```",
+      "completion": "        return False\n    # The sum of 4 positive even numbers is at least 2+2+2+2 = 8\n    # For n to be representable as sum of 4 positive even numbers,\n    # n must be even and at least 8.\n    if n % 2 != 0:\n        return False\n    # If n is even and >= 8, we can always represent it as:\n    # 2 + 2 + 2 + (n-6)  (since n-6 is even and >= 2)\n    return True",
+      "detail": "File \"/tmp/tmpake7rjd3.py\", line 9\n    return False\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/139",
+      "ok": true,
+      "raw": "```python\n    def special_factorial(n):\n        result = 1\n        for i in range(1, n + 1):\n            factorial_i = 1\n            for j in range(1, i + 1):\n                factorial_i *= j\n            result *= factorial_i\n        return result\n```",
+      "completion": "def special_factorial(n):\n        result = 1\n        for i in range(1, n + 1):\n            factorial_i = 1\n            for j in range(1, i + 1):\n                factorial_i *= j\n            result *= factorial_i\n        return result",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/140",
+      "ok": false,
+      "raw": "```python\n    result = []\n    i = 0\n    n = len(text)\n    while i < n:\n        if text[i] == ' ':\n            count = 1\n            while i + count < n and text[i + count] == ' ':\n                count += 1\n            if count > 2:\n                result.append('-')\n            else:\n                result.append('_' * count)\n            i += count\n        else:\n            result.append(text[i])\n            i += 1\n    return ''.join(result)\n```",
+      "completion": "    i = 0\n    n = len(text)\n    while i < n:\n        if text[i] == ' ':\n            count = 1\n            while i + count < n and text[i + count] == ' ':\n                count += 1\n            if count > 2:\n                result.append('-')\n            else:\n                result.append('_' * count)\n            i += count\n        else:\n            result.append(text[i])\n            i += 1\n    return ''.join(result)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpbc5gsukf.py\", line 43, in <module>\n    check(fix_spaces)\n  File \"/tmp/tmpbc5gsukf.py\", line 33, in check\n    assert candidate(\"Example\") == \"Example\", \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpbc5gsukf.py\", line 26, in fix_spaces\n    result.append(text[i])\n    ^^^^^^\nNameError: name 'result' is not defined"
+    },
+    {
+      "task_id": "HumanEval/141",
+      "ok": true,
+      "raw": "```python\ndef file_name_check(file_name):\n    if file_name.count('.') != 1:\n        return 'No'\n    before_dot, after_dot = file_name.split('.')\n    if not before_dot or not before_dot[0].isalpha():\n        return 'No'\n    if after_dot not in ['txt', 'exe', 'dll']:\n        return 'No'\n    digit_count = sum(c.isdigit() for c in file_name)\n    if digit_count > 3:\n        return 'No'\n    return 'Yes'\n```",
+      "completion": "def file_name_check(file_name):\n    if file_name.count('.') != 1:\n        return 'No'\n    before_dot, after_dot = file_name.split('.')\n    if not before_dot or not before_dot[0].isalpha():\n        return 'No'\n    if after_dot not in ['txt', 'exe', 'dll']:\n        return 'No'\n    digit_count = sum(c.isdigit() for c in file_name)\n    if digit_count > 3:\n        return 'No'\n    return 'Yes'",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/142",
+      "ok": false,
+      "raw": "```python\n    result = 0\n    for i, num in enumerate(lst):\n        if i % 3 == 0:\n            result += num ** 2\n        elif i % 4 == 0:\n            result += num ** 3\n        else:\n            result += num\n    return result\n```",
+      "completion": "    for i, num in enumerate(lst):\n        if i % 3 == 0:\n            result += num ** 2\n        elif i % 4 == 0:\n            result += num ** 3\n        else:\n            result += num\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpv21fy5sn.py\", line 44, in <module>\n    check(sum_squares)\n  File \"/tmp/tmpv21fy5sn.py\", line 28, in check\n    assert candidate([1,2,3]) == 6\n           ^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpv21fy5sn.py\", line 17, in sum_squares\n    result += num ** 2\n    ^^^^^^\nUnboundLocalError: cannot access local variable 'result' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/143",
+      "ok": true,
+      "raw": "```python\ndef words_in_sentence(sentence):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    words = sentence.split()\n    result_words = [word for word in words if is_prime(len(word))]\n    return ' '.join(result_words)\n```",
+      "completion": "def words_in_sentence(sentence):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    words = sentence.split()\n    result_words = [word for word in words if is_prime(len(word))]\n    return ' '.join(result_words)",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/144",
+      "ok": true,
+      "raw": "```python\ndef simplify(x, n):\n    num_x, den_x = map(int, x.split('/'))\n    num_n, den_n = map(int, n.split('/'))\n    numerator = num_x * num_n\n    denominator = den_x * den_n\n    return numerator % denominator == 0\n```",
+      "completion": "def simplify(x, n):\n    num_x, den_x = map(int, x.split('/'))\n    num_n, den_n = map(int, n.split('/'))\n    numerator = num_x * num_n\n    denominator = den_x * den_n\n    return numerator % denominator == 0",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/145",
+      "ok": false,
+      "raw": "```python\n    def digit_sum(n):\n        return sum(int(d) for d in str(abs(n)))\n    \n    indexed_nums = [(digit_sum(num), i, num) for i, num in enumerate(nums)]\n    indexed_nums.sort(key=lambda x: (x[0], x[1]))\n    return [num for _, _, num in indexed_nums]\n```",
+      "completion": "def digit_sum(n):\n        return sum(int(d) for d in str(abs(n)))\n    \n    indexed_nums = [(digit_sum(num), i, num) for i, num in enumerate(nums)]\n    indexed_nums.sort(key=lambda x: (x[0], x[1]))\n    return [num for _, _, num in indexed_nums]",
+      "detail": "File \"/tmp/tmptamf6qvu.py\", line 16\n    indexed_nums = [(digit_sum(num), i, num) for i, num in enumerate(nums)]\n                                                                           ^\nIndentationError: unindent does not match any outer indentation level"
+    },
+    {
+      "task_id": "HumanEval/146",
+      "ok": true,
+      "raw": "```python\ndef specialFilter(nums):\n    count = 0\n    for num in nums:\n        if num > 10:\n            s = str(abs(num))\n            first = int(s[0])\n            last = int(s[-1])\n            if first % 2 == 1 and last % 2 == 1:\n                count += 1\n    return count\n```",
+      "completion": "def specialFilter(nums):\n    count = 0\n    for num in nums:\n        if num > 10:\n            s = str(abs(num))\n            first = int(s[0])\n            last = int(s[-1])\n            if first % 2 == 1 and last % 2 == 1:\n                count += 1\n    return count",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/147",
+      "ok": true,
+      "raw": "```python\ndef get_max_triples(n):\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    mod_counts = [0, 0, 0]\n    for val in a:\n        mod_counts[val % 3] += 1\n    \n    total = 0\n    total += mod_counts[0] * (mod_counts[0] - 1) * (mod_counts[0] - 2) // 6\n    total += mod_counts[1] * (mod_counts[1] - 1) * (mod_counts[1] - 2) // 6\n    total += mod_counts[2] * (mod_counts[2] - 1) * (mod_counts[2] - 2) // 6\n    total += mod_counts[0] * mod_counts[1] * mod_counts[2]\n    \n    return total\n```",
+      "completion": "def get_max_triples(n):\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    mod_counts = [0, 0, 0]\n    for val in a:\n        mod_counts[val % 3] += 1\n    \n    total = 0\n    total += mod_counts[0] * (mod_counts[0] - 1) * (mod_counts[0] - 2) // 6\n    total += mod_counts[1] * (mod_counts[1] - 1) * (mod_counts[1] - 2) // 6\n    total += mod_counts[2] * (mod_counts[2] - 1) * (mod_counts[2] - 2) // 6\n    total += mod_counts[0] * mod_counts[1] * mod_counts[2]\n    \n    return total",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/148",
+      "ok": true,
+      "raw": "```python\ndef bf(planet1, planet2):\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    i1 = planets.index(planet1)\n    i2 = planets.index(planet2)\n    start = min(i1, i2) + 1\n    end = max(i1, i2)\n    return tuple(planets[start:end])\n```",
+      "completion": "def bf(planet1, planet2):\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    i1 = planets.index(planet1)\n    i2 = planets.index(planet2)\n    start = min(i1, i2) + 1\n    end = max(i1, i2)\n    return tuple(planets[start:end])",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/149",
+      "ok": true,
+      "raw": "```python\ndef sorted_list_sum(lst):\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    filtered.sort(key=lambda s: (len(s), s))\n    return filtered\n```",
+      "completion": "def sorted_list_sum(lst):\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    filtered.sort(key=lambda s: (len(s), s))\n    return filtered",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/150",
+      "ok": true,
+      "raw": "```python\ndef x_or_y(n, x, y):\n    if n < 2:\n        return y\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return y\n    return x\n```",
+      "completion": "def x_or_y(n, x, y):\n    if n < 2:\n        return y\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return y\n    return x",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/151",
+      "ok": false,
+      "raw": "```python\n    total = 0\n    for num in lst:\n        if isinstance(num, int) and num > 0 and num % 2 == 1:\n            total += num * num\n    return total\n```",
+      "completion": "    for num in lst:\n        if isinstance(num, int) and num > 0 and num % 2 == 1:\n            total += num * num\n    return total",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpj7vi_srl.py\", line 37, in <module>\n    check(double_the_difference)\n  File \"/tmp/tmpj7vi_srl.py\", line 22, in check\n    assert candidate([]) == 0 , \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^\n  File \"/tmp/tmpj7vi_srl.py\", line 17, in double_the_difference\n    return total\n           ^^^^^\nUnboundLocalError: cannot access local variable 'total' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/152",
+      "ok": true,
+      "raw": "```python\ndef compare(game,guess):\n    return [abs(game[i] - guess[i]) if game[i] != guess[i] else 0 for i in range(len(game))]\n```",
+      "completion": "def compare(game,guess):\n    return [abs(game[i] - guess[i]) if game[i] != guess[i] else 0 for i in range(len(game))]",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/153",
+      "ok": true,
+      "raw": "```python\ndef Strongest_Extension(class_name, extensions):\n    strongest_strength = None\n    strongest_extension = None\n    for ext in extensions:\n        cap = sum(1 for c in ext if c.isupper())\n        sm = sum(1 for c in ext if c.islower())\n        strength = cap - sm\n        if strongest_strength is None or strength > strongest_strength:\n            strongest_strength = strength\n            strongest_extension = ext\n    return f\"{class_name}.{strongest_extension}\"\n```",
+      "completion": "def Strongest_Extension(class_name, extensions):\n    strongest_strength = None\n    strongest_extension = None\n    for ext in extensions:\n        cap = sum(1 for c in ext if c.isupper())\n        sm = sum(1 for c in ext if c.islower())\n        strength = cap - sm\n        if strongest_strength is None or strength > strongest_strength:\n            strongest_strength = strength\n            strongest_extension = ext\n    return f\"{class_name}.{strongest_extension}\"",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/154",
+      "ok": false,
+      "raw": "```python\n    for i in range(len(b)):\n        rotated = b[i:] + b[:i]\n        if rotated in a:\n            return True\n    return False\n```",
+      "completion": "        rotated = b[i:] + b[:i]\n        if rotated in a:\n            return True\n    return False",
+      "detail": "File \"/tmp/tmp7oiqmw08.py\", line 12\n    rotated = b[i:] + b[:i]\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/155",
+      "ok": false,
+      "raw": "```python\n    num_str = str(abs(num))\n    even_count = 0\n    odd_count = 0\n    for digit in num_str:\n        if int(digit) % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    return (even_count, odd_count)\n```",
+      "completion": "    even_count = 0\n    odd_count = 0\n    for digit in num_str:\n        if int(digit) % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    return (even_count, odd_count)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmps028y7km.py\", line 36, in <module>\n    check(even_odd_count)\n  File \"/tmp/tmps028y7km.py\", line 21, in check\n    assert candidate(7) == (0, 1)\n           ^^^^^^^^^^^^\n  File \"/tmp/tmps028y7km.py\", line 11, in even_odd_count\n    for digit in num_str:\n                 ^^^^^^^\nNameError: name 'num_str' is not defined"
+    },
+    {
+      "task_id": "HumanEval/156",
+      "ok": true,
+      "raw": "```python\ndef int_to_mini_roman(number):\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syb = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num = ''\n    i = 0\n    while number > 0:\n        for _ in range(number // val[i]):\n            roman_num += syb[i]\n            number -= val[i]\n        i += 1\n    return roman_num.lower()\n```",
+      "completion": "def int_to_mini_roman(number):\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syb = [\n        \"M\", \"CM\", \"D\", \"CD\",\n        \"C\", \"XC\", \"L\", \"XL\",\n        \"X\", \"IX\", \"V\", \"IV\",\n        \"I\"\n    ]\n    roman_num = ''\n    i = 0\n    while number > 0:\n        for _ in range(number // val[i]):\n            roman_num += syb[i]\n            number -= val[i]\n        i += 1\n    return roman_num.lower()",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/157",
+      "ok": false,
+      "raw": "```python\n    sides = sorted([a, b, c])\n    return sides[0]**2 + sides[1]**2 == sides[2]**2\n```",
+      "completion": "    return sides[0]**2 + sides[1]**2 == sides[2]**2",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpi7uimqkv.py\", line 33, in <module>\n    check(right_angle_triangle)\n  File \"/tmp/tmpi7uimqkv.py\", line 17, in check\n    assert candidate(3, 4, 5) == True, \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpi7uimqkv.py\", line 12, in right_angle_triangle\n    return sides[0]**2 + sides[1]**2 == sides[2]**2\n           ^^^^^\nNameError: name 'sides' is not defined"
+    },
+    {
+      "task_id": "HumanEval/158",
+      "ok": true,
+      "raw": "```python\ndef find_max(words):\n    max_unique = -1\n    result = None\n    for word in words:\n        unique_count = len(set(word))\n        if unique_count > max_unique or (unique_count == max_unique and (result is None or word < result)):\n            max_unique = unique_count\n            result = word\n    return result\n```",
+      "completion": "def find_max(words):\n    max_unique = -1\n    result = None\n    for word in words:\n        unique_count = len(set(word))\n        if unique_count > max_unique or (unique_count == max_unique and (result is None or word < result)):\n            max_unique = unique_count\n            result = word\n    return result",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/159",
+      "ok": false,
+      "raw": "total_eaten = number + min(need, remaining)\n    left = max(remaining - need, 0)\n    return [total_eaten, left]",
+      "completion": "    left = max(remaining - need, 0)\n    return [total_eaten, left]",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpwxzobca7.py\", line 50, in <module>\n    check(eat)\n  File \"/tmp/tmpwxzobca7.py\", line 38, in check\n    assert candidate(5, 6, 10) == [11, 4], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpwxzobca7.py\", line 32, in eat\n    return [total_eaten, left]\n            ^^^^^^^^^^^\nNameError: name 'total_eaten' is not defined"
+    },
+    {
+      "task_id": "HumanEval/160",
+      "ok": false,
+      "raw": "```python\n    expression = str(operand[0])\n    for i in range(len(operator)):\n        expression += ' ' + operator[i] + ' ' + str(operand[i+1])\n    return eval(expression)\n```",
+      "completion": "    for i in range(len(operator)):\n        expression += ' ' + operator[i] + ' ' + str(operand[i+1])\n    return eval(expression)",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmpad7phntu.py\", line 43, in <module>\n    check(do_algebra)\n  File \"/tmp/tmpad7phntu.py\", line 34, in check\n    assert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/tmpad7phntu.py\", line 28, in do_algebra\n    expression += ' ' + operator[i] + ' ' + str(operand[i+1])\n    ^^^^^^^^^^\nUnboundLocalError: cannot access local variable 'expression' where it is not associated with a value"
+    },
+    {
+      "task_id": "HumanEval/161",
+      "ok": false,
+      "raw": "```python\n    if not any(c.isalpha() for c in s):\n        return s[::-1]\n    result = []\n    for ch in s:\n        if ch.isalpha():\n            if ch.islower():\n                result.append(ch.upper())\n            else:\n                result.append(ch.lower())\n        else:\n            result.append(ch)\n    return ''.join(result)\n```",
+      "completion": "        return s[::-1]\n    result = []\n    for ch in s:\n        if ch.isalpha():\n            if ch.islower():\n                result.append(ch.upper())\n            else:\n                result.append(ch.lower())\n        else:\n            result.append(ch)\n    return ''.join(result)",
+      "detail": "File \"/tmp/tmp26m8otnc.py\", line 13\n    return s[::-1]\nIndentationError: unexpected indent"
+    },
+    {
+      "task_id": "HumanEval/162",
+      "ok": true,
+      "raw": "```python\nimport hashlib\n\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n    if text == \"\":\n        return None\n    return hashlib.md5(text.encode()).hexdigest()\n```",
+      "completion": "import hashlib\n\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n    if text == \"\":\n        return None\n    return hashlib.md5(text.encode()).hexdigest()",
+      "detail": ""
+    },
+    {
+      "task_id": "HumanEval/163",
+      "ok": false,
+      "raw": "```python\n    start = min(a, b)\n    end = max(a, b)\n    result = []\n    for num in range(start, end + 1):\n        if all(int(digit) % 2 == 0 for digit in str(num)):\n            result.append(num)\n    return result\n```",
+      "completion": "    end = max(a, b)\n    result = []\n    for num in range(start, end + 1):\n        if all(int(digit) % 2 == 0 for digit in str(num)):\n            result.append(num)\n    return result",
+      "detail": "Traceback (most recent call last):\n  File \"/tmp/tmplqgig869.py\", line 32, in <module>\n    check(generate_integers)\n  File \"/tmp/tmplqgig869.py\", line 22, in check\n    assert candidate(2, 10) == [2, 4, 6, 8], \"Test 1\"\n           ^^^^^^^^^^^^^^^^\n  File \"/tmp/tmplqgig869.py\", line 14, in generate_integers\n    for num in range(start, end + 1):\n                     ^^^^^\nNameError: name 'start' is not defined"
+    }
+  ]
+}
