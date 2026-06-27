@@ -2,6 +2,8 @@
 
 Candidate local agent model — DeepReinforce Ornith 35B GGUF on llama.cpp.
 
+**Prod trial:** fleet `:8010` → `ornith` since 2026-06-26. See [prod-trial.md](prod-trial.md).
+
 ## Verdict
 
 [langchain-brutal-verdict.md](langchain-brutal-verdict.md) — full receipts from 2026-06-25 eval.
