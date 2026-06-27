@@ -35,6 +35,7 @@ BACKEND_UNITS = {
     "genesis": "vllm-backend.service",
     "deepseek-r1": "vllm-backend.service",
     "aeon": "vllm-aeon.service",
+    "ornith": "ornith-backend.service",
 }
 
 
