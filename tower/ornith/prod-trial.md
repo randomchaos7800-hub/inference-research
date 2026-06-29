@@ -1,31 +1,16 @@
-# Ornith production trial (2026-06-26)
+# Ornith production (2026-06-27)
 
-Fleet inference on `:8010` is pointed at **Ornith-1.0-35B Q4_K_M** for a multi-day soak.
+Fleet inference on `:8010` → **AEON Ornith NVFP4** (vLLM 0.23). Canonical doc: `home-infra/research/inference/tower/ornith/aeon-nvfp4-prod.md`.
 
 ## Live state
 
 | Item | Value |
 |---|---|
 | Proxy backend | `ornith` |
-| Backend service | `ornith-backend.service` (port `:8030`) |
-| Engine | llama.cpp `build-cuda120-nographs`, layer-split dual GPU |
-| Context | 131072 tokens |
-| Client path | `http://tower:8010/v1`, model `local` |
-| Verify | `curl http://tower:8010/active` |
+| Backend | `ornith-backend.service` → `:8030` |
+| Engine | vLLM 0.23, fp8 KV, 131072 ctx |
+| Client | `http://tower:8010/v1`, model `local` |
 
-## Rollback
+## GGUF baseline eval
 
-```bash
-ssh dino@tower '/home/dino/bin/tower-return-prod'   # restores genesis
-# or
-ssh dino@tower '/home/dino/bin/proxy-switch openrouter'  # cloud failover
-```
-
-## Rationale
-
-LangChain brutal eval (2026-06-25): **56/66 (84.8%)**, 100% on typewriter suites, ~127 tok/s short-gen.
-DeepSeek V3.2 via OpenRouter scored 57/66 but at ~22s/case and cloud cost.
-
-## Review target
-
-Re-evaluate ~2026-06-30. Keep if agent tool-use and latency hold in real fleet traffic; roll back to genesis if regressions appear.
+LangChain brutal **56/66 (84.8%)** — GGUF only (2026-06-25). NVFP4 not re-run.
