@@ -1,6 +1,0 @@
-iter	name	tg_median	tg_p90	delta	outcome
-0	baseline	32.77	32.79	+0.00	BASELINE
-1	kv=auto	0.00	0.00	-32.77	TIMEOUT
-2	gmu=0.92	32.73	32.74	-0.04	NEUTRAL
-3	gmu=0.95	0.00	0.00	-32.77	TIMEOUT
-4	gmu=0.88	32.72	32.75	-0.05	NEUTRAL

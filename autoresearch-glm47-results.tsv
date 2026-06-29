@@ -1,6 +1,0 @@
-timestamp	iteration	name	gen_tps	delta_gen	prompt_tps	outcome	hypothesis
-21:18:45	1	KV-Cache-Quant-Q8	95.90	+0.00	149.70	FAILED	Switching KV cache from q4_0 to q8_0 will increase precision and potentially improve routing stability in MoE without exceeding the 8GB VRAM headroom.
-21:20:27	2	KV-Cache-Q4-NL-Split	95.90	+0.00	149.70	FAILED	Applying iq4_nl quantization to the KV cache will drastically reduce VRAM footprint and memory bandwidth pressure, potentially boosting generation speed on MoE architectures.
-21:36:34	1	KV Cache Quantization (q8_0)	95.90	+0.00	149.70	FAILED	Increasing KV cache precision from q4_0 to q8_0 reduces memory bandwidth bottlenecks for the MoE expert activations, potentially improving token generation speed despite the higher memory footprint.
-21:38:16	2	KV Cache Precision: f16	95.90	+0.00	149.70	FAILED	Switching from q4_0 to f16 for KV cache will increase prompt speed through better precision alignment with Blackwell-specific hardware, despite higher VRAM usage.
-11:38:12	1	KV cache q5_0 value type	97.07	+1.17	97.76	IMPROVED	Quantizing only the K and V cache to q5_0 should increase memory bandwidth utilization without exceeding the 8GB VRAM headroom, as q5_0 is slightly larger than q4_0 but significantly smaller than f16, which should reduce cache eviction and improve MoE expert throughput.

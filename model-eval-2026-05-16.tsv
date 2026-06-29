@@ -1,8 +1,0 @@
-model_id	name	arch	format	vram_gpu0_mib	vram_gpu1_mib	median_tps	min_tps	max_tps	stdev_tps	vs_baseline_tps	vs_baseline_pct	status	notes
-qwen3-30b-a3b-nvfp4	Qwen3-30B-A3B NVFP4	MoE (30B total / ~3B active)	NVFP4 (Blackwell native W4A4)	—	—	—	—	—	—	—	—	FAILED	NVFP4 requires CUDA>=12.9: flashinfer.mm_fp4 calls get_gemm_sm120_module_cutlass_fp4() which JIT-compiles CUTLASS SM120 FP4 GEMM kernels — blocked on CUDA 12.8. Requires CUDA upgrade.
-qwen3-32b-nvfp4	Qwen3-32B dense NVFP4	Dense (32B)	NVFP4 (Blackwell native W4A4)	—	—	—	—	—	—	—	—	FAILED	NVFP4 requires CUDA>=12.9: flashinfer.mm_fp4 calls get_gemm_sm120_module_cutlass_fp4() which JIT-compiles CUTLASS SM120 FP4 GEMM kernels — blocked on CUDA 12.8. Requires CUDA upgrade.
-qwen3-32b-gptq	Qwen3-32B GPTQ INT4	Dense (32B)	GPTQ INT4 (AutoRound 0.5.1, group_size=128)	—	—	—	—	—	—	—	—	FAILED	server never became healthy — check /tmp/eval-qwen3-32b-gptq.log
-qwen3-14b-fp8	Qwen3-14B FP8	Dense (14B)	FP8 (W8A8)	13069	12300	43.54	42.73	43.69	0.41	-29.81	-40.6%	⚠️ LOSS	
-qwen3-30b-a3b-gptq	Qwen3-30B-A3B GPTQ INT4	MoE (30B total / ~3B active)	GPTQ INT4 (official Qwen release)	—	—	—	—	—	—	—	—	FAILED	server never became healthy — check /tmp/eval-qwen3-30b-a3b-gptq.log
-qwen3-32b-gptq	Qwen3-32B GPTQ INT4	Dense (32B)	GPTQ INT4 (AutoRound 0.5.1, group_size=128)	14635	13844	5.25	5.25	5.26	0.00	-68.10	-92.8%	⚠️ LOSS	
-qwen3-30b-a3b-gptq	Qwen3-30B-A3B GPTQ INT4	MoE (30B total / ~3B active)	GPTQ INT4 (official Qwen release)	14633	13454	41.33	41.01	41.38	0.17	-32.02	-43.7%	⚠️ LOSS	

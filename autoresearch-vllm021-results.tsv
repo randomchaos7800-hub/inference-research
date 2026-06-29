@@ -1,8 +1,0 @@
-timestamp	experiment	label	vllm_version	overrides	median_tps	min_tps	max_tps	runs
-2026-05-15 20:21:44	genesis_baseline	Genesis baseline (INT4 GPTQ, auto KV, ctx 65536)	0.21.0		68.13	68.08	68.43	[68.13342246955538, 68.42516095966741, 68.24901281301945, 68.08074644076854, 68.08055866618534]
-2026-05-15 20:31:30	aeon_mtp_xs_baseline	AEON MTP-XS baseline (NVFP4, fp8 KV, ctx 122880)	0.21.0					
-2026-05-15 20:39:45	aeon_mtp_xs_nvfp4_kv	AEON MTP-XS + nvfp4 KV (v0.21.0 new flag)	0.21.0	--kv-cache-dtype nvfp4				
-2026-05-15 20:48:00	aeon_mtp_xs_ctx163k	AEON MTP-XS + nvfp4 KV + 163840 ctx (was OOM at 131K with fp8)	0.21.0	--kv-cache-dtype nvfp4 --max-model-len 163840				
-2026-05-15 20:56:15	aeon_text_mtp	NEW: AEON Text-NVFP4-MTP (no vision, fp8 KV, ctx 122880)	0.21.0					
-2026-05-15 21:04:33	aeon_text_mtp_nvfp4_kv	NEW: AEON Text-NVFP4-MTP + nvfp4 KV (v0.21.0)	0.21.0	--kv-cache-dtype nvfp4				
-2026-05-15 21:05:45	genesis_regression	Genesis regression check (same config, post-upgrade)	0.21.0		68.56	67.65	68.58	[68.05881835237204, 67.6503074639318, 68.57858231295236, 68.55523812935066, 68.56175836404748]
