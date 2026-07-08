@@ -1,0 +1,26 @@
+# local-proxy config — copy to /home/dino/local-proxy/config.toml on cha0tiktower
+# The only line you change during normal ops: active = "..."
+
+active = "genesis"
+
+[backends.genesis]
+url   = "http://localhost:8022/v1"
+key   = "genesis-local"
+
+[backends.nemotron]
+url   = "http://localhost:8022/v1"
+key   = "genesis-local"
+model = "nvidia_Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf"
+
+[backends.aeon]
+url   = "http://localhost:8023/v1"
+key   = "genesis-local"
+model = "aeon-nvfp4"
+
+[backends.openrouter]
+url   = "https://openrouter.ai/api/v1"
+key   = "${OPENROUTER_API_KEY}"
+model = "deepseek/deepseek-v3.2"
+
+[proxy]
+port = 8010

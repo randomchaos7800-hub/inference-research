@@ -1,23 +1,28 @@
-# Tower Inference Research
+# Tower Research Programs
 
-This is the working index for tower-local inference research.
+Working index for the tower (2× RTX 5060 Ti) research programs. Newest and most
+consequential first — the one-line results live in [../RESULTS.md](../RESULTS.md).
 
-## Projects
+## Programs
 
-- [genesis/](genesis/) — **production Qwen3.6-27B replication guide** (flags, install, ops)
-- [frank/](frank/)
-- [gdn-blackwell/](gdn-blackwell/)
-- [nemotron/](nemotron/)
-- [deepseek14b/](deepseek14b/)
-- [prism-pro/](prism-pro/)
-- [benchmarks/](benchmarks/)
-- [lucebox/](lucebox/)
-- [ornith/](ornith/) — **Ornith-1.0-35B** tool-use eval (LangChain brutal suite)
-- [experiment-mode.md](experiment-mode.md)
+- [ornith/](ornith/) — **Ornith-1.0-35B** tool-use eval (LangChain brutal suite) — current production model
+- [genesis/](genesis/) — **production replication guide** for Qwen3.6-27B on Genesis-patched vLLM (flags, install, ops)
+- [nemotron/](nemotron/) — Nemotron 3 Nano 30B tool-calling + TRT-LLM NVFP4
+- [gdn-blackwell/](gdn-blackwell/) — the GDN architecture wall on SM_120; SGLang vs vLLM
+- [lucebox/](lucebox/) — speculative decoding + hardware-vs-model attribution under hard locks
+- [benchmarks/](benchmarks/) — shared benchmark tooling; MTP batched-tokens test
+- [frank/](frank/) — autoresearch sweep (TSV receipts, loop-rebuild comparison)
+- [deepseek14b/](deepseek14b/) — DeepSeek 14B autoresearch sweep
+- [prism-pro/](prism-pro/) — Prism Pro autoresearch sweep
 
-## How To Read This Repo
+## Method
 
-1. Start here for the project map.
-2. Open the relevant project folder for the experiment notes.
-3. Use the raw TSV and log files as the receipts for any claims.
-4. Use [experiment-mode.md](experiment-mode.md) before any new tower benchmark.
+- [experiment-mode.md](experiment-mode.md) — the protocol every benchmark runs under:
+  production stopped **and disabled**, VRAM drained and verified, one variable at a time.
+
+## How to read a program directory
+
+1. `README.md` — what was tested and the verdict, links first.
+2. `*-verdict.md` / `*-VERDICT.md` — the claims.
+3. `*.tsv`, `*.json`, `*.log` — the raw receipts behind the claims.
+4. `*.py` — the exact driver that produced them.

@@ -205,10 +205,13 @@ class CaseResult:
 
 
 class AgentRunner:
-    def __init__(self, endpoint: str, model: str, timeout: int = 180):
+    def __init__(self, endpoint: str, model: str, timeout: int = 180, api_key: str = ""):
         self.endpoint = endpoint
         self.model = model
         self.timeout = timeout
+        self.headers = {"Content-Type": "application/json"}
+        if api_key:
+            self.headers["Authorization"] = f"Bearer {api_key}"
 
     def run(self, messages: list[dict], tools: list[dict] | None, tool_exec: Callable[[str, dict], str] | None) -> tuple[list[dict], list[str], str, int]:
         history = list(messages)
@@ -229,7 +232,7 @@ class AgentRunner:
                 payload["tool_choice"] = "auto"
 
             try:
-                resp = requests.post(self.endpoint, json=payload, timeout=self.timeout)
+                resp = requests.post(self.endpoint, json=payload, headers=self.headers, timeout=self.timeout)
                 resp.raise_for_status()
                 body = resp.json()
             except requests.RequestException as exc:
@@ -241,7 +244,7 @@ class AgentRunner:
             history.append(msg)
 
             content = msg.get("content") or ""
-            reasoning = msg.get("reasoning_content") or ""
+            reasoning = msg.get("reasoning_content") or msg.get("reasoning") or ""
             final_text = content or reasoning
 
             tool_calls = msg.get("tool_calls") or []
@@ -494,11 +497,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--endpoint", default=ENDPOINT_DEFAULT)
     parser.add_argument("--model", default="local")
+    parser.add_argument("--api-key", default="", help="Bearer token for backend auth")
     parser.add_argument("--output", default="")
     parser.add_argument("--quick", action="store_true", help="Run a short subset")
     args = parser.parse_args()
 
-    runner = AgentRunner(args.endpoint, args.model)
+    runner = AgentRunner(args.endpoint, args.model, api_key=args.api_key)
     results: list[CaseResult] = []
 
     strings = STRINGS_TO_TYPE[:6] if args.quick else STRINGS_TO_TYPE
