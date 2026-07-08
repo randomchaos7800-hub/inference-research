@@ -1,11 +1,12 @@
 # Inference Research — Boundary Labs
 
-**215+ real inference experiments on consumer NVIDIA hardware. Every model, every
-quantization, every failure — with the raw logs to back it.**
+**Local inference research on consumer NVIDIA hardware — verdicts, replication
+guides, and the raw run logs (215+ benchmark runs) behind every claim.**
 
-This repo is the receipts. The narrative version lives at
-**[localfamo.us](https://localfamo.us)** (interactive timeline of every experiment),
-and live production numbers are on
+This repo is the receipts: each research program's verdict document plus the raw
+TSVs, JSONs, and logs it was derived from. The narrative version — an interactive
+timeline of the 30+ milestone experiments — lives at
+**[localfamo.us](https://localfamo.us)**, and live production numbers are on
 **[dinovitale.com/benchmarks](https://dinovitale.com/benchmarks.html)**.
 
 ## The short version

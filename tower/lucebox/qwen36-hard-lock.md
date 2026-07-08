@@ -6,7 +6,12 @@ The earlier pass drifted into a side branch and the tower kept reintroducing the
 
 ## Experiment Lock
 
-The tower was put into hard experiment mode before any benchmark started.
+The tower was put into hard experiment mode before any benchmark started:
+
+- `local-proxy` switched to `openrouter`
+- `vllm-backend.service` stopped and runtime-masked
+- the tower-side research lock was set so `proxy-switch genesis` refused to run
+- GPU state was verified clean
 
 ## Setup
 
@@ -23,18 +28,42 @@ The tower was put into hard experiment mode before any benchmark started.
 
 ### Short prompt
 
+- prefill: `0.337 s`
+- decode: `34.114 s`
 - decode speed: `15.01 tok/s`
-- acceptance: `455/960 (47.4%)`
+- draft steps: `60`
+- accepted: `455/960 (47.4%)`
+- avg commit/step: `8.53`
 
 ### Medium prompt
 
+- prefill: `0.482 s`
+- decode: `46.617 s`
 - decode speed: `10.98 tok/s`
-- acceptance: `418/1520 (27.5%)`
+- draft steps: `95`
+- accepted: `418/1520 (27.5%)`
+- avg commit/step: `5.39`
 
 ## Read
 
-The lock worked, the production backend stayed out of the way, and the qwen3.6 path still did not show a compelling decode-side win on this tower.
+This rerun answers the original question more cleanly:
+
+- the lock worked
+- the production backend stayed out of the way
+- the qwen3.6 path still did not show a compelling decode-side win on this tower
+- the short prompt acceptance stayed around the same band as the earlier runs
+- the medium prompt remained slow on decode
+
+## Conclusion
+
+The corrected qwen3.6 rerun did not turn Lucebox into a production contender on this hardware.
+
+What it did do is separate the signal from the experiment contamination:
+
+- the tower was actually locked down
+- the benchmark path was the intended qwen3.6 setup
+- the result still does not justify switching the tower over
 
 ## Receipt
 
-- `logs/lucebox-experiment/20260615-qwen36-hard-lock.json`
+- [lucebox-qwen36-hard-lock.json](/home/dino/logs/lucebox-experiment/20260615-qwen36-hard-lock.json)
