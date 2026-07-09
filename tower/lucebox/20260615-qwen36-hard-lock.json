@@ -1,0 +1,40 @@
+{
+  "experiment": "lucebox-qwen36-hard-lock",
+  "lock": {
+    "local_research": {
+      "state": "active",
+      "reason": "lucebox qwen35 hardware-vs-model experiment",
+      "minutes": 180
+    },
+    "remote_research": {
+      "reason": "lucebox qwen35 hardware-vs-model experiment",
+      "minutes": 180
+    },
+    "proxy_active": "openrouter",
+    "compute_apps": []
+  },
+  "runs": [
+    {
+      "label": "short_gpu0_split11",
+      "prefill_s": 0.337,
+      "decode_s": 34.114,
+      "decode_tps": 15.01,
+      "draft_steps": 60,
+      "accepted": 455,
+      "total": 960,
+      "accept_rate_pct": 47.4,
+      "commit_per_step": 8.53
+    },
+    {
+      "label": "medium_gpu0_split11",
+      "prefill_s": 0.482,
+      "decode_s": 46.617,
+      "decode_tps": 10.98,
+      "draft_steps": 95,
+      "accepted": 418,
+      "total": 1520,
+      "accept_rate_pct": 27.5,
+      "commit_per_step": 5.39
+    }
+  ]
+}

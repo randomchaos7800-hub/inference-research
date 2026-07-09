@@ -40,10 +40,10 @@ HumanEval: **43.9% (72/164)** — markdown fence leakage in completions is prima
 ## Re-run LangChain eval (NVFP4)
 
 ```bash
-python3 /home/dino/inference-research/tower/ornith/langchain-brutal-eval.py \
+python3 langchain-brutal-eval.py \
   --endpoint http://tower:8010/v1/chat/completions \
   --model local \
-  --output /home/dino/logs/model-tests/ornith-nvfp4/langchain-brutal-eval.json
+  --output langchain-brutal-eval-aeon-nvfp4.json
 ```
 
 ## Receipts (versioned)

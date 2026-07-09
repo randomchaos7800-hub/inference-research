@@ -66,4 +66,4 @@ What it did do is separate the signal from the experiment contamination:
 
 ## Receipt
 
-- [lucebox-qwen36-hard-lock.json](/home/dino/logs/lucebox-experiment/20260615-qwen36-hard-lock.json)
+- [lucebox-qwen36-hard-lock.json](20260615-qwen36-hard-lock.json)

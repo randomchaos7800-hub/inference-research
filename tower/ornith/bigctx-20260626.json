@@ -1,0 +1,58 @@
+{
+  "server_url": "http://tower:8010",
+  "backend": "ornith",
+  "timestamp": "2026-06-27T04:22:25.912689",
+  "max_gen_tokens": 128,
+  "results": [
+    {
+      "ctx_target": 1000,
+      "prompt_tokens": 1227,
+      "completion_tokens": 128,
+      "ttft_ms": 285.2,
+      "gen_tps": 87.2,
+      "elapsed_s": 1.75,
+      "gen_tps_median": 87.2,
+      "ttft_ms_median": 440.4
+    },
+    {
+      "ctx_target": 4000,
+      "prompt_tokens": 5307,
+      "completion_tokens": 128,
+      "ttft_ms": 1928.0,
+      "gen_tps": 84.1,
+      "elapsed_s": 3.45,
+      "gen_tps_median": 84.0,
+      "ttft_ms_median": 1746.8
+    },
+    {
+      "ctx_target": 8000,
+      "prompt_tokens": 10827,
+      "completion_tokens": 128,
+      "ttft_ms": 2775.7,
+      "gen_tps": 24.1,
+      "elapsed_s": 8.09,
+      "gen_tps_median": 23.1,
+      "ttft_ms_median": 3494.4
+    },
+    {
+      "ctx_target": 16000,
+      "prompt_tokens": 21627,
+      "completion_tokens": 128,
+      "ttft_ms": 2884.1,
+      "gen_tps": 20.5,
+      "elapsed_s": 9.12,
+      "gen_tps_median": 21.6,
+      "ttft_ms_median": 4917.6
+    },
+    {
+      "ctx_target": 32000,
+      "prompt_tokens": 43227,
+      "completion_tokens": 128,
+      "ttft_ms": 5223.0,
+      "gen_tps": 56.6,
+      "elapsed_s": 7.48,
+      "gen_tps_median": 46.2,
+      "ttft_ms_median": 9825.4
+    }
+  ]
+}

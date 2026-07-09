@@ -125,7 +125,7 @@ DFLASH27B_KV_TQ3=1 \
 Use the existing tower benchmark harness against the Lucebox port so the comparison stays apples-to-apples:
 
 ```bash
-python3 /home/dino/scripts/bench-inference.py \
+python3 bench-inference.py (lab script; flags documented inline) \
   --server-url http://127.0.0.1:8000 \
   --model <lucebox-model-name> \
   --prompt "What is 2+2?" \
@@ -268,7 +268,7 @@ Why:
 
 ### Restore Note
 
-The restore helper initially timed out during the backend restart because Lucebox was still holding the GPUs. After stopping the Lucebox experiment service, the tower was manually returned to `genesis` by flipping `/home/dino/local-proxy/config.toml` back to `active = "genesis"` and restarting `local-proxy.service`.
+The restore helper initially timed out during the backend restart because Lucebox was still holding the GPUs. After stopping the Lucebox experiment service, the tower was manually returned to `genesis` by flipping `the proxy config (config.toml on the lab gateway)` back to `active = "genesis"` and restarting `local-proxy.service`.
 
 Final checked state:
 
@@ -280,9 +280,9 @@ Final checked state:
 
 Raw results:
 
-- [`baseline-genesis.json`](/home/dino/logs/lucebox-experiment/baseline-genesis.json)
-- [`lucebox-fa2048.json`](/home/dino/logs/lucebox-experiment/lucebox-fa2048.json)
-- [`lucebox-fa0.json`](/home/dino/logs/lucebox-experiment/lucebox-fa0.json)
+- [`baseline-genesis.json`](baseline-genesis.json)
+- [`lucebox-fa2048.json`](lucebox-fa2048.json)
+- [`lucebox-fa0.json`](lucebox-fa0.json)
 
 ### Baseline `qwen3627b`
 
@@ -334,7 +334,7 @@ This section is the post-ready receipt trail for the experiment as of `2026-06-1
 
 ### Baseline Receipt
 
-- file: [`baseline-genesis.json`](/home/dino/logs/lucebox-experiment/baseline-genesis.json)
+- file: [`baseline-genesis.json`](baseline-genesis.json)
 - median TTFT on short_math: `97.8 ms`
 - median TTFT on medium_attention: `97.8 ms`
 - median end-to-end TPS on medium_attention: `64.2`
@@ -343,7 +343,7 @@ This section is the post-ready receipt trail for the experiment as of `2026-06-1
 
 ### Lucebox Receipt, `fa-window=2048`
 
-- file: [`lucebox-fa2048.json`](/home/dino/logs/lucebox-experiment/lucebox-fa2048.json)
+- file: [`lucebox-fa2048.json`](lucebox-fa2048.json)
 - median TTFT on short_math: `1483.9 ms`
 - median TTFT on medium_attention: `1012.9 ms`
 - median end-to-end TPS on medium_attention: `7.2`
@@ -352,7 +352,7 @@ This section is the post-ready receipt trail for the experiment as of `2026-06-1
 
 ### Lucebox Receipt, `fa-window=0`
 
-- file: [`lucebox-fa0.json`](/home/dino/logs/lucebox-experiment/lucebox-fa0.json)
+- file: [`lucebox-fa0.json`](lucebox-fa0.json)
 - median TTFT on short_math: `1486.5 ms`
 - median TTFT on medium_attention: `1016.9 ms`
 - median end-to-end TPS on medium_attention: `7.2`
@@ -370,7 +370,7 @@ This section is the post-ready receipt trail for the experiment as of `2026-06-1
 
 Draft on GPU1, target split still `1,1`:
 
-- file: [`lucebox-draft-gpu1.json`](/home/dino/logs/lucebox-experiment/lucebox-draft-gpu1.json)
+- file: [`lucebox-draft-gpu1.json`](lucebox-draft-gpu1.json)
 - median TTFT on short_math: `1485.9 ms`
 - median TTFT on medium_attention: `1015.2 ms`
 - median end-to-end TPS on medium_attention: `7.2`
@@ -379,7 +379,7 @@ Draft on GPU1, target split still `1,1`:
 
 Target split `1,2`, draft still on GPU1:
 
-- file: [`lucebox-split-1-2-gpu1.json`](/home/dino/logs/lucebox-experiment/lucebox-split-1-2-gpu1.json)
+- file: [`lucebox-split-1-2-gpu1.json`](lucebox-split-1-2-gpu1.json)
 - median TTFT on short_math: `1516.2 ms`
 - median TTFT on medium_attention: `1042.7 ms`
 - median end-to-end TPS on medium_attention: `7.2`

@@ -406,7 +406,7 @@ python3 /home/dino/scripts/tower-recover.py status
 python3 /home/dino/scripts/tower-recover.py recover
 ```
 
-Runbook: `home-infra/runbooks/recovery-tower.md`
+Runbook: lab-internal (private ops repo); the recovery flow above is the complete public version.
 
 ---
 
@@ -460,7 +460,6 @@ Expect lower or unstable throughput on SM_120 without Genesis FlashInfer routing
 - [../experiment-mode.md](../experiment-mode.md) — hard lock before benchmarks
 - [../gdn-blackwell/sglang-vs-vllm-sm120.md](../gdn-blackwell/sglang-vs-vllm-sm120.md) — why vLLM over SGLang on SM_120
 - [../benchmarks/mtp-batched-tokens-test-2026-05-09.md](../benchmarks/mtp-batched-tokens-test-2026-05-09.md) — MTP A/B receipt
-- `home-infra/services/tower-inference.md` — fleet service model
 - [`Sandermage/genesis-vllm-patches`](https://github.com/Sandermage/genesis-vllm-patches) — upstream patch docs
 
 ---

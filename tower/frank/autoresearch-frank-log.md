@@ -159,7 +159,7 @@ Hypothesis generation failed: Error code: 400 - {'type': 'error', 'error': {'typ
 Hypothesis generation failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CaTNnF3fe5sTvd8vjqyHp'}
 
 Final score: 0.00/5.0 after 50 iterations.
-Results: /home/dino/inference-research/autoresearch-frank-results.tsv
+Results: autoresearch-frank-results.tsv
 
 ============================================================
 autoresearch-frank started 2026-04-26T19:08:51.242551
@@ -1731,4 +1731,4 @@ Prompt updated. Evaluating...
 Score: 2.48/5.0  Δ-1.93  → REVERT
 ↩ Reverted.
 
-Final: 4.41/5.0 after 60 iters. Results: /home/dino/inference-research/autoresearch-frank-results.tsv
+Final: 4.41/5.0 after 60 iters. Results: autoresearch-frank-results.tsv

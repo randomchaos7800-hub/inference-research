@@ -1,0 +1,290 @@
+{
+  "server_url": "http://tower:8010",
+  "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+  "repeats": 3,
+  "warmup": 1,
+  "results": [
+    {
+      "label": "short_math",
+      "run": 1,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 117.6,
+      "elapsed_s": 0.46,
+      "gen_s": 0.342,
+      "completion_tokens": 32,
+      "end_to_end_tps": 69.5,
+      "gen_tps": 93.4,
+      "chunks": 32,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:** The user asks \"What is 2+2?\"\n2.  **"
+    },
+    {
+      "label": "short_math",
+      "run": 2,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 55.5,
+      "elapsed_s": 0.398,
+      "gen_s": 0.342,
+      "completion_tokens": 32,
+      "end_to_end_tps": 80.4,
+      "gen_tps": 93.4,
+      "chunks": 32,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:** The user asks \"What is 2+2?\"\n2.  **"
+    },
+    {
+      "label": "short_math",
+      "run": 3,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 63.2,
+      "elapsed_s": 0.932,
+      "gen_s": 0.869,
+      "completion_tokens": 32,
+      "end_to_end_tps": 34.3,
+      "gen_tps": 36.8,
+      "chunks": 32,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:** The user asks \"What is 2+2?\"\n2.  **"
+    },
+    {
+      "label": "medium_attention",
+      "run": 1,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 48.9,
+      "elapsed_s": 1.318,
+      "gen_s": 1.269,
+      "completion_tokens": 96,
+      "end_to_end_tps": 72.8,
+      "gen_tps": 75.7,
+      "chunks": 96,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Topic:** Transformer attention\n   - **Constraint:** Exactly 3 sentences\n   - **Goal:** Explain the concept clearly and concisely\n\n2.  **Identify Key Concepts of Transformer Attention:**\n   - Computes relevance/weights between all tokens in a sequence\n   - Uses Query, Key, Value (QKV) mechanism\n   - Produces context-aware representations"
+    },
+    {
+      "label": "medium_attention",
+      "run": 2,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 116.4,
+      "elapsed_s": 2.647,
+      "gen_s": 2.53,
+      "completion_tokens": 96,
+      "end_to_end_tps": 36.3,
+      "gen_tps": 37.9,
+      "chunks": 96,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Topic:** Transformer attention\n   - **Constraint:** Exactly 3 sentences\n   - **Goal:** Explain the concept clearly and concisely\n\n2.  **Identify Key Concepts of Transformer Attention:**\n   - Computes relationships between all tokens in a sequence simultaneously\n   - Uses query, key, value vectors to calculate attention scores\n   - Scores are normalized (softmax)"
+    },
+    {
+      "label": "medium_attention",
+      "run": 3,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 125.9,
+      "elapsed_s": 3.053,
+      "gen_s": 2.927,
+      "completion_tokens": 96,
+      "end_to_end_tps": 31.4,
+      "gen_tps": 32.8,
+      "chunks": 96,
+      "text": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Topic:** Transformer attention\n   - **Constraint:** Exactly 3 sentences\n   - **Goal:** Explain the concept clearly and concisely\n\n2.  **Identify Key Concepts of Transformer Attention:**\n   - Computes relevance/weights between all tokens in a sequence\n   - Uses Query, Key, Value (Q, K, V) mechanism\n   - Produces"
+    },
+    {
+      "label": "code_csv",
+      "run": 1,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 1366.2,
+      "elapsed_s": 6.684,
+      "gen_s": 5.318,
+      "completion_tokens": 128,
+      "end_to_end_tps": 19.2,
+      "gen_tps": 24.1,
+      "chunks": 128,
+      "text": "Here's a thinking process:\n\n1.  **Understand User Request:**\n   - **Language:** Rust\n   - **Task:** Parse a single CSV line into `Vec<String>`\n   - **Requirements:** Concise function, mention edge cases handled\n   - **Key Challenge:** CSV parsing isn't just splitting by commas. Need to handle quoted fields, escaped quotes, newlines within quotes, etc.\n\n2.  **Identify Core Requirements for CSV Parsing:**\n   - Split by commas\n   - Handle double-quoted fields (e.g., `\"hello, world\"`)\n   - Handle escaped quotes"
+    },
+    {
+      "label": "code_csv",
+      "run": 2,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 4351.6,
+      "elapsed_s": 8.066,
+      "gen_s": 3.715,
+      "completion_tokens": 128,
+      "end_to_end_tps": 15.9,
+      "gen_tps": 34.5,
+      "chunks": 128,
+      "text": "Here's a thinking process:\n\n1.  **Understand User Request:**\n   - **Language:** Rust\n   - **Task:** Parse a single CSV line into `Vec<String>`\n   - **Requirements:** Concise function, mention edge cases handled\n   - **Key Challenge:** CSV parsing isn't just splitting by commas. Need to handle quoted fields, escaped quotes, newlines within quotes, etc.\n\n2.  **Identify Core Requirements for CSV Parsing:**\n   - Split by commas\n   - Handle double-quoted fields (e.g., `\"hello, world\"`)\n   - Handle escaped quotes"
+    },
+    {
+      "label": "code_csv",
+      "run": 3,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 3891.1,
+      "elapsed_s": 12.378,
+      "gen_s": 8.487,
+      "completion_tokens": 128,
+      "end_to_end_tps": 10.3,
+      "gen_tps": 15.1,
+      "chunks": 128,
+      "text": "Here's a thinking process:\n\n1.  **Understand User Request:**\n   - **Language:** Rust\n   - **Task:** Parse a single CSV line into `Vec<String>`\n   - **Requirements:** Concise function, mention edge cases handled\n   - **Key Challenge:** CSV parsing isn't trivial due to quoted fields, escaped quotes, newlines within quotes, etc.\n\n2.  **Identify Core Requirements for CSV Parsing:**\n   - Split by commas\n   - Handle quoted fields (e.g., `\"hello, world\"`)\n   - Handle escaped quotes within quoted fields (e.g.,"
+    },
+    {
+      "label": "agentic_json",
+      "run": 1,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 17435.6,
+      "elapsed_s": 19.604,
+      "gen_s": 2.168,
+      "completion_tokens": 64,
+      "end_to_end_tps": 3.3,
+      "gen_tps": 29.5,
+      "chunks": 64,
+      "text": "Thinking Process:\n1.  **Analyze User Input:**\n   - Request: Return a JSON object with keys `a` and `b` and values `1` and `2`.\n   - Constraint: \"You are a terse assistant. Output valid JSON only.\" (from system prompt)\n\n2"
+    },
+    {
+      "label": "agentic_json",
+      "run": 2,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 269.7,
+      "elapsed_s": 1.487,
+      "gen_s": 1.217,
+      "completion_tokens": 64,
+      "end_to_end_tps": 43.0,
+      "gen_tps": 52.6,
+      "chunks": 64,
+      "text": "Thinking Process:\n1.  **Analyze User Input:**\n   - Request: Return a JSON object with keys `a` and `b` and values `1` and `2`.\n   - Constraints: Output valid JSON only. (From system prompt: \"Output valid JSON only.\")\n\n2."
+    },
+    {
+      "label": "agentic_json",
+      "run": 3,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf",
+      "ttft_ms": 5190.2,
+      "elapsed_s": 6.41,
+      "gen_s": 1.219,
+      "completion_tokens": 64,
+      "end_to_end_tps": 10.0,
+      "gen_tps": 52.5,
+      "chunks": 64,
+      "text": "Thinking Process:\n1.  **Identify the user's request**: The user wants a JSON object with keys \"a\" and \"b\" and values 1 and 2.\n2.  **Format the output**: The user explicitly requested \"valid JSON only\".\n3.  **Construct the JSON"
+    }
+  ],
+  "summary": {
+    "short_math": {
+      "ttft_ms_median": 63.2,
+      "elapsed_s_median": 0.5,
+      "end_to_end_tps_median": 69.5,
+      "gen_tps_median": 93.4,
+      "completion_tokens_median": 32
+    },
+    "medium_attention": {
+      "ttft_ms_median": 116.4,
+      "elapsed_s_median": 2.6,
+      "end_to_end_tps_median": 36.3,
+      "gen_tps_median": 37.9,
+      "completion_tokens_median": 96
+    },
+    "code_csv": {
+      "ttft_ms_median": 3891.1,
+      "elapsed_s_median": 8.1,
+      "end_to_end_tps_median": 15.9,
+      "gen_tps_median": 24.1,
+      "completion_tokens_median": 128
+    },
+    "agentic_json": {
+      "ttft_ms_median": 5190.2,
+      "elapsed_s_median": 6.4,
+      "end_to_end_tps_median": 10.0,
+      "gen_tps_median": 52.5,
+      "completion_tokens_median": 64
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-08",
+  "purpose": "Verify warm production throughput before quoting it publicly (boundarylabs.org truth pass)",
+  "endpoint": "http://tower:8010/v1/chat/completions (internal gateway -> genesis backend, port 8022)",
+  "backend": "genesis — Qwen3.6-27B GPTQ INT4 (AutoRound), vLLM Genesis-patched, TP=2, MTP n=3, max-model-len 65536",
+  "client": "home-server (orchestration node), LAN, non-streaming, usage-based token count",
+  "method": "greedy (temperature 0.0), max_tokens 1500, forced-length generation; wall-clock includes TTFT (~0.12s) and LAN round-trip",
+  "runs": [
+    { "run": 1, "completion_tokens": 1500, "wall_s": 15.41, "tok_s": 97.3 },
+    { "run": 2, "completion_tokens": 1500, "wall_s": 15.39, "tok_s": 97.4 }
+  ],
+  "note": "Measured against the live production server without stopping services — this is a serving-state sanity check, not an isolated experiment-mode benchmark. Short-run end-to-end (256 tok) measures ~67 tok/s due to TTFT amortization."
+}

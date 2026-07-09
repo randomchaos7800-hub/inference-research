@@ -1,0 +1,73 @@
+{
+  "experiment": "lucebox-qwen35-hardware-vs-model",
+  "lock": {
+    "local_research": {
+      "state": "active",
+      "reason": "lucebox qwen35 hardware-vs-model experiment",
+      "minutes": 180
+    },
+    "remote_research": {
+      "reason": "lucebox qwen35 hardware-vs-model experiment",
+      "minutes": 180
+    },
+    "proxy_active": "openrouter",
+    "compute_apps": []
+  },
+  "runs": [
+    {
+      "label": "short_gpu1_split11",
+      "prefill_s": 1.359,
+      "decode_s": 32.603,
+      "decode_tps": 15.7,
+      "draft_steps": 61,
+      "accepted": 462,
+      "total": 976,
+      "accept_rate_pct": 47.3,
+      "commit_per_step": 8.39
+    },
+    {
+      "label": "medium_gpu1_split11",
+      "prefill_s": 0.421,
+      "decode_s": 45.233,
+      "decode_tps": 11.32,
+      "draft_steps": 93,
+      "accepted": 422,
+      "total": 1488,
+      "accept_rate_pct": 28.4,
+      "commit_per_step": 5.51
+    },
+    {
+      "label": "short_gpu0_split11",
+      "prefill_s": 0.184,
+      "decode_s": 25.085,
+      "decode_tps": 20.41,
+      "draft_steps": 41,
+      "accepted": 501,
+      "total": 656,
+      "accept_rate_pct": 76.4,
+      "commit_per_step": 12.49
+    },
+    {
+      "label": "short_gpu0_split12",
+      "prefill_s": 0.184,
+      "decode_s": 25.123,
+      "decode_tps": 20.38,
+      "draft_steps": 41,
+      "accepted": 501,
+      "total": 656,
+      "accept_rate_pct": 76.4,
+      "commit_per_step": 12.49
+    },
+    {
+      "label": "medium_gpu0_split11",
+      "prefill_s": 0.419,
+      "decode_s": 45.214,
+      "decode_tps": 11.32,
+      "draft_steps": 93,
+      "accepted": 422,
+      "total": 1488,
+      "accept_rate_pct": 28.4,
+      "commit_per_step": 5.51
+    }
+  ]
+}

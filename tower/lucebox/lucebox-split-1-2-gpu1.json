@@ -1,0 +1,290 @@
+{
+  "server_url": "http://127.0.0.1:8000",
+  "model_id": "qwen3.6-27b-dflash",
+  "repeats": 3,
+  "warmup": 1,
+  "results": [
+    {
+      "label": "short_math",
+      "run": 1,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1516.5,
+      "elapsed_s": 1.517,
+      "gen_s": 0.0,
+      "completion_tokens": 10,
+      "end_to_end_tps": 6.6,
+      "gen_tps": 566797.8,
+      "chunks": 1,
+      "text": "2 + 2 = 4\n"
+    },
+    {
+      "label": "short_math",
+      "run": 2,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1516.2,
+      "elapsed_s": 1.516,
+      "gen_s": 0.0,
+      "completion_tokens": 10,
+      "end_to_end_tps": 6.6,
+      "gen_tps": 487709.8,
+      "chunks": 1,
+      "text": "2 + 2 = 4\n"
+    },
+    {
+      "label": "short_math",
+      "run": 3,
+      "max_tokens": 32,
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 2+2?"
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1516.2,
+      "elapsed_s": 1.516,
+      "gen_s": 0.0,
+      "completion_tokens": 10,
+      "end_to_end_tps": 6.6,
+      "gen_tps": 517815.3,
+      "chunks": 1,
+      "text": "2 + 2 = 4\n"
+    },
+    {
+      "label": "medium_attention",
+      "run": 1,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1042.7,
+      "elapsed_s": 11.866,
+      "gen_s": 10.824,
+      "completion_tokens": 85,
+      "end_to_end_tps": 7.2,
+      "gen_tps": 7.9,
+      "chunks": 83,
+      "text": "Transformer attention is a mechanism that allows the model to weigh the importance of different input tokens relative to each other when processing information. It achieves this by calculating query, key, and value vectors for every token, enabling the network to dynamically focus on the most relevant parts of the input sequence regardless of their position. This parallelizable approach replaces traditional recurrent structures, allowing the model to capture long-range dependencies efficiently and effectively.\n"
+    },
+    {
+      "label": "medium_attention",
+      "run": 2,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1043.4,
+      "elapsed_s": 11.878,
+      "gen_s": 10.835,
+      "completion_tokens": 85,
+      "end_to_end_tps": 7.2,
+      "gen_tps": 7.8,
+      "chunks": 83,
+      "text": "Transformer attention is a mechanism that allows the model to weigh the importance of different input tokens relative to each other when processing information. It achieves this by calculating query, key, and value vectors for every token, enabling the network to dynamically focus on the most relevant parts of the input sequence regardless of their position. This parallelizable approach replaces traditional recurrent structures, allowing the model to capture long-range dependencies efficiently and effectively.\n"
+    },
+    {
+      "label": "medium_attention",
+      "run": 3,
+      "max_tokens": 96,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain transformer attention in 3 sentences."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1042.3,
+      "elapsed_s": 11.864,
+      "gen_s": 10.821,
+      "completion_tokens": 85,
+      "end_to_end_tps": 7.2,
+      "gen_tps": 7.9,
+      "chunks": 83,
+      "text": "Transformer attention is a mechanism that allows the model to weigh the importance of different input tokens relative to each other when processing information. It achieves this by calculating query, key, and value vectors for every token, enabling the network to dynamically focus on the most relevant parts of the input sequence regardless of their position. This parallelizable approach replaces traditional recurrent structures, allowing the model to capture long-range dependencies efficiently and effectively.\n"
+    },
+    {
+      "label": "code_csv",
+      "run": 1,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1842.0,
+      "elapsed_s": 15.046,
+      "gen_s": 13.204,
+      "completion_tokens": 128,
+      "end_to_end_tps": 8.5,
+      "gen_tps": 9.7,
+      "chunks": 125,
+      "text": "```rust\n/// Parses a single CSV line into a Vec<String>.\n/// Handles:\n/// - Quoted fields (with escaped quotes inside)\n/// - Empty fields\n/// - Trailing/leading whitespace within quoted fields is preserved\n/// - Unquoted fields are trimmed of surrounding whitespace\n/// - Empty input returns empty vec\n/// - Malformed quotes (unclosed) are treated as literal content\npub fn parse_csv_line(line: &str) -> Vec<String> {\n    let mut fields = Vec::new();\n    let mut current_field = String::new();\n    let mut in_quotes = false;"
+    },
+    {
+      "label": "code_csv",
+      "run": 2,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1841.6,
+      "elapsed_s": 15.05,
+      "gen_s": 13.208,
+      "completion_tokens": 128,
+      "end_to_end_tps": 8.5,
+      "gen_tps": 9.7,
+      "chunks": 125,
+      "text": "```rust\n/// Parses a single CSV line into a Vec<String>.\n/// Handles:\n/// - Quoted fields (with escaped quotes inside)\n/// - Empty fields\n/// - Trailing/leading whitespace within quoted fields is preserved\n/// - Unquoted fields are trimmed of surrounding whitespace\n/// - Empty input returns empty vec\n/// - Malformed quotes (unclosed) are treated as literal content\npub fn parse_csv_line(line: &str) -> Vec<String> {\n    let mut fields = Vec::new();\n    let mut current_field = String::new();\n    let mut in_quotes = false;"
+    },
+    {
+      "label": "code_csv",
+      "run": 3,
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a concise Rust function that parses a single CSV line into Vec<String>. Mention edge cases you would handle."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 1843.8,
+      "elapsed_s": 15.047,
+      "gen_s": 13.203,
+      "completion_tokens": 128,
+      "end_to_end_tps": 8.5,
+      "gen_tps": 9.7,
+      "chunks": 125,
+      "text": "```rust\n/// Parses a single CSV line into a Vec<String>.\n/// Handles:\n/// - Quoted fields (with escaped quotes inside)\n/// - Empty fields\n/// - Trailing/leading whitespace within quoted fields is preserved\n/// - Unquoted fields are trimmed of surrounding whitespace\n/// - Empty input returns empty vec\n/// - Malformed quotes (unclosed) are treated as literal content\npub fn parse_csv_line(line: &str) -> Vec<String> {\n    let mut fields = Vec::new();\n    let mut current_field = String::new();\n    let mut in_quotes = false;"
+    },
+    {
+      "label": "agentic_json",
+      "run": 1,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 2028.7,
+      "elapsed_s": 2.029,
+      "gen_s": 0.0,
+      "completion_tokens": 21,
+      "end_to_end_tps": 10.4,
+      "gen_tps": 91180.5,
+      "chunks": 10,
+      "text": "{\n  \"a\": 1,\n  \"b\": 2\n}\n"
+    },
+    {
+      "label": "agentic_json",
+      "run": 2,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 2027.4,
+      "elapsed_s": 2.028,
+      "gen_s": 0.0,
+      "completion_tokens": 21,
+      "end_to_end_tps": 10.4,
+      "gen_tps": 56936.3,
+      "chunks": 10,
+      "text": "{\n  \"a\": 1,\n  \"b\": 2\n}\n"
+    },
+    {
+      "label": "agentic_json",
+      "run": 3,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a terse assistant. Output valid JSON only."
+        },
+        {
+          "role": "user",
+          "content": "Return a JSON object with keys a and b and values 1 and 2."
+        }
+      ],
+      "model_id": "qwen3.6-27b-dflash",
+      "ttft_ms": 2029.7,
+      "elapsed_s": 2.03,
+      "gen_s": 0.0,
+      "completion_tokens": 21,
+      "end_to_end_tps": 10.3,
+      "gen_tps": 82088.0,
+      "chunks": 10,
+      "text": "{\n  \"a\": 1,\n  \"b\": 2\n}\n"
+    }
+  ],
+  "summary": {
+    "short_math": {
+      "ttft_ms_median": 1516.2,
+      "elapsed_s_median": 1.5,
+      "end_to_end_tps_median": 6.6,
+      "gen_tps_median": 517815.3,
+      "completion_tokens_median": 10
+    },
+    "medium_attention": {
+      "ttft_ms_median": 1042.7,
+      "elapsed_s_median": 11.9,
+      "end_to_end_tps_median": 7.2,
+      "gen_tps_median": 7.9,
+      "completion_tokens_median": 85
+    },
+    "code_csv": {
+      "ttft_ms_median": 1842.0,
+      "elapsed_s_median": 15.0,
+      "end_to_end_tps_median": 8.5,
+      "gen_tps_median": 9.7,
+      "completion_tokens_median": 128
+    },
+    "agentic_json": {
+      "ttft_ms_median": 2028.7,
+      "elapsed_s_median": 2.0,
+      "end_to_end_tps_median": 10.4,
+      "gen_tps_median": 82088.0,
+      "completion_tokens_median": 21
+    }
+  }
+}

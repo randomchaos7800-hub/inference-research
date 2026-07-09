@@ -12,7 +12,7 @@ timeline of the 30+ milestone experiments — lives at
 ## The short version
 
 One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
-35B model in production at ~101 tok/s (124 peak) on two consumer GPUs:
+35B model running a production trial at ~101 tok/s on two consumer GPUs:
 
 | Era | tok/s | What happened |
 |---|---|---|
@@ -20,9 +20,9 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
 | **Tower** | 32 → 107 | RTX 5060 Ti ×1 then ×2 — GPU offload, SWA discovery, the PCIe ceiling |
 | **Genesis** | 22 → 88 | GDN architecture wall in llama.cpp; Genesis-patched vLLM + MTP n=3 broke it open |
 | **Nemotron** | 117.6 | Mamba/SSM hybrid MoE — new hardware peak on llama.cpp |
-| **Ornith** | ~130 | 35B GGUF beats DeepSeek V3.2 on tool-use; NVFP4 in production, 131K ctx |
+| **Ornith** | ~130 | 35B GGUF beats DeepSeek V3.2 on tool-use; NVFP4 production trial at 131K ctx |
 
-**Currently in production:** Ornith-1.0-35B-AEON-Ultimate — ~101 tok/s warm, 124 peak.
+**Currently in production:** Genesis — Qwen3.6-27B INT4, vLLM — restored as default 2026-07-03 after the Ornith trial (2026-06-26 → 2026-07-03). ~97 tok/s warm, [verified 2026-07-08](tower/genesis/warm-20260708.json). Ornith numbers stand as dated campaign results.
 
 ## Start here
 

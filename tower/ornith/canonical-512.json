@@ -1,0 +1,1 @@
+{"model_id": "/home/dino/.cache/huggingface/hub/models--deepreinforce-ai--Ornith-1.0-35B-GGUF/snapshots/c2e1703039380de4ce6820e97afd185682d3c16c/ornith-1.0-35b-Q4_K_M.gguf", "ttft_ms": 178.8, "elapsed_s": 6.066, "gen_s": 5.887, "completion_tokens": 512, "end_to_end_tps": 84.4, "gen_tps": 87.0, "chunks": 515}

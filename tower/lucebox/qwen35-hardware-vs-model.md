@@ -17,7 +17,7 @@ Before running anything, the tower was put into hard experiment mode:
 
 Lock status now lives in:
 
-- [experiment-mode.md](/home/dino/tower/experiment-mode.md)
+- [experiment-mode.md](../experiment-mode.md)
 
 ## Setup
 
@@ -120,4 +120,4 @@ So the clean takeaway is:
 
 Raw lock and status receipts:
 
-- [lucebox-qwen35-hardware-vs-model.json](/home/dino/logs/lucebox-experiment/20260615-qwen35-hardware-vs-model.json)
+- [lucebox-qwen35-hardware-vs-model.json](20260615-qwen35-hardware-vs-model.json)
