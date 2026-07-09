@@ -5,7 +5,7 @@ consequential first — the one-line results live in [../RESULTS.md](../RESULTS.
 
 ## Programs
 
-- [ornith/](ornith/) — **Ornith-1.0-35B** tool-use eval (LangChain brutal suite) — current production model
+- [ornith/](ornith/) — **Ornith-1.0-35B** tool-use eval (LangChain brutal suite) — production trial 2026-06-26 → 2026-07-03 (genesis restored as default)
 - [genesis/](genesis/) — **production replication guide** for Qwen3.6-27B on Genesis-patched vLLM (flags, install, ops)
 - [nemotron/](nemotron/) — Nemotron 3 Nano 30B tool-calling + TRT-LLM NVFP4
 - [gdn-blackwell/](gdn-blackwell/) — the GDN architecture wall on SM_120; SGLang vs vLLM

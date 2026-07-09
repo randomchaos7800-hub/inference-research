@@ -1,0 +1,25 @@
+iter	name	variable	value	tg_median	tg_p90	delta	outcome	desc
+0	baseline	-	-	70.54	70.59	+0.00	BASELINE	current config
+1	batched-tokens 8192	max_num_batched_tokens	8192	0.00	0.00	+0.00	TIMEOUT	fix scheduler warning: scheduled = 8192/4 = 2048 tokens (was 1024)
+0	baseline	-	-	75.63	75.67	+0.00	BASELINE	current config
+1	batched-tokens 8192	max_num_batched_tokens	8192	74.16	74.19	-1.47	NO_CHANGE	fix scheduler warning: scheduled = 8192/4 = 2048 tokens (was 1024)
+2	batched-tokens 16384	max_num_batched_tokens	16384	0.00	0.00	+0.00	TIMEOUT	aggressive: scheduled = 4096 tokens per step
+3	NCCL P2P enable	NCCL_P2P_DISABLE	0	71.86	71.87	-3.77	NO_CHANGE	allow direct GPU-GPU P2P over PCIe (currently disabled via CPU)
+4	MTP n=4	mtp_n	4	69.56	69.60	-6.07	NO_CHANGE	4 speculative tokens — higher draft overhead vs more tokens accepted
+5	MTP n=5	mtp_n	5	66.27	66.30	-9.36	NO_CHANGE	5 speculative tokens — max speculation, most overhead
+6	MTP n=2	mtp_n	2	71.35	71.38	-4.29	NO_CHANGE	2 speculative tokens — less overhead, tests if n=3 over-speculates
+7	MTP n=1	mtp_n	1	59.28	59.29	-16.36	NO_CHANGE	1 speculative token — near-baseline, isolates MTP overhead cost
+8	no MTP	mtp_n	0	40.29	40.29	-35.35	NO_CHANGE	disable speculative decoding entirely — measure raw decode t/s
+9	KV fp16 (auto)	kv_cache_dtype	auto	80.58	80.63	+4.95	IMPROVEMENT	fp16 KV: no dequant overhead per layer — costs ~4GB extra VRAM at 32K
+10	GMU 0.85	gpu_memory_utilization	0.85	74.09	74.13	-6.49	NO_CHANGE	more KV cache blocks — ~1.5GB more VRAM for KV at 32K ctx
+11	GMU 0.88	gpu_memory_utilization	0.88	81.03	81.05	+0.45	MARGINAL	max safe GMU tested at 32K ctx — risk: activation workspace OOM
+12	sampler default	VLLM_USE_FLASHINFER_SAMPLER	0	74.77	74.80	-5.81	NO_CHANGE	disable FlashInfer sampler, use PyTorch sampler — less overhead for single stream
+13	seqs 1	max_num_seqs	1	77.19	77.23	-3.39	NO_CHANGE	single sequence mode — eliminates inter-seq padding and scheduling overhead
+14	seqs 4	max_num_seqs	4	80.61	80.63	+0.03	MARGINAL	4 concurrent — test batch decode throughput
+15	ctx 16K	max_model_len	16384	80.98	80.99	+0.40	MARGINAL	half context — smaller CUDA graph tables, more KV blocks at same GMU
+16	ctx 64K + GMU 0.85	max_model_len	65536	74.40	74.44	-6.18	NO_CHANGE	double context at 0.85 GMU — tests if activation workspace fits
+17	CUDA_CONNECTIONS 16	CUDA_DEVICE_MAX_CONNECTIONS	16	79.14	79.18	-1.44	NO_CHANGE	more concurrent kernel streams for TP=2 all-reduce overlap
+18	OMP_THREADS 4	OMP_NUM_THREADS	4	81.52	81.55	+0.94	MARGINAL	more CPU threads for MKL/OpenMP ops in GDN layers
+19	Genesis exclusive buffer	GENESIS_BUFFER_MODE	exclusive	81.64	81.66	+1.05	MARGINAL	per-worker Genesis buffers — test if shared pool causes contention
+20	Genesis prealloc 8192	GENESIS_PREALLOC_TOKEN_BUDGET	8192	74.93	74.95	-5.65	NO_CHANGE	larger token budget pre-allocation for Genesis P64 MTP streaming
+99	FINAL	-	-	80.49	80.56	+4.86	FINAL	best config re-verified

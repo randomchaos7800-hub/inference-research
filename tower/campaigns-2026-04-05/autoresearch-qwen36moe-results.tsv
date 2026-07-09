@@ -1,0 +1,32 @@
+iter	name	variable	value	tg512	delta_tg512	pp512	outcome
+1	poll 100	extra	['--poll', '100']	100.24	+0.00	2436	FAILED
+2	poll 0	extra	['--poll', '0']	100.24	+0.00	2436	FAILED
+3	threads 4	threads	4	100.24	+0.00	2436	FAILED
+4	n-cpu-moe 1	extra	['--n-cpu-moe', '1']	100.24	+0.00	2436	FAILED
+5	threads 12 all	threads	12	100.24	+0.00	2436	FAILED
+6	numa distribute	extra	['--numa', 'distribute']	100.24	+0.00	2436	FAILED
+7	ubatch 8192	ubatch_size	8192	100.24	+0.00	2436	FAILED
+8	split-mode tensor	split_mode	tensor	100.24	+0.00	2436	FAILED
+9	tensor-split 2/1	extra	['-ts', '2/1']	100.24	+0.00	2436	FAILED
+10	threads 16 all	threads	16	100.24	+0.00	2436	FAILED
+1	threads 4	threads	4	99.51	-0.73	2433	NO_CHANGE
+2	split-mode tensor	split_mode	tensor	85.04	-15.20	2100	NO_CHANGE
+1	n-cpu-moe 1	extra	['-ncmoe', '1']	87.01	-13.23	2105	NO_CHANGE
+2	n-cpu-moe 2	extra	['-ncmoe', '2']	78.70	-21.54	1907	NO_CHANGE
+3	tensor-split 2/1	extra	['-ts', '2/1']	99.56	-0.68	2429	NO_CHANGE
+4	threads 12 all	threads	12	99.90	-0.34	2430	NO_CHANGE
+5	tensor-split 3/2	extra	['-ts', '3/2']	100.21	-0.03	2424	NO_CHANGE
+6	ctk/ctv q8_0	ctk_ctv	q8_0	97.28	-2.96	2410	NO_CHANGE
+7	ubatch 1024	ubatch_size	1024	99.78	-0.46	2423	NO_CHANGE
+8	ubatch 512	ubatch_size	512	100.06	-0.18	2422	NO_CHANGE
+9	no-mmap	extra	['-mmp', '0']	99.06	-1.18	2417	NO_CHANGE
+10	ctk/ctv q4_0	ctk_ctv	q4_0	97.10	-3.14	2409	NO_CHANGE
+11	threads 20 all	threads	20	100.14	-0.10	2429	NO_CHANGE
+12	threads 16 all	threads	16	99.38	-0.86	2429	NO_CHANGE
+13	batch 4096	batch_size	4096	99.46	-0.78	2429	NO_CHANGE
+14	ubatch 2048	ubatch_size	2048	99.90	-0.34	2429	NO_CHANGE
+15	tensor-split 1/1	extra	['-ts', '1/1']	100.19	-0.05	2427	NO_CHANGE
+16	depth 131072 q4_0kv	n_depth	131072	100.24	+0.00	2436	FAILED
+17	no mlock	mlock	False	99.85	-0.39	2424	NO_CHANGE
+18	batch 8192	batch_size	8192	100.24	+0.00	2426	NO_CHANGE
+19	depth 262144 q4_0kv	n_depth	262144	100.24	+0.00	2436	FAILED

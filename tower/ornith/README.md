@@ -1,15 +1,15 @@
 # Ornith-1.0-35B (Tower)
 
-Production model as of 2026-06-27. Deployed as GGUF Q4_K_M (llama.cpp) 2026-06-26, upgraded to AEON NVFP4 (vLLM 0.23) 2026-06-27.
+Production trial 2026-06-26 → 2026-07-03. Deployed as GGUF Q4_K_M (llama.cpp) 2026-06-26, upgraded to AEON NVFP4 (vLLM 0.23) 2026-06-27; genesis restored as production default 2026-07-03.
 
-See [aeon-nvfp4-prod.md](aeon-nvfp4-prod.md) for current production config.
+See [aeon-nvfp4-prod.md](aeon-nvfp4-prod.md) for the trial production config (dated).
 See [prod-trial.md](prod-trial.md) for deployment log.
 
 ## Verdict
 
 [langchain-brutal-verdict.md](langchain-brutal-verdict.md) — full receipts from 2026-06-25 GGUF eval.
 
-**Summary:** 56/66 (84.8%) on LangChain tool-use suite. 100% typewriter (both variants). NVFP4 re-run pending.
+**Summary:** 56/66 (84.8%) on LangChain tool-use suite, 100% typewriter both variants (GGUF run). NVFP4 re-run 2026-06-29: overall held at 56/66 — profile shifted slightly (typewriter_1 19/20, relational 7/8) — [receipt](langchain-brutal-eval-aeon-nvfp4.json).
 
 ## Speed benchmarks
 
