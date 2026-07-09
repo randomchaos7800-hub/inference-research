@@ -1,7 +1,9 @@
 # How "215+ benchmark runs" is counted
 
-The public claim is **215+ raw benchmark runs as of 2026-06-27**. Here is what that counts
-and how to audit it from this repo alone:
+The public claim is **215+ raw benchmark runs as of 2026-06-27** — a floor, frozen at the
+date it was first published. The current countable total from the table below is
+**491 runs (as of 2026-07-09**, after the April–May campaign archive was consolidated
+onto this branch**)**. Here is what the count includes and how to audit it from this repo alone:
 
 | Source | What a "run" is | Rows/entries |
 |---|---|---|
@@ -20,5 +22,7 @@ Notes on honest counting:
   frank pre/post loop-rebuild files); the 2026-06-27 count of 215+ predates several of the
   archived TSVs being consolidated here, which is why the countable total (268+ TSV rows
   alone) now exceeds the public claim. The public number is a floor, not a ceiling.
-- Milestone experiments with a written verdict number **30+** — indexed in
-  [RESULTS.md](RESULTS.md) and the per-program directories.
+- **Milestone experiments:** the "30+ milestone experiments" phrasing on the website counts
+  the entries on the [localfamo.us](https://localfamo.us) interactive timeline (31 as of
+  2026-06-27). Program-level verdict documents in this repo number 9, indexed in
+  [RESULTS.md](RESULTS.md) — the timeline is finer-grained than the program index.
