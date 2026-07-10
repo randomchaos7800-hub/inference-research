@@ -1,0 +1,75 @@
+# Where do the milliseconds go? Decode profiling on 2× RTX 5060 Ti
+
+**Date:** 2026-07-10 · **Model:** Qwen3.6-27B AutoRound INT4 (hybrid linear-attention,
+64 layers: 48 linear + 16 full attention, dense MLPs) · **Stack:** vLLM 0.21 +
+Genesis patches, GPTQ-Marlin, TP=2 · **Hardware:** 2× RTX 5060 Ti 16GB (SM_120),
+PCIe Gen5 x8 + Gen4 x4, no P2P, no NVLink
+
+Question: on a budget dual-GPU consumer Blackwell box, what actually limits
+single-stream decode — and where is optimization effort best spent?
+
+## Method
+
+Single-stream 600-token generations (temp 0.3, same prompts across arms),
+2+ runs per configuration, all arms **without** speculative decoding except the
+production row (so the parallelism/graph comparisons are clean). GPU utilization
+sampled with `nvidia-smi dmon` at 1Hz during steady decode.
+
+## Results
+
+| Config | tok/s | vs control |
+|---|---:|---|
+| **Production** (TP=2 + CUDA graphs + MTP spec, 3 draft tokens) | **62.1** | +59% |
+| A — control: TP=2 + CUDA graphs, no spec | 39.2 | — |
+| B — PP=2 (pipeline instead of tensor parallel), no spec | 24.1 | −39% |
+| C — TP=2 --enforce-eager (no CUDA graphs), no spec | 21.7–25.4* | −40% |
+
+\* Eager mode also showed a reproducible pathology: the second consecutive request
+ran at 7.2–7.3 tok/s (3× slower, prompt-deterministic, thermals/clocks normal).
+Did not occur with CUDA graphs in any run. Unexplained; filed as a curiosity.
+
+Steady-state utilization during TP=2 decode: **SM ~98%, memory controller ~72%,
+PCIe ~250 MB/s per direction per card** (a few % of even the Gen4 x4 link).
+
+## What this says
+
+1. **Speculative decoding is the #1 software lever on this class of hardware.**
+   MTP with 3 draft tokens takes 39 → 62 tok/s (+59%) at zero quality cost.
+   If you tune one thing, tune this.
+
+2. **CUDA graphs are #2 (+60–75% over eager).** With 128+ kernel launches per
+   token on a 64-layer model, launch overhead is brutal on consumer parts —
+   never run eager in production, and be suspicious of any benchmark that did.
+
+3. **Tensor parallel beats pipeline parallel for single-stream, even over PCIe
+   without P2P.** PP=2 decodes at one-GPU pace (the halves run sequentially at
+   batch=1); TP=2 works both cards on every layer. The gap also quantifies the
+   TP communication tax: ideal 2-way scaling from PP's sequential pace would be
+   ~48 tok/s, measured 39 → **~20% of each token is lost to all-reduce latency**
+   (NCCL through host RAM; consumer cards have no P2P). Real, but a fifth of
+   the budget — not the villain.
+
+4. **Decode here is compute-bound, not bandwidth-bound.** SM ~98% vs memory
+   ~72% inverts the classic dense-decoder profile. The hybrid linear-attention
+   architecture (48 of 64 layers do state updates rather than KV lookups)
+   shifts the bottleneck to compute — meaning kernel tuning (Marlin configs,
+   linear-attention kernels, fused ops) has headroom that "it's all bandwidth"
+   folk wisdom says shouldn't exist. Notably, the Marlin per-SM tuning tables
+   in this stack have **no entry for SM_120** — consumer Blackwell falls back
+   to a generic heuristic.
+
+5. **PCIe link width barely matters for 2-way TP decode.** ~250 MB/s of traffic
+   fits comfortably in a Gen4 x4 slot; the cost of no-P2P all-reduce is latency
+   per operation, not bandwidth. Don't buy a bigger motherboard for 2-GPU
+   inference; the x4 second slot is fine.
+
+## Where effort goes next (ranked by measured headroom)
+
+1. **All-reduce latency (~20% of token budget):** fewer/fused sync points, or
+   quantized all-reduce. Kernel-adjacent, tractable.
+2. **SM_120 kernel tuning (compute-bound + no tuning entries):** Marlin tile
+   configs and Triton autotune ranges for consumer Blackwell. Accessible —
+   mostly config tables, not new CUDA.
+3. **Spec decoding tuning:** draft-token count and acceptance monitoring —
+   cheapest wins, partially exhausted (prod already runs MTP=3).
+4. Eager-mode second-request pathology: worth a bug report upstream.
