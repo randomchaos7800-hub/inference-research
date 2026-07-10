@@ -105,13 +105,50 @@ at its deployed memory settings (graph capture OOM'd at GMU 0.90 on 16GB).
   GPTQ-Marlin is the format to publish; NVFP4 is a datacenter format wearing
   a consumer badge until native SM_120 FP4 GEMM lands.**
 
+## The tuning sweep: a clean negative result
+
+Following the compute-bound finding, we made the obvious kernel launch
+parameters env-tunable (vLLM's FLA `fused_recurrent` decode kernel — hardcoded
+`num_warps=1, num_stages=3`, no autotune, runs 48 layers × every token;
+`fused_sigmoid_gating` — `num_warps=4`; and Marlin's `USE_FP32_REDUCE_DEFAULT`)
+and swept them end-to-end on the live model. Nine arms, fresh server load per
+arm, 2×600-token benches each, baseline reproduced first (39.4 vs 39.2 the
+day before — patched files behaviorally identical at defaults).
+
+| Arm | tok/s |
+|---|---:|
+| baseline (warps=1, stages=3, gating=4, fp32_reduce=on) | 39.4 |
+| FLA num_warps = 2 / 4 / 8 | 39.5 / 39.5 / 39.5 |
+| FLA num_stages = 4 | 39.4 |
+| FLA num_stages = 2 | 17.3 (unstable — 9.3 then 25.3; regression, not noise) |
+| gating num_warps = 2 / 8 | 39.4 / 39.4 |
+| Marlin fp32_reduce = off | 39.4 |
+
+**Every Python-reachable launch config is flat.** The FLA authors' choices are
+already right (or irrelevant) at decode shapes on SM_120, and Marlin's FP32
+epilogue is free here. Two implications worth more than a positive result:
+
+1. **Triton launch-config tuning is not where consumer-Blackwell milliseconds
+   live** for this model class. The remaining decode time sits in the Marlin
+   GEMM's C++ inner loop (thread-shape heuristic not reachable from Python),
+   the all-reduce, and per-token kernel count — graph-level, not launch-level.
+2. **The "compute-bound" reading needs a caveat we now understand:** NCCL's
+   no-P2P all-reduce spin-waits on SM, inflating SM utilization. Part of the
+   98% SM figure is communication wearing a compute costume. This moves the
+   P2P/all-reduce project up the priority list and demotes kernel micro-tuning.
+
+(The env hooks stay in the stack — zero cost at defaults, and they make the
+next sweep a config change instead of a code patch.)
+
 ## Where effort goes next (ranked by measured headroom)
 
-1. **All-reduce latency (~20% of token budget):** fewer/fused sync points, or
-   quantized all-reduce. Kernel-adjacent, tractable.
-2. **SM_120 kernel tuning (compute-bound + no tuning entries):** Marlin tile
-   configs and Triton autotune ranges for consumer Blackwell. Accessible —
-   mostly config tables, not new CUDA.
+1. **All-reduce latency (~20% of token budget, and part of the SM figure is
+   NCCL spin):** P2P enablement experiments, fewer/fused sync points, or
+   quantized all-reduce. Post-sweep, this is the clear #1.
+2. **Marlin C++ thread-shape heuristic for SM_120:** the only kernel-tuning
+   surface left after the launch-config sweep came back flat — requires
+   rebuilding the extension, real CUDA work, bounded upside (mem ~72%).
 3. **Spec decoding tuning:** draft-token count and acceptance monitoring —
    cheapest wins, partially exhausted (prod already runs MTP=3).
 4. Eager-mode second-request pathology: worth a bug report upstream.
+5. ~~Triton launch-config tuning~~ — ruled out empirically (see sweep above).
