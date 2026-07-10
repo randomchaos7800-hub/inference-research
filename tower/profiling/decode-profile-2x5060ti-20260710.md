@@ -140,6 +140,55 @@ epilogue is free here. Two implications worth more than a positive result:
 (The env hooks stay in the stack — zero cost at defaults, and they make the
 next sweep a config change instead of a code patch.)
 
+## Sizing the all-reduce prize directly (NCCL microbench)
+
+Before considering any driver-level P2P work, we measured what a single all-reduce
+actually costs on the current (no-P2P) path, at genesis's real TP=2 message shapes.
+torch+NCCL, 2 ranks (one per GPU), 500 timed ops after warmup, current stock driver.
+
+| Shape (msg = tokens × 5120 × bf16) | msg bytes | per-op latency | busbw |
+|---|---:|---:|---:|
+| decode b1 | 10 KB | **25.3 µs** | 0.41 GB/s |
+| decode+MTP b4 | 40 KB | 29.5 µs | 1.39 GB/s |
+| prefill 128 | 1.3 MB | 387 µs | 3.39 GB/s |
+| prefill 512 | 5.2 MB | 1492 µs | 3.51 GB/s |
+| prefill 2048 | 21 MB | 5783 µs | 3.63 GB/s |
+
+**Decode is pure latency, not bandwidth** — a 10 KB all-reduce moves at 0.41 GB/s
+because the 25 µs is almost all fixed overhead (host round-trip + kernel launch),
+not transfer time. That is precisely the regime P2P attacks.
+
+**Prize, quantified:** genesis does ~128 all-reduces per token (64 layers × 2).
+At 25.3 µs that's **3.23 ms per token — 20.1% of the 16.1 ms token budget** at
+62 tok/s. This independently confirms the ~20% figure the TP-vs-PP comparison
+inferred. 20% is the *ceiling* (all-reduce made free); P2P recovers a fraction.
+
+**Two findings that decide the driver question:**
+
+1. **`NCCL_P2P_DISABLE=1` (production) vs `=0` are identical** — 25.3 vs 24.7 µs,
+   within noise. NCCL *already cannot* use GPU-to-GPU P2P on these consumer cards;
+   the config flag is a no-op because the driver blocks peer access
+   (`torch.cuda.can_device_access_peer(0,1) == False`). Both paths stage through
+   host shared memory. This is the mechanism the tinygrad patch would change.
+
+2. **The real prize isn't "faster NCCL" — it's unlocking vLLM's own custom
+   all-reduce.** genesis runs with `--disable-custom-all-reduce` *because* peer
+   access is False. vLLM ships a one-shot GPU-side all-reduce kernel (no host hop,
+   no NCCL launch) that for a 10 KB message would run in single-digit µs vs 25 —
+   but it requires P2P. So the driver patch would flip `can_access_peer → True`,
+   which both drops NCCL latency *and* re-enables the custom kernel path.
+   Realistic recovery ≈ 60–70% of the 3.23 ms → **~12–14% throughput**
+   (genesis no-spec 39 → ~44; with MTP 62 → ~70). Meaningful, not transformative,
+   and bounded above by the 20% ceiling.
+
+**Verdict:** the prize is real (~10–15%) and now has a hard number, but the
+delivery cost is a hand-ported cross-major-version driver (tinygrad's newest P2P
+branch is 570; we're pinned to 580 by CUDA 13), with a silent-memory-corruption
+failure mode, installed via a sudo + module-reload/reboot on the production box.
+That is a scheduled-maintenance-window decision, not a config tweak — correctly
+gated on a human with console access. The measurement did its job: we know the
+payout before betting the table.
+
 ## Where effort goes next (ranked by measured headroom)
 
 1. **All-reduce latency (~20% of token budget, and part of the SM figure is
