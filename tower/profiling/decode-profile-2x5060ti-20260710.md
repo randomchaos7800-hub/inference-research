@@ -191,9 +191,14 @@ payout before betting the table.
 
 ## Where effort goes next (ranked by measured headroom)
 
-1. **All-reduce latency (~20% of token budget, and part of the SM figure is
-   NCCL spin):** P2P enablement experiments, fewer/fused sync points, or
-   quantized all-reduce. Post-sweep, this is the clear #1.
+1. **All-reduce latency (~20% of token budget — the largest single target).**
+   Measured prize ~10–15% via a P2P-enabled driver unlocking vLLM's custom
+   all-reduce (see prize-sizing section). **SHELVED 2026-07-10:** delivery
+   requires a hand-ported 570→580 driver with a silent-corruption failure mode,
+   installed via sudo + reboot on the production box — a scheduled-maintenance
+   decision, not worth the prod risk for ~15% at this time. Fully measured;
+   reopen with a maintenance window + console access if the calculus changes.
+   Cheaper sub-options if revisited: fewer/fused sync points, quantized all-reduce.
 2. **Marlin C++ thread-shape heuristic for SM_120:** the only kernel-tuning
    surface left after the launch-config sweep came back flat — requires
    rebuilding the extension, real CUDA work, bounded upside (mem ~72%).
