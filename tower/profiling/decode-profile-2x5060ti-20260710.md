@@ -63,6 +63,48 @@ PCIe ~250 MB/s per direction per card** (a few % of even the Gen4 x4 link).
    per operation, not bandwidth. Don't buy a bigger motherboard for 2-GPU
    inference; the x4 second slot is fine.
 
+## The controlled experiment: same model, different quant format
+
+The strongest claim above — that the kernel path, not the model, explains most
+performance gaps on consumer Blackwell — got a same-weights test: **Qwen3.6-27B
+INT4 (AutoRound/GPTQ-Marlin) vs Qwen3.6-27B NVFP4 (ModelOpt)**. Identical
+architecture, identical parameter count, only the quantization format differs.
+
+| Config (same model, both TP=2) | tok/s |
+|---|---:|
+| INT4 → native Marlin + CUDA graphs + MTP spec (production) | **62.1** |
+| INT4 → native Marlin + CUDA graphs, no spec | 39.2 |
+| NVFP4 → Marlin FP4-emulation + CUDA graphs (GMU 0.85, 65K ctx), no spec | 23.2 |
+| NVFP4 as previously deployed (eager, GMU 0.90, 131K ctx) | 8.8–15.7 |
+
+What the NVFP4 path is up against on SM_120, per vLLM's own startup log:
+
+> *"Your GPU does not have native support for FP4 computation but FP4
+> quantization is being used. Weight-only FP4 compression will be used
+> leveraging the Marlin kernel. This may degrade performance for
+> compute-heavy workloads."*
+
+And this workload is compute-heavy (SM ~98%). Consumer Blackwell has FP4
+tensor cores on silicon, but vLLM's native FP4 GEMM targets datacenter
+Blackwell (SM_100) — on SM_120 the NVFP4 checkpoint runs through Marlin
+weight-only *emulation*, required a hand-patch (`marlin_utils_fp4.py`) to load
+at all, needs a separate nightly vLLM build, and couldn't afford CUDA graphs
+at its deployed memory settings (graph capture OOM'd at GMU 0.90 on 16GB).
+
+**Findings:**
+- **Kernel-path tax at matched settings: 1.7×** (39.2 vs 23.2 tok/s, same
+  weights, same parallelism, both with graphs, no spec on either).
+- **Stack-maturity tax compounds it to 4×+ as deployed** (62 vs ~16): the INT4
+  path gets CUDA graphs at GMU 0.90 and MTP speculation for free; the NVFP4
+  path gets neither out of the box.
+- Incidental win: dropping eager for graphs at GMU 0.85/65K raised the NVFP4
+  backend's best known config by **+48%** (15.7 → 23.2).
+- The "genesis outperforms every other quant we tried" observation is
+  explained: it's not the model, it's landing on the one quant format whose
+  kernel is actually native on consumer Blackwell. **On SM_120 today, INT4
+  GPTQ-Marlin is the format to publish; NVFP4 is a datacenter format wearing
+  a consumer badge until native SM_120 FP4 GEMM lands.**
+
 ## Where effort goes next (ranked by measured headroom)
 
 1. **All-reduce latency (~20% of token budget):** fewer/fused sync points, or
