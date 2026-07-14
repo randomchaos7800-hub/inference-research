@@ -8,7 +8,7 @@ verified, one variable at a time — same discipline as every other program here
 
 Built via a 102-agent adversarially-verified research pass (20 sources fetched,
 98 claims extracted, 25 claims put through 3-vote verification, 13 killed).
-Full methodology and raw claim votes: see `sources.md` in this directory.
+Full source list and refuted-claims log are inline below (see [Refuted](#refuted--do-not-cite-these-as-fact) and [Full source list](#full-source-list)).
 
 ## The question
 
