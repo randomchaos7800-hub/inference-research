@@ -15,7 +15,7 @@ next to each verdict in the same directory.
 | [prism-pro](tower/prism-pro/) | Prism Pro sweep | Autoresearch driver + runs | [driver](tower/prism-pro/autoresearch-prism-pro.py) |
 | [benchmarks](tower/benchmarks/) | Shared tooling | Big-context bench, TRT-LLM NVFP4 bench, MTP batched-tokens test | [MTP test](tower/benchmarks/mtp-batched-tokens-test-2026-05-09.md) |
 | [profiling](tower/profiling/) | Decode profiling, 2× RTX 5060 Ti | Spec decode +59%, CUDA graphs +60–75%, TP>PP; all-reduce sized at ~20% of token budget then **shelved** (prod-risk not justified for ~15%, reopen path documented) | [decode profile](tower/profiling/decode-profile-2x5060ti-20260710.md) |
-| [moe](tower/moe/) | MoE playbook (pre-test) | Can sparse activation beat dense's quantization tradeoff on this hardware? 6-model, 7-phase experiment design ready to run — no live benchmarks yet | [design](tower/moe/EXPERIMENT-DESIGN.md) |
+| [moe](tower/moe/) | 6 MoE checkpoints (Qwen3-30B-A3B x3 quants, Qwen3.6-35B-A3B, Nemotron-3-Nano-30B-A3B, GPT-OSS-20B) | Every MoE checkpoint beat genesis on speed (**133.05 t/s** peak, GPT-OSS-20B) but lost badly on quality (2.87→1.87/5 vs. genesis 3.73); two traffic-engineering scenarios failed identically across 3 unrelated model families — capability floor, not a per-model bug; uncapped FlashInfer JIT compile storm misdiagnosed twice as a sync deadlock | [final report](tower/moe/FINAL-REPORT-2026-07-14.md) · [raw results](tower/moe/live-testing-notes.md) |
 
 **Method:** every benchmark runs under [experiment-mode](tower/experiment-mode.md) —
 production services stopped and disabled, VRAM drained and verified, one variable at

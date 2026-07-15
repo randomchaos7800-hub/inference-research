@@ -5,7 +5,7 @@ consequential first — the one-line results live in [../RESULTS.md](../RESULTS.
 
 ## Programs
 
-- [moe/](moe/) — **MoE playbook** — pre-test research (2026-07-13): can sparse activation beat dense's quantization tradeoff on this hardware; llama.cpp `-ot`/`--n-cpu-moe` as the primary lever; 6-model, 7-phase [experiment design](moe/EXPERIMENT-DESIGN.md) ready to run; no live benchmarks yet
+- [moe/](moe/) — **MoE playbook** — research 2026-07-13, all 7 phases live-tested 2026-07-14: every MoE checkpoint beat genesis on speed (up to 133 t/s), every one lost badly on quality (2.87 down to 1.87 vs. genesis's 3.73); two traffic-engineering scenarios failed identically across three unrelated model families, suggesting a hard capability floor at this size class — see [FINAL-REPORT-2026-07-14.md](moe/FINAL-REPORT-2026-07-14.md)
 - [ornith/](ornith/) — **Ornith-1.0-35B** tool-use eval (LangChain brutal suite) — production trial 2026-06-26 → 2026-07-03 (genesis restored as default)
 - [genesis/](genesis/) — **production replication guide** for Qwen3.6-27B on Genesis-patched vLLM (flags, install, ops)
 - [nemotron/](nemotron/) — Nemotron 3 Nano 30B tool-calling + TRT-LLM NVFP4

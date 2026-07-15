@@ -1,10 +1,19 @@
 # MoE playbook — pre-test research
 
-**Status: literature review only. No live benchmarks run yet.** This is the prep
-document for a future test session on the tower (2× RTX 5060 Ti 16GB, SM_120
-consumer Blackwell, 32GB system RAM). Run under [experiment-mode.md](../experiment-mode.md)
-when the session happens: production stopped and disabled, VRAM drained and
-verified, one variable at a time — same discipline as every other program here.
+**Status: all 7 phases complete, 2026-07-14.** See
+[EXPERIMENT-DESIGN.md](EXPERIMENT-DESIGN.md) for the plan with per-phase
+status, [live-testing-notes.md](live-testing-notes.md) for full raw
+results, and **[FINAL-REPORT-2026-07-14.md](FINAL-REPORT-2026-07-14.md) for
+the synthesis** — the short version: every MoE checkpoint beat genesis on
+speed, every one lost badly on quality, and two specific traffic-engineering
+scenarios failed identically across three unrelated model families,
+suggesting a hard floor at this model-size class rather than a per-model
+weakness. This was the prep document for that test session on the tower
+(2× RTX 5060 Ti 16GB, SM_120 consumer Blackwell, 32GB system RAM). Every
+phase ran under [tower-experiment-lock.py](../experiment-mode.md) — one
+command locks (masks the service, forces proxy to openrouter, verifies GPU
+clear) and one unlocks (verified working across 6 lock/unlock cycles this
+session).
 
 Built via a 102-agent adversarially-verified research pass (20 sources fetched,
 98 claims extracted, 25 claims put through 3-vote verification, 13 killed).
@@ -100,25 +109,60 @@ is a genuine literature gap, not an omission:
 
 ## Model candidates for the live session
 
-Already on disk, all structurally within the safe load zone *if* the RAM-ceiling
-finding from today's dense-model testing generalizes to MoE checkpoints the
-same way — this is an inference from that finding, not a verified MoE-specific
-result, and should be treated as a hypothesis to test, not a given:
+**Correction (2026-07-14):** Nemotron-3-Nano-30B-A3B was in this table as an
+untested vLLM/NVFP4 candidate. It isn't untested — `~/inference-research/tower/nemotron/`
+already has a full research program on it, missed before this table was
+first written. Real findings from that directory, not re-derived here:
 
-| Model | Size on disk | Format | Runner |
-|---|---|---|---|
-| Qwen3-30B-A3B-GPTQ-Int4 | 16G | safetensors | vLLM |
-| Qwen3-30B-A3B-NVFP4 | 17G | safetensors | vLLM |
-| Nemotron-3-Nano-30B-A3B-NVFP4 | 19G | safetensors | vLLM (right at/over the ~18G wedge line — treat as risky) |
-| Qwen3-30B-A3B-Q3_K_M.gguf | 14G | GGUF | llama.cpp |
-| Qwen3.6-35B-A3B-UD-Q4_K_M.gguf | 21G | GGUF | llama.cpp (already got ~100 t/s once, back in April, before the RAM-ceiling finding existed — don't assume that holds without re-verifying) |
+- **Winner, already proven: llama.cpp Q4_K_M, all layers on GPU
+  (`--n-gpu-layers 999`), ~24.9GB VRAM across both cards — 117-123 t/s**,
+  faster than genesis, 100% tool-calling pass rate validated 2026-05-28.
+  Nothing to test, just run it (`nemotron-shootout-results.md` has the exact
+  command).
+- **The NVFP4/vLLM path is already documented as a dead end for this specific
+  model**, not a hypothesis: Nemotron-3-Nano is 89% Mamba/SSM layers (52
+  total, 6 attention). Mamba layers can't be tensor-parallel-sharded the way
+  attention layers can — TP replicates them per-GPU instead of splitting
+  them, so TP=2 doesn't reduce memory footprint for the bulk of the model. A
+  2026-05-21 TRT-LLM attempt OOM'd by 3MB even using NVIDIA's own official
+  sharding config; verdict was "cannot run on 2×16GB regardless of sharding
+  strategy." vLLM's TP implementation likely hits the same wall. **Removed
+  from the candidate table below — not worth re-testing.**
 
-A sixth worth acquiring: **GPT-OSS-20B**, natively MXFP4-quantized, real and
-well-regarded, came up repeatedly in research as a common CPU-offload test
-subject. Its specific throughput claim from this research pass (319-424 t/s
-on an RTX 5090) was rejected on verification — don't cite that number — but
-the model itself and its native MXFP4 format are real and worth having in
-the candidate pool.
+Remaining candidates, all structurally within the safe load zone *if* the
+RAM-ceiling finding from dense-model testing generalizes to MoE checkpoints
+the same way — that's still an inference, not a verified MoE-specific
+result, treat as a hypothesis:
+
+| Model | Size on disk | Format | Runner | Prior data |
+|---|---|---|---|---|
+| Qwen3-30B-A3B-GPTQ-Int4 | 16G | safetensors | vLLM | **41.33 t/s median** (2026-05-16 model-eval, tight variance); first launch attempt that day failed to come up healthy before a working config was found |
+| Qwen3-30B-A3B-NVFP4 | 17G | safetensors | vLLM | FAILED 2026-05-16 (CUDA<12.9 blocked NVFP4 kernel JIT — now fixed, CUDA 13.0). Phase 0 (2026-07-14) loaded weights cleanly, confirming that fix, but hit a new post-load TP/EP stall — see live-testing-notes.md |
+| Qwen3-30B-A3B-Q3_K_M.gguf | 14G | GGUF | llama.cpp | None found — genuinely untested on this hardware |
+| Qwen3.6-35B-A3B-UD-Q4_K_M.gguf | 21G | GGUF | llama.cpp | **100.24 t/s**, full 20-iteration autoresearch sweep, confirmed already-optimal (0/22 improvements found), best flags saved to `~/inference-research/current-best-flags-qwen36moe.sh` — this is Frank's current production model at :8081 |
+
+A fifth and sixth worth acquiring: **GPT-OSS-20B**, natively MXFP4-quantized,
+real and well-regarded, came up repeatedly in research as a common
+CPU-offload test subject — its specific throughput claim from research
+(319-424 t/s on an RTX 5090) was rejected on verification, don't cite that
+number, but the model itself is worth having in the pool. And given Nemotron's
+llama.cpp win, **Qwen3-30B-A3B via llama.cpp Q4_K_M/Q5_K_M (not yet on disk)**
+is worth acquiring too — same "check the GPU-resident llama.cpp path before
+assuming vLLM/offloading is necessary" logic that just paid off for Nemotron.
+
+### Watch for later — not viable on current hardware
+
+**Tencent Hy3** (`AngelSlim/Hy3-GGUF`, huggingface.co/AngelSlim/Hy3-GGUF) —
+295B total-param MoE, Apache 2.0, mixed-precision expert quantization, real
+MTP head. Explicitly added to vLLM's model zoo in the 0.25.0 release notes
+(#47192) — the same release everything in this whole research pass has been
+about. Smallest available GGUF quant (IQ1_M, 1-bit) is 89.4GB — ~3x this
+rig's total VRAM and close to 3x even a future 64GB RAM upgrade; their own
+docs say it needs a single 96GB GPU at minimum. Not an "offload harder"
+candidate — the checkpoint itself is too large to read into host RAM during
+load at any offered quantization. Same category as GLM-5.2 in memory:
+frontier-scale future-hardware insurance, not a live-session candidate as
+this rig stands today.
 
 ## Citation hygiene
 
