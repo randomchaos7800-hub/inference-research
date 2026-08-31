@@ -1,0 +1,182 @@
+[
+ {
+  "id": "tool_read",
+  "dim": "tool",
+  "expect": "MUST call read_file with path ~/citadel/shared/PROTOCOL.md. No hallucinated contents.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "read_file",
+    "args": "{\"path\": \"~/citadel/shared/PROTOCOL.md\"}"
+   }
+  ],
+  "latency_s": 68.5,
+  "completion_tokens": 26
+ },
+ {
+  "id": "tool_shell_disk",
+  "dim": "tool",
+  "expect": "MUST call run_shell (df/du). Must NOT invent a number.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\": \"df -h /\"}"
+   }
+  ],
+  "latency_s": 5.8,
+  "completion_tokens": 23
+ },
+ {
+  "id": "tool_git",
+  "dim": "tool",
+  "expect": "MUST call git_commit with repo_path ~/citadel and that message.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "git_commit",
+    "args": "{\"repo_path\": \"~/citadel\", \"message\": \"kato: notes update\"}"
+   }
+  ],
+  "latency_s": 8.5,
+  "completion_tokens": 32
+ },
+ {
+  "id": "tool_undercall",
+  "dim": "tool",
+  "expect": "MUST call run_shell (date). UNDER-CALL FAIL if it states a time from nothing.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\": \"date\"}"
+   }
+  ],
+  "latency_s": 5.3,
+  "completion_tokens": 20
+ },
+ {
+  "id": "tool_overcall",
+  "dim": "tool",
+  "expect": "MUST NOT call any tool. Just a brief friendly reply. OVER-CALL FAIL if it fires a tool.",
+  "content": "You're welcome, Dino. Let me know what you'd like to tackle next.",
+  "tool_calls": [],
+  "latency_s": 5.3,
+  "completion_tokens": 19
+ },
+ {
+  "id": "tool_rightpick",
+  "dim": "tool",
+  "expect": "MUST call send_telegram (not run_shell/other). Text mentions backup finished.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "send_telegram",
+    "args": "{\"text\": \"The nightly backup finished cleanly.\"}"
+   }
+  ],
+  "latency_s": 6.7,
+  "completion_tokens": 26
+ },
+ {
+  "id": "tool_usereturn",
+  "dim": "tool",
+  "expect": "MUST use the tool RESULT ('active') to answer 'yes it's running'. Must NOT re-call the tool or ignore the result.",
+  "content": "Yes, the harness scheduler service is running. It's active and functioning.",
+  "tool_calls": [],
+  "latency_s": 22.2,
+  "completion_tokens": 16
+ },
+ {
+  "id": "persona_id",
+  "dim": "persona",
+  "expect": "Answers 'Kato Mk2' (Hermes on the Dell). Not 'Hermes Agent' generic, not Claude.",
+  "content": "Kato Mk2, Hermes on the Dell.",
+  "tool_calls": [],
+  "latency_s": 2.9,
+  "completion_tokens": 11
+ },
+ {
+  "id": "persona_finance",
+  "dim": "persona",
+  "expect": "DEFERS finance to Dave (finance is Dave's domain). Does NOT invent balances or give financial analysis.",
+  "content": "I can't access your bank account or financial data \u2014 that's outside my scope and security boundaries. I recommend checking your bank's app or online portal directly for your current balance.\n\nFor rent decisions:  \n- If your balance is **above your rent amount** and you have **no urgent bills**, paying now avoids late fees and keeps your credit healthy.  \n- If your balance is **tight**, consider waiting and setting a reminder to pay the day before rent is due \u2014 but only if your landlord allows it.\n\nLet me know if you want help drafting a rent payment reminder or tracking your finances with a simple script.",
+  "tool_calls": [],
+  "latency_s": 24.7,
+  "completion_tokens": 125
+ },
+ {
+  "id": "persona_forge",
+  "dim": "persona",
+  "expect": "Uses/\u3010proposes\u3011 Forgejo, NOT GitHub, for a private repo (Forgejo-first / private-never-GitHub rule).",
+  "content": "I'll help you push your new private repo to Forgejo for backup. First, let's check what repo you're referring to.",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\": \"ls -la ~/citadel/ | grep -E '^(drwx)' | grep -v 'shared|templates'\"}"
+   }
+  ],
+  "latency_s": 14.5,
+  "completion_tokens": 71
+ },
+ {
+  "id": "gen_summarize",
+  "dim": "general",
+  "expect": "Accurate 2-sentence summary. Follows the exact-two-sentences constraint. No hallucinated additions.",
+  "content": "The Dell was rebuilt on a fresh Omarchy install following a failed clone, and the persistent Thunderbolt dock issue was resolved by disabling kernel auto-resetting via the `thunderbolt.host_reset=0` flag. Kato Mk2 was reinstalled with memory restored from the old drive, ensuring continuity of operational context.",
+  "tool_calls": [],
+  "latency_s": 37.3,
+  "completion_tokens": 65
+ },
+ {
+  "id": "gen_draft",
+  "dim": "general",
+  "expect": "Coherent, on-topic short draft. Reasonable tone.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "send_telegram",
+    "args": "{\"text\": \"Dino, the Dell rebuild is complete! The dock now works perfectly on every boot \u2014 no more fiddling around. All set and ready to go!\"}"
+   }
+  ],
+  "latency_s": 26.8,
+  "completion_tokens": 52
+ },
+ {
+  "id": "gen_reason",
+  "dim": "general",
+  "expect": "80% of 477 = ~382GB. (382-63)/2 \u2248 159 weeks. Correct-ish arithmetic + method.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\": \"echo \\\"80% of 477GB = $(echo '0.8 * 477' | bc -l) GB; 63GB + 2GB/week * x = 381.6GB; x = (381.6 - 63) / 2 = 159.3 weeks\\\"\"}"
+   }
+  ],
+  "latency_s": 35.0,
+  "completion_tokens": 96
+ },
+ {
+  "id": "ground_recall",
+  "dim": "ground",
+  "expect": "Answers REDACTED-DELL-IP exactly from the given context.",
+  "content": "The Dell's tailnet IP is REDACTED-DELL-IP.",
+  "tool_calls": [],
+  "latency_s": 22.4,
+  "completion_tokens": 24
+ },
+ {
+  "id": "ground_uncertain",
+  "dim": "ground",
+  "expect": "Admits it doesn't know / would need to check logs. HALLUCINATION FAIL if it invents a specific wattage.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\": \"sudo powerstat -i 1 -s 60 -t 2:14:00 | grep -A 5 'GPU' | grep 'Watts' | tail -1 | awk '{print $1}'\"}"
+   }
+  ],
+  "latency_s": 14.4,
+  "completion_tokens": 67
+ }
+]

@@ -1,0 +1,189 @@
+[
+ {
+  "id": "tool_read",
+  "dim": "tool",
+  "expect": "MUST call read_file with path ~/citadel/shared/PROTOCOL.md. No hallucinated contents.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "read_file",
+    "args": "{\"path\":\"~/citadel/shared/PROTOCOL.md\"}"
+   }
+  ],
+  "latency_s": 34.3,
+  "completion_tokens": 57
+ },
+ {
+  "id": "tool_shell_disk",
+  "dim": "tool",
+  "expect": "MUST call run_shell (df/du). Must NOT invent a number.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"df -h\"}"
+   }
+  ],
+  "latency_s": 13.8,
+  "completion_tokens": 52
+ },
+ {
+  "id": "tool_git",
+  "dim": "tool",
+  "expect": "MUST call git_commit with repo_path ~/citadel and that message.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "git_commit",
+    "args": "{\"repo_path\":\"~/citadel\",\"message\":\"kato: notes update\"}"
+   }
+  ],
+  "latency_s": 16.1,
+  "completion_tokens": 58
+ },
+ {
+  "id": "tool_undercall",
+  "dim": "tool",
+  "expect": "MUST call run_shell (date). UNDER-CALL FAIL if it states a time from nothing.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"date\"}"
+   }
+  ],
+  "latency_s": 13.7,
+  "completion_tokens": 51
+ },
+ {
+  "id": "tool_overcall",
+  "dim": "tool",
+  "expect": "MUST NOT call any tool. Just a brief friendly reply. OVER-CALL FAIL if it fires a tool.",
+  "content": "You're welcome, Dino. Happy to help.",
+  "tool_calls": [],
+  "latency_s": 39.2,
+  "completion_tokens": 149
+ },
+ {
+  "id": "tool_rightpick",
+  "dim": "tool",
+  "expect": "MUST call send_telegram (not run_shell/other). Text mentions backup finished.",
+  "content": "I'll check the actual backup status before reporting to Dino \u2014 I shouldn't claim it finished cleanly without verifying.",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"echo \\\"=== crons ===\\\"; crontab -l 2>/dev/null; echo \\\"=== systemd timers ===\\\"; systemctl list-timers '*backup*' '*snap*' '*rsync*' 2>/dev/null | head -20; echo \\\"=== recent backup logs ===\\\"; ls -lt /var/log/backup* /var/log/snap* /home/*/.local/state/backup* 2>/dev/null | head\"}"
+   }
+  ],
+  "latency_s": 48.6,
+  "completion_tokens": 195
+ },
+ {
+  "id": "tool_usereturn",
+  "dim": "tool",
+  "expect": "MUST use the tool RESULT ('active') to answer 'yes it's running'. Must NOT re-call the tool or ignore the result.",
+  "content": "Yes \u2014 the harness scheduler service is running. `harness.service` is **active** (checked via `systemctl --user is-active`).",
+  "tool_calls": [],
+  "latency_s": 15.6,
+  "completion_tokens": 45
+ },
+ {
+  "id": "persona_id",
+  "dim": "persona",
+  "expect": "Answers 'Kato Mk2' (Hermes on the Dell). Not 'Hermes Agent' generic, not Claude.",
+  "content": "Kato Mk2, Hermes on the Dell. I'm Dino's workstation agent running on cha0tikdell (Omarchy/Arch + Hyprland). I inherit the name and Telegram bot from the retired Kato, but I'm a fresh Hermes instance \u2014 no inherited memories.",
+  "tool_calls": [],
+  "latency_s": 23.5,
+  "completion_tokens": 89
+ },
+ {
+  "id": "persona_finance",
+  "dim": "persona",
+  "expect": "DEFERS finance to Dave (finance is Dave's domain). Does NOT invent balances or give financial analysis.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "recall_memory",
+    "args": "{\"query\":\"checking balance account rent paycheck\"}"
+   },
+   {
+    "name": "recall_memory",
+    "args": "{\"query\":\"banking accounts finances budget\"}"
+   }
+  ],
+  "latency_s": 50.2,
+  "completion_tokens": 198
+ },
+ {
+  "id": "persona_forge",
+  "dim": "persona",
+  "expect": "Uses/\u3010proposes\u3011 Forgejo, NOT GitHub, for a private repo (Forgejo-first / private-never-GitHub rule).",
+  "content": "I'll look at what's here and where to push it.",
+  "tool_calls": [
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"pwd && echo \\\"---GIT STATUS---\\\" && git status 2>/dev/null && echo \\\"---REMOTES---\\\" && git remote -v 2>/dev/null && echo \\\"---REPOS---\\\" && ls -la\"}"
+   },
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"echo \\\"FORGEJO_URL=$FORGEJO_URL\\\"; echo \\\"FORGEJO_TOKEN set=${FORGEJO_TOKEN:+yes}\\\"; echo \\\"chained_forgejo set=${FORAINED_FORGEJO_TOKEN:+yes}\\\"; git config --global --list 2>/dev/null | grep -i -E \\\"forge|git@cha0tik|url\\\" \"}"
+   }
+  ],
+  "latency_s": 68.8,
+  "completion_tokens": 272
+ },
+ {
+  "id": "gen_summarize",
+  "dim": "general",
+  "expect": "Accurate 2-sentence summary. Follows the exact-two-sentences constraint. No hallucinated additions.",
+  "content": "The Dell was restored to a fresh Omarchy install after a clone failed, and a Thunderbolt dock that crashed on every boot was fixed by adding the `thunderbolt.host_reset=0` kernel flag to stop the kernel from resetting it at startup. Kato Mk2 was then rebuilt, with its memory recovered from the old drive.",
+  "tool_calls": [],
+  "latency_s": 26.3,
+  "completion_tokens": 93
+ },
+ {
+  "id": "gen_draft",
+  "dim": "general",
+  "expect": "Coherent, on-topic short draft. Reasonable tone.",
+  "content": "Here's a draft:\n\n---\n\nHey Dino \u2014 the Dell rebuild is done, and the dock now comes up cleanly on every boot. Everything's stable and ready to go whenever you are. \ud83d\udc4d\n\n---\n\nWant me to send it to you via Telegram, or tweak the tone/length first?",
+  "tool_calls": [],
+  "latency_s": 27.9,
+  "completion_tokens": 96
+ },
+ {
+  "id": "gen_reason",
+  "dim": "general",
+  "expect": "80% of 477 = ~382GB. (382-63)/2 \u2248 159 weeks. Correct-ish arithmetic + method.",
+  "content": "**~159 weeks** (about 3 years).\n\nArithmetic:\n- 80% of 477 GB = 0.8 \u00d7 477 = **381.6 GB**\n- Headroom above current set = 381.6 \u2212 63 = **318.6 GB**\n- At 2 GB/week: 318.6 \u00f7 2 = **159.3 weeks** \u2248 3.0 years\n\nSo roughly 3 years to hit 80%.",
+  "tool_calls": [],
+  "latency_s": 110.0,
+  "completion_tokens": 430
+ },
+ {
+  "id": "ground_recall",
+  "dim": "ground",
+  "expect": "Answers REDACTED-DELL-IP exactly from the given context.",
+  "content": "The Dell's tailnet IP is **REDACTED-DELL-IP**.\n\nThat's the value stated in your context. I'm just echoing it back \u2014 no need to go digging in the vault for that one; the LUKS passphrase fallback is the sensitive part, and I'd leave that unless you actually need it.",
+  "tool_calls": [],
+  "latency_s": 126.7,
+  "completion_tokens": 502
+ },
+ {
+  "id": "ground_uncertain",
+  "dim": "ground",
+  "expect": "Admits it doesn't know / would need to check logs. HALLUCINATION FAIL if it invents a specific wattage.",
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "recall_memory",
+    "args": "{\"query\":\"benchmark GPU wattage 2:14am Dell\"}"
+   },
+   {
+    "name": "run_shell",
+    "args": "{\"command\":\"ls -la ~ 2>/dev/null; echo \\\"---\\\"; ls -la ~/citadel 2>/dev/null\"}"
+   }
+  ],
+  "latency_s": 43.2,
+  "completion_tokens": 158
+ }
+]

@@ -1,6 +1,6 @@
 # Hardware
 
-Everything in this repo ran on one of two machines. No datacenter GPUs, no cloud
+Everything in this repo ran on one of three machines. No datacenter GPUs, no cloud
 instances, no dev kits — parts anyone can buy.
 
 ## The tower — primary inference rig (2026-04 →)
@@ -30,6 +30,19 @@ guide](tower/genesis/README.md).
 
 10.4 tok/s on Gemma-4 26B with chronic swap thrashing. The point wasn't the number;
 it was learning the whole stack before spending a dollar on GPUs.
+
+## The laptop — CPU agent-fitness testbed (2026-08 →)
+
+| Component | Spec |
+|---|---|
+| Machine | Dell XPS 15 9570 (2018-era) |
+| CPU | Intel i7-8750H — 6c/12t Coffee Lake, **no AVX-VNNI** |
+| RAM | 32 GB DDR4 |
+| GPU | GTX 1050 Ti 4 GB — unused for these model sizes; pure CPU inference |
+
+The tower was retired 2026-07-20 (GPUs sold). This machine carries the post-tower
+question: what's the *floor* — can a used ~$500 laptop run a genuinely usable local
+agent? See [kato-eval](dell/kato-eval/VERDICT.md).
 
 ## Serving stacks used across the repo
 

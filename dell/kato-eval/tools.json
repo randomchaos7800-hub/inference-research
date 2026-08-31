@@ -1,0 +1,7 @@
+[
+ {"type":"function","function":{"name":"read_file","description":"Read the contents of a file on this machine.","parameters":{"type":"object","properties":{"path":{"type":"string","description":"Absolute or ~-relative path"}},"required":["path"]}}},
+ {"type":"function","function":{"name":"run_shell","description":"Run a shell command on this machine and return its stdout.","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}},
+ {"type":"function","function":{"name":"git_commit","description":"Stage all changes in a repo and commit with a message (Forgejo-first).","parameters":{"type":"object","properties":{"repo_path":{"type":"string"},"message":{"type":"string"}},"required":["repo_path","message"]}}},
+ {"type":"function","function":{"name":"recall_memory","description":"Search Kato's own memory for relevant facts.","parameters":{"type":"object","properties":{"query":{"type":"string"}},"required":["query"]}}},
+ {"type":"function","function":{"name":"send_telegram","description":"Send a Telegram message to Dino.","parameters":{"type":"object","properties":{"text":{"type":"string"}},"required":["text"]}}}
+]
