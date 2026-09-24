@@ -31,6 +31,7 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
 - **[tower/genesis/](tower/genesis/)** — full production replication guide (flags, install, ops)
 - **[tower/experiment-mode.md](tower/experiment-mode.md)** — the protocol every benchmark runs under
 - **[papers/](papers/)** — *Commodity Hardware for Persistent AI Companions* (Zenodo preprint)
+- **[longmemeval/](longmemeval/)** — does agent memory survive a model change? Harness, three-reader run, hand judgments
 
 ## How to read the receipts
 

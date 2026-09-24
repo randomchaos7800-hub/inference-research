@@ -1,0 +1,20 @@
+{
+  "run_ts": "20260407_150316",
+  "split": "s",
+  "tasks": "all",
+  "total": 25,
+  "ok": 25,
+  "errors": 0,
+  "avg_score_exact": 0.88,
+  "avg_score_llm": null,
+  "by_question_type": {
+    "single-session-user": {
+      "count": 25,
+      "avg_score_exact": 0.88
+    }
+  },
+  "results_file": "run_20260407_150316.jsonl",
+  "log_file": "run_20260407_150316.log",
+  "note": "Scores corrected for markdown stripping issue in scorer",
+  "reader": "google/gemma-4-31b-it (OpenRouter), 500-message context-window mode"
+}

@@ -1,0 +1,19 @@
+{
+  "run_ts": "20260921_135525",
+  "split": "s",
+  "tasks": "single-session-user",
+  "total": 25,
+  "ok": 25,
+  "errors": 0,
+  "avg_score_exact": 0.48,
+  "avg_score_llm": null,
+  "by_question_type": {
+    "single-session-user": {
+      "count": 25,
+      "avg_score_exact": 0.48
+    }
+  },
+  "results_file": "run_20260921_135525.jsonl",
+  "log_file": "run_20260921_135525.log",
+  "reader": "claude-sonnet-5 (Claude Code subscription bridge, :8020)"
+}

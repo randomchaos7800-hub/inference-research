@@ -1,0 +1,613 @@
+2026-09-21 13:42:24,533 INFO lme === LongMemEval 20260921_134224 | split=s limit=25 ===
+2026-09-21 13:42:24,537 INFO lme Memory paths patched → /tmp/longmemeval_20260921_134224/mike-memory
+2026-09-21 13:42:24,538 INFO memory.storage Memory initialized at /tmp/longmemeval_20260921_134224/mike-memory
+2026-09-21 13:42:24,538 INFO lme Using cached dataset: /tmp/longmemeval_data/longmemeval_s_cleaned.json
+2026-09-21 13:42:26,270 INFO lme Task filter {'single-session-user'}: 500 → 70
+2026-09-21 13:42:26,273 INFO lme Loaded 25 examples (split=s)
+2026-09-21 13:42:26,657 INFO lme Initializing RelayV3...
+2026-09-21 13:42:26,684 INFO relay.tool_domains.mcp_client MCP: started 2 server(s)
+2026-09-21 13:42:26,722 INFO relay.switchboard Switchboard initialized (primary: local:nemotron, pod: http://localhost:8010/v1)
+2026-09-21 13:42:26,775 INFO memory.storage Memory initialized at /tmp/longmemeval_20260921_134224/mike-memory
+2026-09-21 13:42:26,775 INFO relay.relay RelayV3: nemotron, 84 tools, max_output=8192
+2026-09-21 13:42:26,775 INFO lme [lme_0000] single-session-user | 53 sessions (550 turns) | Q: What degree did I graduate with?...
+2026-09-21 13:42:26,853 INFO lme [lme_0000] Injected 550 turns across 53 sessions (494,624 chars)
+2026-09-21 13:42:26,901 INFO relay.tool_domains.mcp_client MCP connecting: filesystem → ~/.nvm/.../npx -y @modelcontextprotocol/server-filesystem ~/agent ~/agent-memory
+2026-09-21 13:42:26,910 INFO lme [lme_0000] FTS backfill: 273 messages indexed
+2026-09-21 13:42:26,910 INFO lme [lme_0000] Asking (date=2023/05/30 (Tue) 23:40): What degree did I graduate with?
+2026-09-21 13:42:26,917 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:26,917 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:26,918 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:26,931 INFO relay.tool_domains.mcp_client MCP connecting: github → ~/.nvm/.../npx -y @modelcontextprotocol/server-github
+2026-09-21 13:42:28,123 INFO relay.tool_domains.mcp_client MCP[filesystem]: 6 tool(s) withheld by allowed_tools: create_directory, edit_file, list_directory_with_sizes, move_file, read_media_file, write_file
+2026-09-21 13:42:28,123 INFO relay.tool_domains.mcp_client MCP 'filesystem' connected: 14 tools
+2026-09-21 13:42:28,209 INFO relay.tool_domains.mcp_client MCP 'github' connected: 26 tools
+2026-09-21 13:42:29,574 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:29,581 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:29,779 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:29,781 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:29,782 INFO lme [lme_0000] RESULT exact=1.00 llm=None latency=2.67s
+2026-09-21 13:42:29,782 INFO lme [lme_0000] Predicted: You graduated with a degree in Business Administration.
+2026-09-21 13:42:29,782 INFO lme [lme_0000] Expected:  Business Administration
+2026-09-21 13:42:29,783 INFO lme [lme_0001] single-session-user | 45 sessions (485 turns) | Q: How long is my daily commute to work?...
+2026-09-21 13:42:29,790 INFO lme [lme_0001] Injected 485 turns across 45 sessions (491,983 chars)
+2026-09-21 13:42:29,793 INFO lme [lme_0001] FTS backfill: 241 messages indexed
+2026-09-21 13:42:29,793 INFO lme [lme_0001] Asking (date=2023/05/30 (Tue) 20:36): How long is my daily commute to work?
+2026-09-21 13:42:29,795 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:29,795 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:29,796 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:32,591 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:32,595 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:32,596 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:42:32,596 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:32,597 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:32,597 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:42:32,598 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:42:32,598 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:32,599 INFO relay.switchboard Switchboard call: 107 messages, tools=True
+2026-09-21 13:42:34,364 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:34,366 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:34,367 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:42:34,368 INFO relay.switchboard Switchboard call: 109 messages, tools=True
+2026-09-21 13:42:36,024 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:36,024 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:36,151 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:36,153 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:36,153 INFO lme [lme_0001] RESULT exact=0.00 llm=None latency=6.23s
+2026-09-21 13:42:36,154 INFO lme [lme_0001] Predicted: I don’t have your commute duration recorded. How do you usually get to work, and from where?
+2026-09-21 13:42:36,154 INFO lme [lme_0001] Expected:  45 minutes each way
+2026-09-21 13:42:36,154 INFO lme [lme_0002] single-session-user | 50 sessions (529 turns) | Q: Where did I redeem a $5 coupon on coffee creamer?...
+2026-09-21 13:42:36,174 INFO lme [lme_0002] Injected 529 turns across 50 sessions (510,302 chars)
+2026-09-21 13:42:36,178 INFO lme [lme_0002] FTS backfill: 263 messages indexed
+2026-09-21 13:42:36,178 INFO lme [lme_0002] Asking (date=2023/05/30 (Tue) 20:42): Where did I redeem a $5 coupon on coffee creamer?
+2026-09-21 13:42:36,180 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:36,180 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:36,181 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:39,479 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:39,480 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:39,480 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:42:39,481 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:39,481 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:39,481 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:42:39,482 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:42:39,483 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:42:39,483 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:39,484 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:42:40,696 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:40,697 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:40,742 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:40,744 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:40,745 INFO lme [lme_0002] RESULT exact=1.00 llm=None latency=4.52s
+2026-09-21 13:42:40,745 INFO lme [lme_0002] Predicted: You redeemed it at Target, using the Cartwheel app.
+2026-09-21 13:42:40,745 INFO lme [lme_0002] Expected:  Target
+2026-09-21 13:42:40,745 INFO lme [lme_0003] single-session-user | 57 sessions (616 turns) | Q: What play did I attend at the local community theater?...
+2026-09-21 13:42:40,757 INFO lme [lme_0003] Injected 616 turns across 57 sessions (497,068 chars)
+2026-09-21 13:42:40,762 INFO lme [lme_0003] FTS backfill: 305 messages indexed
+2026-09-21 13:42:40,762 INFO lme [lme_0003] Asking (date=2023/05/30 (Tue) 22:53): What play did I attend at the local community theater?
+2026-09-21 13:42:40,764 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:40,765 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:40,765 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:43,707 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:43,708 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:43,709 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:42:43,709 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:43,710 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:43,711 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:42:43,711 INFO relay.relay Tool (read,parallel): read_timeline
+2026-09-21 13:42:43,712 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:42:43,713 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:42:43,714 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:43,714 INFO relay.switchboard Switchboard call: 109 messages, tools=True
+2026-09-21 13:42:46,108 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:46,109 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:46,110 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:46,112 INFO relay.switchboard Switchboard call: 111 messages, tools=True
+2026-09-21 13:42:48,188 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:48,189 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:48,329 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:48,333 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:48,333 INFO lme [lme_0003] RESULT exact=0.00 llm=None latency=7.43s
+2026-09-21 13:42:48,333 INFO lme [lme_0003] Predicted: I don’t have a record of which play you attended at the local community theater.
+2026-09-21 13:42:48,333 INFO lme [lme_0003] Expected:  The Glass Menagerie
+2026-09-21 13:42:48,334 INFO lme [lme_0004] single-session-user | 50 sessions (510 turns) | Q: What is the name of the playlist I created on Spotify?...
+2026-09-21 13:42:48,340 INFO lme [lme_0004] Injected 510 turns across 50 sessions (506,555 chars)
+2026-09-21 13:42:48,343 INFO lme [lme_0004] FTS backfill: 253 messages indexed
+2026-09-21 13:42:48,343 INFO lme [lme_0004] Asking (date=2023/05/30 (Tue) 19:19): What is the name of the playlist I created on Spotify?
+2026-09-21 13:42:48,345 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:48,346 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:48,346 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:50,087 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:50,088 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:50,090 WARNING relay.sessions Attempted to save empty message for lme_0004, skipping
+2026-09-21 13:42:50,149 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:50,159 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:50,160 INFO lme [lme_0004] RESULT exact=0.00 llm=None latency=1.75s
+2026-09-21 13:42:50,160 INFO lme [lme_0004] Predicted: 
+2026-09-21 13:42:50,161 INFO lme [lme_0004] Expected:  Summer Vibes
+2026-09-21 13:42:50,162 INFO lme [lme_0005] single-session-user | 44 sessions (469 turns) | Q: What was my last name before I changed it?...
+2026-09-21 13:42:50,171 INFO lme [lme_0005] Injected 469 turns across 44 sessions (495,815 chars)
+2026-09-21 13:42:50,176 INFO lme [lme_0005] FTS backfill: 233 messages indexed
+2026-09-21 13:42:50,176 INFO lme [lme_0005] Asking (date=2023/05/30 (Tue) 22:36): What was my last name before I changed it?
+2026-09-21 13:42:50,180 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:50,180 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:50,181 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:52,685 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:52,685 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:52,686 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:42:52,686 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:52,686 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:52,686 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:42:52,687 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:52,687 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:42:52,688 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:52,688 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:42:54,626 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:54,629 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:54,686 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:54,688 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:54,688 INFO lme [lme_0005] RESULT exact=1.00 llm=None latency=4.46s
+2026-09-21 13:42:54,689 INFO lme [lme_0005] Predicted: Your last name was Johnson, before you changed it to Winters.
+2026-09-21 13:42:54,689 INFO lme [lme_0005] Expected:  Johnson
+2026-09-21 13:42:54,689 INFO lme [lme_0006] single-session-user | 51 sessions (513 turns) | Q: Where do I take yoga classes?...
+2026-09-21 13:42:54,699 INFO lme [lme_0006] Injected 513 turns across 51 sessions (494,344 chars)
+2026-09-21 13:42:54,702 INFO lme [lme_0006] FTS backfill: 252 messages indexed
+2026-09-21 13:42:54,702 INFO lme [lme_0006] Asking (date=2023/05/30 (Tue) 21:04): Where do I take yoga classes?
+2026-09-21 13:42:54,705 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:54,705 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:54,706 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:42:57,486 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:57,487 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:57,488 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:42:57,489 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:57,489 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:42:57,490 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:42:57,491 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:42:57,492 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:42:57,492 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:42:57,493 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:42:59,212 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:42:59,213 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:42:59,270 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:42:59,272 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:42:59,272 INFO lme [lme_0006] RESULT exact=1.00 llm=None latency=4.52s
+2026-09-21 13:42:59,272 INFO lme [lme_0006] Predicted: You take yoga classes at Serenity Yoga, and you also practice at home using Down Dog—usually vinyasa flow classes.
+2026-09-21 13:42:59,272 INFO lme [lme_0006] Expected:  Serenity Yoga
+2026-09-21 13:42:59,273 INFO lme [lme_0007] single-session-user | 50 sessions (500 turns) | Q: What color did I repaint my bedroom walls?...
+2026-09-21 13:42:59,280 INFO lme [lme_0007] Injected 500 turns across 50 sessions (514,928 chars)
+2026-09-21 13:42:59,284 INFO lme [lme_0007] FTS backfill: 247 messages indexed
+2026-09-21 13:42:59,284 INFO lme [lme_0007] Asking (date=2023/05/30 (Tue) 22:42): What color did I repaint my bedroom walls?
+2026-09-21 13:42:59,286 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:59,287 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:42:59,287 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:00,445 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:00,447 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:00,449 WARNING relay.sessions Attempted to save empty message for lme_0007, skipping
+2026-09-21 13:43:00,707 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:00,710 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:00,711 INFO lme [lme_0007] RESULT exact=0.00 llm=None latency=1.17s
+2026-09-21 13:43:00,711 INFO lme [lme_0007] Predicted: 
+2026-09-21 13:43:00,712 INFO lme [lme_0007] Expected:  a lighter shade of gray
+2026-09-21 13:43:00,712 INFO lme [lme_0008] single-session-user | 50 sessions (518 turns) | Q: When did I volunteer at the local animal shelter's fundraising dinner?...
+2026-09-21 13:43:00,723 INFO lme [lme_0008] Injected 518 turns across 50 sessions (491,811 chars)
+2026-09-21 13:43:00,729 INFO lme [lme_0008] FTS backfill: 256 messages indexed
+2026-09-21 13:43:00,729 INFO lme [lme_0008] Asking (date=2023/04/02 (Sun) 23:49): When did I volunteer at the local animal shelter's fundraising dinner?
+2026-09-21 13:43:00,731 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:00,731 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:00,732 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:04,052 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:04,054 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:04,055 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:04,055 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:04,055 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:04,056 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:04,058 INFO relay.relay Tool (read,parallel): read_timeline
+2026-09-21 13:43:04,058 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:04,059 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:04,060 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:04,060 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:04,061 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:04,063 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:04,064 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:04,065 INFO relay.switchboard Switchboard call: 113 messages, tools=True
+2026-09-21 13:43:05,770 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:05,771 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:05,902 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:05,903 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:05,903 INFO lme [lme_0008] RESULT exact=0.50 llm=None latency=5.05s
+2026-09-21 13:43:05,903 INFO lme [lme_0008] Predicted: You volunteered at the “Love is in the Air” fundraising dinner on Valentine’s Day — February 14, 2023.
+2026-09-21 13:43:05,903 INFO lme [lme_0008] Expected:  February 14th
+2026-09-21 13:43:05,903 INFO lme [lme_0009] single-session-user | 46 sessions (487 turns) | Q: Where did I buy my new tennis racket from?...
+2026-09-21 13:43:05,908 INFO lme [lme_0009] Injected 487 turns across 46 sessions (497,340 chars)
+2026-09-21 13:43:05,911 INFO lme [lme_0009] FTS backfill: 241 messages indexed
+2026-09-21 13:43:05,911 INFO lme [lme_0009] Asking (date=2023/05/30 (Tue) 23:39): Where did I buy my new tennis racket from?
+2026-09-21 13:43:05,913 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:05,913 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:05,914 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:07,020 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:07,021 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:07,023 WARNING relay.sessions Attempted to save empty message for lme_0009, skipping
+2026-09-21 13:43:07,077 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:07,079 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:07,079 INFO lme [lme_0009] RESULT exact=0.00 llm=None latency=1.11s
+2026-09-21 13:43:07,080 INFO lme [lme_0009] Predicted: 
+2026-09-21 13:43:07,080 INFO lme [lme_0009] Expected:  the sports store downtown
+2026-09-21 13:43:07,080 INFO lme [lme_0010] single-session-user | 53 sessions (510 turns) | Q: What was my previous occupation?...
+2026-09-21 13:43:07,094 INFO lme [lme_0010] Injected 510 turns across 53 sessions (504,652 chars)
+2026-09-21 13:43:07,099 INFO lme [lme_0010] FTS backfill: 251 messages indexed
+2026-09-21 13:43:07,099 INFO lme [lme_0010] Asking (date=2023/05/30 (Tue) 20:08): What was my previous occupation?
+2026-09-21 13:43:07,101 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:07,102 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:07,102 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:08,941 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:08,942 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:08,994 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:08,995 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:08,996 INFO lme [lme_0010] RESULT exact=0.00 llm=None latency=1.85s
+2026-09-21 13:43:08,996 INFO lme [lme_0010] Predicted: I don’t have any reliable information in this conversation about your previous occupation.
+2026-09-21 13:43:08,996 INFO lme [lme_0010] Expected:  Marketing specialist at a small startup
+2026-09-21 13:43:08,996 INFO lme [lme_0011] single-session-user | 45 sessions (490 turns) | Q: How much did I spend on a designer handbag?...
+2026-09-21 13:43:09,004 INFO lme [lme_0011] Injected 490 turns across 45 sessions (504,547 chars)
+2026-09-21 13:43:09,008 INFO lme [lme_0011] FTS backfill: 243 messages indexed
+2026-09-21 13:43:09,008 INFO lme [lme_0011] Asking (date=2023/05/30 (Tue) 23:20): How much did I spend on a designer handbag?
+2026-09-21 13:43:09,010 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:09,011 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:09,011 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:10,918 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:10,919 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:10,973 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:10,975 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:10,975 INFO lme [lme_0011] RESULT exact=0.00 llm=None latency=1.91s
+2026-09-21 13:43:10,976 INFO lme [lme_0011] Predicted: I don't have any information about a designer handbag purchase or its cost from our conversation.
+2026-09-21 13:43:10,976 INFO lme [lme_0011] Expected:  $800
+2026-09-21 13:43:10,976 INFO lme [lme_0012] single-session-user | 46 sessions (504 turns) | Q: How many playlists do I have on Spotify?...
+2026-09-21 13:43:10,985 INFO lme [lme_0012] Injected 504 turns across 46 sessions (492,613 chars)
+2026-09-21 13:43:10,990 INFO lme [lme_0012] FTS backfill: 250 messages indexed
+2026-09-21 13:43:10,990 INFO lme [lme_0012] Asking (date=2023/05/30 (Tue) 18:45): How many playlists do I have on Spotify?
+2026-09-21 13:43:10,992 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:10,993 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:10,993 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:13,396 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:13,398 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:13,399 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:13,400 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:13,400 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:13,401 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:13,403 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:13,403 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:13,405 INFO relay.switchboard Switchboard call: 107 messages, tools=True
+2026-09-21 13:43:15,532 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:15,533 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:15,605 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:15,607 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:15,608 INFO lme [lme_0012] RESULT exact=0.00 llm=None latency=4.56s
+2026-09-21 13:43:15,608 INFO lme [lme_0012] Predicted: I don’t have access to your Spotify account or playlist count. If you open Spotify, your playlists are listed in **Your 
+2026-09-21 13:43:15,608 INFO lme [lme_0012] Expected:  20
+2026-09-21 13:43:15,609 INFO lme [lme_0013] single-session-user | 50 sessions (470 turns) | Q: Where did I attend for my study abroad program?...
+2026-09-21 13:43:15,621 INFO lme [lme_0013] Injected 470 turns across 50 sessions (489,698 chars)
+2026-09-21 13:43:15,624 INFO lme [lme_0013] FTS backfill: 232 messages indexed
+2026-09-21 13:43:15,624 INFO lme [lme_0013] Asking (date=2023/05/30 (Tue) 16:24): Where did I attend for my study abroad program?
+2026-09-21 13:43:15,626 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:15,627 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:15,627 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:17,897 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:17,899 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:17,900 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:17,901 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:17,901 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:17,902 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:17,904 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:17,905 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:17,906 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:17,906 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:43:19,446 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:19,448 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:19,449 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:19,449 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:19,450 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:43:21,575 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:21,576 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:21,576 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:21,577 INFO relay.switchboard Switchboard call: 112 messages, tools=True
+2026-09-21 13:43:23,522 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:23,523 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:23,634 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:23,634 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:23,634 INFO lme [lme_0013] RESULT exact=0.00 llm=None latency=7.9s
+2026-09-21 13:43:23,635 INFO lme [lme_0013] Predicted: I don’t have that information in the conversation or memory available to me. Where did you attend your study abroad prog
+2026-09-21 13:43:23,635 INFO lme [lme_0013] Expected:  University of Melbourne in Australia
+2026-09-21 13:43:23,635 INFO lme [lme_0014] single-session-user | 48 sessions (501 turns) | Q: What was the discount I got on my first purchase from the new clothing...
+2026-09-21 13:43:23,639 INFO lme [lme_0014] Injected 501 turns across 48 sessions (491,761 chars)
+2026-09-21 13:43:23,644 INFO lme [lme_0014] FTS backfill: 249 messages indexed
+2026-09-21 13:43:23,644 INFO lme [lme_0014] Asking (date=2023/05/30 (Tue) 23:15): What was the discount I got on my first purchase from the new clothing brand?
+2026-09-21 13:43:23,646 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:23,646 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:23,647 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:26,012 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:26,013 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:26,014 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:26,014 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:26,014 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:26,015 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:26,016 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:26,016 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:26,016 INFO relay.switchboard Switchboard call: 107 messages, tools=True
+2026-09-21 13:43:27,477 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:27,479 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:27,480 INFO relay.relay Tool (read,parallel): review_own_conversations
+2026-09-21 13:43:27,481 WARNING relay.capabilities CAPABILITY DENIED tool='review_own_conversations' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:27,482 INFO relay.switchboard Switchboard call: 109 messages, tools=True
+2026-09-21 13:43:29,118 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:29,119 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:29,253 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:29,255 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:29,255 INFO lme [lme_0014] RESULT exact=0.00 llm=None latency=5.48s
+2026-09-21 13:43:29,256 INFO lme [lme_0014] Predicted: I don’t have a record of a discount from a first purchase with a new clothing brand. The only discount mentioned here wa
+2026-09-21 13:43:29,256 INFO lme [lme_0014] Expected:  10%
+2026-09-21 13:43:29,256 INFO lme [lme_0015] single-session-user | 49 sessions (510 turns) | Q: How long did it take me to assemble the IKEA bookshelf?...
+2026-09-21 13:43:29,263 INFO lme [lme_0015] Injected 510 turns across 49 sessions (497,235 chars)
+2026-09-21 13:43:29,267 INFO lme [lme_0015] FTS backfill: 254 messages indexed
+2026-09-21 13:43:29,268 INFO lme [lme_0015] Asking (date=2023/05/30 (Tue) 23:11): How long did it take me to assemble the IKEA bookshelf?
+2026-09-21 13:43:29,270 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:29,270 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:29,271 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:30,877 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:30,878 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:30,927 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:30,929 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:30,929 INFO lme [lme_0015] RESULT exact=1.00 llm=None latency=1.61s
+2026-09-21 13:43:30,929 INFO lme [lme_0015] Predicted: It took you about **4 hours** to assemble the IKEA bookshelf.
+2026-09-21 13:43:30,929 INFO lme [lme_0015] Expected:  4 hours
+2026-09-21 13:43:30,930 INFO lme [lme_0016] single-session-user | 50 sessions (507 turns) | Q: What did I buy for my sister's birthday gift?...
+2026-09-21 13:43:30,937 INFO lme [lme_0016] Injected 507 turns across 50 sessions (491,747 chars)
+2026-09-21 13:43:30,945 INFO lme [lme_0016] FTS backfill: 252 messages indexed
+2026-09-21 13:43:30,945 INFO lme [lme_0016] Asking (date=2023/05/30 (Tue) 17:09): What did I buy for my sister's birthday gift?
+2026-09-21 13:43:30,947 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:30,947 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:30,948 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:33,371 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:33,373 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:33,374 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:33,374 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:33,375 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:33,376 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:33,378 INFO relay.relay Tool (read,parallel): read_timeline
+2026-09-21 13:43:33,378 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:33,380 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:33,380 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:33,381 INFO relay.switchboard Switchboard call: 109 messages, tools=True
+2026-09-21 13:43:35,113 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:35,116 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:35,118 INFO relay.relay Tool (read,parallel): review_own_conversations
+2026-09-21 13:43:35,118 WARNING relay.capabilities CAPABILITY DENIED tool='review_own_conversations' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:35,119 INFO relay.switchboard Switchboard call: 111 messages, tools=True
+2026-09-21 13:43:36,617 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:36,619 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:36,736 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:36,737 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:36,738 INFO lme [lme_0016] RESULT exact=0.00 llm=None latency=5.68s
+2026-09-21 13:43:36,738 INFO lme [lme_0016] Predicted: I don’t have that recorded, and I can’t find it in the context available to me. What did you get her?
+2026-09-21 13:43:36,738 INFO lme [lme_0016] Expected:  a yellow dress
+2026-09-21 13:43:36,739 INFO lme [lme_0017] single-session-user | 44 sessions (466 turns) | Q: What speed is my new internet plan?...
+2026-09-21 13:43:36,747 INFO lme [lme_0017] Injected 466 turns across 44 sessions (490,731 chars)
+2026-09-21 13:43:36,752 INFO lme [lme_0017] FTS backfill: 232 messages indexed
+2026-09-21 13:43:36,752 INFO lme [lme_0017] Asking (date=2023/05/30 (Tue) 21:56): What speed is my new internet plan?
+2026-09-21 13:43:36,754 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:36,754 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:36,755 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:39,642 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:39,644 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:39,645 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:39,645 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:39,645 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:39,647 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:39,648 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:39,649 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:39,650 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:39,651 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:43:41,186 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:41,186 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:41,187 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:41,187 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:41,188 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:43:42,695 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:42,696 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:42,697 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:42,698 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:42,699 INFO relay.switchboard Switchboard call: 112 messages, tools=True
+2026-09-21 13:43:44,395 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:44,396 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:44,512 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:44,513 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:44,514 INFO lme [lme_0017] RESULT exact=0.00 llm=None latency=7.65s
+2026-09-21 13:43:44,514 INFO lme [lme_0017] Predicted: I don’t have the speed of your new internet plan in the information I can access. If you share the plan name or provider
+2026-09-21 13:43:44,514 INFO lme [lme_0017] Expected:  500 Mbps
+2026-09-21 13:43:44,514 INFO lme [lme_0018] single-session-user | 50 sessions (495 turns) | Q: How many shirts did I pack for my 5-day trip to Costa Rica?...
+2026-09-21 13:43:44,522 INFO lme [lme_0018] Injected 495 turns across 50 sessions (487,551 chars)
+2026-09-21 13:43:44,526 INFO lme [lme_0018] FTS backfill: 246 messages indexed
+2026-09-21 13:43:44,526 INFO lme [lme_0018] Asking (date=2023/05/30 (Tue) 14:18): How many shirts did I pack for my 5-day trip to Costa Rica?
+2026-09-21 13:43:44,528 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:44,529 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:44,529 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:47,192 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:47,193 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:47,194 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:47,194 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:47,194 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:47,195 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:47,196 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:47,197 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:47,197 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:47,198 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:43:49,317 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:49,319 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:49,320 INFO relay.relay Tool (read,parallel): read_timeline
+2026-09-21 13:43:49,322 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:43:50,790 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:50,791 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:50,917 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:50,920 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:50,920 INFO lme [lme_0018] RESULT exact=1.00 llm=None latency=6.27s
+2026-09-21 13:43:50,920 INFO lme [lme_0018] Predicted: You packed 7 shirts for your Costa Rica trip.
+2026-09-21 13:43:50,920 INFO lme [lme_0018] Expected:  7
+2026-09-21 13:43:50,921 INFO lme [lme_0019] single-session-user | 49 sessions (505 turns) | Q: What was my previous stance on spirituality?...
+2026-09-21 13:43:50,929 INFO lme [lme_0019] Injected 505 turns across 49 sessions (486,684 chars)
+2026-09-21 13:43:50,933 INFO lme [lme_0019] FTS backfill: 250 messages indexed
+2026-09-21 13:43:50,934 INFO lme [lme_0019] Asking (date=2023/05/30 (Tue) 19:10): What was my previous stance on spirituality?
+2026-09-21 13:43:50,936 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:50,936 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:43:50,937 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:43:53,535 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:53,537 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:53,538 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:43:53,539 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:53,539 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:43:53,539 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:43:53,542 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:43:53,543 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:43:53,543 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:53,544 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:43:55,315 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:55,317 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:55,318 INFO relay.relay Tool (read,parallel): review_own_conversations
+2026-09-21 13:43:55,319 WARNING relay.capabilities CAPABILITY DENIED tool='review_own_conversations' interface='longmemeval' tier=untrusted
+2026-09-21 13:43:55,320 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:43:57,473 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:43:57,475 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:43:57,605 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:43:57,607 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:43:57,607 INFO lme [lme_0019] RESULT exact=0.00 llm=None latency=6.54s
+2026-09-21 13:43:57,608 INFO lme [lme_0019] Predicted: I don’t have a recorded prior stance from you on spirituality. In the conversation context I can see, you discussed trut
+2026-09-21 13:43:57,608 INFO lme [lme_0019] Expected:  A staunch atheist
+2026-09-21 13:43:57,608 INFO lme [lme_0020] single-session-user | 52 sessions (487 turns) | Q: What brand are my favorite running shoes?...
+2026-09-21 13:43:57,619 INFO lme [lme_0020] Injected 487 turns across 52 sessions (503,141 chars)
+2026-09-21 13:43:57,629 INFO lme [lme_0020] FTS backfill: 241 messages indexed
+2026-09-21 13:43:57,629 INFO lme [lme_0020] Asking (date=2023/05/30 (Tue) 23:27): What brand are my favorite running shoes?
+2026-09-21 13:43:57,631 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'code-ops']
+2026-09-21 13:43:57,632 INFO relay.relay Tool surface: 31/84 tools for skills ['memory-ops', 'signal-detector', 'code-ops']
+2026-09-21 13:43:57,632 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:44:00,938 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:00,939 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:00,940 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:00,941 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:00,941 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:00,942 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:44:00,943 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:44:00,944 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:00,945 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:00,945 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:00,945 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:00,946 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:44:00,947 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:00,947 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:44:02,577 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:02,578 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:02,632 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:44:02,634 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:44:02,635 INFO lme [lme_0020] RESULT exact=1.00 llm=None latency=4.95s
+2026-09-21 13:44:02,635 INFO lme [lme_0020] Predicted: Nike.
+2026-09-21 13:44:02,635 INFO lme [lme_0020] Expected:  Nike
+2026-09-21 13:44:02,636 INFO lme [lme_0021] single-session-user | 48 sessions (487 turns) | Q: What certification did I complete last month?...
+2026-09-21 13:44:02,645 INFO lme [lme_0021] Injected 487 turns across 48 sessions (498,753 chars)
+2026-09-21 13:44:02,649 INFO lme [lme_0021] FTS backfill: 241 messages indexed
+2026-09-21 13:44:02,649 INFO lme [lme_0021] Asking (date=2023/05/30 (Tue) 18:44): What certification did I complete last month?
+2026-09-21 13:44:02,652 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:02,653 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:02,653 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:44:05,106 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:05,107 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:05,108 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:05,109 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:05,109 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:05,110 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:44:05,111 INFO relay.relay Tool (read,parallel): read_timeline
+2026-09-21 13:44:05,112 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:44:05,113 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:44:05,113 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:05,114 INFO relay.switchboard Switchboard call: 109 messages, tools=True
+2026-09-21 13:44:06,588 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:06,589 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:06,641 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:44:06,645 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:44:06,645 INFO lme [lme_0021] RESULT exact=1.00 llm=None latency=3.95s
+2026-09-21 13:44:06,646 INFO lme [lme_0021] Predicted: You completed a certification in Data Science last month.
+2026-09-21 13:44:06,646 INFO lme [lme_0021] Expected:  Data Science
+2026-09-21 13:44:06,646 INFO lme [lme_0022] single-session-user | 50 sessions (482 turns) | Q: How many bikes do I own?...
+2026-09-21 13:44:06,660 INFO lme [lme_0022] Injected 482 turns across 50 sessions (508,337 chars)
+2026-09-21 13:44:06,667 INFO lme [lme_0022] FTS backfill: 241 messages indexed
+2026-09-21 13:44:06,667 INFO lme [lme_0022] Asking (date=2023/05/30 (Tue) 20:24): How many bikes do I own?
+2026-09-21 13:44:06,671 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:06,671 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:06,671 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:44:09,097 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:09,098 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:09,099 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:09,099 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:09,099 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:09,100 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:44:09,100 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:44:09,102 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:44:09,102 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:09,103 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:44:10,681 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:10,682 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:10,683 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:10,683 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:10,685 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:44:12,146 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:12,148 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:12,291 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:44:12,293 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:44:12,294 INFO lme [lme_0022] RESULT exact=0.00 llm=None latency=5.49s
+2026-09-21 13:44:12,294 INFO lme [lme_0022] Predicted: I don’t have any record of how many bikes you own.
+2026-09-21 13:44:12,294 INFO lme [lme_0022] Expected:  three
+2026-09-21 13:44:12,294 INFO lme [lme_0023] single-session-user | 52 sessions (491 turns) | Q: What breed is my dog?...
+2026-09-21 13:44:12,302 INFO lme [lme_0023] Injected 491 turns across 52 sessions (499,257 chars)
+2026-09-21 13:44:12,307 INFO lme [lme_0023] FTS backfill: 242 messages indexed
+2026-09-21 13:44:12,307 INFO lme [lme_0023] Asking (date=2023/05/30 (Tue) 20:25): What breed is my dog?
+2026-09-21 13:44:12,309 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:12,309 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:12,310 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:44:14,710 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:14,712 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:14,713 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:14,713 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:14,713 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:14,714 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:44:14,715 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:44:14,717 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:44:14,717 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:14,718 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:44:16,935 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:16,936 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:17,003 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:44:17,019 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:44:17,019 INFO lme [lme_0023] RESULT exact=0.00 llm=None latency=4.63s
+2026-09-21 13:44:17,019 INFO lme [lme_0023] Predicted: I don’t have any information or a photo of your dog, so I can’t tell its breed yet. If you send a clear photo—ideally sh
+2026-09-21 13:44:17,019 INFO lme [lme_0023] Expected:  Golden Retriever
+2026-09-21 13:44:17,020 INFO lme [lme_0024] single-session-user | 50 sessions (512 turns) | Q: How many largemouth bass did I catch on my fishing trip to Lake Michig...
+2026-09-21 13:44:17,035 INFO lme [lme_0024] Injected 512 turns across 50 sessions (488,707 chars)
+2026-09-21 13:44:17,044 INFO lme [lme_0024] FTS backfill: 254 messages indexed
+2026-09-21 13:44:17,044 INFO lme [lme_0024] Asking (date=2023/05/30 (Tue) 19:25): How many largemouth bass did I catch on my fishing trip to Lake Michigan?
+2026-09-21 13:44:17,047 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:17,047 INFO relay.relay Tool surface: 23/84 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-21 13:44:17,048 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-21 13:44:19,536 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:19,538 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:19,539 INFO relay.relay Tool (read,parallel): read_file
+2026-09-21 13:44:19,540 WARNING relay.capabilities CAPABILITY DENIED tool='read_file' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:19,540 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:19,541 INFO relay.relay Tool (read,parallel): search_memory
+2026-09-21 13:44:19,542 INFO relay.relay Tool (read,parallel): read_tacit
+2026-09-21 13:44:19,544 INFO relay.relay Tool (write,serial): run_shell
+2026-09-21 13:44:19,544 WARNING relay.capabilities CAPABILITY DENIED tool='run_shell' interface='longmemeval' tier=untrusted
+2026-09-21 13:44:19,545 INFO relay.switchboard Switchboard call: 108 messages, tools=True
+2026-09-21 13:44:21,053 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:21,054 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:21,055 INFO relay.relay Tool (read,parallel): read_memory
+2026-09-21 13:44:21,057 INFO relay.switchboard Switchboard call: 110 messages, tools=True
+2026-09-21 13:44:22,824 INFO httpx HTTP Request: POST http://localhost:8010/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-21 13:44:22,825 INFO relay.switchboard Response from local inference (tower)
+2026-09-21 13:44:22,955 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-21 13:44:22,956 WARNING lme LLM judge failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-001.', 'code': 404}, 'user_id': 'user_395eOf2bNJqqXBOKHAVgtxmDBst'}
+2026-09-21 13:44:22,956 INFO lme [lme_0024] RESULT exact=0.00 llm=None latency=5.79s
+2026-09-21 13:44:22,956 INFO lme [lme_0024] Predicted: I don’t have a record of that fishing trip or how many largemouth bass you caught.
+2026-09-21 13:44:22,956 INFO lme [lme_0024] Expected:  12

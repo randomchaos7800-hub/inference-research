@@ -1,0 +1,26 @@
+test_id,question_id,expected,terra_exact,terra_hand,sonnet_exact,sonnet_hand,opus_exact,opus_hand,answer_session_start_from_end,note
+lme_0000,e47becba,Business Administration,1.0,1,1.0,1,1.0,1,24,
+lme_0001,118b2229,45 minutes each way,0.0,0,0.0,0,0.0,0,405,
+lme_0002,51a45a95,Target,1.0,1,1.0,1,1.0,1,89,
+lme_0003,58bf7951,The Glass Menagerie,0.0,0,0.0,0,0.0,0,297,
+lme_0004,1e043500,Summer Vibes,0.0,0,0.0,0,0.0,0,383,terra returned an empty string; opus answer carries a connector-auth notice leaked from the bridge host (fixed after this run)
+lme_0005,c5e8278d,Johnson,1.0,1,1.0,1,1.0,1,88,
+lme_0006,6ade9755,Serenity Yoga,1.0,1,1.0,1,1.0,1,12,
+lme_0007,6f9b354f,a lighter shade of gray,0.0,0,1.0,1,1.0,1,97,terra returned an empty string; both Claude readers correct - the only case where the reader changed the outcome
+lme_0008,58ef2f1c,February 14th,0.5,1,1.0,1,0.5,1,12,"""Valentine's Day, February 14"" - exact scorer gives 0.5 on terra/opus, hand-judged correct on all three"
+lme_0009,f8c5f88b,the sports store downtown,0.0,0,0.5,0,0.5,0,221,"terra returned an empty string; sonnet/opus exact 0.5 is word-overlap noise on an ""I don't know"" answer"
+lme_0010,5d3d2817,Marketing specialist at a small startup,0.0,0,0.0,0,0.0,0,269,
+lme_0011,7527f7e2,$800,0.0,0,0.0,0,0.0,0,325,
+lme_0012,c960da58,20,0.0,0,0.0,0,0.0,0,468,
+lme_0013,3b6f954b,University of Melbourne in Australia,0.0,0,0.0,0,0.0,0,248,
+lme_0014,726462e0,10%,0.0,0,1.0,0,1.0,0,388,"exact scorer FALSE POSITIVE: sonnet/opus score 1.0 because ""10%"" appears inside an ""I don't have that"" answer"
+lme_0015,94f70d80,4 hours,1.0,1,1.0,1,1.0,1,36,
+lme_0016,66f24dbb,a yellow dress,0.0,0,0.0,0,0.0,0,344,
+lme_0017,ad7109d1,500 Mbps,0.0,0,0.5,0,0.0,0,295,"sonnet exact 0.5 is word-overlap noise on an ""I don't know"" answer"
+lme_0018,af8d2e46,7,1.0,1,1.0,1,1.0,1,56,
+lme_0019,dccbc061,A staunch atheist,0.0,0,0.0,0,0.0,0,323,
+lme_0020,c8c3f81d,Nike,1.0,1,1.0,1,1.0,1,70,
+lme_0021,8ebdbe50,Data Science,1.0,1,1.0,1,1.0,1,85,
+lme_0022,6b168ec8,three,0.0,0,0.0,0,0.0,0,160,
+lme_0023,75499fd8,Golden Retriever,0.0,0,0.0,0,0.0,0,255,opus answer carries a connector-auth notice leaked from the bridge host (fixed after this run)
+lme_0024,21436231,12,0.0,0,0.0,0,0.0,0,442,

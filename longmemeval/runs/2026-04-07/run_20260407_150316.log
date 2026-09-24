@@ -1,0 +1,279 @@
+2026-04-07 15:03:16,687 INFO lme === LongMemEval 20260407_150316 | split=s limit=25 ===
+2026-04-07 15:03:16,690 INFO lme Memory paths patched → /tmp/longmemeval_20260407_150316/mike-memory
+2026-04-07 15:03:16,691 INFO memory.storage Memory initialized at /tmp/longmemeval_20260407_150316/mike-memory
+2026-04-07 15:03:16,691 INFO lme Using cached dataset: /tmp/longmemeval_data/longmemeval_s_cleaned.json
+2026-04-07 15:03:18,453 INFO lme Loaded 25 examples (split=s)
+2026-04-07 15:03:18,772 INFO lme Initializing RelayV3...
+2026-04-07 15:03:18,800 INFO relay.switchboard Switchboard initialized (model: gemma4, pod: http://127.0.0.1:8081/v1, openrouter: google/gemma-4-31b-it)
+2026-04-07 15:03:18,812 INFO memory.storage Memory initialized at /tmp/longmemeval_20260407_150316/mike-memory
+2026-04-07 15:03:18,813 INFO relay.relay RelayV3: gemma4, 75 tools, max_output=8192
+2026-04-07 15:03:18,813 INFO lme [lme_0000] single-session-user | 53 sessions (550 turns) | Q: What degree did I graduate with?...
+2026-04-07 15:03:18,820 INFO lme [lme_0000] Injected 550 turns across 53 sessions (493,399 chars)
+2026-04-07 15:03:18,820 INFO lme [lme_0000] Asking question: What degree did I graduate with?
+2026-04-07 15:03:18,822 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:03:29,228 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:05:22,061 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:05:22,061 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:05:32,334 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:05:35,375 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:05:35,382 INFO lme [lme_0000] RESULT exact=1.00 llm=n/a latency=136.56s
+2026-04-07 15:05:35,382 INFO lme [lme_0000] Predicted: You graduated with a degree in **Business Administration**.
+2026-04-07 15:05:35,382 INFO lme [lme_0000] Expected:  Business Administration
+2026-04-07 15:05:35,382 INFO lme [lme_0001] single-session-user | 45 sessions (485 turns) | Q: How long is my daily commute to work?...
+2026-04-07 15:05:35,388 INFO lme [lme_0001] Injected 485 turns across 45 sessions (490,933 chars)
+2026-04-07 15:05:35,388 INFO lme [lme_0001] Asking question: How long is my daily commute to work?
+2026-04-07 15:05:35,390 INFO relay.switchboard Ollama call: 487 messages, tools=True
+2026-04-07 15:05:45,638 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:07:38,441 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:07:38,441 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:07:48,738 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:08:03,914 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:08:03,924 INFO lme [lme_0001] RESULT exact=0.00 llm=n/a latency=148.54s
+2026-04-07 15:08:03,924 INFO lme [lme_0001] Predicted: I don't actually know how long your commute is! I don't have access to your personal location, your workplace, or your d
+2026-04-07 15:08:03,924 INFO lme [lme_0001] Expected:  45 minutes each way
+2026-04-07 15:08:03,924 INFO lme [lme_0002] single-session-user | 50 sessions (529 turns) | Q: Where did I redeem a $5 coupon on coffee creamer?...
+2026-04-07 15:08:03,931 INFO lme [lme_0002] Injected 529 turns across 50 sessions (509,127 chars)
+2026-04-07 15:08:03,931 INFO lme [lme_0002] Asking question: Where did I redeem a $5 coupon on coffee creamer?
+2026-04-07 15:08:03,935 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:08:14,195 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:10:07,324 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:10:07,325 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:10:16,055 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:10:18,356 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:10:18,363 INFO lme [lme_0002] RESULT exact=1.00 llm=n/a latency=134.43s
+2026-04-07 15:10:18,363 INFO lme [lme_0002] Predicted: You redeemed that $5 coupon at **Target**! You mentioned earlier that you've been using the **Cartwheel app** from Targe
+2026-04-07 15:10:18,363 INFO lme [lme_0002] Expected:  Target
+2026-04-07 15:10:18,363 INFO lme [lme_0003] single-session-user | 57 sessions (616 turns) | Q: What play did I attend at the local community theater?...
+2026-04-07 15:10:18,370 INFO lme [lme_0003] Injected 616 turns across 57 sessions (495,793 chars)
+2026-04-07 15:10:18,370 INFO lme [lme_0003] Asking question: What play did I attend at the local community theater?
+2026-04-07 15:10:18,373 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:10:28,620 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:13:22,221 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:13:22,221 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:13:31,875 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:13:33,168 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:13:33,176 INFO lme [lme_0003] RESULT exact=1.00 llm=n/a latency=194.81s
+2026-04-07 15:13:33,176 INFO lme [lme_0003] Predicted: You attended a production of **The Glass Menagerie**.
+2026-04-07 15:13:33,176 INFO lme [lme_0003] Expected:  The Glass Menagerie
+2026-04-07 15:13:33,176 INFO lme [lme_0004] single-session-user | 50 sessions (510 turns) | Q: What is the name of the playlist I created on Spotify?...
+2026-04-07 15:13:33,183 INFO lme [lme_0004] Injected 510 turns across 50 sessions (505,405 chars)
+2026-04-07 15:13:33,183 INFO lme [lme_0004] Asking question: What is the name of the playlist I created on Spotify?
+2026-04-07 15:13:33,185 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:13:43,508 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:14:03,774 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:14:03,781 INFO lme [lme_0004] RESULT exact=1.00 llm=n/a latency=30.6s
+2026-04-07 15:14:03,781 INFO lme [lme_0004] Predicted: You mentioned that the playlist you created on Spotify is called "Summer Vibes."
+2026-04-07 15:14:03,781 INFO lme [lme_0004] Expected:  Summer Vibes
+2026-04-07 15:14:03,781 INFO lme [lme_0005] single-session-user | 44 sessions (469 turns) | Q: What was my last name before I changed it?...
+2026-04-07 15:14:03,788 INFO lme [lme_0005] Injected 469 turns across 44 sessions (494,790 chars)
+2026-04-07 15:14:03,788 INFO lme [lme_0005] Asking question: What was my last name before I changed it?
+2026-04-07 15:14:03,790 INFO relay.switchboard Ollama call: 471 messages, tools=True
+2026-04-07 15:14:14,095 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:14:58,701 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:14:58,708 INFO lme [lme_0005] RESULT exact=1.00 llm=n/a latency=54.92s
+2026-04-07 15:14:58,709 INFO lme [lme_0005] Predicted: Your last name before you changed it was Johnson.
+2026-04-07 15:14:58,709 INFO lme [lme_0005] Expected:  Johnson
+2026-04-07 15:14:58,709 INFO lme [lme_0006] single-session-user | 51 sessions (513 turns) | Q: Where do I take yoga classes?...
+2026-04-07 15:14:58,718 INFO lme [lme_0006] Injected 513 turns across 51 sessions (493,294 chars)
+2026-04-07 15:14:58,719 INFO lme [lme_0006] Asking question: Where do I take yoga classes?
+2026-04-07 15:14:58,722 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:15:09,030 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:17:01,869 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:17:01,869 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:17:10,165 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:17:17,758 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:17:17,766 INFO lme [lme_0006] RESULT exact=1.00 llm=n/a latency=139.05s
+2026-04-07 15:17:17,766 INFO lme [lme_0006] Predicted: Since I don't have access to your real-time location or your personal schedule, I can't tell you exactly where *you* go,
+2026-04-07 15:17:17,766 INFO lme [lme_0006] Expected:  Serenity Yoga
+2026-04-07 15:17:17,766 INFO lme [lme_0007] single-session-user | 50 sessions (500 turns) | Q: What color did I repaint my bedroom walls?...
+2026-04-07 15:17:17,773 INFO lme [lme_0007] Injected 500 turns across 50 sessions (513,828 chars)
+2026-04-07 15:17:17,773 INFO lme [lme_0007] Asking question: What color did I repaint my bedroom walls?
+2026-04-07 15:17:17,776 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:17:28,038 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:19:21,511 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:19:21,511 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:19:31,815 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:19:51,370 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:19:51,378 INFO lme [lme_0007] RESULT exact=0.50 llm=n/a latency=153.6s
+2026-04-07 15:19:51,378 INFO lme [lme_0007] Predicted: You repainted your bedroom walls a **lighter shade of gray**.
+2026-04-07 15:19:51,378 INFO lme [lme_0007] Expected:  a lighter shade of gray
+2026-04-07 15:19:51,378 INFO lme [lme_0008] single-session-user | 50 sessions (518 turns) | Q: When did I volunteer at the local animal shelter's fundraising dinner?...
+2026-04-07 15:19:51,387 INFO lme [lme_0008] Injected 518 turns across 50 sessions (490,711 chars)
+2026-04-07 15:19:51,387 INFO lme [lme_0008] Asking question: When did I volunteer at the local animal shelter's fundraising dinner?
+2026-04-07 15:19:51,390 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:20:01,659 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:20:36,915 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:20:36,922 INFO lme [lme_0008] RESULT exact=0.00 llm=n/a latency=45.54s
+2026-04-07 15:20:36,922 INFO lme [lme_0008] Predicted: Based on the details you've shared, you volunteered at the "Love is in the Air" fundraising dinner on Valentine's Day.
+2026-04-07 15:20:36,922 INFO lme [lme_0008] Expected:  February 14th
+2026-04-07 15:20:36,922 INFO lme [lme_0009] single-session-user | 46 sessions (487 turns) | Q: Where did I buy my new tennis racket from?...
+2026-04-07 15:20:36,930 INFO lme [lme_0009] Injected 487 turns across 46 sessions (496,265 chars)
+2026-04-07 15:20:36,930 INFO lme [lme_0009] Asking question: Where did I buy my new tennis racket from?
+2026-04-07 15:20:36,932 INFO relay.switchboard Ollama call: 489 messages, tools=True
+2026-04-07 15:20:47,201 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:21:20,793 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:21:20,800 INFO lme [lme_0009] RESULT exact=0.50 llm=n/a latency=43.87s
+2026-04-07 15:21:20,800 INFO lme [lme_0009] Predicted: You bought your new tennis racket from a sports store downtown.
+2026-04-07 15:21:20,800 INFO lme [lme_0009] Expected:  the sports store downtown
+2026-04-07 15:21:20,801 INFO lme [lme_0010] single-session-user | 53 sessions (510 turns) | Q: What was my previous occupation?...
+2026-04-07 15:21:20,808 INFO lme [lme_0010] Injected 510 turns across 53 sessions (503,527 chars)
+2026-04-07 15:21:20,808 INFO lme [lme_0010] Asking question: What was my previous occupation?
+2026-04-07 15:21:20,811 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:21:31,090 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:24:24,161 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:24:24,161 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:24:34,463 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:24:44,180 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:24:44,187 INFO lme [lme_0010] RESULT exact=1.00 llm=n/a latency=203.38s
+2026-04-07 15:24:44,187 INFO lme [lme_0010] Predicted: Based on our conversation, you previously worked as a **marketing specialist at a small startup**.
+2026-04-07 15:24:44,187 INFO lme [lme_0010] Expected:  Marketing specialist at a small startup
+2026-04-07 15:24:44,187 INFO lme [lme_0011] single-session-user | 45 sessions (490 turns) | Q: How much did I spend on a designer handbag?...
+2026-04-07 15:24:44,194 INFO lme [lme_0011] Injected 490 turns across 45 sessions (503,522 chars)
+2026-04-07 15:24:44,194 INFO lme [lme_0011] Asking question: How much did I spend on a designer handbag?
+2026-04-07 15:24:44,216 INFO relay.switchboard Ollama call: 492 messages, tools=True
+2026-04-07 15:24:54,493 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:25:24,511 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:25:24,518 INFO lme [lme_0011] RESULT exact=1.00 llm=n/a latency=40.32s
+2026-04-07 15:25:24,518 INFO lme [lme_0011] Predicted: You mentioned earlier that you spent $800 on a designer handbag.
+2026-04-07 15:25:24,518 INFO lme [lme_0011] Expected:  $800
+2026-04-07 15:25:24,518 INFO lme [lme_0012] single-session-user | 46 sessions (504 turns) | Q: How many playlists do I have on Spotify?...
+2026-04-07 15:25:24,525 INFO lme [lme_0012] Injected 504 turns across 46 sessions (491,563 chars)
+2026-04-07 15:25:24,525 INFO lme [lme_0012] Asking question: How many playlists do I have on Spotify?
+2026-04-07 15:25:24,527 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:25:34,813 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:26:04,210 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:26:04,218 INFO lme [lme_0012] RESULT exact=1.00 llm=n/a latency=39.69s
+2026-04-07 15:26:04,218 INFO lme [lme_0012] Predicted: You mentioned earlier that you have 20 playlists on Spotify.
+2026-04-07 15:26:04,218 INFO lme [lme_0012] Expected:  20
+2026-04-07 15:26:04,218 INFO lme [lme_0013] single-session-user | 50 sessions (470 turns) | Q: Where did I attend for my study abroad program?...
+2026-04-07 15:26:04,225 INFO lme [lme_0013] Injected 470 turns across 50 sessions (488,598 chars)
+2026-04-07 15:26:04,226 INFO lme [lme_0013] Asking question: Where did I attend for my study abroad program?
+2026-04-07 15:26:04,229 INFO relay.switchboard Ollama call: 472 messages, tools=True
+2026-04-07 15:26:14,490 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:29:07,281 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:29:07,281 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:29:17,561 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:29:26,848 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:29:26,854 INFO lme [lme_0013] RESULT exact=0.00 llm=n/a latency=202.63s
+2026-04-07 15:29:26,854 INFO lme [lme_0013] Predicted: You attended your study abroad program at the **University of Melbourne**.
+2026-04-07 15:29:26,854 INFO lme [lme_0013] Expected:  University of Melbourne in Australia
+2026-04-07 15:29:26,854 INFO lme [lme_0014] single-session-user | 48 sessions (501 turns) | Q: What was the discount I got on my first purchase from the new clothing...
+2026-04-07 15:29:26,862 INFO lme [lme_0014] Injected 501 turns across 48 sessions (490,636 chars)
+2026-04-07 15:29:26,862 INFO lme [lme_0014] Asking question: What was the discount I got on my first purchase from the new clothing brand?
+2026-04-07 15:29:26,866 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:29:37,140 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:32:30,042 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:32:30,042 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:32:40,320 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:32:50,360 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:32:50,367 INFO lme [lme_0014] RESULT exact=1.00 llm=n/a latency=203.51s
+2026-04-07 15:32:50,368 INFO lme [lme_0014] Predicted: You mentioned that you got a **10% discount** on your first purchase from that new clothing brand!
+2026-04-07 15:32:50,368 INFO lme [lme_0014] Expected:  10%
+2026-04-07 15:32:50,368 INFO lme [lme_0015] single-session-user | 49 sessions (510 turns) | Q: How long did it take me to assemble the IKEA bookshelf?...
+2026-04-07 15:32:50,375 INFO lme [lme_0015] Injected 510 turns across 49 sessions (496,085 chars)
+2026-04-07 15:32:50,375 INFO lme [lme_0015] Asking question: How long did it take me to assemble the IKEA bookshelf?
+2026-04-07 15:32:50,377 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:33:00,762 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:34:53,572 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:34:53,573 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:35:03,177 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:35:04,881 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:35:04,889 INFO lme [lme_0015] RESULT exact=1.00 llm=n/a latency=134.51s
+2026-04-07 15:35:04,889 INFO lme [lme_0015] Predicted: It took you **4 hours** to assemble the IKEA bookshelf.
+2026-04-07 15:35:04,889 INFO lme [lme_0015] Expected:  4 hours
+2026-04-07 15:35:04,890 INFO lme [lme_0016] single-session-user | 50 sessions (507 turns) | Q: What did I buy for my sister's birthday gift?...
+2026-04-07 15:35:04,898 INFO lme [lme_0016] Injected 507 turns across 50 sessions (490,572 chars)
+2026-04-07 15:35:04,898 INFO lme [lme_0016] Asking question: What did I buy for my sister's birthday gift?
+2026-04-07 15:35:04,902 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:35:15,162 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:35:47,160 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:35:47,167 INFO lme [lme_0016] RESULT exact=1.00 llm=n/a latency=42.27s
+2026-04-07 15:35:47,167 INFO lme [lme_0016] Predicted: You bought your sister a yellow dress and a pair of matching earrings for her birthday.
+2026-04-07 15:35:47,167 INFO lme [lme_0016] Expected:  a yellow dress
+2026-04-07 15:35:47,167 INFO lme [lme_0017] single-session-user | 44 sessions (466 turns) | Q: What speed is my new internet plan?...
+2026-04-07 15:35:47,174 INFO lme [lme_0017] Injected 466 turns across 44 sessions (489,681 chars)
+2026-04-07 15:35:47,174 INFO lme [lme_0017] Asking question: What speed is my new internet plan?
+2026-04-07 15:35:47,176 INFO relay.switchboard Ollama call: 468 messages, tools=True
+2026-04-07 15:35:57,451 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:36:40,751 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:36:40,759 INFO lme [lme_0017] RESULT exact=1.00 llm=n/a latency=53.59s
+2026-04-07 15:36:40,760 INFO lme [lme_0017] Predicted: You mentioned earlier that you upgraded to **500 Mbps** about three weeks ago.
+2026-04-07 15:36:40,760 INFO lme [lme_0017] Expected:  500 Mbps
+2026-04-07 15:36:40,760 INFO lme [lme_0018] single-session-user | 50 sessions (495 turns) | Q: How many shirts did I pack for my 5-day trip to Costa Rica?...
+2026-04-07 15:36:40,767 INFO lme [lme_0018] Injected 495 turns across 50 sessions (486,376 chars)
+2026-04-07 15:36:40,768 INFO lme [lme_0018] Asking question: How many shirts did I pack for my 5-day trip to Costa Rica?
+2026-04-07 15:36:40,770 INFO relay.switchboard Ollama call: 497 messages, tools=True
+2026-04-07 15:36:51,058 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:38:43,991 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:38:43,991 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:38:54,448 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:39:05,975 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:39:05,982 INFO lme [lme_0018] RESULT exact=1.00 llm=n/a latency=145.21s
+2026-04-07 15:39:05,982 INFO lme [lme_0018] Predicted: Based on what you mentioned earlier, you mentioned that on your last trip to Costa Rica, you packed **7 shirts** (though
+2026-04-07 15:39:05,983 INFO lme [lme_0018] Expected:  7
+2026-04-07 15:39:05,983 INFO lme [lme_0019] single-session-user | 49 sessions (505 turns) | Q: What was my previous stance on spirituality?...
+2026-04-07 15:39:05,990 INFO lme [lme_0019] Injected 505 turns across 49 sessions (485,584 chars)
+2026-04-07 15:39:05,990 INFO lme [lme_0019] Asking question: What was my previous stance on spirituality?
+2026-04-07 15:39:05,992 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:39:16,221 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:42:09,065 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:42:09,065 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:42:19,398 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:42:29,415 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:42:29,424 INFO lme [lme_0019] RESULT exact=0.00 llm=n/a latency=203.43s
+2026-04-07 15:42:29,424 INFO lme [lme_0019] Predicted: You mentioned that you used to be a **staunch atheist**, but that you have recently been exploring other possibilities, 
+2026-04-07 15:42:29,424 INFO lme [lme_0019] Expected:  A staunch atheist
+2026-04-07 15:42:29,424 INFO lme [lme_0020] single-session-user | 52 sessions (487 turns) | Q: What brand are my favorite running shoes?...
+2026-04-07 15:42:29,436 INFO lme [lme_0020] Injected 487 turns across 52 sessions (501,966 chars)
+2026-04-07 15:42:29,436 INFO lme [lme_0020] Asking question: What brand are my favorite running shoes?
+2026-04-07 15:42:29,440 INFO relay.switchboard Ollama call: 489 messages, tools=True
+2026-04-07 15:42:39,682 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:44:32,467 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:44:32,467 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:44:42,792 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:44:54,823 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:44:54,829 INFO lme [lme_0020] RESULT exact=1.00 llm=n/a latency=145.39s
+2026-04-07 15:44:54,829 INFO lme [lme_0020] Predicted: Based on our conversation earlier, your favorite brand for running shoes is **Nike**. You mentioned that you have been u
+2026-04-07 15:44:54,829 INFO lme [lme_0020] Expected:  Nike
+2026-04-07 15:44:54,829 INFO lme [lme_0021] single-session-user | 48 sessions (487 turns) | Q: What certification did I complete last month?...
+2026-04-07 15:44:54,837 INFO lme [lme_0021] Injected 487 turns across 48 sessions (497,678 chars)
+2026-04-07 15:44:54,837 INFO lme [lme_0021] Asking question: What certification did I complete last month?
+2026-04-07 15:44:54,841 INFO relay.switchboard Ollama call: 489 messages, tools=True
+2026-04-07 15:45:05,083 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:46:57,792 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:46:57,792 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:47:08,034 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:47:21,496 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:47:21,503 INFO lme [lme_0021] RESULT exact=1.00 llm=n/a latency=146.67s
+2026-04-07 15:47:21,503 INFO lme [lme_0021] Predicted: You completed a certification in **Data Science** last month.
+2026-04-07 15:47:21,503 INFO lme [lme_0021] Expected:  Data Science
+2026-04-07 15:47:21,503 INFO lme [lme_0022] single-session-user | 50 sessions (482 turns) | Q: How many bikes do I own?...
+2026-04-07 15:47:21,516 INFO lme [lme_0022] Injected 482 turns across 50 sessions (507,087 chars)
+2026-04-07 15:47:21,516 INFO lme [lme_0022] Asking question: How many bikes do I own?
+2026-04-07 15:47:21,519 INFO relay.switchboard Ollama call: 484 messages, tools=True
+2026-04-07 15:47:31,760 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:49:24,554 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:49:24,554 WARNING relay.switchboard OpenRouter google/gemma-4-31b-it failed ('NoneType' object is not subscriptable)
+2026-04-07 15:49:34,904 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:49:45,978 INFO relay.switchboard Response from OpenRouter fallback (google/gemma-4-26b-a4b-it)
+2026-04-07 15:49:45,986 INFO lme [lme_0022] RESULT exact=1.00 llm=n/a latency=144.47s
+2026-04-07 15:49:45,986 INFO lme [lme_0022] Predicted: You mentioned that you own **three** bikes: a road bike, a mountain bike, and a commuter bike.
+2026-04-07 15:49:45,986 INFO lme [lme_0022] Expected:  three
+2026-04-07 15:49:45,986 INFO lme [lme_0023] single-session-user | 52 sessions (491 turns) | Q: What breed is my dog?...
+2026-04-07 15:49:45,994 INFO lme [lme_0023] Injected 491 turns across 52 sessions (498,132 chars)
+2026-04-07 15:49:45,994 INFO lme [lme_0023] Asking question: What breed is my dog?
+2026-04-07 15:49:45,998 INFO relay.switchboard Ollama call: 493 messages, tools=True
+2026-04-07 15:49:56,231 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:50:39,873 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:50:39,880 INFO lme [lme_0023] RESULT exact=1.00 llm=n/a latency=53.89s
+2026-04-07 15:50:39,880 INFO lme [lme_0023] Predicted: You mentioned earlier that Max is a **Golden Retriever**.
+2026-04-07 15:50:39,880 INFO lme [lme_0023] Expected:  Golden Retriever
+2026-04-07 15:50:39,880 INFO lme [lme_0024] single-session-user | 50 sessions (512 turns) | Q: How many largemouth bass did I catch on my fishing trip to Lake Michig...
+2026-04-07 15:50:39,889 INFO lme [lme_0024] Injected 512 turns across 50 sessions (487,557 chars)
+2026-04-07 15:50:39,889 INFO lme [lme_0024] Asking question: How many largemouth bass did I catch on my fishing trip to Lake Michigan?
+2026-04-07 15:50:39,891 INFO relay.switchboard Ollama call: 502 messages, tools=True
+2026-04-07 15:50:50,124 INFO httpx HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 15:52:03,218 INFO relay.switchboard Response from OpenRouter (google/gemma-4-31b-it)
+2026-04-07 15:52:03,226 INFO lme [lme_0024] RESULT exact=1.00 llm=n/a latency=83.34s
+2026-04-07 15:52:03,226 INFO lme [lme_0024] Predicted: You caught 12 largemouth bass on your trip to Lake Michigan!
+2026-04-07 15:52:03,226 INFO lme [lme_0024] Expected:  12
