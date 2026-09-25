@@ -1,0 +1,161 @@
+item,question,expected,predicted
+J01,How many bikes do I own?,three,I don’t have any record of how many bikes you own.
+J02,What play did I attend at the local community theater?,The Glass Menagerie,I don’t have a record of which play you attended at the local community theater.
+J03,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,I don’t have a record of that fishing trip or how many largemouth bass you caught.
+J04,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I don't know. You haven't told me about a Lake Michigan fishing trip in this conversation, and I checked my memory for ""largemouth bass"" and ""Lake Michigan"" and found nothing.
+
+If you tell me the number, I can keep track of it. If it's in a photo, a note, or a message to someone, I can look there if you tell me where."
+J05,Where do I take yoga classes?,Serenity Yoga,"You take yoga classes at Serenity Yoga, and you also practice at home using Down Dog—usually vinyasa flow classes."
+J06,What did I buy for my sister's birthday gift?,a yellow dress,"You never told me what you got your sister for her birthday, so I don't know. Nothing in our conversations mentions it.
+
+These are the purchases you did mention:
+- **Lenovo laptop bag:** black, padded for a 15.6"" laptop, about $40 from Amazon on March 15th. That one was for you.
+- **Wireless gaming mouse:** you were thinking about one on Newegg for $60.
+- **Western Digital portable hard drive:** you were considering a 1TB one from Best Buy for $100.
+
+If one of those was actually her gift, or you bought her something else, tell me and I'll remember it."
+J07,How many bikes do I own?,three,"I don't know. Nothing in this conversation mentions bikes. You've talked about herb gardens, painting, coffee, TV shows, meal prep and writing a play, but never a bike. My memory has no entry for ""bike"" or ""bicycle"" either.
+
+If you tell me how many you have, I'll keep it in mind."
+J08,Where do I take yoga classes?,Serenity Yoga,"At Serenity Yoga. On days you can't make it to the studio, you practice at home with the Down Dog app, usually doing vinyasa flow."
+J09,What speed is my new internet plan?,500 Mbps,"You haven't told me what speed your new internet plan is. We've talked about your yoga mat, the night photography workshop, meal prep and food delivery, your commute, and writing headlines, but you never mentioned an internet plan. What speed is it?"
+J10,Where did I redeem a $5 coupon on coffee creamer?,Target,"You redeemed it at Target, using the Cartwheel app."
+J11,What breed is my dog?,Golden Retriever,"I don’t have any information or a photo of your dog, so I can’t tell its breed yet. If you send a clear photo—ideally showing its face and full body—or describe its size, coat, ears, muzzle, tail, and coloring, I can help narrow it down."
+J12,What was my previous stance on spirituality?,A staunch atheist,"I don’t have a recorded prior stance from you on spirituality. In the conversation context I can see, you discussed truth versus belief, but not your own spiritual views specifically."
+J13,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"You volunteered at the ""Love is in the Air"" fundraising dinner on Valentine's Day, February 14, 2023. That was about six weeks ago.
+
+You never actually said it was an animal shelter's event, only that it was a fundraising dinner you volunteered at. It's the only one you've mentioned, so I'm assuming it's the one you mean."
+J14,What was my previous stance on spirituality?,A staunch atheist,"You haven't told me anything about spirituality in what we've talked about, so I don't have a previous stance on record.
+
+The nearest thing was on May 30th, when you asked how to tell truth from belief. You pushed back a few times. You asked whether you could just believe whatever you want, whether you could trust what your friends and family believe, and whether people could agree to disagree and move on. That was about belief and fact-checking in general. It wasn't about spirituality, so I don't want to count it as your view on that.
+
+If you've talked about spirituality somewhere else, tell me what you said and I'll keep it in mind."
+J15,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"You volunteered at the “Love is in the Air” fundraising dinner on Valentine’s Day — February 14, 2023."
+J16,What certification did I complete last month?,Data Science,"You completed a certification in Data Science. You mentioned it while updating your LinkedIn profile and said you finished it ""last month,"" which would be April 2023. You didn't say which organization issued it, so I don't know that part."
+J17,What brand are my favorite running shoes?,Nike,"Nike. You said it's been your favorite brand for running shoes, and your current pair is a Nike that you use for your daily 5Ks. You bought them at the outlet mall in April, 20% off.
+
+You never told me the exact model, so I couldn't point you to a replacement. If you check the tongue or insole, I can help you find that model or a close match."
+J18,How many bikes do I own?,three,"I don't know how many bikes you own. Bikes never came up in this conversation. We talked about your herb garden, the spice cabinet cleanout, your coffee experiments, plein-air painting, your TV schedule, meal prep, and voice warm-ups for your performance, but not bikes. I also searched my memory for ""bike"" and ""bicycle"" and found nothing.
+
+If you tell me how many you have, I'll remember it."
+J19,Where did I redeem a $5 coupon on coffee creamer?,Target,"Probably at Target. You mentioned redeeming the $5 coffee creamer coupon last Sunday (May 28) while we were talking about Target's Cartwheel app, and you said you shop there every other week. You never actually named the store, though. You only said the coupon had been sitting in your email inbox without you knowing."
+J20,Where did I buy my new tennis racket from?,the sports store downtown,"I don't know. You haven't told me where you bought the new racket. Tennis only comes up once in what I have: an earlier reply about practicing serves and volleys between lessons. Nothing mentions buying a racket or a store, and my memory has nothing under ""tennis racket"" either.
+
+If you tell me where you got it, I'll remember it."
+J21,What degree did I graduate with?,Business Administration,"You said you graduated with a degree in Business Administration, and that it's helped you in your new role."
+J22,What speed is my new internet plan?,500 Mbps,"I don’t have the speed of your new internet plan in the information I can access. If you share the plan name or provider details, I can help interpret it."
+J23,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I can't tell you that. You haven't mentioned a Lake Michigan fishing trip in anything we've talked about, and my memory has nothing about bass or fishing. Earlier we covered robocopy backups, phone screen-time apps, Max's flea meds and dog food, spin playlists, tennis with Rachel, your dad's side of the family, and affordable housing. Fishing never came up.
+
+If you tell me how the trip went and how many you caught, I'll save it."
+J24,What brand are my favorite running shoes?,Nike,"Nike. You said it's been your favorite brand for running shoes, and you've been wearing Nikes for your daily 5K runs. You bought your current pair at the outlet mall in April for 20% off."
+J25,What was my previous occupation?,Marketing specialist at a small startup,"I can't tell from this conversation, and I don't have anything in memory on it either.
+
+You've mentioned a few things. You showcased an AI-powered project management tool at a Tech Expo, and you're selling Upcycled Home Decor at the Artisan's Fair. You also asked about a Sydney real estate business and about Carvana's title and registration process. None of those says what you used to do for work. Some of them look like separate scenarios or role-play prompts, so I'd be guessing if I treated any of them as your past job.
+
+If you tell me your previous occupation, I'll use it. Or tell me which of those threads you had in mind and I'll work from that."
+J26,How much did I spend on a designer handbag?,$800,I don't have any information about a designer handbag purchase or its cost from our conversation.
+J27,Where did I attend for my study abroad program?,University of Melbourne in Australia,I don’t have that information in the conversation or memory available to me. Where did you attend your study abroad program?
+J28,How long did it take me to assemble the IKEA bookshelf?,4 hours,"It took you 4 hours. You mentioned it earlier when you were comparing coffee tables, and said it ""wasn't too bad."""
+J29,What was my previous occupation?,Marketing specialist at a small startup,"You never mentioned a previous occupation in this conversation, and my memory doesn't have one on record either. I don't want to guess.
+
+You did mention a few things about work:
+- You showed your company's AI-powered project management tool at the Tech Expo last month, and now you're following up with the leads.
+- You're selling your upcycled home decor at the Artisan's Fair today.
+- You had me write Google My Business posts for a real estate company in Sydney. That was a writing task, though, and you didn't say it was your own job.
+
+None of those is a past job. If you tell me what you used to do, I'll remember it."
+J30,Where did I buy my new tennis racket from?,the sports store downtown,"I can't tell from what I have. Nothing in this conversation says where you bought a tennis racket. The only tennis mention is an earlier reply about tennis lessons and serve and volley drills, and that never named a racket or a store. My memory has nothing on a racket either.
+
+If you tell me where you got it, I'll take that as the answer. If you bought it in a conversation I can't see, it didn't carry over."
+J31,What color did I repaint my bedroom walls?,a lighter shade of gray,A lighter shade of gray. You said the room feels much brighter since you did it.
+J32,Where did I buy my new tennis racket from?,the sports store downtown,
+J33,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"You packed **7 shirts** for Costa Rica and only wore 3 of them. You also brought 5 pairs of shorts and wore 2.
+
+You never told me how long that trip was, so I can't confirm it was 5 days."
+J34,How many shirts did I pack for my 5-day trip to Costa Rica?,7,You packed 7 shirts for your Costa Rica trip.
+J35,What was my last name before I changed it?,Johnson,"Your last name was Johnson, before you changed it to Winters."
+J36,What is the name of the playlist I created on Spotify?,Summer Vibes,
+J37,What was the discount I got on my first purchase from the new clothing brand?,10%,"I don't see that anywhere in what we've talked about. You mentioned moving away from luxury buys like the La Mer moisturizer and the Givenchy gown, and I suggested some cheaper brands (Everlane, COS, Uniqlo, and others). But you never said you bought anything from a new clothing brand or got a discount on it.
+
+The only discount that came up was the 10% off coupon on your Target grocery order, which saved you about $8. If you tell me the brand and what you paid, I'll add it to your tracking."
+J38,What play did I attend at the local community theater?,The Glass Menagerie,"I don't know. You haven't told me which play you saw at the local community theater. Nothing in this conversation mentions it, and my memory has nothing on it either. The closest you came was the pottery and watercolor threads, and neither one touches on a play.
+
+If you tell me the title, I can help from there. I'd rather not guess and hand you a made-up answer."
+J39,Where do I take yoga classes?,Serenity Yoga,"You take yoga classes at Serenity Yoga. You also practice at home with the Down Dog app, mostly vinyasa flow, on days you can't make it to the studio."
+J40,Where did I redeem a $5 coupon on coffee creamer?,Target,"Target, most likely. You said you redeemed the $5 coffee creamer coupon last Sunday and that it was a surprise you found in your email inbox. You didn't name the store. But you were talking about Target's Cartwheel app at the time, and you said you shop there about every other week. If it was somewhere else, tell me and I'll correct that."
+J41,What did I buy for my sister's birthday gift?,a yellow dress,"I can't find that. Nothing in this conversation mentions a gift for your sister's birthday, and my memory has nothing on a sister or a birthday gift. I searched both.
+
+What you have told me here is the gaming mouse, the cable organizer, the external hard drive, the Lenovo laptop bag and your live streaming plans. None of those were for her.
+
+If you bought something, tell me what and I'll keep track of it. I don't want to guess and give you a wrong answer."
+J42,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't know. You never mentioned a Spotify playlist in anything we've talked about, and my memory has nothing on it either. What you did tell me about was the memoir workshop with Julia Torres, the street photography workshop, the React bootcamp, The Nightingale and The Alice Network, the tote bag to go with your Zara boots, and the herby chicken shawarma. What's the playlist called?
+
+Also, a few connectors need you to sign in again before I can use them: Google Drive, Granted, Harvey, Slack and Tavily. You can do that in your claude.ai connector settings. Until then, I can't use them."
+J43,What breed is my dog?,Golden Retriever,"You haven't told me what breed your dog is. It doesn't come up anywhere in this conversation, and my memory has nothing on a dog either. We've covered your Hawaii packing, your aquarium, and your yoga and bedtime routine. I'd only be guessing if I named a breed.
+
+If you tell me the breed, I'll use it. If you're trying to work it out, tell me what your dog looks like (size, coat, ears, face shape) and I'll help narrow it down. A DNA test would be the only way to know for sure."
+J44,What brand are my favorite running shoes?,Nike,Nike.
+J45,How long is my daily commute to work?,45 minutes each way,"I don't know how long your commute is. You haven't mentioned it anywhere in this conversation, and my memory has nothing on it either. How long is it?"
+J46,How much did I spend on a designer handbag?,$800,"You haven't mentioned buying a designer handbag anywhere in our conversation, so I don't have a price to give you. The closest things you've told me about are the jewelry armoire you're considering, the silver ""sister"" necklace from your sister, the gold band you think you lost at the gym, your engagement ring and your mom's pearl necklace. None of those come with a handbag or a dollar amount.
+
+If you bought one, tell me the details and I'll help from there. If it came up in another chat, I can't see that one from here."
+J47,What breed is my dog?,Golden Retriever,"I don't know. You haven't told me about your dog in this conversation, and my memory has nothing saved about one. What breed is it? I'll remember it.
+
+Unrelated: Google Drive, Granted, Harvey, Slack and Tavily won't work until you authorize them in your claude.ai connector settings."
+J48,What color did I repaint my bedroom walls?,a lighter shade of gray,A lighter shade of gray. You mentioned it made the room feel so much brighter.
+J49,How many playlists do I have on Spotify?,20,"I don’t have access to your Spotify account or playlist count. If you open Spotify, your playlists are listed in **Your Library**—the count will depend on whether you mean playlists you created, saved, or both."
+J50,What color did I repaint my bedroom walls?,a lighter shade of gray,
+J51,How much did I spend on a designer handbag?,$800,"I can't find a designer handbag purchase anywhere in our conversation. You've mentioned jewelry: the silver ""sister"" necklace your sister gave you, the gold band with a small diamond you think you lost at the gym, your engagement ring, your mom's pearl necklace and the vintage pearl earrings you found. You never mentioned buying a handbag or what one cost.
+
+If you tell me the amount, I can help you keep track of it."
+J52,How long is my daily commute to work?,45 minutes each way,"I don't know how long your commute is. You haven't told me in this conversation, and I searched my memory for ""commute"" and found nothing.
+
+Tell me how long it takes and I'll remember it."
+J53,Where did I attend for my study abroad program?,University of Melbourne in Australia,"You never told me where you did a study abroad program, so I don't know. You've mentioned a trip to Barcelona, a visit to a friend in Portland in late March, and a Kyoto trip with coworkers about two months ago, but you didn't describe any of those as study abroad. If you tell me where you went, I'll remember it."
+J54,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't know the name of your Spotify playlist. It doesn't come up anywhere in our conversation. We've covered memoirs, street photography, coding, acid reflux and gallstones, kingfishers, handbags, and chicken shawarma, but not Spotify. I also searched my memory for ""Spotify"" and ""playlist"" and found nothing.
+
+If you tell me the name, I'll remember it."
+J55,What was the discount I got on my first purchase from the new clothing brand?,10%,I don’t have a record of a discount from a first purchase with a new clothing brand. The only discount mentioned here was $8 off a Target grocery order.
+J56,What was my previous stance on spirituality?,A staunch atheist,"I don't have anything on your stance on spirituality. Two places I checked:
+
+- **This conversation:** You never brought up spirituality. The nearest topics were the truth-versus-belief exchange, where you asked whether you could just believe whatever you want, and a fragment about mindfulness meditation. The mindfulness fragment was an assistant reply, not something you said. Neither one tells me where you stand on spirituality, and I'd be inventing a position if I tried to infer one.
+- **Memory:** I searched for ""spirituality"" and ""spiritual"" and found no entries.
+
+If you said something about it in a different conversation, I can't see it from here. Tell me what you remember, or roughly when you said it, and I can help you work out what your position was."
+J57,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"You packed 7 shirts for Costa Rica, along with 5 pairs of shorts. You only wore 3 of the shirts and 2 pairs of shorts.
+
+You never mentioned how long the trip was, so I can't confirm it was 5 days. The 7 shirts is what you told me earlier."
+J58,Where did I attend for my study abroad program?,University of Melbourne in Australia,"I don't have anything on a study abroad program. Nothing in memory mentions one, and it didn't come up in this conversation. You've told me about a Kyoto trip with work friends, a Portland visit, a Barcelona paella, and a photography workshop on March 22nd, but not where you studied abroad.
+
+If you tell me where it was, I'll remember it."
+J59,What was the discount I got on my first purchase from the new clothing brand?,10%,"I don't have that. Nothing in our conversation or in my memory mentions a discount on a first purchase from a new clothing brand.
+
+The only discount you told me about was the 10% Target coupon, which saved you about $8 on your grocery order. The clothing conversations covered affordable brands like Everlane, COS, and Uniqlo, plus your old Givenchy gown, but you never said you'd bought from a new brand or used a discount there.
+
+If you tell me the brand and the offer, I can note it down. It may also have come up in a different chat."
+J60,What certification did I complete last month?,Data Science,"You finished a **Data Science certification** last month. You brought it up while updating your LinkedIn profile. You didn't say who issued it or what the exact title was, so that's all I have on it."
+J61,What certification did I complete last month?,Data Science,You completed a certification in Data Science last month.
+J62,What degree did I graduate with?,Business Administration,You graduated with a degree in Business Administration.
+J63,What play did I attend at the local community theater?,The Glass Menagerie,"You never told me which play you saw at the community theater. We talked about pottery, your street-fair vase, the watercolor you framed, and The Silent Patient and Sharp Objects, but no play came up. What did you see?"
+J64,How many playlists do I have on Spotify?,20,"I can't tell you how many playlists you have. I don't have a Spotify connection, and nothing in memory or in this conversation mentions your Spotify account.
+
+You can find the number yourself:
+- **Spotify app or web player:** open **Your Library** and filter by **Playlists**. Count what's listed, and remember that this includes playlists you follow but didn't create.
+- **Exact count:** the Spotify Web API's `GET /v1/me/playlists` endpoint returns a `total` field. Your account data export (Account → Privacy settings → Download your data) also includes a playlists file.
+
+If you paste the list here, I can count it for you."
+J65,How long is my daily commute to work?,45 minutes each way,"I don’t have your commute duration recorded. How do you usually get to work, and from where?"
+J66,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"You volunteered at the ""Love is in the Air"" fundraising dinner on Valentine's Day, February 14th, 2023. Earlier in our chat you said it was ""back in February,"" and later you specified Valentine's Day.
+
+You never said it was the animal shelter's dinner, so I'm going by the event name you mentioned. If you meant a different dinner, tell me and I'll look again."
+J67,What was my previous occupation?,Marketing specialist at a small startup,I don’t have any reliable information in this conversation about your previous occupation.
+J68,What degree did I graduate with?,Business Administration,You said you graduated with a degree in Business Administration. You mentioned it earlier today when we were talking about keeping track of paperwork and expenses at your new job.
+J69,How many playlists do I have on Spotify?,20,"I don't know how many Spotify playlists you have. You've never mentioned your playlists to me, I don't have a record of them in memory, and I can't connect to Spotify from here. If you tell me the number, or paste your playlist list, I'll remember it."
+J70,What was my last name before I changed it?,Johnson,Your last name before was Johnson. You mentioned earlier that you changed it to Winters.
+J71,What was my last name before I changed it?,Johnson,Your last name was Johnson before you changed it. It's Winters now.
+J72,How long did it take me to assemble the IKEA bookshelf?,4 hours,It took you about **4 hours** to assemble the IKEA bookshelf.
+J73,How long did it take me to assemble the IKEA bookshelf?,4 hours,"You said it took you **4 hours**. You mentioned it on May 30 while we were talking about coffee tables, and said that wasn't too bad."
+J74,What did I buy for my sister's birthday gift?,a yellow dress,"I don’t have that recorded, and I can’t find it in the context available to me. What did you get her?"
+J75,What speed is my new internet plan?,500 Mbps,"I can't tell you. Nothing in this conversation mentions an internet plan, and my memory has nothing on one either. I searched it for ""internet"", ""internet plan"", ""fiber"", ""ISP"", ""Mbps"" and ""Gbps"" and found no matches.
+
+If you tell me the provider or the speed you signed up for, I can work from that. If you're trying to check what you're actually getting, I can run a speed test from here."

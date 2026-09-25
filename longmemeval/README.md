@@ -30,7 +30,7 @@ same harness, same afternoon. Everything a claim below rests on is in this direc
 | claude-sonnet-5 | `run_20260921_135525` | 48% | **10/25 = 40%** |
 | claude-opus-5 | `run_20260921_135842` | 44% | **10/25 = 40%** |
 
-Hand-judging rule: correct iff the answer states the expected fact. An "I don't have that" is a miss no matter what the scorer says. One judge, one pass, no second rater — that is the known weak spot of this evaluation.
+Hand-judging rule: correct iff the answer states the expected fact. An "I don't have that" is a miss no matter what the scorer says. One judge, one pass, no second rater — that is the known weak spot of this evaluation. **Closed 2026-09-25:** two blind raters (Claude, gpt-5.6-luna) re-judged all 75 predictions and agreed with the hand column on every item, κ = 1.0 — see [`runs/2026-09-21/judge_reliability/`](runs/2026-09-21/judge_reliability/). Per-case rubric profile (Guo's four axes) in [`runs/2026-09-21/rubric_annotations.csv`](runs/2026-09-21/rubric_annotations.csv).
 
 The same 15 cases are misses on both Claude readers. terra misses those 15 plus `lme_0007`, and returned an empty string on three of them (`0004`, `0007`, `0009`). Per-case verdicts and notes: [`hand_judgments.csv`](runs/2026-09-21/hand_judgments.csv).
 
