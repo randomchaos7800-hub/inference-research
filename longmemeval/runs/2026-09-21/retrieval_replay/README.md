@@ -14,6 +14,8 @@ reader bridge that recorded every search keyword.
 | `search_queries.csv` | The same keywords mapped to cases by timestamp against the run log's `[lme_NNNN] Asking` lines. |
 | `replay.py` | Rebuilds each case's SQLite history from the public dataset with the harness's own `inject_haystack`, builds the same FTS5 index (`porter ascii`, user-role messages only), and runs each logged keyword through the same query `retrieve_sessions` uses. Standalone; needs only the dataset and `harness/runner.py`. |
 | `retrieval_replay.csv` | Output of `replay.py`: per keyword, how many rows matched and whether the answer session was in the top-2 deduped session dates. |
+| `oracle.py` | Guo's T1 and T2 oracle arm across all 25 cases: rebuilds each case, checks that the answer-bearing session's user turns are in the FTS index (T1), then queries the index with the expected answer's wording under the case's user id (T2 oracle). |
+| `oracle_replay.csv` | Output of `oracle.py`. |
 
 ## Mechanism — determined by code, not inferred from outcomes
 
@@ -68,6 +70,25 @@ So: the readers formed usable queries for 13 of 15 misses. Had `search_memory` b
 FTS archive under `--no-extract`, or had `retrieve_sessions` used the case's user id and been
 called, the retrieval stage would have surfaced the answer session in 13 of 15 misses. Whether
 the reader would then have answered correctly is a separate, untested stage.
+
+## Guo's test matrix, run against the September data where possible
+
+The Failure Attribution Test Matrix (2026-09-26) defines T1–T5. This folder already executes or
+derives three of them for the September run:
+
+| Test | Status here | Result |
+|---|---|---|
+| T1 source availability | run (`oracle.py`) | answer-bearing session indexed in **25/25** cases |
+| T2 normal arm | run (`replay.py`) | readers' own keywords rank the answer session top-2 in 20/22 searched misses |
+| T2 oracle arm | run (`oracle.py`) | expected-answer wording ranks it top-2 in **22/25**; the 3 misses (`lme_0008` "February 14th", `lme_0014` "10%", `lme_0024` "12") are weak oracle strings, not index failures |
+| T3 reader exposure | derived, not traced | reader input = last 100 messages (mechanism 1), so exposure is `answer_session_start_from_end ≤ 100`: true for all 10 hits, false for all 15 misses |
+| T4 fixed-transcript replay | not run | needs the request body, which was never captured |
+| T5 blind second judge | not run | needs a second rater |
+
+One correction to T2 as written: its "normal agent-issued retrieval request" must be pointed at the
+FTS archive. In September the agent's request went to the extracted-fact store, which was empty,
+so the normal arm as literally executed would compare an empty result against the oracle every time
+and tell you nothing about retrieval.
 
 ## What survives and what does not
 

@@ -1,0 +1,26 @@
+test_id,expected,answer_session_start_from_end,any_reader_correct,source_turn_indexed,oracle_query,oracle_rows_matched,oracle_answer_session_in_top2
+lme_0000,Business Administration,24,1,1,"""Business Administration""",1,1
+lme_0001,45 minutes each way,405,0,1,"""45 minutes each way""",1,1
+lme_0002,Target,89,1,1,"""Target""",5,1
+lme_0003,The Glass Menagerie,297,0,1,"""The Glass Menagerie""",1,1
+lme_0004,Summer Vibes,383,0,1,"""Summer Vibes""",1,1
+lme_0005,Johnson,88,1,1,"""Johnson""",1,1
+lme_0006,Serenity Yoga,12,1,1,"""Serenity Yoga""",2,1
+lme_0007,a lighter shade of gray,97,1,1,"""a lighter shade of gray""",1,1
+lme_0008,February 14th,12,1,1,February AND 14th,0,0
+lme_0009,the sports store downtown,221,0,1,the AND sports AND store AND downtown,1,1
+lme_0010,Marketing specialist at a small startup,269,0,1,"""Marketing specialist at a small startup""",1,1
+lme_0011,$800,325,0,1,"""800""",2,1
+lme_0012,20,468,0,1,"""20""",6,1
+lme_0013,University of Melbourne in Australia,248,0,1,University AND Melbourne AND Australia,1,1
+lme_0014,10%,388,0,1,"""10""",6,0
+lme_0015,4 hours,36,1,1,"""4 hours""",1,1
+lme_0016,a yellow dress,344,0,1,"""a yellow dress""",1,1
+lme_0017,500 Mbps,295,0,1,"""500 Mbps""",1,1
+lme_0018,7,56,1,1,"""7""",2,1
+lme_0019,A staunch atheist,323,0,1,"""A staunch atheist""",1,1
+lme_0020,Nike,70,1,1,"""Nike""",3,1
+lme_0021,Data Science,85,1,1,"""Data Science""",2,1
+lme_0022,three,160,0,1,"""three""",4,1
+lme_0023,Golden Retriever,255,0,1,"""Golden Retriever""",1,1
+lme_0024,12,442,0,1,"""12""",5,0
