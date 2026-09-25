@@ -1,0 +1,41 @@
+test_id,reader,hand_judged,answer_session_start_from_end,keyword,fts_rows_matched,answer_session_in_top2,rows_matched_as_user_dino
+lme_0001,opus,0,405,commute,2,1,0
+lme_0001,sonnet,0,405,commute,2,1,0
+lme_0003,sonnet,0,297,community theater,1,1,0
+lme_0003,sonnet,0,297,play,6,1,0
+lme_0004,opus,0,383,Spotify playlist,1,1,0
+lme_0004,sonnet,0,383,Spotify,1,1,0
+lme_0004,sonnet,0,383,playlist,1,1,0
+lme_0009,opus,0,221,tennis racket,2,1,0
+lme_0009,sonnet,0,221,tennis racket,2,1,0
+lme_0009,sonnet,0,221,tennis,6,1,0
+lme_0010,opus,0,269,previous job,0,0,0
+lme_0010,opus,0,269,occupation,1,0,0
+lme_0010,sonnet,0,269,occupation,1,0,0
+lme_0010,sonnet,0,269,ATD,0,0,0
+lme_0012,opus,0,468,spotify,2,1,0
+lme_0012,sonnet,0,468,spotify,2,1,0
+lme_0013,sonnet,0,248,study abroad,1,1,0
+lme_0013,sonnet,0,248,abroad,1,1,0
+lme_0014,sonnet,0,388,discount,4,0,0
+lme_0014,sonnet,0,388,clothing brand,1,1,0
+lme_0016,sonnet,0,344,sister,3,1,0
+lme_0016,sonnet,0,344,birthday gift,5,1,0
+lme_0017,sonnet,0,295,internet plan,0,0,0
+lme_0017,sonnet,0,295,Mbps,1,1,0
+lme_0017,sonnet,0,295,ISP,0,0,0
+lme_0017,sonnet,0,295,internet,1,1,0
+lme_0017,sonnet,0,295,fiber,0,0,0
+lme_0017,sonnet,0,295,Gbps,0,0,0
+lme_0019,sonnet,0,323,spirituality,1,1,0
+lme_0019,sonnet,0,323,spiritual,1,1,0
+lme_0022,opus,0,160,bike,6,1,0
+lme_0022,opus,0,160,bicycle,0,0,0
+lme_0022,sonnet,0,160,bike,6,1,0
+lme_0022,sonnet,0,160,bicycle,0,0,0
+lme_0023,opus,0,255,dog,4,1,0
+lme_0023,sonnet,0,255,dog,4,1,0
+lme_0023,sonnet,0,255,breed,0,0,0
+lme_0024,opus,0,442,largemouth bass Lake Michigan fishing,1,1,0
+lme_0024,sonnet,0,442,largemouth bass,2,1,0
+lme_0024,sonnet,0,442,Lake Michigan,2,1,0

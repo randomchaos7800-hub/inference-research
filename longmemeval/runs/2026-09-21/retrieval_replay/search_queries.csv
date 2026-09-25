@@ -1,0 +1,23 @@
+reader,test_id,search_memory_keywords
+opus,lme_0001,commute
+opus,lme_0004,Spotify playlist
+opus,lme_0009,tennis racket
+opus,lme_0010,previous job|occupation
+opus,lme_0012,spotify
+opus,lme_0022,bike|bicycle
+opus,lme_0023,dog
+opus,lme_0024,largemouth bass Lake Michigan fishing
+sonnet,lme_0001,commute
+sonnet,lme_0003,community theater|play
+sonnet,lme_0004,Spotify|playlist
+sonnet,lme_0009,tennis racket|tennis
+sonnet,lme_0010,occupation|ATD
+sonnet,lme_0012,spotify
+sonnet,lme_0013,study abroad|abroad
+sonnet,lme_0014,discount|clothing brand
+sonnet,lme_0016,sister|birthday gift
+sonnet,lme_0017,internet plan|Mbps|ISP|internet|fiber|Gbps
+sonnet,lme_0019,spirituality|spiritual
+sonnet,lme_0022,bike|bicycle
+sonnet,lme_0023,dog|breed
+sonnet,lme_0024,largemouth bass|Lake Michigan
