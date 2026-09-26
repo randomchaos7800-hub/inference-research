@@ -415,6 +415,7 @@ def score_llm_judge(
 # ---------------------------------------------------------------------------
 
 def main() -> None:
+    global _CURRENT_TEST_ID
     parser = argparse.ArgumentParser(description="LongMemEval runner for Mike")
     parser.add_argument("--limit", type=int, default=25, help="Max test cases")
     parser.add_argument(
@@ -612,7 +613,6 @@ def main() -> None:
                 full_question = question
             logger.info(f"[{test_id}] Asking (date={question_date}): {question}")
             t_q = time.monotonic()
-            global _CURRENT_TEST_ID
             _CURRENT_TEST_ID = test_id
             answer = relay_instance.respond(
                 full_question, user_id=user_id, interface="longmemeval"
