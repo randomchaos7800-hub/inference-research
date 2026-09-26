@@ -42,8 +42,14 @@ unanimous miss.
 ## What this moves
 
 On the Failure Attribution Rubric, judge confidence for the September run goes from J1
-(single-pass, no second rater) to **J3** (multiple independent ratings, full agreement, resolution
-documented) for all 75 items. `rubric_annotations.csv` one level up carries that per item.
+(single-pass, no second rater) to **J2** (corroborated, no unresolved disagreement) for all 75
+items. We first wrote J3; Guo's combined report (2026-09-26, §6.2) places it at J2 because two
+raters are models, one shares a family with terra, and no per-item rationale was recorded for the
+model rater. He wrote the rubric, so his level stands. `rubric_annotations.csv` one level up carries
+J2 per item.
+
+**Statistic:** unit = one prediction (75). Cohen's κ, unweighted, two categories, no prevalence
+adjustment, per rater pair; Fleiss' κ for the three raters. Recompute with `agreement.py`.
 
 ## Caveats, stated plainly
 
