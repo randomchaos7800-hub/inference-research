@@ -1,0 +1,198 @@
+item,question,expected,predicted
+K001,Where did I attend for my study abroad program?,University of Melbourne in Australia,
+K002,What certification did I complete last month?,Data Science,You completed a certification in Data Science last month.
+K003,How many playlists do I have on Spotify?,20,"I don't have access to your Spotify account, so I can't check how many playlists you have. I don't have any integration with Spotify at all — no connected accounts, no API access to your data there.
+
+If you want to find out, you'd need to check the Spotify app directly (Your Library → Playlists will show a count), or use Spotify's own data export tools if you want a full accounting."
+K004,What was my previous occupation?,Marketing specialist at a small startup,I don’t have enough context in this conversation to know your previous occupation.
+K005,How many playlists do I have on Spotify?,20,"I don't know — I don't have any connection to your Spotify account, and there's nothing in my memory about your playlists.
+
+If you want that number, the quickest path is opening Spotify and looking at Your Library. If you want me to actually be able to answer questions like this, the Spotify Web API would do it (`/v1/me/playlists` returns a `total`), but that needs an OAuth token in the vault first. Say the word and I'll set it up."
+K006,What certification did I complete last month?,Data Science,You completed a certification in **Data Science** last month.
+K007,What speed is my new internet plan?,500 Mbps,"I don't have any info about a new internet plan or its speed — that hasn't come up anywhere in our conversation or in what I know about you. Did you mention it somewhere else, or is this something you just signed up for?"
+K008,How many shirts did I pack for my 5-day trip to Costa Rica?,7,You packed 7 shirts for the Costa Rica trip.
+K009,What degree did I graduate with?,Business Administration,You graduated with a degree in **Business Administration**.
+K010,What degree did I graduate with?,Business Administration,You graduated with a degree in Business Administration.
+K011,How many bikes do I own?,three,"I can't give you a number — I don't have an inventory of your bikes anywhere in memory.
+
+What I do have is one bike on record: your **Trek Emonda** road bike, from a conversation on 2023-05-27 where you were prepping for a long road ride and asking about chain cleaning and carbon fiber wheel upgrades. Same session you mentioned wanting a bike lock with GPS tracking. That's the only bike you've ever named to me.
+
+So: at least one. Whether there's a commuter or a mountain bike in the garage too, you've never told me. Want to fill me in so I can keep it straight?"
+K012,How many playlists do I have on Spotify?,20,"I don't have access to your Spotify account, so I can't check how many playlists you have. I don't have any integration with Spotify here — no login, no API connection, nothing that would let me see your account data.
+
+If you want that number, you'd need to check the Spotify app directly (Your Library → Playlists will show a count), or if you're looking to do something programmatic with it, Spotify's Web API has an endpoint for that, but it'd need your own auth token.
+
+Also, quick flag: this conversation log has a lot of unrelated threads mixed together — jewelry/antiques selling, book recs, digital marketing, a roleplay-as-a-teenager request, coffee shop stuff, even a Uniswap trading bot ask — and now a Spotify question that doesn't connect to any of it. If something got pasted in by mistake or you're testing how I handle a mixed/incoherent context, let me know what you're actually trying to get done and I'll focus on that."
+K013,Where do I take yoga classes?,Serenity Yoga,"Based on our conversation, you mentioned Serenity Yoga as your studio, and you supplement that with home practice using the Down Dog app (vinyasa flow classes) on days you can't make it there."
+K014,Where did I buy my new tennis racket from?,the sports store downtown,"A sports store downtown — you mentioned it back on May 25th, when you said you were really happy with the new racket. No brand or store name beyond that, so if it matters (warranty, returns), you'll have to check the receipt."
+K015,Where did I buy my new tennis racket from?,the sports store downtown,"I don't see anything in this conversation about you buying a new tennis racket, or where you bought it from. We talked about tennis drills for practicing serves and volleys on your own, but there was no mention of purchasing a racket at all. Did you buy one recently and want to tell me about it?"
+K016,How long is my daily commute to work?,45 minutes each way,"I remember you said you listen to audiobooks during your daily commute, but I don’t have the actual commute length recorded."
+K017,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I don't have any record of a fishing trip to Lake Michigan or how many largemouth bass you caught — that's not something that's come up before, and nothing in what we've talked about mentions it. If you tell me the details, I'm happy to note it down."
+K018,How much did I spend on a designer handbag?,$800,"$800 — you mentioned it back on May 23rd when we were talking about getting a handle on your spending. You'd bought a designer handbag ""for a pretty penny."""
+K019,How many playlists do I have on Spotify?,20,"I don’t have access to your Spotify account, so I can’t see how many playlists you have."
+K020,How much did I spend on a designer handbag?,$800,"I don't have enough information to determine how much you spent on a designer handbag. If you provide more details or context, I'll be happy to help."
+K021,What was my previous occupation?,Marketing specialist at a small startup,"I don't have anything in this conversation indicating a previous occupation of yours — the chat history here covers music recommendations, wedding planning, HubSpot workflows, mindfulness/yoga, Arab World politics, product photography, winter recipes, and a Carvana-related dot-language exercise, but nothing about your work history.
+
+I'm also Mike, working with Dino — not the assistant in that transcript above, and I don't have ""your previous occupation"" in memory either. If you're actually Dino and this is about something specific, let me know what you mean and I can check."
+K022,How long is my daily commute to work?,45 minutes each way,"I don't have any info on your daily commute — that's not something that's come up before, and it's not in what I know about you. If you tell me your commute details (distance, mode, typical time), I can keep that in mind for next time."
+K023,How long did it take me to assemble the IKEA bookshelf?,4 hours,4 hours — you mentioned that when you were weighing glass vs. wood coffee table tops.
+K024,How long did it take me to assemble the IKEA bookshelf?,4 hours,It took you about **4 hours** to assemble the IKEA bookshelf.
+K025,What was my previous stance on spirituality?,A staunch atheist,"I don't see anything in this conversation about spirituality — we've covered game night, coupon organizing, sports gear tracking, Korean/Indian recipes, Sevilla festivals, natural remedies, truth vs. belief, tea, and clothing/styling, but nothing where you stated a view on spirituality specifically.
+
+We did touch on something adjacent — the truth vs. belief thread, where you pushed back a few times (""can't I just believe what I want,"" ""can't we just agree to disagree"") and I kept arguing for critical thinking over blind acceptance. But that was framed around misinformation/decision-making, not religious or spiritual belief per se.
+
+If you had a specific conversation in mind, let me know when it might have been and I can take another look — but based on what's here, there's no prior stance to point to."
+K026,What was my previous stance on spirituality?,A staunch atheist,"You used to be a staunch atheist. You told me that back on May 24th, when you were looking for books on synchronicity — you mentioned you'd been reading a lot about Buddhism lately and that it was a big shift from where you'd been, since you used to be firmly atheist and were starting to explore other possibilities."
+K027,What color did I repaint my bedroom walls?,a lighter shade of gray,A lighter shade of gray.
+K028,Where did I buy my new tennis racket from?,the sports store downtown,You bought your new tennis racket from **Tennis Warehouse**.
+K029,Where did I buy my new tennis racket from?,the sports store downtown,"I don't see anything in this conversation about you buying a tennis racket or where you bought it from — we talked about tennis drills for serves and volleys, but no purchase or store came up. If you mentioned it elsewhere, I don't have it here."
+K030,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,I don’t have a record of that fishing trip or how many largemouth bass you caught.
+K031,How much did I spend on a designer handbag?,$800,"I don't see anything in this conversation about you buying a designer handbag — we've covered NBA/Trail Blazers talk, aquarium setup, fencing options, a rental inspection letter, community-building plans, concert recommendations, salary negotiation, and jewelry storage/cleaning. No handbag purchase or price came up anywhere in there.
+
+If you're thinking of a different conversation or you have a receipt/record somewhere, let me know and I can help you track it down, but I don't have that info here."
+K032,What was the discount I got on my first purchase from the new clothing brand?,10%,"I don't see any mention of a discount on a first purchase from a new clothing brand anywhere in our conversation. There was a 10% off coupon on a Target grocery order ($8 saved), but that's groceries, not clothing.
+
+If you're thinking of a specific brand purchase, let me know which one and I can help you track the details — but I don't have that discount info from anything we've discussed."
+K033,What certification did I complete last month?,Data Science,"Your Data Science certification — you mentioned it when we were working on your LinkedIn profile, and that you wanted to add it to the Certifications section."
+K034,Where do I take yoga classes?,Serenity Yoga,"Serenity Yoga — that's your studio. You've mentioned it a couple times: brunch spots near it, and days you can't make it in so you practice at home with Down Dog instead."
+K035,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"You volunteered at the “Love is in the Air” fundraising dinner on Valentine’s Day — February 14, 2023."
+K036,What was my previous occupation?,Marketing specialist at a small startup,"Looking back through this conversation, there's no mention of your occupation, previous or otherwise. We've covered music albums, wedding planning, mindfulness/yoga, political stability in the Arab World, product photography for an Artisan's Fair, winter recipes/playlists, indoor gardening, and a Carvana subscription/title-processing workflow discussion — but nothing about what you do or used to do for work.
+
+If you tell me, I can pick it up from there — but I'm not going to guess or invent something that sounds plausible."
+K037,What play did I attend at the local community theater?,The Glass Menagerie,"I don't have any record of you mentioning attending a play at a local community theater in this conversation. We covered pottery techniques, watercolor framing, book recommendations, product descriptions, and some history topics — but nothing about a theater visit. If you did attend one, let me know the details and I can help from there."
+K038,What degree did I graduate with?,Business Administration,You graduated with a degree in Business Administration.
+K039,What was my last name before I changed it?,Johnson,Your last name before you changed it was Johnson — you mentioned it was now Winters.
+K040,How many playlists do I have on Spotify?,20,"You have 20 Spotify playlists, based on what you told me on May 20."
+K041,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"You said 7 shirts — and only ended up wearing 3 of them (plus 5 pairs of shorts, 2 worn).
+
+One thing though: you never told me how long that Costa Rica trip was. The 5-day part is new to me."
+K042,What color did I repaint my bedroom walls?,a lighter shade of gray,You repainted them a lighter shade of gray.
+K043,How long did it take me to assemble the IKEA bookshelf?,4 hours,4 hours.
+K044,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"This is actually a different conversation than what I'm currently in — that whole transcript with the brunch tips, yoga, comedy writing class, endurance racing, and Russia corruption discussion isn't something Dino and I talked about. That's a separate chat log that got pasted in.
+
+But to answer directly from what's in there: you mentioned packing 7 shirts for your last trip to Costa Rica (not specified as 5 days), and you only ended up wearing 3 of them."
+K045,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"You volunteered at the “Love is in the Air” fundraising dinner on Valentine’s Day — February 14, 2023."
+K046,Where did I redeem a $5 coupon on coffee creamer?,Target,"Looking back through our conversation, you mentioned redeeming that $5 coupon on coffee creamer that you found unexpectedly in your email inbox last Sunday — you didn't specify a particular store when you told me about it, just that it was a nice surprise since you didn't realize you had it."
+K047,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"February — Valentine's Day, so 2/14/2023. That was the ""Love is in the Air"" fundraising dinner you volunteered at.
+
+One small note: you never actually said it was an animal shelter putting it on — just that it was a fundraising dinner you enjoyed, and it came up alongside your animal welfare interest. If it was the shelter's event, that tracks, but I don't want to put words in your mouth."
+K048,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"Based on what you told me earlier in our conversation, you mentioned volunteering at the ""Love is in the Air"" fundraising dinner back in February — you said it was on Valentine's Day. That's the one you described as a great way to meet new people, and it's actually what got you excited about the ""Strut Your Mutt"" event.
+
+That said, I want to flag something: you referred to it as a ""fundraising dinner"" you volunteered at, not specifically the ""local animal shelter's"" event — I don't have anything in our conversation tying that specific dinner to an animal shelter. Was ""Love is in the Air"" the one you're asking about, or is there a separate animal shelter event I'm missing?"
+K049,What speed is my new internet plan?,500 Mbps,"Your new internet plan is **500 Mbps**. You mentioned upgrading to it about three weeks ago, and that streaming Netflix has been noticeably better."
+K050,Where did I redeem a $5 coupon on coffee creamer?,Target,"You redeemed it at Target, using a coupon you found in your email inbox."
+K051,What did I buy for my sister's birthday gift?,a yellow dress,"I don't see anything in this conversation about a gift for your sister — we've covered shows to watch, a gaming mouse, cable management, an external hard drive, your desktop's graphics card issues, some marketing/branding work, and live streaming tips. No mention of a sister or a birthday gift anywhere in there, so I can't tell you what you bought. Did that come up somewhere else, or is this a new thing you want to think through?"
+K052,What speed is my new internet plan?,500 Mbps,"I don’t have any record of your new internet plan or its speed. If you share the provider or plan name, I can help identify it."
+K053,Where did I attend for my study abroad program?,University of Melbourne in Australia,"I don't see any mention of a study abroad program in our conversation — we've talked about your trips to Kyoto and Osaka, but those were framed as personal trips (with friends and your mom), not a study abroad program. I don't have that information. Did you mention it somewhere else, or can you tell me more about it?"
+K054,How many bikes do I own?,three,"I don't have any record of you mentioning bikes or how many you own — nothing in memory about that. Did you tell me at some point, or were you testing whether I'd make something up?"
+K055,What brand are my favorite running shoes?,Nike,"Nike — you mentioned it's been your favorite brand for running shoes, and you've been using them for your daily 5K runs."
+K056,Where did I redeem a $5 coupon on coffee creamer?,Target,"You didn't actually say which store — what you told me was that you redeemed it last Sunday and were surprised because you hadn't realized it was sitting in your email inbox.
+
+Given the context (we were talking Target and Cartwheel, and you shop there every other week), Target's the likely answer, but that's me inferring, not something you said."
+K057,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't have anything about a Spotify playlist you created — it's never come up in our conversations, and there's nothing in memory about it.
+
+If you tell me the name, I'll hang onto it."
+K058,What was my previous occupation?,Marketing specialist at a small startup,"I don’t have a reliable record of your previous occupation. The only match I found was an unrelated use of the word “occupation” in a past conversation, so I don’t want to guess."
+K059,How many bikes do I own?,three,"This whole conversation is a log of a *different* assistant session (dates from 2023, chatting about Jilin culture, coffee, painting, TV schedules, meal prep, vocal warmups) — not something I have any record of, and it's not something Dino and I have talked about. There's no bike ownership info in there, and nothing in my memory about bikes.
+
+I don't know how many bikes you own — that's not something I have on record. Want to just tell me, or is this actually a different question?"
+K060,What breed is my dog?,Golden Retriever,"I don't have any info about a dog breed in this conversation — nothing's been mentioned about you owning a dog, let alone what breed it is. If you tell me the breed (or describe it), I'm happy to chat about it, but I can't guess or pull it from nowhere."
+K061,What did I buy for my sister's birthday gift?,a yellow dress,"I don't see anything in this conversation about a gift for your sister's birthday — we've covered a gaming mouse, cable management, a hard drive, TV recommendations, some marketing/branding work, mindfulness tips, and live streaming advice, but no sister or birthday gift came up. Did you mean to ask that in a different chat, or is this something you haven't mentioned yet?"
+K062,Where do I take yoga classes?,Serenity Yoga,"Based on our conversation, you take yoga classes at Serenity Yoga — that's your regular studio. You've also been supplementing that with home practice using the Down Dog app (vinyasa flow classes are your favorite), especially on days when you can't make it to the studio in person."
+K063,What breed is my dog?,Golden Retriever,"I don't have any info about you having a dog anywhere in this conversation or in what I know about you — no breed, no name, nothing. Did you mention it somewhere else? If you tell me now I'll actually have it."
+K064,How long did it take me to assemble the IKEA bookshelf?,4 hours,"4 hours — you mentioned it when we were talking about the coffee table, weighing wood vs. glass tops."
+K065,What was my last name before I changed it?,Johnson,Your last name before you changed it was Johnson — you mentioned it's now Winters.
+K066,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"12.
+
+From the 2023-05-21 session — you mentioned you were planning a Lake Michigan trip with friends and said ""I caught 12 largemouth bass on my last trip there."" You were also asking whether worms were good bait for largemouth.
+
+One caveat: that 12 was the *previous* trip, said while the new one was still in the planning stage. So if you're asking about the trip you were planning then, I don't have a catch count for it — you never came back and told me how it went."
+K067,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"Looking back at what you told me: you brought 7 shirts on your trip to Costa Rica, but only wore 3 of them.
+
+Small correction on the trip length, though — you didn't mention ""5 days"" earlier, you just referred to it as your ""last trip to Costa Rica."" Wanted to flag that in case you're thinking of a different trip."
+K068,How long is my daily commute to work?,45 minutes each way,"I don't have any record of your daily commute — that's not something you've mentioned in this conversation or anything I have stored about you. If you tell me your commute details (distance, mode of transport, etc.), I'm happy to help you think through it, but I can't pull that number out of thin air."
+K069,What was my previous stance on spirituality?,A staunch atheist,"I don’t have a recorded previous stance from you on spirituality in the context I can access. If you remind me what you’d said or believed before, I can help compare it with where you are now."
+K070,Where did I attend for my study abroad program?,University of Melbourne in Australia,"I don’t have that information from our conversation so far. You mentioned a recent trip to Kyoto with coworkers and Japanese lessons, but not where you attended your study abroad program."
+K071,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't have any record of you creating a Spotify playlist or mentioning its name anywhere in our conversation — we've covered memoirs, street photography, coding, human trafficking, book recs, gallstones/diet, kingfishers, handbags, and chicken recipes, but nothing about Spotify. If you tell me the name I'm happy to talk about it, but I can't pull it out of thin air."
+K072,What certification did I complete last month?,Data Science,"You completed a Data Science certification last month, according to what you told me earlier in this conversation."
+K073,How much did I spend on a designer handbag?,$800,"I don't see anything in our conversation about a designer handbag purchase or its cost — we've covered NBA talk, fencing, aquarium care, community building, a rental inspection letter, salary negotiation, jewelry storage, and concert recommendations, but no handbag spending has come up. Did you mention it elsewhere, or want to tell me the amount now?"
+K074,What breed is my dog?,Golden Retriever,"I only know that your dog is named Max—I don’t have his breed recorded. If you send a photo or describe his size, coat, coloring, ears, muzzle, and build, I can help narrow it down."
+K075,What certification did I complete last month?,Data Science,"Based on your earlier messages in this thread, you completed a **Data Science certification** last month."
+K076,How many bikes do I own?,three,I don’t have any record of how many bikes you own.
+K077,How much did I spend on a designer handbag?,$800,I don’t have information about a designer handbag purchase or its price in the conversation so far.
+K078,What play did I attend at the local community theater?,The Glass Menagerie,"I don’t have that recorded, so I can’t tell which play you attended."
+K079,What was my previous occupation?,Marketing specialist at a small startup,"Honestly — I don't have an occupation fact stored in memory for you. I searched, nothing.
+
+The only signal I have is from earlier in this conversation: the Carvana thread, where you were working through title and registration processing — liens, damaged titles, missing signatures, agency requests — plus the subscription-tier and wholesale-division questions. That reads like you worked in Carvana's title/registration operations, on the process-optimization side.
+
+The one job-related thing I *do* have in memory is the $85k ATD salary that Boundary Labs is meant to replace — but that's framed as current, not previous.
+
+So: Carvana titles/registration is my best guess, inferred from context, not something you told me directly. Want me to write it down properly?"
+K080,What brand are my favorite running shoes?,Nike,"Nike — you mentioned it's been your go-to brand for running shoes, and you're looking to replace your current pair with the same or a similar Nike model."
+K081,What brand are my favorite running shoes?,Nike,"Your favorite running-shoe brand is **Nike**. You said Nike has been your favorite brand so far, and that you use Nike shoes for your daily 5K runs."
+K082,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't have any record of you creating a Spotify playlist in this conversation — we've talked about books, photography, writing, coding, health stuff, recipes, and a handbag/outfit, but nothing about Spotify came up. If you created one somewhere else, I wouldn't have visibility into that. What's it called, or want help naming one?"
+K083,How long is my daily commute to work?,45 minutes each way,"I don’t have your commute time saved, so I can’t say accurately. If you tell me your usual route or travel time, I’ll remember it."
+K084,How many shirts did I pack for my 5-day trip to Costa Rica?,7,You packed **7 shirts** for your 5-day trip to Costa Rica. You ended up wearing 3 of them.
+K085,What was my last name before I changed it?,Johnson,Your previous last name was **Johnson**.
+K086,What color did I repaint my bedroom walls?,a lighter shade of gray,You repainted them a lighter shade of gray.
+K087,What was my previous stance on spirituality?,A staunch atheist,
+K088,What did I buy for my sister's birthday gift?,a yellow dress,I don’t have enough information in this chat to know what you bought for your sister’s birthday gift.
+K089,What speed is my new internet plan?,500 Mbps,"I don't have any information about your internet plan or its speed — that's not something that's come up in our conversation before, and it's not in anything I have access to. You'd need to check your provider's account portal or a bill/confirmation email for that."
+K090,How long did it take me to assemble the IKEA bookshelf?,4 hours,You mentioned that it took you **4 hours** to assemble the IKEA bookshelf.
+K091,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I don't have that information. I don't have access to your fishing trip records or personal memories, so I can't say how many largemouth bass you caught at Lake Michigan."
+K092,What brand are my favorite running shoes?,Nike,"Your favorite running-shoe brand is Nike. You mentioned that Nike has been your favorite so far, and that you use Nike shoes for your daily 5K runs."
+K093,What play did I attend at the local community theater?,The Glass Menagerie,"I don't have any record of you mentioning a play at a local community theater in our conversation — we covered pottery techniques, watercolor framing, book recommendations, the Renogy/Victron/REDARC chargers, and some history questions about the ANC and Nelson Mandela, but nothing about a theater visit. Did you mean to bring that up in a different conversation, or is this something you wanted to tell me about now?"
+K094,What color did I repaint my bedroom walls?,a lighter shade of gray,You repainted your bedroom walls a lighter shade of gray.
+K095,How long is my daily commute to work?,45 minutes each way,"45 minutes each way — so about an hour and a half round trip. You mentioned it back on May 22nd when you were asking about audiobook recommendations, since that's when you do most of your listening."
+K096,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I don't have any record of a fishing trip to Lake Michigan or a largemouth bass count from you in our conversation — that's not something you've mentioned before now. I can't pull that number out of thin air.
+
+If you did go on a trip and want to log it (dates, catch count, location, whatever), just tell me and I'll keep track going forward. But I'm not going to guess at a number for something I have no actual record of — wouldn't want to hand you a made-up answer dressed up as real."
+K097,What degree did I graduate with?,Business Administration,You graduated with a degree in Business Administration.
+K098,What play did I attend at the local community theater?,The Glass Menagerie,"I don't have anything about a play you attended at a community theater — not in this conversation and not in memory.
+
+Looking back at what we've actually talked about: the ceramic vase from the street fair, the watercolor painting you bought from a local artist last summer and framed three weeks ago, pottery classes, saggar firing, and ""Sharp Objects."" No theater.
+
+If you mentioned a play somewhere else, tell me what you remember and I'll save it properly this time."
+K099,What was my previous stance on spirituality?,A staunch atheist,"I don't see anything in this conversation about spirituality — we've covered Apples to Apples, sports gear tracking, coupons, a finance podcast, Korean and Indian recipes, Sevilla festivals, natural remedies, truth vs. belief, tea/coffee, and outfit styling, but no mention of your views on spirituality specifically.
+
+Also, quick flag: this thread has messages timestamped 2023/05/29-05/30, but the system says today is 2026-09-26 — so if you're looking for a real record of a past stance, it's probably not in this session. Want me to check memory for anything on that topic instead?"
+K100,What did I buy for my sister's birthday gift?,a yellow dress,A yellow dress and a pair of earrings to match it — that's from the session back on May 24th.
+K101,What was the discount I got on my first purchase from the new clothing brand?,10%,
+K102,What speed is my new internet plan?,500 Mbps,"500 Mbps — you mentioned it back on May 24th, said you'd upgraded about three weeks before that, and that streaming Netflix has been noticeably better since."
+K103,Where do I take yoga classes?,Serenity Yoga,"You take yoga classes at Serenity Yoga. You also practice at home with Down Dog, usually doing vinyasa flow classes."
+K104,What was the discount I got on my first purchase from the new clothing brand?,10%,"10% off. You mentioned it back on May 23rd while we were building out that property/expense spreadsheet — said you'd gotten a 10% discount on your first purchase from that new clothing brand the month before, and that it was a nice perk.
+
+I don't have the dollar amount or the brand name, just the percentage."
+K105,Where did I redeem a $5 coupon on coffee creamer?,Target,"You mentioned redeeming that $5 coupon on coffee creamer — you said you found it as a surprise in your email inbox, not at a specific store. You'd noted it wasn't something you knew you had until you checked your email that Sunday."
+K106,What brand are my favorite running shoes?,Nike,"Nike. You mentioned it's been your go-to for running shoes — you've been using them for your daily 5K runs, and you picked up your current pair at the outlet mall in April on a 20% off sale."
+K107,Where did I attend for my study abroad program?,University of Melbourne in Australia,"You haven't mentioned a study abroad program to me — nothing in this conversation covers that.
+
+What you did tell me about travel: a recent trip to Barcelona (the seafood paella), Kyoto about two months ago with work friends, an upcoming Osaka trip you're planning, and visiting a friend in Portland in late March. But none of those came up as study abroad.
+
+If you did one, tell me where and I'll hang onto it."
+K108,What did I buy for my sister's birthday gift?,a yellow dress,"I don’t have that information in the conversation so far. You mentioned a Lenovo laptop bag for yourself, but nothing about a birthday gift for your sister."
+K109,What play did I attend at the local community theater?,The Glass Menagerie,I don’t have the play’s title in the information available to me.
+K110,Where do I take yoga classes?,Serenity Yoga,"You take classes at Serenity Yoga, and use Down Dog for vinyasa-flow practice at home when you can’t make it to the studio."
+K111,What breed is my dog?,Golden Retriever,"Max is a Golden Retriever.
+
+From a conversation back on May 25th — you were looking for a dog walker and thinking about getting him a new collar, and you asked about brands that'd suit a Golden Retriever like Max."
+K112,Where did I attend for my study abroad program?,University of Melbourne in Australia,"I don't have any record of you mentioning a study abroad program in our conversation. You've talked about trips to Osaka and Kyoto, a workshop in a local studio, and Portland with a friend — but nothing about a study abroad program specifically. Did you mean one of those trips, or is this something new you haven't mentioned yet?"
+K113,How many bikes do I own?,three,"I only have evidence of one bike: your Trek Émonda. So, based on what I know, you own **at least one**—but I don’t have a complete inventory."
+K114,What was the discount I got on my first purchase from the new clothing brand?,10%,I don’t have a record of a first-purchase discount from a new clothing brand. The only discount mentioned here was $8 off your Target grocery order (10% off).
+K115,What is the name of the playlist I created on Spotify?,Summer Vibes,I don’t have a record of the name of your Spotify playlist.
+K116,What was my last name before I changed it?,Johnson,Johnson. You changed it recently — you mentioned on May 28th that your old last name was Johnson and it's now Winters.
+K117,What breed is my dog?,Golden Retriever,"I don’t know your dog’s breed from what I have here. If you send a photo or describe their size, coat, coloring, ears, muzzle, and tail, I can make a best guess."
+K118,What color did I repaint my bedroom walls?,a lighter shade of gray,You repainted your bedroom walls a lighter shade of gray.
+K119,What was the discount I got on my first purchase from the new clothing brand?,10%,"I don't have any record of a discount from a ""new clothing brand"" purchase in this conversation. We talked about a Target order with a 10% off coupon ($8 saved), and about switching to more affordable brands like Everlane, COS, Zara, etc. for future purchases — but no specific purchase or discount was mentioned for a new clothing brand.
+
+If you're thinking of a specific brand or transaction, let me know which one and I can help you work out the numbers."
+K120,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"Looking back through this conversation, you mentioned volunteering at a ""Love is in the Air"" fundraising dinner on Valentine's Day (February 14), but that wasn't described as an animal shelter event specifically — it came up in the context of your animal welfare and children's health interests when we were discussing LA charity events.
+
+Separately, you mentioned ""serving breakfast to people in need"" as volunteer work, but that also wasn't tied to an animal shelter.
+
+I don't have a record of you volunteering at a local animal shelter's fundraising dinner specifically — just the Valentine's Day ""Love is in the Air"" dinner (cause unspecified) and the breakfast-serving volunteer work. If the animal shelter dinner was a real thing, can you fill me in on when it was? I don't want to guess and get it wrong."
+K121,What is the name of the playlist I created on Spotify?,Summer Vibes,The playlist you created on Spotify is called **“Chill Vibes.”**
+K122,What degree did I graduate with?,Business Administration,Business Administration — you mentioned it when we were talking about your new job and how the degree has been helping in the role.
+K123,Where did I redeem a $5 coupon on coffee creamer?,Target,You redeemed the $5 coffee-creamer coupon at Target last Sunday.
+K124,What was my last name before I changed it?,Johnson,Your last name before the change was Johnson.
+K125,Where did I buy my new tennis racket from?,the sports store downtown,"I don’t have that recorded, so I can’t tell where you bought it."

@@ -1,0 +1,312 @@
+2026-09-26 07:29:40,489 INFO lme === LongMemEval 20260926_072940 | split=s limit=25 ===
+2026-09-26 07:29:40,490 INFO lme Memory paths patched → /tmp/longmemeval_20260926_072940/mike-memory
+2026-09-26 07:29:40,491 INFO memory.storage Memory initialized at /tmp/longmemeval_20260926_072940/mike-memory
+2026-09-26 07:29:40,491 INFO lme Using cached dataset: /tmp/longmemeval_data/longmemeval_s_cleaned.json
+2026-09-26 07:29:42,369 INFO lme Task filter {'single-session-user'}: 500 → 70
+2026-09-26 07:29:42,372 INFO lme Loaded 25 examples (split=s)
+2026-09-26 07:29:42,408 INFO lme MCP disabled for eval (--no-mcp)
+2026-09-26 07:29:42,408 INFO lme Initializing RelayV3...
+2026-09-26 07:29:42,419 INFO relay.switchboard Switchboard initialized (primary: local:nemotron, pod: http://localhost:8010/v1)
+2026-09-26 07:29:42,423 WARNING relay.switchboard EVAL override: primary inference -> http://127.0.0.1:8020/v1 model=claude-sonnet-5, OpenRouter fallback disabled
+2026-09-26 07:29:42,424 INFO memory.storage Memory initialized at /tmp/longmemeval_20260926_072940/mike-memory
+2026-09-26 07:29:42,424 INFO relay.relay RelayV3: claude-sonnet-5, 83 tools, max_output=8192
+2026-09-26 07:29:42,537 INFO lme [lme_0000] single-session-user | 53 sessions (550 turns) | Q: What degree did I graduate with?...
+2026-09-26 07:29:42,542 INFO lme [lme_0000] Injected 550 turns across 53 sessions (494,624 chars)
+2026-09-26 07:29:42,545 INFO lme [lme_0000] FTS backfill: 273 messages indexed
+2026-09-26 07:29:42,545 INFO lme [lme_0000] Asking (date=2023/05/30 (Tue) 23:40): What degree did I graduate with?
+2026-09-26 07:29:42,550 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:42,550 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:42,551 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:29:44,746 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:29:44,753 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:29:44,757 INFO lme [lme_0000] RESULT exact=1.00 llm=n/a latency=2.21s
+2026-09-26 07:29:44,757 INFO lme [lme_0000] Predicted: You graduated with a degree in Business Administration.
+2026-09-26 07:29:44,757 INFO lme [lme_0000] Expected:  Business Administration
+2026-09-26 07:29:44,757 INFO lme [lme_0001] single-session-user | 45 sessions (485 turns) | Q: How long is my daily commute to work?...
+2026-09-26 07:29:44,766 INFO lme [lme_0001] Injected 485 turns across 45 sessions (491,983 chars)
+2026-09-26 07:29:44,770 INFO lme [lme_0001] FTS backfill: 241 messages indexed
+2026-09-26 07:29:44,770 INFO lme [lme_0001] Asking (date=2023/05/30 (Tue) 20:36): How long is my daily commute to work?
+2026-09-26 07:29:44,772 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:44,772 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:44,773 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:29:49,063 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:29:49,064 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:29:49,067 INFO lme [lme_0001] RESULT exact=0.00 llm=n/a latency=4.3s
+2026-09-26 07:29:49,067 INFO lme [lme_0001] Predicted: I don't have any record of your daily commute — that's not something you've mentioned in this conversation or anything I
+2026-09-26 07:29:49,067 INFO lme [lme_0001] Expected:  45 minutes each way
+2026-09-26 07:29:49,067 INFO lme [lme_0002] single-session-user | 50 sessions (529 turns) | Q: Where did I redeem a $5 coupon on coffee creamer?...
+2026-09-26 07:29:49,078 INFO lme [lme_0002] Injected 529 turns across 50 sessions (510,302 chars)
+2026-09-26 07:29:49,083 INFO lme [lme_0002] FTS backfill: 263 messages indexed
+2026-09-26 07:29:49,083 INFO lme [lme_0002] Asking (date=2023/05/30 (Tue) 20:42): Where did I redeem a $5 coupon on coffee creamer?
+2026-09-26 07:29:49,086 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:49,086 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:49,086 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:29:53,315 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:29:53,316 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:29:53,319 INFO lme [lme_0002] RESULT exact=0.00 llm=n/a latency=4.24s
+2026-09-26 07:29:53,319 INFO lme [lme_0002] Predicted: You mentioned redeeming that $5 coupon on coffee creamer — you said you found it as a surprise in your email inbox, not 
+2026-09-26 07:29:53,319 INFO lme [lme_0002] Expected:  Target
+2026-09-26 07:29:53,319 INFO lme [lme_0003] single-session-user | 57 sessions (616 turns) | Q: What play did I attend at the local community theater?...
+2026-09-26 07:29:53,325 INFO lme [lme_0003] Injected 616 turns across 57 sessions (497,068 chars)
+2026-09-26 07:29:53,334 INFO lme [lme_0003] FTS backfill: 305 messages indexed
+2026-09-26 07:29:53,334 INFO lme [lme_0003] Asking (date=2023/05/30 (Tue) 22:53): What play did I attend at the local community theater?
+2026-09-26 07:29:53,338 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:53,338 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:53,339 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:29:58,046 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:29:58,047 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:29:58,049 INFO lme [lme_0003] RESULT exact=0.00 llm=n/a latency=4.72s
+2026-09-26 07:29:58,049 INFO lme [lme_0003] Predicted: I don't have any record of you mentioning attending a play at a local community theater in this conversation. We covered
+2026-09-26 07:29:58,050 INFO lme [lme_0003] Expected:  The Glass Menagerie
+2026-09-26 07:29:58,050 INFO lme [lme_0004] single-session-user | 50 sessions (510 turns) | Q: What is the name of the playlist I created on Spotify?...
+2026-09-26 07:29:58,060 INFO lme [lme_0004] Injected 510 turns across 50 sessions (506,555 chars)
+2026-09-26 07:29:58,064 INFO lme [lme_0004] FTS backfill: 253 messages indexed
+2026-09-26 07:29:58,064 INFO lme [lme_0004] Asking (date=2023/05/30 (Tue) 19:19): What is the name of the playlist I created on Spotify?
+2026-09-26 07:29:58,066 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:58,067 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:29:58,067 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:19,829 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:19,830 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:19,832 INFO lme [lme_0004] RESULT exact=0.00 llm=n/a latency=21.77s
+2026-09-26 07:30:19,832 INFO lme [lme_0004] Predicted: I don't have any record of you creating a Spotify playlist in this conversation — we've talked about books, photography,
+2026-09-26 07:30:19,832 INFO lme [lme_0004] Expected:  Summer Vibes
+2026-09-26 07:30:19,832 INFO lme [lme_0005] single-session-user | 44 sessions (469 turns) | Q: What was my last name before I changed it?...
+2026-09-26 07:30:19,841 INFO lme [lme_0005] Injected 469 turns across 44 sessions (495,815 chars)
+2026-09-26 07:30:19,844 INFO lme [lme_0005] FTS backfill: 233 messages indexed
+2026-09-26 07:30:19,844 INFO lme [lme_0005] Asking (date=2023/05/30 (Tue) 22:36): What was my last name before I changed it?
+2026-09-26 07:30:19,846 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:19,847 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:19,847 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:22,937 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:22,938 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:22,940 INFO lme [lme_0005] RESULT exact=1.00 llm=n/a latency=3.1s
+2026-09-26 07:30:22,940 INFO lme [lme_0005] Predicted: Your last name before you changed it was Johnson — you mentioned it was now Winters.
+2026-09-26 07:30:22,941 INFO lme [lme_0005] Expected:  Johnson
+2026-09-26 07:30:22,941 INFO lme [lme_0006] single-session-user | 51 sessions (513 turns) | Q: Where do I take yoga classes?...
+2026-09-26 07:30:22,951 INFO lme [lme_0006] Injected 513 turns across 51 sessions (494,344 chars)
+2026-09-26 07:30:22,955 INFO lme [lme_0006] FTS backfill: 252 messages indexed
+2026-09-26 07:30:22,955 INFO lme [lme_0006] Asking (date=2023/05/30 (Tue) 21:04): Where do I take yoga classes?
+2026-09-26 07:30:22,957 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:22,957 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:22,958 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:25,824 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:25,825 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:25,827 INFO lme [lme_0006] RESULT exact=1.00 llm=n/a latency=2.87s
+2026-09-26 07:30:25,827 INFO lme [lme_0006] Predicted: Based on our conversation, you take yoga classes at Serenity Yoga — that's your regular studio. You've also been supplem
+2026-09-26 07:30:25,827 INFO lme [lme_0006] Expected:  Serenity Yoga
+2026-09-26 07:30:25,828 INFO lme [lme_0007] single-session-user | 50 sessions (500 turns) | Q: What color did I repaint my bedroom walls?...
+2026-09-26 07:30:25,838 INFO lme [lme_0007] Injected 500 turns across 50 sessions (514,928 chars)
+2026-09-26 07:30:25,844 INFO lme [lme_0007] FTS backfill: 247 messages indexed
+2026-09-26 07:30:25,844 INFO lme [lme_0007] Asking (date=2023/05/30 (Tue) 22:42): What color did I repaint my bedroom walls?
+2026-09-26 07:30:25,846 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:25,846 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:25,847 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:28,276 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:28,276 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:28,279 INFO lme [lme_0007] RESULT exact=1.00 llm=n/a latency=2.44s
+2026-09-26 07:30:28,279 INFO lme [lme_0007] Predicted: You repainted your bedroom walls a lighter shade of gray.
+2026-09-26 07:30:28,279 INFO lme [lme_0007] Expected:  a lighter shade of gray
+2026-09-26 07:30:28,279 INFO lme [lme_0008] single-session-user | 50 sessions (518 turns) | Q: When did I volunteer at the local animal shelter's fundraising dinner?...
+2026-09-26 07:30:28,284 INFO lme [lme_0008] Injected 518 turns across 50 sessions (491,811 chars)
+2026-09-26 07:30:28,290 INFO lme [lme_0008] FTS backfill: 256 messages indexed
+2026-09-26 07:30:28,290 INFO lme [lme_0008] Asking (date=2023/04/02 (Sun) 23:49): When did I volunteer at the local animal shelter's fundraising dinner?
+2026-09-26 07:30:28,293 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:28,293 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:28,294 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:32,442 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:32,443 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:32,446 INFO lme [lme_0008] RESULT exact=0.50 llm=n/a latency=4.15s
+2026-09-26 07:30:32,446 INFO lme [lme_0008] Predicted: Based on what you told me earlier in our conversation, you mentioned volunteering at the "Love is in the Air" fundraisin
+2026-09-26 07:30:32,446 INFO lme [lme_0008] Expected:  February 14th
+2026-09-26 07:30:32,446 INFO lme [lme_0009] single-session-user | 46 sessions (487 turns) | Q: Where did I buy my new tennis racket from?...
+2026-09-26 07:30:32,456 INFO lme [lme_0009] Injected 487 turns across 46 sessions (497,340 chars)
+2026-09-26 07:30:32,461 INFO lme [lme_0009] FTS backfill: 241 messages indexed
+2026-09-26 07:30:32,461 INFO lme [lme_0009] Asking (date=2023/05/30 (Tue) 23:39): Where did I buy my new tennis racket from?
+2026-09-26 07:30:32,465 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:32,465 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:32,466 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:35,652 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:35,652 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:35,654 INFO lme [lme_0009] RESULT exact=0.00 llm=n/a latency=3.19s
+2026-09-26 07:30:35,654 INFO lme [lme_0009] Predicted: I don't see anything in this conversation about you buying a new tennis racket, or where you bought it from. We talked a
+2026-09-26 07:30:35,655 INFO lme [lme_0009] Expected:  the sports store downtown
+2026-09-26 07:30:35,655 INFO lme [lme_0010] single-session-user | 53 sessions (510 turns) | Q: What was my previous occupation?...
+2026-09-26 07:30:35,665 INFO lme [lme_0010] Injected 510 turns across 53 sessions (504,652 chars)
+2026-09-26 07:30:35,670 INFO lme [lme_0010] FTS backfill: 251 messages indexed
+2026-09-26 07:30:35,670 INFO lme [lme_0010] Asking (date=2023/05/30 (Tue) 20:08): What was my previous occupation?
+2026-09-26 07:30:35,673 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:35,673 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:35,674 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:42,438 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:42,438 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:42,441 INFO lme [lme_0010] RESULT exact=0.00 llm=n/a latency=6.77s
+2026-09-26 07:30:42,441 INFO lme [lme_0010] Predicted: I don't have anything in this conversation indicating a previous occupation of yours — the chat history here covers musi
+2026-09-26 07:30:42,441 INFO lme [lme_0010] Expected:  Marketing specialist at a small startup
+2026-09-26 07:30:42,441 INFO lme [lme_0011] single-session-user | 45 sessions (490 turns) | Q: How much did I spend on a designer handbag?...
+2026-09-26 07:30:42,448 INFO lme [lme_0011] Injected 490 turns across 45 sessions (504,547 chars)
+2026-09-26 07:30:42,452 INFO lme [lme_0011] FTS backfill: 243 messages indexed
+2026-09-26 07:30:42,453 INFO lme [lme_0011] Asking (date=2023/05/30 (Tue) 23:20): How much did I spend on a designer handbag?
+2026-09-26 07:30:42,456 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:42,456 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:42,456 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:45,611 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:45,611 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:45,613 INFO lme [lme_0011] RESULT exact=0.00 llm=n/a latency=3.16s
+2026-09-26 07:30:45,613 INFO lme [lme_0011] Predicted: I don't see anything in our conversation about a designer handbag purchase or its cost — we've covered NBA talk, fencing
+2026-09-26 07:30:45,613 INFO lme [lme_0011] Expected:  $800
+2026-09-26 07:30:45,614 INFO lme [lme_0012] single-session-user | 46 sessions (504 turns) | Q: How many playlists do I have on Spotify?...
+2026-09-26 07:30:45,621 INFO lme [lme_0012] Injected 504 turns across 46 sessions (492,613 chars)
+2026-09-26 07:30:45,627 INFO lme [lme_0012] FTS backfill: 250 messages indexed
+2026-09-26 07:30:45,627 INFO lme [lme_0012] Asking (date=2023/05/30 (Tue) 18:45): How many playlists do I have on Spotify?
+2026-09-26 07:30:45,629 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:45,630 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:45,630 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:30:49,455 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:30:49,456 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:30:49,458 INFO lme [lme_0012] RESULT exact=0.00 llm=n/a latency=3.83s
+2026-09-26 07:30:49,458 INFO lme [lme_0012] Predicted: I don't have access to your Spotify account, so I can't check how many playlists you have. I don't have any integration 
+2026-09-26 07:30:49,459 INFO lme [lme_0012] Expected:  20
+2026-09-26 07:30:49,459 INFO lme [lme_0013] single-session-user | 50 sessions (470 turns) | Q: Where did I attend for my study abroad program?...
+2026-09-26 07:30:49,469 INFO lme [lme_0013] Injected 470 turns across 50 sessions (489,698 chars)
+2026-09-26 07:30:49,473 INFO lme [lme_0013] FTS backfill: 232 messages indexed
+2026-09-26 07:30:49,473 INFO lme [lme_0013] Asking (date=2023/05/30 (Tue) 16:24): Where did I attend for my study abroad program?
+2026-09-26 07:30:49,475 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:49,476 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:30:49,476 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:05,295 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:05,295 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:05,297 INFO lme [lme_0013] RESULT exact=0.00 llm=n/a latency=15.82s
+2026-09-26 07:31:05,297 INFO lme [lme_0013] Predicted: I don't have any record of you mentioning a study abroad program in our conversation. You've talked about trips to Osaka
+2026-09-26 07:31:05,298 INFO lme [lme_0013] Expected:  University of Melbourne in Australia
+2026-09-26 07:31:05,298 INFO lme [lme_0014] single-session-user | 48 sessions (501 turns) | Q: What was the discount I got on my first purchase from the new clothing...
+2026-09-26 07:31:05,308 INFO lme [lme_0014] Injected 501 turns across 48 sessions (491,761 chars)
+2026-09-26 07:31:05,312 INFO lme [lme_0014] FTS backfill: 249 messages indexed
+2026-09-26 07:31:05,312 INFO lme [lme_0014] Asking (date=2023/05/30 (Tue) 23:15): What was the discount I got on my first purchase from the new clothing brand?
+2026-09-26 07:31:05,314 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:05,315 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:05,315 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:09,521 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:09,522 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:09,524 INFO lme [lme_0014] RESULT exact=1.00 llm=n/a latency=4.21s
+2026-09-26 07:31:09,524 INFO lme [lme_0014] Predicted: I don't have any record of a discount from a "new clothing brand" purchase in this conversation. We talked about a Targe
+2026-09-26 07:31:09,524 INFO lme [lme_0014] Expected:  10%
+2026-09-26 07:31:09,525 INFO lme [lme_0015] single-session-user | 49 sessions (510 turns) | Q: How long did it take me to assemble the IKEA bookshelf?...
+2026-09-26 07:31:09,530 INFO lme [lme_0015] Injected 510 turns across 49 sessions (497,235 chars)
+2026-09-26 07:31:09,534 INFO lme [lme_0015] FTS backfill: 254 messages indexed
+2026-09-26 07:31:09,534 INFO lme [lme_0015] Asking (date=2023/05/30 (Tue) 23:11): How long did it take me to assemble the IKEA bookshelf?
+2026-09-26 07:31:09,536 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:09,537 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:09,537 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:13,216 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:13,217 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:13,219 INFO lme [lme_0015] RESULT exact=1.00 llm=n/a latency=3.69s
+2026-09-26 07:31:13,219 INFO lme [lme_0015] Predicted: 4 hours — you mentioned that when you were weighing glass vs. wood coffee table tops.
+2026-09-26 07:31:13,219 INFO lme [lme_0015] Expected:  4 hours
+2026-09-26 07:31:13,219 INFO lme [lme_0016] single-session-user | 50 sessions (507 turns) | Q: What did I buy for my sister's birthday gift?...
+2026-09-26 07:31:13,225 INFO lme [lme_0016] Injected 507 turns across 50 sessions (491,747 chars)
+2026-09-26 07:31:13,234 INFO lme [lme_0016] FTS backfill: 252 messages indexed
+2026-09-26 07:31:13,234 INFO lme [lme_0016] Asking (date=2023/05/30 (Tue) 17:09): What did I buy for my sister's birthday gift?
+2026-09-26 07:31:13,237 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:13,237 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:13,237 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:18,172 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:18,173 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:18,176 INFO lme [lme_0016] RESULT exact=0.00 llm=n/a latency=4.94s
+2026-09-26 07:31:18,176 INFO lme [lme_0016] Predicted: I don't see anything in this conversation about a gift for your sister — we've covered shows to watch, a gaming mouse, c
+2026-09-26 07:31:18,176 INFO lme [lme_0016] Expected:  a yellow dress
+2026-09-26 07:31:18,176 INFO lme [lme_0017] single-session-user | 44 sessions (466 turns) | Q: What speed is my new internet plan?...
+2026-09-26 07:31:18,186 INFO lme [lme_0017] Injected 466 turns across 44 sessions (490,731 chars)
+2026-09-26 07:31:18,191 INFO lme [lme_0017] FTS backfill: 232 messages indexed
+2026-09-26 07:31:18,191 INFO lme [lme_0017] Asking (date=2023/05/30 (Tue) 21:56): What speed is my new internet plan?
+2026-09-26 07:31:18,193 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:18,193 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:18,194 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:23,745 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:23,746 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:23,748 INFO lme [lme_0017] RESULT exact=0.00 llm=n/a latency=5.56s
+2026-09-26 07:31:23,748 INFO lme [lme_0017] Predicted: I don't have any information about your internet plan or its speed — that's not something that's come up in our conversa
+2026-09-26 07:31:23,749 INFO lme [lme_0017] Expected:  500 Mbps
+2026-09-26 07:31:23,749 INFO lme [lme_0018] single-session-user | 50 sessions (495 turns) | Q: How many shirts did I pack for my 5-day trip to Costa Rica?...
+2026-09-26 07:31:23,756 INFO lme [lme_0018] Injected 495 turns across 50 sessions (487,551 chars)
+2026-09-26 07:31:23,761 INFO lme [lme_0018] FTS backfill: 246 messages indexed
+2026-09-26 07:31:23,761 INFO lme [lme_0018] Asking (date=2023/05/30 (Tue) 14:18): How many shirts did I pack for my 5-day trip to Costa Rica?
+2026-09-26 07:31:23,763 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:23,763 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:23,764 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:27,319 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:27,319 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:27,322 INFO lme [lme_0018] RESULT exact=1.00 llm=n/a latency=3.56s
+2026-09-26 07:31:27,322 INFO lme [lme_0018] Predicted: Looking back at what you told me: you brought 7 shirts on your trip to Costa Rica, but only wore 3 of them.  Small corre
+2026-09-26 07:31:27,322 INFO lme [lme_0018] Expected:  7
+2026-09-26 07:31:27,322 INFO lme [lme_0019] single-session-user | 49 sessions (505 turns) | Q: What was my previous stance on spirituality?...
+2026-09-26 07:31:27,327 INFO lme [lme_0019] Injected 505 turns across 49 sessions (486,684 chars)
+2026-09-26 07:31:27,332 INFO lme [lme_0019] FTS backfill: 250 messages indexed
+2026-09-26 07:31:27,332 INFO lme [lme_0019] Asking (date=2023/05/30 (Tue) 19:10): What was my previous stance on spirituality?
+2026-09-26 07:31:27,335 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:27,335 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:27,335 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:33,217 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:33,218 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:33,220 INFO lme [lme_0019] RESULT exact=0.00 llm=n/a latency=5.89s
+2026-09-26 07:31:33,220 INFO lme [lme_0019] Predicted: I don't see anything in this conversation about spirituality — we've covered Apples to Apples, sports gear tracking, cou
+2026-09-26 07:31:33,220 INFO lme [lme_0019] Expected:  A staunch atheist
+2026-09-26 07:31:33,220 INFO lme [lme_0020] single-session-user | 52 sessions (487 turns) | Q: What brand are my favorite running shoes?...
+2026-09-26 07:31:33,231 INFO lme [lme_0020] Injected 487 turns across 52 sessions (503,141 chars)
+2026-09-26 07:31:33,242 INFO lme [lme_0020] FTS backfill: 241 messages indexed
+2026-09-26 07:31:33,242 INFO lme [lme_0020] Asking (date=2023/05/30 (Tue) 23:27): What brand are my favorite running shoes?
+2026-09-26 07:31:33,244 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'code-ops']
+2026-09-26 07:31:33,244 INFO relay.relay Tool surface: 31/83 tools for skills ['memory-ops', 'signal-detector', 'code-ops']
+2026-09-26 07:31:33,245 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:35,923 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:35,924 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:35,926 INFO lme [lme_0020] RESULT exact=1.00 llm=n/a latency=2.68s
+2026-09-26 07:31:35,926 INFO lme [lme_0020] Predicted: Nike — you mentioned it's been your go-to brand for running shoes, and you're looking to replace your current pair with 
+2026-09-26 07:31:35,926 INFO lme [lme_0020] Expected:  Nike
+2026-09-26 07:31:35,927 INFO lme [lme_0021] single-session-user | 48 sessions (487 turns) | Q: What certification did I complete last month?...
+2026-09-26 07:31:35,938 INFO lme [lme_0021] Injected 487 turns across 48 sessions (498,753 chars)
+2026-09-26 07:31:35,943 INFO lme [lme_0021] FTS backfill: 241 messages indexed
+2026-09-26 07:31:35,943 INFO lme [lme_0021] Asking (date=2023/05/30 (Tue) 18:44): What certification did I complete last month?
+2026-09-26 07:31:35,945 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:35,946 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:35,946 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:39,569 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:39,570 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:39,573 INFO lme [lme_0021] RESULT exact=1.00 llm=n/a latency=3.63s
+2026-09-26 07:31:39,573 INFO lme [lme_0021] Predicted: Based on your earlier messages in this thread, you completed a **Data Science certification** last month.
+2026-09-26 07:31:39,573 INFO lme [lme_0021] Expected:  Data Science
+2026-09-26 07:31:39,573 INFO lme [lme_0022] single-session-user | 50 sessions (482 turns) | Q: How many bikes do I own?...
+2026-09-26 07:31:39,582 INFO lme [lme_0022] Injected 482 turns across 50 sessions (508,337 chars)
+2026-09-26 07:31:39,588 INFO lme [lme_0022] FTS backfill: 241 messages indexed
+2026-09-26 07:31:39,588 INFO lme [lme_0022] Asking (date=2023/05/30 (Tue) 20:24): How many bikes do I own?
+2026-09-26 07:31:39,590 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:39,590 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:39,590 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:43,225 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:43,226 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:43,229 INFO lme [lme_0022] RESULT exact=0.00 llm=n/a latency=3.64s
+2026-09-26 07:31:43,229 INFO lme [lme_0022] Predicted: I don't have any record of you mentioning bikes or how many you own — nothing in memory about that. Did you tell me at s
+2026-09-26 07:31:43,229 INFO lme [lme_0022] Expected:  three
+2026-09-26 07:31:43,229 INFO lme [lme_0023] single-session-user | 52 sessions (491 turns) | Q: What breed is my dog?...
+2026-09-26 07:31:43,236 INFO lme [lme_0023] Injected 491 turns across 52 sessions (499,257 chars)
+2026-09-26 07:31:43,243 INFO lme [lme_0023] FTS backfill: 242 messages indexed
+2026-09-26 07:31:43,243 INFO lme [lme_0023] Asking (date=2023/05/30 (Tue) 20:25): What breed is my dog?
+2026-09-26 07:31:43,246 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:43,246 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:43,246 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:31:45,972 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:31:45,973 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:31:45,975 INFO lme [lme_0023] RESULT exact=0.00 llm=n/a latency=2.73s
+2026-09-26 07:31:45,975 INFO lme [lme_0023] Predicted: I don't have any info about a dog breed in this conversation — nothing's been mentioned about you owning a dog, let alon
+2026-09-26 07:31:45,975 INFO lme [lme_0023] Expected:  Golden Retriever
+2026-09-26 07:31:45,975 INFO lme [lme_0024] single-session-user | 50 sessions (512 turns) | Q: How many largemouth bass did I catch on my fishing trip to Lake Michig...
+2026-09-26 07:31:45,983 INFO lme [lme_0024] Injected 512 turns across 50 sessions (488,707 chars)
+2026-09-26 07:31:45,990 INFO lme [lme_0024] FTS backfill: 254 messages indexed
+2026-09-26 07:31:45,990 INFO lme [lme_0024] Asking (date=2023/05/30 (Tue) 19:25): How many largemouth bass did I catch on my fishing trip to Lake Michigan?
+2026-09-26 07:31:45,992 INFO relay.relay Skills resolved: ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:45,993 INFO relay.relay Tool surface: 22/83 tools for skills ['memory-ops', 'signal-detector', 'query']
+2026-09-26 07:31:45,993 INFO relay.switchboard Switchboard call: 102 messages, tools=True
+2026-09-26 07:32:02,657 INFO httpx HTTP Request: POST http://127.0.0.1:8020/v1/chat/completions "HTTP/1.0 200 OK"
+2026-09-26 07:32:02,658 INFO relay.switchboard Response from local inference (cha0tiktower)
+2026-09-26 07:32:02,661 INFO lme [lme_0024] RESULT exact=0.00 llm=n/a latency=16.67s
+2026-09-26 07:32:02,661 INFO lme [lme_0024] Predicted: I don't have any record of a fishing trip to Lake Michigan or a largemouth bass count from you in our conversation — tha
+2026-09-26 07:32:02,661 INFO lme [lme_0024] Expected:  12

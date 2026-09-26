@@ -1,0 +1,18 @@
+{
+  "run_ts": "20260926_072806",
+  "split": "s",
+  "tasks": "single-session-user",
+  "total": 25,
+  "ok": 25,
+  "errors": 0,
+  "avg_score_exact": 0.48,
+  "avg_score_llm": null,
+  "by_question_type": {
+    "single-session-user": {
+      "count": 25,
+      "avg_score_exact": 0.48
+    }
+  },
+  "results_file": "~/agent/tests/longmemeval/results/run_20260926_072806.jsonl",
+  "log_file": "~/agent/tests/longmemeval/results/run_20260926_072806.log"
+}

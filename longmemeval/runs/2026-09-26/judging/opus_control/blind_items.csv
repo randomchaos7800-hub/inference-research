@@ -1,0 +1,74 @@
+item,question,expected,predicted
+L001,When did I volunteer at the local animal shelter's fundraising dinner?,February 14th,"That was the ""Love is in the Air"" fundraising dinner — you volunteered at it back in February, on Valentine's Day (Feb 14, 2023).
+
+One small flag: you described it as a fundraising dinner you volunteered at, but you never actually said it was hosted by a local animal shelter. Could well have been — you've mentioned animal welfare is one of your two big causes — but I don't want to fill that in for you if it wasn't."
+L002,How long did it take me to assemble the IKEA bookshelf?,4 hours,4 hours — you mentioned it when we were comparing wood vs. glass tops for the coffee table.
+L003,What was my previous occupation?,Marketing specialist at a small startup,"I don't have it. I checked memory for you and came up empty — there's nothing on your work history in the facts store at all.
+
+The closest thing in this conversation is the Carvana thread about titles/registrations and the wholesale division, which reads like someone who worked in title and registration ops, but you never actually said that was your job. The rest of the threads are personas — real estate company in Sydney, AI project management tool at a Tech Expo, upcycled home decor at a fair — none of those are you either, as far as I can tell.
+
+So: tell me and I'll write it down properly this time."
+L004,What speed is my new internet plan?,500 Mbps,"I don't have that. Nothing about an internet plan — new or old — has come up in our conversation, and there's nothing in memory about an ISP, speed tier, or upgrade.
+
+If you tell me the provider and speed I'll hold onto it. Or if you mentioned it somewhere I should have caught, point me at it and I'll go look."
+L005,Where did I buy my new tennis racket from?,the sports store downtown,"I don't have that — you never told me where you bought it, and there's nothing about a tennis racket in my memory either.
+
+Worth flagging: earlier in this thread I replied to your HelloFresh question with a block about tennis drills, which was a misfire on my end — you hadn't mentioned tennis at all. So if that's what made it seem like we'd talked about a racket, that was me, not you.
+
+If you tell me where you got it, I'll hang onto it."
+L006,What was the discount I got on my first purchase from the new clothing brand?,10%,"I don't have that. Nothing in our conversations or in memory mentions a purchase from a new clothing brand, let alone a first-purchase discount.
+
+The only discount that came up was a 10% off coupon on your Target grocery order — $8 off an $80 order. We also talked about affordable fashion brands (Everlane, COS, Uniqlo, etc.) as alternatives to luxury pieces, but that was recommendations, not an actual purchase.
+
+If you did buy something and told me elsewhere, give me the brand and I'll log it properly this time."
+L007,What certification did I complete last month?,Data Science,"Your Data Science certification — you mentioned completing it last month when we were talking about updating your LinkedIn profile. That's the one you wanted to add to the Certifications section with the issuing org, date, and a short description of the skills it covers."
+L008,What is the name of the playlist I created on Spotify?,Summer Vibes,"I don't have that. You've never mentioned a Spotify playlist to me — not in this conversation and not in anything I have stored.
+
+If you tell me the name, I'll remember it."
+L009,How many bikes do I own?,three,"I don't know — you've never mentioned bikes to me, and there's nothing about them in memory. Nothing in this conversation either.
+
+How many do you own?"
+L010,Where do I take yoga classes?,Serenity Yoga,"Serenity Yoga — that's your studio. You supplement it with Down Dog at home (vinyasa flow classes), especially on days you can't make it in."
+L011,How many largemouth bass did I catch on my fishing trip to Lake Michigan?,12,"I don't have anything about a fishing trip to Lake Michigan — nothing in memory, and it never came up in this conversation. So I can't tell you a number without making one up.
+
+If you did take that trip and want it on the record, tell me when and what you caught and I'll save it."
+L012,Where did I attend for my study abroad program?,University of Melbourne in Australia,"I don't have anything about a study abroad program from you. Nothing in this conversation mentions one — you've talked about trips to Barcelona, Portland, Kyoto and Osaka, and a photography workshop, but none of those came up as study abroad.
+
+Did you mean one of those trips, or is this something you told me in another conversation?"
+L013,What was my previous stance on spirituality?,A staunch atheist,"You never told me one. I don't have anything on spirituality — not in memory, not in anything we've talked about.
+
+The closest thing was the truth-vs-belief thread earlier, where religious belief came up as an *example* of how beliefs shape values and behavior. But that was me listing categories, not you stating a position. You never said where you land on it.
+
+So I'm not going to reconstruct a stance you didn't take. If you want it on record, tell me and I'll remember it."
+L014,How many playlists do I have on Spotify?,20,"I don't have access to your Spotify account, so I can't tell you. I have no music-service integration — no Spotify API credentials, no linked account.
+
+If you want that answer, easiest path is opening Spotify and looking at Your Library, or logging into the web player. If you actually want me to be able to answer questions like this, we'd need to set up Spotify API access with an OAuth token in the vault — say the word and I'll look at what that takes."
+L015,What brand are my favorite running shoes?,Nike,"Nike. You mentioned it's been your go-to brand for running shoes — you've been using them for your daily 5Ks and they've held up well. You picked up your current pair at the outlet mall in April, 20% off."
+L016,How much did I spend on a designer handbag?,$800,"You never mentioned a designer handbag to me — not in anything we've talked about. The jewelry came up (the ""sister"" pendant necklace, the vintage pearl earrings, the lost gold band, your engagement ring, your mom's pearl necklace), plus the armoire shopping, but no handbag and no purchase amount.
+
+If you told someone else or it's on a receipt somewhere, I don't have access to it. Want to tell me what it was so I have it going forward?"
+L017,What play did I attend at the local community theater?,The Glass Menagerie,"I don't have that. Nothing about a play or a community theater visit came up in anything we've talked about, and there's nothing in memory either — I checked.
+
+We've covered the ceramic vase from the street fair, the watercolor painting you framed, and the books, but no theater.
+
+If you tell me what you saw, I'll hang on to it."
+L018,What breed is my dog?,Golden Retriever,"I don't know — you've never told me you have a dog. Nothing about a dog or its breed anywhere in our conversation or in my memory.
+
+The pets that *have* come up are the fish in your 20-gallon tank. No dog.
+
+If you do have one, tell me the breed and I'll remember it."
+L019,What was my last name before I changed it?,Johnson,"Johnson. You mentioned you'd recently changed it — old name Johnson, new one Winters."
+L020,What did I buy for my sister's birthday gift?,a yellow dress,"You never told me about a sister's birthday gift — there's nothing about it in this conversation or in my memory.
+
+The purchases that have come up are: the black Lenovo laptop bag (~$40, Amazon, March 15), the $60 gaming mouse on Newegg you're still considering, the Western Digital external drive ($100 at Best Buy, also still under consideration), and cable management options. None of those were framed as a gift.
+
+If you did buy something for her, tell me what and I'll hang onto it."
+L021,What color did I repaint my bedroom walls?,a lighter shade of gray,"A lighter shade of gray — you mentioned it back on 5/28 when we were talking about the ZZ Plant, and said it made the room feel much brighter."
+L022,How many shirts did I pack for my 5-day trip to Costa Rica?,7,"You said 7 shirts — and that you only ended up wearing 3 of them (plus 5 pairs of shorts, 2 of which got worn).
+
+One thing though: you never told me how long that Costa Rica trip was. The 3-day business trip was a separate thing we talked about. So if it actually was 5 days, that's new info to me — the shirt count is 7 either way."
+L023,What degree did I graduate with?,Business Administration,Business Administration — you mentioned it's been helping you in your new role.
+L024,How long is my daily commute to work?,45 minutes each way,"I don't have that. Nothing in memory about a commute — no home-to-work distance, no drive time, no workplace address.
+
+If you tell me where you're commuting from and to, I can look up the typical drive time. Or if it's something you want me to remember going forward, give me the number and I'll store it."
+L025,Where did I redeem a $5 coupon on coffee creamer?,Target,"Target — you redeemed it on a Sunday using a coupon that had come through your email inbox, and you were surprised to find it there since you didn't know you had it."
