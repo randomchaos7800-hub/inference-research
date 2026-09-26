@@ -101,10 +101,11 @@ and tell you nothing about retrieval.
 - **Never recorded anywhere:** tool outputs, and the exact reader request body. For this run both
   are reconstructible from code (mechanisms 1–2), not from a trace.
 
-Terra's `read_file` calls went through an MCP filesystem server rooted at the agent's real code
-and memory trees, not the test memory root. Those trees contain none of the dataset's facts, so
-this cannot have produced a correct answer, but it is a contamination path the next harness must
-close.
+Correction (2026-09-26): an earlier version of this note said terra's `read_file` calls went
+through the MCP filesystem server rooted at the real code and memory trees. They did not. The
+calls were to the agent's native `read_file`, which the capability gate refused for the eval
+interface; the MCP tools were likewise not on the untrusted allowlist. The MCP server was
+started during eval, which is still wrong, and the revised harness no longer starts it.
 
 ## Placement in the Failure Attribution Rubric
 
@@ -114,8 +115,13 @@ Using Guo's four axes for the September run:
   folder (query known, result known by construction); E4 derivable for all 25 (mechanism 1).
   Attribution moves from **A0 to A3** for the 15 misses: source present in history, absent from
   reader input, retrieval empty by construction, alternative retrieval path unreachable.
-- **Terra:** **A2**. Same mechanisms apply and its hits match the Claude readers' minus
-  `lme_0007`, but 42 tool inputs are unrecoverable and one of those tools was a shell.
+- **Terra:** **A3** as well (revised 2026-09-26; first written A2). Its 42 unlogged calls to
+  `read_file`, `run_shell` and `review_own_conversations` could not have returned anything: the
+  relay's capability gate (`relay/capabilities.py`, live since 2026-08-07) treats the eval interface
+  `longmemeval` as untrusted and refuses every tool outside a memory-read allowlist. The 2026-09-26
+  smoke run with full tool logging shows exactly those refusals. The remaining allowed tools
+  (`read_memory`, `read_tacit`, `read_timeline`) read the empty test root. So terra's inputs are
+  lost but every output is determined: refusal or empty.
 - **Judge:** unchanged, J1. Nothing here touches the correctness labels.
 
 ## Wrong turns this should prevent
@@ -130,10 +136,16 @@ Using Guo's four axes for the September run:
 
 ## What the next run must change
 
-1. Under `--no-extract`, route `search_memory` to the FTS archive (or expose `retrieve_sessions`
-   as the primary search) and pass the case's user id.
+1. Under `--no-extract`, route `search_memory` to the FTS archive and pass the case's user id.
+   **Done 2026-09-26:** `runner.py --search-archive` serves `search_memory` from
+   `SessionStore.retrieve_relevant_sessions` under the case user, ahead of the tool dispatcher. The
+   `retrieve_sessions` user-id hardcode is also fixed in the agent, but note that tool is not on the
+   untrusted allowlist, so under the eval interface the routing in the harness is what makes
+   retrieval reachable.
 2. Log tool inputs **and outputs** with the case id, to the results directory, not the temp root.
-3. Log the reader request body (or a hash plus message list with ids) per call.
-4. Point the MCP filesystem root at the test memory root, or disable it for the eval.
-5. Keep `run_tmp`, or copy the session log out before deleting it.
+   **Done:** `tools_<ts>.jsonl`.
+3. Log the reader request body per call. **Done:** `requests_<ts>.jsonl`, the exact messages list
+   as sent.
+4. Disable MCP for the eval. **Done:** default `--no-mcp`.
+5. Keep the session log. **Done:** copied to `sessions_<ts>/`; `--keep-tmp` keeps the whole root.
 6. Add a second rater before reporting hand-judged numbers.
