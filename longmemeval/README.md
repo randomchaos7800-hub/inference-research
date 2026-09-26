@@ -9,6 +9,7 @@ same harness, same afternoon. Everything a claim below rests on is in this direc
 | Path | What it is |
 |---|---|
 | [`harness/`](harness/) | The harness as run: `runner.py` (inject → ask → score), `run_with_model.py` (pin every turn to another OpenAI-compatible endpoint), `report.py`, `setup.sh` |
+| [`runs/2026-09-26/`](runs/2026-09-26/) | **The rerun with retrieval reachable** — six runs, controls, full tool and request traces, four-rater blind judging. Start here. |
 | [`runs/2026-09-21/`](runs/2026-09-21/) | The three-way run: per-case JSONL, full debug log and summary for each reader, plus `hand_judgments.csv` and `answer_position.csv` |
 | [`runs/2026-04-07/`](runs/2026-04-07/) | The April context-window run the Zenodo preprint cites (different mode, different reader — see below) |
 
@@ -23,6 +24,24 @@ same harness, same afternoon. Everything a claim below rests on is in this direc
 - **Scoring:** the harness's exact/substring/word-overlap scorer (`score_exact` in `runner.py`), then one hand-judging pass. The LLM judge in the harness was not used: its model (`google/gemini-2.0-flash-001`) is gone from OpenRouter.
 
 ## Results
+
+**Read this first.** The September 21 numbers below were produced by a harness in which no reader
+could reach a fact outside its context window: `search_memory` read an extracted-fact store that
+was empty under `--no-extract`, and the tool that reads the session archive was never called.
+The [2026-09-26 rerun](runs/2026-09-26/) fixes that and repeats the same 25 cases with controls:
+
+| Reader | No retrieval | Retrieval reachable |
+|---|---|---|
+| gpt-5.6-terra | 40% | 48% |
+| claude-opus-5 | 40% | **76%** |
+| claude-sonnet-5 | — | 36% (made zero search calls) |
+
+Without retrieval terra and Opus are indistinguishable, which is what September measured. With it
+they are 28 points apart. The readers were never equivalent; the evaluation could not see the
+difference. Mechanism, per-case traces and judging are in
+[`runs/2026-09-26/README.md`](runs/2026-09-26/README.md).
+
+### September 21 run (retrieval unreachable)
 
 | Reader | Run | Harness exact | Hand-judged |
 |---|---|---|---|
