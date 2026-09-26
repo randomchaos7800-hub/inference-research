@@ -6,7 +6,7 @@ research@boundarylabs.org
 ORCID: 0009-0001-5590-3296
 
 **Baixin Guo**  
-Independent researcher
+Independent Researcher
 
 *Preprint — DRAFT, pending co-author review of this text*  
 *September 2026*  
