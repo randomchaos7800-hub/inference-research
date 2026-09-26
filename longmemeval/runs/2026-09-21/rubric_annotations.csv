@@ -1,76 +1,76 @@
 test_id,reader,score_exact,hand_judged,answer_session_start_from_end,in_reader_input_derived,searched_memory,outcome,evidence,attribution,judge,basis
-lme_0000,terra,1.0,1,24,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0000,sonnet,1.0,1,24,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0000,opus,1.0,1,24,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0001,terra,0.0,0,405,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0001,sonnet,0.0,0,405,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0001,opus,0.0,0,405,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0002,terra,1.0,1,89,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0002,sonnet,1.0,1,89,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0002,opus,1.0,1,89,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0003,terra,0.0,0,297,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0003,sonnet,0.0,0,297,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0003,opus,0.0,0,297,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0004,terra,0.0,0,383,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0004,sonnet,0.0,0,383,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0004,opus,0.0,0,383,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0005,terra,1.0,1,88,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0005,sonnet,1.0,1,88,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0005,opus,1.0,1,88,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0006,terra,1.0,1,12,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0006,sonnet,1.0,1,12,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0006,opus,1.0,1,12,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0007,terra,0.0,0,97,1,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0007,sonnet,1.0,1,97,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0007,opus,1.0,1,97,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0008,terra,0.5,1,12,1,0,O-D,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0008,sonnet,1.0,1,12,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0008,opus,0.5,1,12,1,0,O-D,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0009,terra,0.0,0,221,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0009,sonnet,0.5,0,221,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0009,opus,0.5,0,221,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0010,terra,0.0,0,269,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0010,sonnet,0.0,0,269,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0010,opus,0.0,0,269,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0011,terra,0.0,0,325,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0011,sonnet,0.0,0,325,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0011,opus,0.0,0,325,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0012,terra,0.0,0,468,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0012,sonnet,0.0,0,468,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0012,opus,0.0,0,468,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0013,terra,0.0,0,248,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0013,sonnet,0.0,0,248,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0013,opus,0.0,0,248,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0014,terra,0.0,0,388,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0014,sonnet,1.0,0,388,0,1,O-D,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0014,opus,1.0,0,388,0,0,O-D,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0015,terra,1.0,1,36,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0015,sonnet,1.0,1,36,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0015,opus,1.0,1,36,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0016,terra,0.0,0,344,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0016,sonnet,0.0,0,344,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0016,opus,0.0,0,344,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0017,terra,0.0,0,295,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0017,sonnet,0.5,0,295,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0017,opus,0.0,0,295,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0018,terra,1.0,1,56,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0018,sonnet,1.0,1,56,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0018,opus,1.0,1,56,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0019,terra,0.0,0,323,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0019,sonnet,0.0,0,323,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0019,opus,0.0,0,323,0,0,O-I,E1,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
-lme_0020,terra,1.0,1,70,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0020,sonnet,1.0,1,70,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0020,opus,1.0,1,70,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0021,terra,1.0,1,85,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0021,sonnet,1.0,1,85,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0021,opus,1.0,1,85,1,0,O-C,E1,-,J3,hit; answer session inside the 100-message reader input
-lme_0022,terra,0.0,0,160,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0022,sonnet,0.0,0,160,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0022,opus,0.0,0,160,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0023,terra,0.0,0,255,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0023,sonnet,0.0,0,255,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0023,opus,0.0,0,255,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0024,terra,0.0,0,442,0,0,O-I,E1,A2,J3,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
-lme_0024,sonnet,0.0,0,442,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
-lme_0024,opus,0.0,0,442,0,1,O-I,E3,A3,J3,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0000,terra,1.0,1,24,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0000,sonnet,1.0,1,24,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0000,opus,1.0,1,24,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0001,terra,0.0,0,405,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0001,sonnet,0.0,0,405,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0001,opus,0.0,0,405,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0002,terra,1.0,1,89,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0002,sonnet,1.0,1,89,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0002,opus,1.0,1,89,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0003,terra,0.0,0,297,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0003,sonnet,0.0,0,297,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0003,opus,0.0,0,297,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0004,terra,0.0,0,383,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0004,sonnet,0.0,0,383,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0004,opus,0.0,0,383,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0005,terra,1.0,1,88,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0005,sonnet,1.0,1,88,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0005,opus,1.0,1,88,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0006,terra,1.0,1,12,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0006,sonnet,1.0,1,12,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0006,opus,1.0,1,12,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0007,terra,0.0,0,97,1,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0007,sonnet,1.0,1,97,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0007,opus,1.0,1,97,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0008,terra,0.5,1,12,1,0,O-D,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0008,sonnet,1.0,1,12,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0008,opus,0.5,1,12,1,0,O-D,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0009,terra,0.0,0,221,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0009,sonnet,0.5,0,221,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0009,opus,0.5,0,221,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0010,terra,0.0,0,269,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0010,sonnet,0.0,0,269,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0010,opus,0.0,0,269,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0011,terra,0.0,0,325,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0011,sonnet,0.0,0,325,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0011,opus,0.0,0,325,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0012,terra,0.0,0,468,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0012,sonnet,0.0,0,468,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0012,opus,0.0,0,468,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0013,terra,0.0,0,248,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0013,sonnet,0.0,0,248,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0013,opus,0.0,0,248,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0014,terra,0.0,0,388,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0014,sonnet,1.0,0,388,0,1,O-D,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0014,opus,1.0,0,388,0,0,O-D,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0015,terra,1.0,1,36,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0015,sonnet,1.0,1,36,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0015,opus,1.0,1,36,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0016,terra,0.0,0,344,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0016,sonnet,0.0,0,344,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0016,opus,0.0,0,344,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0017,terra,0.0,0,295,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0017,sonnet,0.5,0,295,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0017,opus,0.0,0,295,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0018,terra,1.0,1,56,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0018,sonnet,1.0,1,56,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0018,opus,1.0,1,56,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0019,terra,0.0,0,323,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0019,sonnet,0.0,0,323,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0019,opus,0.0,0,323,0,0,O-I,E1,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (no search made), archive tool never called"
+lme_0020,terra,1.0,1,70,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0020,sonnet,1.0,1,70,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0020,opus,1.0,1,70,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0021,terra,1.0,1,85,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0021,sonnet,1.0,1,85,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0021,opus,1.0,1,85,1,0,O-C,E1,-,J2,hit; answer session inside the 100-message reader input
+lme_0022,terra,0.0,0,160,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0022,sonnet,0.0,0,160,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0022,opus,0.0,0,160,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0023,terra,0.0,0,255,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0023,sonnet,0.0,0,255,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0023,opus,0.0,0,255,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0024,terra,0.0,0,442,0,0,O-I,E1,A2,J2,"miss; same mechanisms, but 42 terra tool inputs (run_shell/read_file) unrecoverable"
+lme_0024,sonnet,0.0,0,442,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
+lme_0024,opus,0.0,0,442,0,1,O-I,E3,A3,J2,"miss; fact outside reader input (LIMIT 100), search_memory hit empty fact store (query logged), archive tool never called"
