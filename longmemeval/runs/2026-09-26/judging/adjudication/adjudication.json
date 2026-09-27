@@ -1,0 +1,45 @@
+{
+  "model": "qwen/qwen3.8-max-prime",
+  "criterion": "Correct if and only if the answer states the expected fact. An \"I don't have that\" is a miss regardless of what any automated scorer says. Empty answers are misses. A hedge (\"probably X\") still states X.",
+  "results": [
+    {
+      "item": "K003",
+      "test_id": "lme_0012",
+      "run": "sonnet_archive",
+      "r1_dino": "1",
+      "r2_claude": "0",
+      "r3_luna": "0",
+      "r4_grok": "0",
+      "majority": "0",
+      "adjudicated": "incorrect",
+      "rationale": "The criterion states correct only if the answer states the expected fact, and an 'I don't have that' is a miss regardless of any other consideration. The candidate does not state 20 and instead says it cannot access the information.",
+      "disagreement_class": "missing expected fact"
+    },
+    {
+      "item": "K056",
+      "test_id": "lme_0002",
+      "run": "opus_archive",
+      "r1_dino": "0",
+      "r2_claude": "1",
+      "r3_luna": "1",
+      "r4_grok": "1",
+      "majority": "1",
+      "adjudicated": "correct",
+      "rationale": "The criterion says a hedge such as 'probably X' still states X, and the candidate says 'Target's the likely answer.' That states the expected fact, Target.",
+      "disagreement_class": "hedged but states expected fact"
+    },
+    {
+      "item": "K120",
+      "test_id": "lme_0008",
+      "run": "sonnet_archive_repeat",
+      "r1_dino": "1",
+      "r2_claude": "1",
+      "r3_luna": "1",
+      "r4_grok": "0",
+      "majority": "1",
+      "adjudicated": "incorrect",
+      "rationale": "The criterion says an 'I don't have that' answer is a miss, and the candidate explicitly says it has no record of the specific animal-shelter fundraising dinner. Its incidental mention of February 14 for a different/unspecified dinner does not cure that miss.",
+      "disagreement_class": "I-don't-have-that with incidental date"
+    }
+  ]
+}

@@ -113,7 +113,7 @@ ordering noise as drift.
 Four independent raters, blind to reader identity, run label, `score_exact` and each other:
 Dino Vitale (the original hand judge) via a web form, Claude (Fable 5.1), gpt-5.6-luna via the lab
 gateway, and Grok. Items were shuffled with a fixed seed and relabelled; the rule is the one in the
-[2026-09-21 README](../../README.md). The `hand` column is the majority of the four blind raters. This is majority voting, not adjudication: the three disagreements were retained and classified, never referred to an uninvolved third party, so no adjudicated label exists.
+[2026-09-21 README](../../README.md). The `hand` column is the majority of the four blind raters. This is majority voting, not adjudication. The three disagreements were adjudicated separately on 2026-09-27 by a model from a family used by no rater and no reader under test; see `judging/adjudication/`. Those labels sit beside the originals and overwrite nothing here.
 
 Two packs, because the Opus control was run after the first five had been judged:
 `judging/rerun_5runs/` (125 items) and `judging/opus_control/` (25 items). Each holds the blinded
@@ -141,7 +141,7 @@ in `../2026-09-21/judge_reliability/`.
 Unit of analysis is one prediction instance, not one benchmark question: 150 instances are 25 cases
 judged across six run conditions.
 
-All three disagreements fall in one class: an answer that states the expected fact while
+Two of the three disagreements fall in one class: an answer that states the expected fact while
 disclaiming confidence in it. The sharpest is `lme_0002` ("where did I redeem a $5 coupon on
 coffee creamer", gold answer Target). The source session never says the coupon was redeemed at
 Target; it says the user uses Target's Cartwheel app, redeemed a $5 coffee creamer coupon, and

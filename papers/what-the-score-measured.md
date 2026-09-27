@@ -226,14 +226,14 @@ September's request bodies were never recorded, so the two prompts cannot be com
 
 Guo's fourth deliverable specified a judging protocol: identical written criterion for every rater, independent labels recorded before any comparison, blinding to reader identity and automated score, randomised item order, raw labels and rationales preserved separately, disagreements retained and classified, adjudication by an uninvolved third party, and raw agreement reported before adjudication.
 
-We applied the independent-rating, blinding, preservation and disagreement-analysis components of that protocol to all 150 predictions from the six rerun conditions. The adjudication step was not run: the three disagreements were retained and classified, not referred to an uninvolved third party, so no adjudicated label exists. Four raters: the original human judge; and three language models from three different providers, added deliberately so that no rater shares a model family with more than one reader under test. Items were shuffled with a fixed seed and relabelled. Raters saw the question, the expected fact and the answer, and nothing else.
+We applied the independent-rating, blinding, preservation and disagreement-analysis components of that protocol to all 150 predictions from the six rerun conditions, and adjudicated the three disagreements separately afterwards. The adjudicator was a model from a family used by no rater and by no reader under test, given the fixed criterion and the locked labels anonymised so it could not defer to the human judge; a second uninvolved family reproduced all three calls. This is model adjudication, not human adjudication, and the limitation on model-based judging applies to it as it does to the panel. Four raters: the original human judge; and three language models from three different providers, added deliberately so that no rater shares a model family with more than one reader under test. Items were shuffled with a fixed seed and relabelled. Raters saw the question, the expected fact and the answer, and nothing else.
 
 | Pack | Items | Unanimous | Pairwise Cohen's κ |
 |---|---|---|---|
 | Five-run pack | 125 | 122 | 0.952 – 1.000 |
 | Control pack | 25 | 25 | 1.000 |
 
-Three disagreements in 150, all in one class: an answer that states the expected fact while explicitly disclaiming confidence in it.
+Three disagreements in 150. Two are one class — an answer that states the expected fact while explicitly disclaiming confidence in it. The third is not: the answer is "I don't have access to your Spotify account" and never states the expected number, which the written rule makes a miss outright. We described all three as one class in an earlier draft and in the published run README; that was wrong, and adjudication is what surfaced it.
 
 Under the rubric, Guo places this expanded four-rater judging at J3 for the 147 unanimously classified instances, with the three disagreements held separately as ambiguous rather than forced to a level. This supersedes the J2 he assigned to an earlier 75-item re-rating, set before a fourth rater from a third model family was added; it does not reach back, and the original September single-pass judgments remain J1 on their own. The unit is one prediction instance: 150 instances are 25 cases judged across six conditions, not 150 distinct questions.
 
@@ -248,6 +248,14 @@ In the archive run, Opus answered that Target was the likely answer and explicit
 For the same reader on identical evidence, the human rater's labels rewarded the confident phrasing and penalised the accurate one. Under Guo's ambiguity handling this item does not support a stable binary judgment and should be marked unscorable rather than forced. Excluding the item for all six runs gives 18/24, 11/24, 9/24, 9/24, 9/24 and 9/24; the pattern is unchanged.
 
 We keep the human rater's label as recorded, with the disagreement and its reasoning in the published log. A rater stricter than the written rule, with a documented reason, is the outcome the protocol is designed to surface.
+
+### 8.2 A second unstable item, found by adjudicating
+
+Adjudication overturned the majority on one item, and the reason is worth more than the label. The same reader, on the same case, produced two substantively identical answers in two conditions: both name the "Love is in the Air" dinner on Valentine's Day, and both state that it was never described as an animal shelter event. One was rated correct by all four raters. The other — which gives the date more explicitly, and disclaims more firmly — drew a split, and both adjudicators called it a miss under the "I don't have that" clause.
+
+The adjudicators saw each item alone and never saw the pair. Placed side by side, the rule cannot separate them: the more explicit answer scores worse. That is the same failure already documented for the Target item, so this item does not support a stable binary judgment either. We have not adopted the adjudicated label; doing so would move one condition from 9/25 to 8/25 on a distinction the criterion cannot make reliably. It is recorded beside the original labels and flagged for the co-author to rule on.
+
+This is what the adjudication step was for. Two of the three disagreements were resolved cleanly by applying the written rule; the third exposed an ambiguous benchmark item that 150 rated instances and a κ near 1.0 had not.
 
 ---
 

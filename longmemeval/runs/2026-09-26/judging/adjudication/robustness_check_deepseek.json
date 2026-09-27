@@ -1,0 +1,45 @@
+{
+  "model": "deepseek/deepseek-v4.1-flash",
+  "criterion": "Correct if and only if the answer states the expected fact. An \"I don't have that\" is a miss regardless of what any automated scorer says. Empty answers are misses. A hedge (\"probably X\") still states X.",
+  "results": [
+    {
+      "item": "K003",
+      "test_id": "lme_0012",
+      "run": "sonnet_archive",
+      "r1_dino": "1",
+      "r2_claude": "0",
+      "r3_luna": "0",
+      "r4_grok": "0",
+      "majority": "0",
+      "adjudicated": "incorrect",
+      "rationale": "The criterion requires the answer to state the expected fact, 20. The candidate explicitly says it cannot check and gives no playlist count, so it is a miss under the \"I don't have that\" clause.",
+      "disagreement_class": "failure to state expected fact"
+    },
+    {
+      "item": "K056",
+      "test_id": "lme_0002",
+      "run": "opus_archive",
+      "r1_dino": "0",
+      "r2_claude": "1",
+      "r3_luna": "1",
+      "r4_grok": "1",
+      "majority": "1",
+      "adjudicated": "correct",
+      "rationale": "The candidate names Target as the likely answer, and the criterion says a hedge such as \"probably X\" still states X. The added caveat that this is inference does not negate that it states the expected fact.",
+      "disagreement_class": "hedged-answer inference dispute"
+    },
+    {
+      "item": "K120",
+      "test_id": "lme_0008",
+      "run": "sonnet_archive_repeat",
+      "r1_dino": "1",
+      "r2_claude": "1",
+      "r3_luna": "1",
+      "r4_grok": "0",
+      "majority": "1",
+      "adjudicated": "incorrect",
+      "rationale": "The answer says it does not have a record of the animal shelter fundraising dinner and asks the user to supply the date, so it does not state the expected fact February 14th for that event. The criterion explicitly makes an 'I don't have that' a miss even though a February 14 dinner is mentioned separately.",
+      "disagreement_class": "lack-of-record despite related date mention"
+    }
+  ]
+}
