@@ -53,6 +53,11 @@ raters are models, one shares a family with terra, and no per-item rationale was
 model rater. He wrote the rubric, so his level stands. `rubric_annotations.csv` one level up carries
 J2 per item.
 
+**Superseded as headline evidence (2026-09-27).** Guo's v2 RC2 §6.2 supersedes this 75-item
+re-rating with the expanded 150-instance account from the 2026-09-26 rerun, which he places at J3
+for the 147 unanimous instances. That ruling covers the rerun predictions, not these; this set
+stays at J2, and the original September 21 single-pass hand judgments remain J1 on their own.
+
 **Statistic:** unit = one prediction (75). Cohen's κ, unweighted, two categories, no prevalence
 adjustment, per rater pair; Fleiss' κ for the three raters. Recompute with `agreement.py`.
 

@@ -26,7 +26,7 @@ We decompose the outcome into three gates: deciding to search, writing a query t
 
 The contributions are: a case in which a null result was an artifact of an unengaged mechanism; a four-axis rubric separating outcome, evidence availability, attribution confidence and judge reliability; a four-rater blind judging protocol over 150 predictions; and a specification of what an agent memory evaluation must log to make failure attribution possible at all.
 
-All artifacts, including per-case tool traces and every rater's raw labels, are public.
+All artifacts, including per-case tool traces and every rater's raw labels, are public; the published package carries request metadata rather than raw reader request bodies.
 
 ---
 
@@ -226,7 +226,7 @@ September's request bodies were never recorded, so the two prompts cannot be com
 
 Guo's fourth deliverable specified a judging protocol: identical written criterion for every rater, independent labels recorded before any comparison, blinding to reader identity and automated score, randomised item order, raw labels and rationales preserved separately, disagreements retained and classified, adjudication by an uninvolved third party, and raw agreement reported before adjudication.
 
-We applied it to all 150 predictions from the six rerun conditions. Four raters: the original human judge; and three language models from three different providers, added deliberately so that no rater shares a model family with more than one reader under test. Items were shuffled with a fixed seed and relabelled. Raters saw the question, the expected fact and the answer, and nothing else.
+We applied the independent-rating, blinding, preservation and disagreement-analysis components of that protocol to all 150 predictions from the six rerun conditions. The adjudication step was not run: the three disagreements were retained and classified, not referred to an uninvolved third party, so no adjudicated label exists. Four raters: the original human judge; and three language models from three different providers, added deliberately so that no rater shares a model family with more than one reader under test. Items were shuffled with a fixed seed and relabelled. Raters saw the question, the expected fact and the answer, and nothing else.
 
 | Pack | Items | Unanimous | Pairwise Cohen's κ |
 |---|---|---|---|
@@ -235,9 +235,11 @@ We applied it to all 150 predictions from the six rerun conditions. Four raters:
 
 Three disagreements in 150, all in one class: an answer that states the expected fact while explicitly disclaiming confidence in it.
 
+Under the rubric, Guo places this expanded four-rater judging at J3 for the 147 unanimously classified instances, with the three disagreements held separately as ambiguous rather than forced to a level. This supersedes the J2 he assigned to an earlier 75-item re-rating, set before a fourth rater from a third model family was added; it does not reach back, and the original September single-pass judgments remain J1 on their own. The unit is one prediction instance: 150 instances are 25 cases judged across six conditions, not 150 distinct questions.
+
 ### 8.1 An unscorable item
 
-The sharpest of the three is a defect in the benchmark item rather than in any reader.
+The sharpest of the three is an item that does not support a stable binary judgment. The difficulty is in the item as written, not in any reader; we do not claim it is a defect in the benchmark.
 
 The question asks where a $5 coffee creamer coupon was redeemed. The gold answer is "Target". The source session does not say that. It says three things in sequence: that the user uses Target's coupon app, that they redeemed a $5 coffee creamer coupon last Sunday, and that they shop at Target every other week. The gold label is itself an inference from adjacency.
 
@@ -251,15 +253,17 @@ We keep the human rater's label as recorded, with the disagreement and its reaso
 
 ## 9. What a memory evaluation must log
 
-The following is the minimum needed to distinguish the failure modes this paper separates. Each item exists because its absence cost us something concrete.
+The following is the minimum needed to distinguish the failure modes this paper separates. Most items exist because their absence cost us something concrete; the source receipt and the configuration record are Guo's additions, closing the two stages our own list still left unobservable.
 
-1. **Tool inputs and outputs, per case, with a case identifier.** Tool names alone cannot distinguish a dead retrieval path from a live one that found nothing. This is the defect that produced the original error.
-2. **The reader request body, per call.** Without it, "the fact was in the history" cannot be upgraded to "the fact reached the model", and prompt changes between runs are undetectable.
-3. **Retrieval results, not just retrieval calls.** A returned result set is the difference between E2 and E3, and between A0 and A2.
-4. **A negative control per condition.** The comparison that carries this paper is the pair that differs in one variable. Without the control, its headline number would rest on a measurement taken five days earlier under an unrecorded prompt.
-5. **Logs written outside the run's temporary state.** Our harness deleted the directory holding one reader's tool log at the end of each run, permanently losing 42 tool inputs.
-6. **An isolated filesystem surface.** The evaluation ran with a file server rooted at the operator's real code and memory trees. Nothing came of it, but it is a contamination path.
-7. **At least two independent raters before any hand-judged number is reported.** Single-pass judging is one rater's label, and the disagreements are where the benchmark's ambiguous items show up.
+1. **A source and memory-state receipt, per case.** Whether the source turn and session are present in the corpus at all, and whether they are indexed and reachable by the store the reader will query. Source availability is the first stage of the attribution chain: until it is recorded, a retrieval miss and an absent fact are indistinguishable, and every later stage inherits the ambiguity.
+2. **Tool inputs and outputs, per case, with a case identifier.** Tool names alone cannot distinguish a dead retrieval path from a live one that found nothing. This is the defect that produced the original error.
+3. **The reader request body, per call.** Without it, "the fact was in the history" cannot be upgraded to "the fact reached the model", and prompt changes between runs are undetectable.
+4. **Model, prompt and decoding configuration, per condition.** Model identifier and version, the full system and tool prompts, and decoding parameters. Without them a condition cannot be replayed under control, and a difference between runs cannot be attributed to the variable under test rather than to an unrecorded configuration change. Our own control pair is only interpretable because the system prompt was verified byte-identical across it.
+5. **Retrieval results, not just retrieval calls.** A returned result set is the difference between E2 and E3, and between A0 and A2.
+6. **A negative control per condition.** The comparison that carries this paper is the pair that differs in one variable. Without the control, its headline number would rest on a measurement taken five days earlier under an unrecorded prompt.
+7. **Logs written outside the run's temporary state.** Our harness deleted the directory holding one reader's tool log at the end of each run, permanently losing 42 tool inputs.
+8. **An isolated filesystem surface.** The evaluation ran with a file server rooted at the operator's real code and memory trees. Nothing came of it, but it is a contamination path.
+9. **At least two independent raters before any hand-judged number is reported.** Single-pass judging is one rater's label, and the disagreements are where the benchmark's ambiguous items show up.
 
 One further trap: the agent assembles two always-on prompt directives by iterating an unordered set, and language runtimes that randomise string hashing per process emit them in a different order each run. Content identical, hash different. Anything comparing prompts across runs must canonicalise first or it will read ordering noise as drift. We spent an hour on this before recognising it.
 
@@ -269,13 +273,13 @@ One further trap: the agent assembles two always-on prompt directives by iterati
 
 **Scale.** Twenty-five questions of one type, from one split, against one agent. Every number here is a statement about these cases. The three-gate decomposition is a description of what happened in this run, not an established distribution.
 
-**One agent architecture.** The window mechanism, the two-store memory design and the tool surface are properties of this system. The finding that a null result concealed an inactive mechanism generalises; the specific mechanism does not.
+**One agent architecture.** The window mechanism, the two-store memory design and the tool surface are properties of this system. The methodological risk — that a null result can conceal an inactive mechanism — may well extend beyond this system, but these runs do not establish that it does; the specific mechanism certainly does not generalise.
 
-**Judge composition.** Three of four raters are language models. Blinding and independent labelling were enforced, but this is not a panel of human raters, and κ near 1.0 on 150 short factual items indicates the rule is unambiguous on this item type; it does not establish judge reliability generally. Harder question types will not behave this way.
+**Judge composition.** Three of four raters are language models. Blinding and independent labelling were enforced, but this is not a panel of human raters, and κ near 1.0 indicates high agreement on these 150 evaluated instances, drawn from 25 short factual cases rather than 150 distinct questions; it does not establish judge reliability generally. Harder question types will not behave this way.
 
 **One unexplained result.** The Sonnet behaviour is reported, not explained, and the evidence needed to explain it was never recorded.
 
-**No fixed-transcript reader comparison.** The cleanest test of gate three — freeze one transcript containing a retrieved fact and vary only the reader — is specified in Guo's test matrix and has not been run. Everything required to build it is in the published artifacts.
+**No fixed-transcript reader comparison.** The cleanest test of gate three — freeze one transcript containing a retrieved fact and vary only the reader — is specified in Guo's test matrix and has not been run. The published artifacts contain enough material to construct a new fixed-transcript experiment; they do not contain the original reader request bodies, so the exact requests from these runs cannot be replayed.
 
 **Provenance of this document.** The reconstruction, the harness changes, the rerun and this text were produced by the first author working with a coding agent; the audit, rubric, test matrix and judging protocol are the second author's. The disagreement that started it was between the two of us and is recorded in the repository history.
 
@@ -289,13 +293,13 @@ With retrieval repaired, the same three readers score 36%, 48% and 76% on the sa
 
 Persistent memory raised one reader from 40% to 76% and left another at 36%. Neither "the model doesn't matter" nor "the model is what matters" holds for these results. The unit of evaluation is the system, and the reader decides whether the rest of the system is consulted at all.
 
-The methodological claim is narrower. A null result in an agent evaluation is not evidence that a variable is unimportant until you can show the mechanism it acts on was engaged. Showing that requires logging the middle of the pipeline. Ours did not, until an outside reader pointed out that the conclusion did not follow from the receipts.
+The methodological claim is narrower. A null result in an agent evaluation is not evidence that a variable is unimportant until you can show the mechanism it acts on was engaged. We saw that failure here; we have not shown how often it occurs elsewhere, and these runs cannot establish that. Showing that requires logging the middle of the pipeline. Ours did not, until an outside reader pointed out that the conclusion did not follow from the receipts.
 
 ---
 
 ## Artifacts
 
-All data, code and rater labels are public.
+All code and rater labels, and all evaluation data reported here, are public. Reader requests are published as hash-bearing metadata rather than raw request bodies.
 
 - Rerun, six conditions, per-case tool traces, request metadata, both blind judging packs with every rater's raw labels: `longmemeval/runs/2026-09-26/`
 - September run, offline retrieval replay, the reconstruction, judge reliability pass, per-case rubric annotations: `longmemeval/runs/2026-09-21/`
