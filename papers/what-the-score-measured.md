@@ -138,7 +138,7 @@ The readers had formed usable queries. No tool they could call queried the index
 
 ### 6.2 What this does to the attribution
 
-For the two Claude readers this moves the 15 misses from A0 to A3: the fact was present in the history, absent from the reader's input, the only search used was empty by construction, and the alternative retrieval path was unreachable. For the third reader the same mechanisms apply, but 42 of its tool inputs were unrecoverable because the harness deleted the temporary directory holding its tool log at the end of each run.
+For the two Claude readers this moves the 15 misses from A0 to A3: the fact was present in the history, absent from the reader's input, the only search used was empty by construction, and the alternative retrieval path was unreachable. For the third reader the same mechanisms apply, but 42 further tool calls it attempted — `read_file`, `run_shell`, `review_own_conversations`, none of them memory searches — were refused by the capability gate, and their inputs were unrecoverable because the harness deleted the temporary directory holding its tool log at the end of each run.
 
 That reader's attribution was subsequently also resolved to A3, for a reason that emerged only from the instrumented rerun described below: the agent's capability gate treats the evaluation interface as untrusted and refuses every tool outside a memory-read allowlist. The unlogged calls were refusals. Their inputs are lost; their outputs are determined.
 
@@ -182,11 +182,11 @@ Hand column is the majority of four blind raters. "Delivered" counts how many of
 
 ### 7.4 The control pair
 
-Without retrieval, terra and Opus both score 40%, both at 0.42 exact, both 10 of 10 on in-window cases. This reproduces the September result and explains it: both readers are equally capable of reading a fact out of their context window, and that is all the September evaluation measured.
+Without retrieval, terra and Opus both score 40%, both at 0.42 exact, both 10 of 10 on in-window cases. Opus repeats its September score exactly; terra moves up one case from 36%. Both readers are equally capable of reading a fact out of their context window, and that is all the September evaluation measured.
 
 With retrieval reachable they separate to 48% and 76%.
 
-The two Opus runs differ in exactly one variable: the system prompt is byte-identical between them, the reader and question set are the same, and Opus chose to search on the same eleven cases in both. In the control, all 24 of its search calls returned nothing; with routing on, the same search behaviour returned the answer-bearing session ten times. The outcome moves from 40% to 76%.
+The two Opus runs differ in exactly one variable: the system prompt is byte-identical between them, the reader and question set are the same, and Opus chose to search on the same eleven cases in both. In the control, all 24 of its search calls returned nothing; with routing on, 40 queries across those same eleven cases returned the answer-bearing session ten times. The outcome moves from 40% to 76%.
 
 The September number is no longer load-bearing for the comparison. The agent's prompt documents change over time, and the September prompt was never recorded.
 
@@ -196,7 +196,7 @@ Decomposing by stage, over the 15 out-of-window cases:
 
 **Gate one, deciding to search.** Terra searched 9 in the control and 10 with routing on; Opus searched 11 in both; Sonnet searched 0 in two full runs. The split is close to bimodal.
 
-**Gate two, writing a query that retrieves.** Terra issued 11 queries across its 10 searched cases, a mean of 1.1, typically a single keyword. Opus issued 40 across its 11, a mean of 3.6 and a maximum of 8, including attempts to guess the phrasing the source would use. Despite that difference their retrieval success is nearly equal: 9 of 10 and 10 of 11. Query style mattered much less than we expected. The single case neither reaches, a question about a previous occupation, is the same case the offline keyword replay could not reach.
+**Gate two, writing a query that retrieves.** Terra issued 11 queries across its 10 searched cases, a mean of 1.1, typically a single keyword. Opus issued 40 across its 11, a mean of 3.6 and a maximum of 8, including attempts to guess the phrasing the source would use. Despite that difference their retrieval success is nearly equal: 9 of 10 and 10 of 11. Query style mattered much less than we expected. The single case neither reaches, a question about a previous occupation, is one the offline keyword replay ranked in its top two. The readers' failure there is in query formulation, not in what the index could return.
 
 **Gate three, using the fact.** Terra converted 2 of 9 delivered facts. Opus converted 9 of 10.
 
