@@ -18,11 +18,11 @@ Independent Researcher
 
 We ran a memory benchmark against a deployed AI agent with three different reader models and got 36%, 40% and 40%. The natural reading is that the reader model barely matters for memory recall. It was wrong.
 
-An external collaborator, given only the public artifacts, audited what those artifacts could support and concluded that the evaluation could not distinguish a retrieval failure from a memory failure from a reader failure, because the harness logged that a search tool ran but not what it asked or returned. That audit was correct, and it prompted us to reconstruct the intermediate states from the agent's source code. The reconstruction found that both of the agent's retrieval paths were structurally inert under the tested condition: the search tool the readers called queried an extracted-fact store that was empty by construction, and the only tool that could read the session archive was never called and carried a hardcoded user identifier the harness did not use. No reader could reach a fact outside its context window. The evaluation had been measuring context-window membership for all three readers, which is why they agreed.
+An external collaborator, given only the public artifacts, audited what those artifacts could support and concluded that the evaluation could not distinguish a retrieval failure from a memory failure from a reader failure, because the harness logged that a search tool ran but not what it asked or returned. That audit was correct, and it prompted us to reconstruct the intermediate states from the agent's source code. The reconstruction found that both of the agent's retrieval paths were structurally inert under the tested condition: the search tool the readers called queried an extracted-fact store that was empty by construction, and the only tool that could read the session archive was never called and carried a hardcoded user identifier the harness did not use. No reader could reach a fact outside its context window. The evaluation had been measuring context-window membership, which is why the readers agreed; across all three, only one in-window case was missed.
 
 We instrumented the harness, fixed both defects, and reran the same 25 cases across six conditions with controls. Without retrieval, two readers score identically at 40%. With retrieval reachable, they diverge to 48% and 76%. A single-variable comparison — same reader, byte-identical prompt, the same eleven cases searched — moves one reader from 40% to 76% by changing only whether its search reached the archive.
 
-We decompose the outcome into three gates: deciding to search, writing a query that retrieves, and using the retrieved fact. The readers are near-identical at the second gate and diverge by a factor of four at the third. One reader made zero search calls across two full runs despite an explicit instruction to search, on a prompt byte-identical to one that produced eleven searches from a different reader. And one reader, given working retrieval, converted abstentions into fabrications on exactly the cases where retrieval succeeded.
+We decompose the outcome into three gates: deciding to search, writing a query that retrieves, and using the retrieved fact. The readers are near-identical at the second gate and diverge by a factor of four at the third. One reader made zero search calls across two full runs despite an explicit instruction to search, on a prompt byte-identical to one that produced eleven searches from a different reader. And one reader, given working retrieval, produced its only two fabrications on cases where retrieval succeeded.
 
 The contributions are: a case in which a null result was an artifact of an unengaged mechanism; a four-axis rubric separating outcome, evidence availability, attribution confidence and judge reliability; a four-rater blind judging protocol over 150 predictions; and a specification of what an agent memory evaluation must log to make failure attribution possible at all.
 
@@ -38,7 +38,7 @@ A wrong answer can arise because the fact was never stored, because retrieval wa
 
 In September 2026 we ran a 25-question subset of LongMemEval against a deployed agent, holding the agent, its memory and the question set fixed, and varying only the reader model. The three readers scored within four points of each other. We published that as evidence that the reader mattered little, which was a claim about mechanism drawn from a pattern in outcomes.
 
-An independent collaborator, working only from the published artifacts, told us that claim was not identifiable from the evidence. He was right. **When every arm of an evaluation agrees, the first hypothesis should be that the mechanism under test was not engaged.** Agreement across conditions is weak evidence that a variable does not matter, and a reason to test whether something upstream of it stayed constant. Separating those two explanations requires logging the intermediate states. Ours did not.
+An independent collaborator, working only from the published artifacts, told us that claim was not identifiable from the evidence. He was right. **When every arm of an evaluation agrees, check first that the mechanism under test was engaged.** Agreement across conditions is weak evidence that a variable does not matter, and a reason to test whether something upstream of it stayed constant. Separating those two explanations requires logging the intermediate states. Ours did not.
 
 ---
 
@@ -58,7 +58,7 @@ Each case's haystack is roughly 45 to 57 sessions, 470 to 620 turns. The answer 
 
 ### 2.3 Scoring
 
-Two measures are recorded and kept separate. `score_exact` is a deterministic text comparison: after normalisation it awards 1.0 for the expected answer appearing as a substring and partial credit for word overlap. Hand judgment is binary under a stated rule: correct if and only if the answer states the expected fact; an "I don't have that" is a miss regardless of what the scorer says.
+Two measures are recorded and kept separate. `score_exact` is a deterministic text comparison: after normalisation it awards 1.0 for the expected answer appearing as a substring and partial credit for word overlap. Hand judgment is binary under a stated rule: correct if and only if the answer states the expected fact; an "I don't have that" is a miss regardless of what the scorer says. The rule is not complete. An answer that states the fact while disclaiming any knowledge of it satisfies the first clause and reads like the second, and the rule does not say which governs. We did not amend it mid-study. Sections 8.1 and 8.2 report the two items where that gap decided the label, and leave them unscorable rather than forcing them.
 
 The two disagree, in both directions. In the September run `lme_0014` received exact scores of 1.0 from two readers whose answers were hand-judged wrong, because the string "10%" appeared inside an answer denying any knowledge of the fact. We report both measures throughout and never reconcile them into one number.
 
@@ -200,13 +200,13 @@ Decomposing by stage, over the 15 out-of-window cases:
 
 **Gate three, using the fact.** Terra converted 2 of 9 delivered facts. Opus converted 9 of 10.
 
-Retrieval was effectively equalised, and conversion of delivered facts diverged by a factor of four.
+Delivery rates were nearly equal, 9 of 10 and 10 of 11, though reached on very different query volumes, and conversion of delivered facts diverged by a factor of four.
 
 ### 7.6 Failure modes with the fact present
 
 Of terra's seven failures on delivered facts, five are abstentions with the answer session in context — it had the text describing a daily commute and replied that it had no commute recorded. Two are fabrications: it answered "Tennis Warehouse" where the history says the sports store downtown, and "Chill Vibes" where the playlist is Summer Vibes.
 
-Both fabrications occur only on cases where retrieval succeeded. Terra's own control run contains none, and none appear across the 75 September predictions. Giving terra working retrieval converted abstentions into fabrications.
+Both fabrications occur only on cases where retrieval succeeded. Terra's own control run contains none, and none appear across the 75 September predictions. With one run per condition this is an observed pairing rather than an established cause, but it points one way: giving terra working retrieval turned abstentions into fabrications.
 
 Under binary scoring, "I don't know" and a fabricated store name are both misses. Operationally an abstention and a fabricated store name are different failures, and the intervention that improved the aggregate score also introduced the worse of the two.
 
@@ -283,7 +283,7 @@ One further trap: the agent assembles two always-on prompt directives by iterati
 
 **One agent architecture.** The window mechanism, the two-store memory design and the tool surface are properties of this system. The methodological risk — that a null result can conceal an inactive mechanism — may well extend beyond this system, but these runs do not establish that it does; the specific mechanism certainly does not generalise.
 
-**Judge composition.** Three of four raters are language models. Blinding and independent labelling were enforced, but this is not a panel of human raters, and κ near 1.0 indicates high agreement on these 150 evaluated instances, drawn from 25 short factual cases rather than 150 distinct questions; it does not establish judge reliability generally. Harder question types will not behave this way.
+**Judge composition.** Three of four raters are language models. Blinding and independent labelling were enforced, but this is not a panel of human raters, and κ near 1.0 indicates high agreement on these 150 evaluated instances, drawn from 25 short factual cases rather than 150 distinct questions; it does not establish judge reliability generally. Harder question types are untested.
 
 **One unexplained result.** The Sonnet behaviour is reported, not explained, and the evidence needed to explain it was never recorded.
 
