@@ -182,7 +182,7 @@ Hand column is the majority of four blind raters. "Delivered" counts how many of
 
 ### 7.4 The control pair
 
-Without retrieval, terra and Opus both score 40%, both at 0.42 exact, both 10 of 10 on in-window cases. Opus repeats its September score exactly; terra moves up one case from 36%. Both readers are equally capable of reading a fact out of their context window, and that is all the September evaluation measured.
+Without retrieval, terra and Opus both score 40%, both at 0.42 exact, both 10 of 10 on in-window cases. Opus repeats its September score exactly; terra moves up one case from 36%. The two readers are indistinguishable on those ten cases, and that is all the September evaluation measured.
 
 With retrieval reachable they separate to 48% and 76%.
 
@@ -206,9 +206,9 @@ Delivery rates were nearly equal, 9 of 10 and 10 of 11, though reached on very d
 
 Of terra's seven failures on delivered facts, five are abstentions with the answer session in context — it had the text describing a daily commute and replied that it had no commute recorded. Two are fabrications: it answered "Tennis Warehouse" where the history says the sports store downtown, and "Chill Vibes" where the playlist is Summer Vibes.
 
-Both fabrications occur only on cases where retrieval succeeded. Terra's own control run contains none, and none appear across the 75 September predictions. With one run per condition this is an observed pairing rather than an established cause, but it points one way: giving terra working retrieval turned abstentions into fabrications.
+Both fabrications occur only on cases where retrieval succeeded. Terra's own control run contains none, and none appear across the 75 September predictions. With one run per condition this is an observed pairing rather than an established cause: terra fabricated on two of the nine cases where retrieval delivered the answer session, and on none of the cases in the run where nothing was delivered.
 
-Under binary scoring, "I don't know" and a fabricated store name are both misses. Operationally an abstention and a fabricated store name are different failures, and the intervention that improved the aggregate score also introduced the worse of the two.
+Under binary scoring, "I don't know" and a fabricated store name are both misses. Operationally an abstention and a fabricated store name are different failures, and the run with the higher aggregate score is also the run in which the worse of the two appears.
 
 Opus's single failure with the fact present is the other kind: asked for a bike count, it reported the one bike it could identify and stated plainly that it had no inventory and would not give a number.
 
@@ -235,7 +235,7 @@ We applied the independent-rating, blinding, preservation and disagreement-analy
 
 Three disagreements in 150. Two are one class — an answer that states the expected fact while explicitly disclaiming confidence in it. The third is not: the answer is "I don't have access to your Spotify account" and never states the expected number, which the written rule makes a miss outright. We described all three as one class in an earlier draft and in the published run README; that was wrong, and adjudication is what surfaced it.
 
-Under the rubric, Guo places this expanded four-rater judging at J3 for the 147 unanimously classified instances, with the three disagreements held separately as ambiguous rather than forced to a level. This supersedes the J2 he assigned to an earlier 75-item re-rating, set before a fourth rater from a third model family was added; it does not reach back, and the original September single-pass judgments remain J1 on their own. The unit is one prediction instance: 150 instances are 25 cases judged across six conditions, not 150 distinct questions.
+Under the rubric, Guo places this expanded four-rater judging at J3 for the 147 unanimously classified instances, with the three disagreements held separately rather than forced to a level. Of those three, one was subsequently resolved under the written rule; the other two are reported in 8.1 and 8.2 as items that do not support a stable binary judgment. This supersedes the J2 he assigned to an earlier 75-item re-rating, set before a fourth rater from a third model family was added; it does not reach back, and the original September single-pass judgments remain J1 on their own. The unit is one prediction instance: 150 instances are 25 cases judged across six conditions, not 150 distinct questions.
 
 ### 8.1 An unscorable item
 
@@ -245,7 +245,7 @@ The question asks where a $5 coffee creamer coupon was redeemed. The gold answer
 
 In the archive run, Opus answered that Target was the likely answer and explicitly flagged that it was inferring rather than recalling. The human rater scored this a miss; all three model raters scored it correct. In the control run, the same reader with the same in-window evidence stated "Target" flat, with no basis offered, and every rater scored it correct.
 
-For the same reader on identical evidence, the human rater's labels rewarded the confident phrasing and penalised the accurate one. Under Guo's ambiguity handling this item does not support a stable binary judgment and should be marked unscorable rather than forced. Excluding the item for all six runs gives 18/24, 11/24, 9/24, 9/24, 9/24 and 9/24; the pattern is unchanged.
+For the same reader on identical evidence, the human rater's labels rewarded the confident phrasing and penalised the accurate one. Under Guo's ambiguity handling this item does not support a stable binary judgment and should be marked unscorable rather than forced. Excluding the item for all six runs gives terra control 9/24, terra archive 11/24, opus control 9/24, opus archive 18/24, sonnet archive 9/24 and sonnet repeat 9/24; the pattern is unchanged.
 
 We keep the human rater's label as recorded, with the disagreement and its reasoning in the published log. A rater stricter than the written rule, with a documented reason, is the outcome the protocol is designed to surface.
 
@@ -253,7 +253,7 @@ We keep the human rater's label as recorded, with the disagreement and its reaso
 
 Adjudication overturned the majority on one item, and the reason is worth more than the label. The same reader, on the same case, produced two substantively identical answers in two conditions: both name the "Love is in the Air" dinner on Valentine's Day, and both state that it was never described as an animal shelter event. One was rated correct by all four raters. The other — which gives the date more explicitly, and disclaims more firmly — drew a split, and both model adjudicators called it a miss under the "I don't have that" clause.
 
-The adjudicators saw each item alone and never saw the pair. Placed side by side, the rule cannot separate them: the more explicit answer scores worse. That is the same failure already documented for the Target item, so this item does not support a stable binary judgment either. We have not adopted the adjudicated label; doing so would move one condition from 9/25 to 8/25 on a distinction the criterion cannot make reliably. The co-author concurs that the item should be treated as unscorable rather than forced to a binary outcome, and the adjudicated interpretation is recorded beside the original label rather than replacing it. Excluding this item for all six runs gives 18/24, 11/24, 9/24, 9/24, 8/24 and 8/24; excluding both unstable items gives 17/23, 10/23, 8/23, 8/23, 8/23 and 8/23. The pattern is unchanged in both cases.
+The adjudicators saw each item alone and never saw the pair. Placed side by side, the rule cannot separate them: the more explicit answer scores worse. That is the same failure already documented for the Target item, so this item does not support a stable binary judgment either. We have not adopted the adjudicated label; doing so would move one condition from 9/25 to 8/25 on a distinction the criterion cannot make reliably. The co-author concurs that the item should be treated as unscorable rather than forced to a binary outcome, and the adjudicated interpretation is recorded beside the original label rather than replacing it. Excluding this item for all six runs gives terra control 9/24, terra archive 11/24, opus control 9/24, opus archive 18/24, sonnet archive 8/24 and sonnet repeat 8/24; excluding both unstable items gives terra control 8/23, terra archive 10/23, opus control 8/23, opus archive 17/23, sonnet archive 8/23 and sonnet repeat 8/23. The pattern is unchanged in both cases.
 
 This is what the adjudication step was for. One of the three disagreements was resolved cleanly by applying the written rule; the other two exposed items that do not support a stable binary judgment, which 150 rated instances and a κ near 1.0 had not surfaced.
 
