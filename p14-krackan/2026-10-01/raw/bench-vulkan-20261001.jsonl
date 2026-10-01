@@ -1,0 +1,12 @@
+# 2026-10-01T10:16:23-07:00 kernel=7.2.6-1-default gov=performance uma=17179869184
+{"cell": "vulkan_mtp_on", "kind": "clean", "run": 1, "tg_tps": 29.13, "pp_tps": 47.15, "n_prompt": 8, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "kind": "clean", "run": 2, "tg_tps": 27.64, "pp_tps": 48.67, "n_prompt": 8, "n_pred": 126}
+{"cell": "vulkan_mtp_on", "kind": "clean", "run": 3, "tg_tps": 34.31, "pp_tps": 48.8, "n_prompt": 8, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "kind": "loaded", "run": 1, "tg_tps": 33.5, "pp_tps": 314.45, "n_prompt": 5201, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "kind": "loaded", "run": 2, "tg_tps": 25.82, "pp_tps": 315.22, "n_prompt": 5201, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "kind": "clean", "run": 1, "tg_tps": 23.28, "pp_tps": 55.74, "n_prompt": 8, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "kind": "clean", "run": 2, "tg_tps": 23.34, "pp_tps": 56.67, "n_prompt": 8, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "kind": "clean", "run": 3, "tg_tps": 23.28, "pp_tps": 56.62, "n_prompt": 8, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "kind": "loaded", "run": 1, "tg_tps": 20.83, "pp_tps": 332.35, "n_prompt": 5201, "n_pred": 2}
+{"cell": "vulkan_mtp_off", "kind": "loaded", "run": 2, "tg_tps": 20.75, "pp_tps": 333.06, "n_prompt": 5201, "n_pred": 2}
+DONE

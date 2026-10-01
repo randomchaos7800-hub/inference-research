@@ -1,0 +1,27 @@
+# 2026-10-01T10:57:01-07:00 MATCHED -ngl=36 carve-out=16GiB kernel=7.2.6-1-default
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "clean", "run": 1, "tg_tps": 19.95, "pp_tps": 43.96, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "clean", "run": 2, "tg_tps": 19.64, "pp_tps": 42.37, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "clean", "run": 3, "tg_tps": 17.37, "pp_tps": 43.43, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "clean", "run": 4, "tg_tps": 15.18, "pp_tps": 28.22, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "clean", "run": 5, "tg_tps": 15.16, "pp_tps": 28.56, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "loaded", "run": 1, "tg_tps": 13.99, "pp_tps": 303.29, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "loaded", "run": 2, "tg_tps": 14.15, "pp_tps": 308.45, "n_pred": 128}
+{"cell": "rocm_mtp_off", "ngl": 36, "kind": "loaded", "run": 3, "tg_tps": 14.13, "pp_tps": 303.76, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "clean", "run": 1, "tg_tps": 21.6, "pp_tps": 20.81, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "clean", "run": 2, "tg_tps": 21.46, "pp_tps": 21.15, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "clean", "run": 3, "tg_tps": 21.54, "pp_tps": 21.1, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "clean", "run": 4, "tg_tps": 21.48, "pp_tps": 20.84, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "clean", "run": 5, "tg_tps": 21.5, "pp_tps": 20.82, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "loaded", "run": 1, "tg_tps": 19.98, "pp_tps": 288.82, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "loaded", "run": 2, "tg_tps": 19.78, "pp_tps": 289.55, "n_pred": 128}
+{"cell": "vulkan_mtp_off", "ngl": 36, "kind": "loaded", "run": 3, "tg_tps": 19.71, "pp_tps": 287.97, "n_pred": 128}
+{"cell":"rocm_mtp_on","error":"no boot"}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "clean", "run": 1, "tg_tps": 28.21, "pp_tps": 40.91, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "clean", "run": 2, "tg_tps": 27.71, "pp_tps": 42.28, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "clean", "run": 3, "tg_tps": 25.52, "pp_tps": 42.22, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "clean", "run": 4, "tg_tps": 29.88, "pp_tps": 42.74, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "clean", "run": 5, "tg_tps": 25.55, "pp_tps": 42.41, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "loaded", "run": 1, "tg_tps": 30.56, "pp_tps": 299.96, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "loaded", "run": 2, "tg_tps": 24.72, "pp_tps": 300.39, "n_pred": 128}
+{"cell": "vulkan_mtp_on", "ngl": 36, "kind": "loaded", "run": 3, "tg_tps": 25.68, "pp_tps": 301.34, "n_pred": 128}
+DONE

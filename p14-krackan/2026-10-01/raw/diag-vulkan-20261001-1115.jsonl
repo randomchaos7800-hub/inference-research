@@ -1,0 +1,19 @@
+{"note":"batch A, fresh process"}
+{"batch": "A", "run": 1, "tg_tps": 21.14, "pp_tps": 20.72, "rss_mb": "333", "sclk_before": "604Mhz"}
+{"batch": "A", "run": 2, "tg_tps": 21.01, "pp_tps": 21.14, "rss_mb": "408", "sclk_before": "2697Mhz"}
+{"batch": "A", "run": 3, "tg_tps": 21.08, "pp_tps": 20.96, "rss_mb": "536", "sclk_before": "2700Mhz"}
+{"batch": "A", "run": 4, "tg_tps": 21.08, "pp_tps": 21.12, "rss_mb": "665", "sclk_before": "2709Mhz"}
+{"batch": "A", "run": 5, "tg_tps": 21.11, "pp_tps": 20.99, "rss_mb": "793", "sclk_before": "2694Mhz"}
+{"batch": "A", "run": 6, "tg_tps": 21.06, "pp_tps": 20.93, "rss_mb": "921", "sclk_before": "2732Mhz"}
+{"batch": "A", "run": 7, "tg_tps": 21.02, "pp_tps": 20.98, "rss_mb": "1049", "sclk_before": "2709Mhz"}
+{"batch": "A", "run": 8, "tg_tps": 21.25, "pp_tps": 21.03, "rss_mb": "1177", "sclk_before": "2706Mhz"}
+{"note":"restarting server (same system state)"}
+{"batch": "B", "run": 1, "tg_tps": 21.08, "pp_tps": 20.57, "rss_mb": "335", "sclk_before": "1110Mhz"}
+{"batch": "B", "run": 2, "tg_tps": 21.1, "pp_tps": 20.95, "rss_mb": "410", "sclk_before": "2737Mhz"}
+{"batch": "B", "run": 3, "tg_tps": 21.12, "pp_tps": 21.08, "rss_mb": "539", "sclk_before": "2717Mhz"}
+{"batch": "B", "run": 4, "tg_tps": 21.22, "pp_tps": 21.08, "rss_mb": "667", "sclk_before": "2716Mhz"}
+{"batch": "B", "run": 5, "tg_tps": 21.31, "pp_tps": 20.84, "rss_mb": "795", "sclk_before": "2745Mhz"}
+{"batch": "B", "run": 6, "tg_tps": 21.34, "pp_tps": 21.03, "rss_mb": "924", "sclk_before": "2760Mhz"}
+{"batch": "B", "run": 7, "tg_tps": 21.35, "pp_tps": 21.05, "rss_mb": "1052", "sclk_before": "2744Mhz"}
+{"batch": "B", "run": 8, "tg_tps": 21.41, "pp_tps": 20.82, "rss_mb": "1180", "sclk_before": "2744Mhz"}
+DONE
