@@ -29,7 +29,10 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
 - **[RESULTS.md](RESULTS.md)** — every research program, its headline number, and a link to the verdict
 - **[HARDWARE.md](HARDWARE.md)** — the exact rigs, so "consumer hardware" is a checkable claim
 - **[tower/genesis/](tower/genesis/)** — full production replication guide (flags, install, ops)
-- **[tower/experiment-mode.md](tower/experiment-mode.md)** — the protocol every benchmark runs under
+- **[BENCHMARK-PROTOCOL.md](BENCHMARK-PROTOCOL.md)** — how measurements are taken here: boost vs sustained clocks,
+  order effects, single-variable discipline, what every published figure must carry. Each rule is there because
+  breaking it produced a number we had to retract
+- **[tower/experiment-mode.md](tower/experiment-mode.md)** — tower-era operational lockout (freeing the GPUs for a run)
 - **[papers/](papers/)** — *Commodity Hardware for Persistent AI Companions* and
   *What the Score Measured: Failure Attribution in an Agent Memory Evaluation*
   (Vitale & Guo, Zenodo preprint, [10.5281/zenodo.22980060](https://doi.org/10.5281/zenodo.22980060))
