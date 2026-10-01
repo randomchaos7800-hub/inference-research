@@ -1,5 +1,37 @@
 # ROCm vs Vulkan on an AMD Krackan Point iGPU — 2026-10-01
 
+> ## ⚠️ CORRECTION 2026-10-01 — THE "COMPILER" ATTRIBUTION BELOW IS NOT SUPPORTED
+>
+> External adversarial review (Codex) before filing an upstream issue found that the
+> two binaries compared as "GCC vs Clang" **differ in at least three ways**, not one:
+>
+> | | production (GCC) | control (Clang) |
+> |---|---|---|
+> | CPU backend | runtime dispatch, 13 variants | `GGML_NATIVE=ON`, single library |
+> | **OpenMP** | **linked** | **absent** (`CMake Warning: OpenMP not found`) |
+> | compiler | GCC 11.4.0 | Clang 22.0.0 via `hipcc` |
+>
+> ggml without OpenMP uses its own spin-waiting threads, which is an entirely
+> plausible cause of the extra CPU power draw this directory attributes to the
+> compiler. **The 34.6% figure is also arithmetically misstated** — 21.23 → 16.40 is
+> a 22.8% loss; 34.6% is the gain in the opposite direction.
+>
+> Further, the HIP builds here set `hipcc` as the global C++ compiler, which llama.cpp
+> warns against at this commit (`ggml/src/ggml-hip/CMakeLists.txt:31`, "Setting hipcc
+> as the C++ compiler is legacy behavior"). The claim elsewhere in this directory that
+> the HIP backend *cannot* be built without `hipcc` is **false** — `enable_language(HIP)`
+> is the supported path.
+>
+> **What survives:** the measurements themselves, which are reproducible and whose raw
+> data is published here — build A is consistently faster and holds ~2750 MHz while
+> builds B and C are clamped near 900–1080 MHz. **What does not survive:** the
+> attribution of that difference to the compiler. It is a *build configuration*
+> difference of unknown composition.
+>
+> Corrective experiments needed: OpenMP present/absent at fixed compiler; dispatch vs
+> `GGML_NATIVE` at fixed compiler; plain `clang++` vs `hipcc`; and a HIP build via
+> `enable_language(HIP)` rather than the legacy path.
+
 Qwen3.6-35B-A3B (MoE, 3B active, UD-IQ4_NL) on a **ThinkPad P14s Gen 6 AMD**:
 Ryzen AI 7 PRO 350, Radeon 860M, **gfx1152**, 32 GB RAM, 16 GiB UMA carve-out,
 openSUSE Tumbleweed, kernel 7.2.6, on AC, `performance` governor.

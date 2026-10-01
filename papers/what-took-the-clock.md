@@ -9,6 +9,14 @@ ORCID: 0009-0001-5590-3296
 *October 2026*  
 *License: CC BY 4.0*
 
+
+> **RETRACTED IN PART, 2026-10-01.** Adversarial review before upstream filing showed the
+> binaries compared as "GCC vs Clang" also differ in OpenMP linkage (present vs absent) and
+> CPU backend strategy (runtime dispatch vs `GGML_NATIVE=ON`). The compiler attribution in
+> this draft — including the §5 decomposition and the §12 conclusion — is therefore not
+> supported by the evidence presented. The measurements stand; the cause does not. This was
+> never published to Zenodo and holds no DOI. Retained as a record of the error.
+
 ---
 
 ## Abstract
