@@ -8,6 +8,9 @@ Reviewers benchmark Strix Halo because it is the 128 GB halo part. **Krackan is
 the cheap one in an ordinary work laptop, which is the configuration most people
 actually have, and nobody measures it.** These are receipts for that gap.
 
+Write-up: [`../../papers/what-took-the-clock.md`](../../papers/what-took-the-clock.md)
+*(What Took the Clock: Toolchain, Power and Backend Attribution on an AMD APU)*.
+
 Method: [`../../BENCHMARK-PROTOCOL.md`](../../BENCHMARK-PROTOCOL.md). Most of
 that protocol was written *because of* this run — every rule in it is traceable
 to a number here that we measured, believed, and had to retract.
