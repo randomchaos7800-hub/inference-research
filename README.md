@@ -30,8 +30,11 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
 - **[HARDWARE.md](HARDWARE.md)** — the exact rigs, so "consumer hardware" is a checkable claim
 - **[tower/genesis/](tower/genesis/)** — full production replication guide (flags, install, ops)
 - **[tower/experiment-mode.md](tower/experiment-mode.md)** — the protocol every benchmark runs under
-- **[papers/](papers/)** — *Commodity Hardware for Persistent AI Companions* (Zenodo preprint)
-- **[longmemeval/](longmemeval/)** — does agent memory survive a model change? Harness, three-reader run, hand judgments
+- **[papers/](papers/)** — *Commodity Hardware for Persistent AI Companions* and
+  *What the Score Measured: Failure Attribution in an Agent Memory Evaluation*
+  (Vitale & Guo, Zenodo preprint, [10.5281/zenodo.22980060](https://doi.org/10.5281/zenodo.22980060))
+- **[longmemeval/](longmemeval/)** — does agent memory survive a model change? Harness, three-reader run,
+  instrumented rerun, four-rater blind judging. Written up in [*What the Score Measured*](https://doi.org/10.5281/zenodo.22980060)
 
 ## How to read the receipts
 

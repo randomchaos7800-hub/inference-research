@@ -4,6 +4,10 @@ Receipts for the memory study on [boundarylabs.org/partners](https://boundarylab
 one persistent agent, one memory, three different reader models, same 25 questions,
 same harness, same afternoon. Everything a claim below rests on is in this directory.
 
+The write-up is **[*What the Score Measured: Failure Attribution in an Agent Memory
+Evaluation*](https://doi.org/10.5281/zenodo.22980060)** (Vitale & Guo, Zenodo preprint, CC BY 4.0). It is the paper these
+files are the receipts for.
+
 ## Layout
 
 | Path | What it is |

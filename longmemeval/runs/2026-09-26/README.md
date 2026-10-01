@@ -11,6 +11,9 @@ window, so the evaluation was measuring context-window membership for all three.
 This run fixes the harness and repeats the same 25 `single-session-user` cases. It is the first
 LongMemEval run here where retrieval is reachable.
 
+This run is the case study in **[*What the Score Measured: Failure Attribution in an Agent
+Memory Evaluation*](https://doi.org/10.5281/zenodo.22980060)** (Vitale & Guo, Zenodo preprint, CC BY 4.0).
+
 ## What changed in the harness
 
 `harness/runner.py` (mirrored from the live copy) now logs every tool call with its full input
