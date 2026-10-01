@@ -1,36 +1,34 @@
 # ROCm vs Vulkan on an AMD Krackan Point iGPU — 2026-10-01
 
-> ## ⚠️ CORRECTION 2026-10-01 — THE "COMPILER" ATTRIBUTION BELOW IS NOT SUPPORTED
+> ## ✅ RESOLVED 2026-10-01 — it was **OpenMP**, not the compiler
 >
-> External adversarial review (Codex) before filing an upstream issue found that the
-> two binaries compared as "GCC vs Clang" **differ in at least three ways**, not one:
+> This directory originally attributed a large throughput gap to compiler choice
+> (GCC vs Clang). **That attribution was wrong.** Adversarial review found the two
+> binaries differed in three ways, not one — compiler, CPU dispatch strategy, and
+> **OpenMP linkage**. A single-variable test then identified the cause.
 >
-> | | production (GCC) | control (Clang) |
+> **Same compiler (gcc 16.2), same commit, same `GGML_NATIVE=ON`, same flags,
+> pinned sampling (`temperature 0`, `seed 42`). Only `GGML_OPENMP` differs:**
+>
+> | | OpenMP ON | OpenMP OFF |
 > |---|---|---|
-> | CPU backend | runtime dispatch, 13 variants | `GGML_NATIVE=ON`, single library |
-> | **OpenMP** | **linked** | **absent** (`CMake Warning: OpenMP not found`) |
-> | compiler | GCC 11.4.0 | Clang 22.0.0 via `hipcc` |
+> | sustained decode | **21.42 t/s** (sd 0.05) | **16.27 t/s** (sd 0.05) |
+> | GPU clock | **2768 MHz** | **915 MHz** |
+> | power, first run | 36.3 W | **47.3 W** |
 >
-> ggml without OpenMP uses its own spin-waiting threads, which is an entirely
-> plausible cause of the extra CPU power draw this directory attributes to the
-> compiler. **The 34.6% figure is also arithmetically misstated** — 21.23 → 16.40 is
-> a 22.8% loss; 34.6% is the gain in the opposite direction.
+> **Building ggml without OpenMP costs 24.1% of throughput on this part, and it does
+> so by losing GPU clock, not by slowing the CPU.** ggml's fallback threading
+> spin-waits; on an APU where CPU and GPU share one ~36 W budget, those spinning
+> cores take the power the GPU needed, and the firmware drops the clock to a third.
 >
-> Further, the HIP builds here set `hipcc` as the global C++ compiler, which llama.cpp
-> warns against at this commit (`ggml/src/ggml-hip/CMakeLists.txt:31`, "Setting hipcc
-> as the C++ compiler is legacy behavior"). The claim elsewhere in this directory that
-> the HIP backend *cannot* be built without `hipcc` is **false** — `enable_language(HIP)`
-> is the supported path.
+> It reproduces the original confounded result almost exactly — `vk-gcc` 21.23 @ 2762
+> vs `vk-clang` 16.40 @ 926, against OpenMP 21.42 @ 2768 vs 16.27 @ 915. Within 1% on
+> both axes. **The compiler was never the variable.** The Clang builds simply had not
+> found OpenMP, which CMake reported and which was not read.
 >
-> **What survives:** the measurements themselves, which are reproducible and whose raw
-> data is published here — build A is consistently faster and holds ~2750 MHz while
-> builds B and C are clamped near 900–1080 MHz. **What does not survive:** the
-> attribution of that difference to the compiler. It is a *build configuration*
-> difference of unknown composition.
->
-> Corrective experiments needed: OpenMP present/absent at fixed compiler; dispatch vs
-> `GGML_NATIVE` at fixed compiler; plain `clang++` vs `hipcc`; and a HIP build via
-> `enable_language(HIP)` rather than the legacy path.
+> Raw data: `raw/bench-openmp-*.jsonl`. Script: `openmp-test.sh`.
+> The AVX-512 and compiler sections below are retained as the record of two
+> hypotheses that were tested and rejected before this one was found.
 
 Qwen3.6-35B-A3B (MoE, 3B active, UD-IQ4_NL) on a **ThinkPad P14s Gen 6 AMD**:
 Ryzen AI 7 PRO 350, Radeon 860M, **gfx1152**, 32 GB RAM, 16 GiB UMA carve-out,
