@@ -8,8 +8,8 @@ ORCID: 0009-0001-5590-3296
 **Baixin Guo**  
 Independent Researcher
 
-*Preprint — DRAFT, pending co-author review of this text*  
-*September 2026*  
+*Preprint*  
+*October 2026*  
 *License: CC BY 4.0*
 
 ---
