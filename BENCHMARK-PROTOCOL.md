@@ -122,6 +122,11 @@ gaps in the table.
 - `pgrep -f` / `pkill -f` match **any** command line containing the pattern,
   including the shell running your own command and orphaned watchers from
   earlier runs. Use `pgrep -x <binary>` or the bracket trick (`[l]lama-server`).
+- **The bracket trick protects the pattern, not the command.** `pkill -f
+  "[l]lama-server"` still kills your own shell if anything *else* in the same
+  command line contains the literal string — e.g. a later
+  `~/opt/llama.cpp/llama-server --version`. Put the kill in its own invocation,
+  separate from anything that names the target.
 - A local `timeout` that kills an ssh client **does not kill the remote
   command.** Orphaned watchers linger and will be matched by their successors —
   one such orphan made a watcher wait forever on an install that had already
