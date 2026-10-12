@@ -13,6 +13,7 @@ LongMemEval run here where retrieval is reachable.
 
 This run is the case study in **[*What the Score Measured: Failure Attribution in an Agent
 Memory Evaluation*](https://doi.org/10.5281/zenodo.22980060)** (Vitale & Guo, Zenodo preprint, CC BY 4.0).
+The rubric and the judging protocol whose components this run applied are specified in Baixin Guo's companion methods report, [*Failure Attribution and Evaluation Reliability Framework for LongMemEval*](https://doi.org/10.5281/zenodo.23273896).
 
 ## What changed in the harness
 

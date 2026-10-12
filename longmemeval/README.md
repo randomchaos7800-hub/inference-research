@@ -6,7 +6,8 @@ same harness, same afternoon. Everything a claim below rests on is in this direc
 
 The write-up is **[*What the Score Measured: Failure Attribution in an Agent Memory
 Evaluation*](https://doi.org/10.5281/zenodo.22980060)** (Vitale & Guo, Zenodo preprint, CC BY 4.0). It is the paper these
-files are the receipts for.
+files are the receipts for. The rubric, diagnostic test matrix and judging protocol are in
+Baixin Guo's companion methods report, [*Failure Attribution and Evaluation Reliability Framework for LongMemEval*](https://doi.org/10.5281/zenodo.23273896) (Zenodo, CC BY 4.0).
 
 ## Layout
 

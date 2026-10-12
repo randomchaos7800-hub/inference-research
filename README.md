@@ -39,7 +39,8 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
 - **[p14-krackan/](p14-krackan/)** — ROCm vs Vulkan on an AMD Krackan Point iGPU: the compiler beats the
   backend, and ROCm loses on power, not compute
 - **[longmemeval/](longmemeval/)** — does agent memory survive a model change? Harness, three-reader run,
-  instrumented rerun, four-rater blind judging. Written up in [*What the Score Measured*](https://doi.org/10.5281/zenodo.22980060)
+  instrumented rerun, four-rater blind judging. Written up in [*What the Score Measured*](https://doi.org/10.5281/zenodo.22980060);
+  rubric, test matrix and judging protocol in Guo's [companion report](https://doi.org/10.5281/zenodo.23273896)
 
 ## How to read the receipts
 
