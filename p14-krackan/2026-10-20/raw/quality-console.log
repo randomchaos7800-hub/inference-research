@@ -1,0 +1,140 @@
+qwen-iq4 diag seed=1 calls=2 denied=0 leaked=0 err=[] 95.5s
+qwen-iq4 iphone seed=1 calls=10 denied=0 leaked=0 err=[] 68.6s
+qwen-iq4 pskflags seed=1 calls=4 denied=0 leaked=0 err=[] 27.0s
+qwen-iq4 mtppath seed=1 calls=8 denied=0 leaked=0 err=[] 113.6s
+qwen-iq4 uma seed=1 calls=10 denied=0 leaked=0 err=[] 92.2s
+qwen-iq4 tailscale seed=1 calls=1 denied=0 leaked=0 err=[] 69.2s
+qwen-iq4 battery seed=1 calls=2 denied=0 leaked=0 err=[] 25.0s
+qwen-iq4 slowboot seed=1 calls=36 denied=0 leaked=0 err=['max_steps'] 96.8s
+qwen-iq4 thermal seed=1 calls=11 denied=0 leaked=0 err=[] 66.3s
+HARNESS-DONE
+qwen-q4kxl diag seed=1 calls=1 denied=0 leaked=0 err=[] 256.3s
+qwen-q4kxl iphone seed=1 calls=6 denied=1 leaked=0 err=[] 63.2s
+qwen-q4kxl pskflags seed=1 calls=3 denied=0 leaked=0 err=[] 69.8s
+qwen-q4kxl mtppath seed=1 calls=32 denied=0 leaked=0 err=['max_steps'] 220.7s
+qwen-q4kxl uma seed=1 calls=36 denied=0 leaked=0 err=[] 189.0s
+qwen-q4kxl tailscale seed=1 calls=10 denied=0 leaked=0 err=[] 54.9s
+qwen-q4kxl battery seed=1 calls=3 denied=0 leaked=0 err=[] 77.5s
+qwen-q4kxl slowboot seed=1 calls=9 denied=0 leaked=0 err=[] 420.5s
+qwen-q4kxl thermal seed=1 calls=6 denied=0 leaked=0 err=[] 46.1s
+HARNESS-DONE
+qwen-q6k diag seed=1 calls=3 denied=0 leaked=0 err=[] 146.6s
+qwen-q6k iphone seed=1 calls=3 denied=0 leaked=0 err=[] 268.3s
+qwen-q6k pskflags seed=1 calls=7 denied=0 leaked=0 err=[] 91.0s
+qwen-q6k mtppath seed=1 calls=24 denied=0 leaked=0 err=[] 239.0s
+qwen-q6k uma seed=1 calls=4 denied=0 leaked=0 err=[] 209.1s
+qwen-q6k tailscale seed=1 calls=0 denied=0 leaked=0 err=['finish_reason=length'] 304.4s
+qwen-q6k battery seed=1 calls=2 denied=0 leaked=0 err=[] 194.1s
+qwen-q6k slowboot seed=1 calls=2 denied=0 leaked=0 err=[] 501.9s
+qwen-q6k thermal seed=1 calls=6 denied=0 leaked=0 err=[] 57.3s
+HARNESS-DONE
+ornith-q4km diag seed=1 calls=11 denied=0 leaked=0 err=[] 40.3s
+ornith-q4km iphone seed=1 calls=19 denied=0 leaked=0 err=[] 1047.8s
+ornith-q4km pskflags seed=1 calls=2 denied=0 leaked=0 err=[] 102.5s
+ornith-q4km mtppath seed=1 calls=24 denied=0 leaked=0 err=[] 224.6s
+ornith-q4km uma seed=1 calls=16 denied=0 leaked=0 err=[] 409.5s
+ornith-q4km tailscale seed=1 calls=10 denied=0 leaked=0 err=[] 132.3s
+ornith-q4km battery seed=1 calls=22 denied=0 leaked=0 err=[] 126.7s
+ornith-q4km slowboot seed=1 calls=28 denied=0 leaked=0 err=['max_steps'] 148.4s
+ornith-q4km thermal seed=1 calls=5 denied=0 leaked=0 err=[] 118.3s
+HARNESS-DONE
+nemotron-iq4nl diag seed=1 calls=12 denied=0 leaked=0 err=[] 94.0s
+nemotron-iq4nl iphone seed=1 calls=48 denied=0 leaked=0 err=['max_steps', 'max_steps'] 289.1s
+nemotron-iq4nl pskflags seed=1 calls=18 denied=0 leaked=0 err=[] 113.2s
+nemotron-iq4nl mtppath seed=1 calls=24 denied=0 leaked=0 err=['max_steps'] 80.5s
+nemotron-iq4nl uma seed=1 calls=12 denied=0 leaked=0 err=[] 89.9s
+nemotron-iq4nl tailscale seed=1 calls=13 denied=0 leaked=0 err=[] 78.5s
+nemotron-iq4nl battery seed=1 calls=15 denied=0 leaked=0 err=[] 77.9s
+nemotron-iq4nl slowboot seed=1 calls=17 denied=0 leaked=0 err=[] 111.8s
+nemotron-iq4nl thermal seed=1 calls=16 denied=0 leaked=0 err=[] 90.3s
+HARNESS-DONE
+lfm-q4km diag seed=1 calls=16 denied=0 leaked=0 err=[] 182.4s
+lfm-q4km iphone seed=1 calls=32 denied=1 leaked=0 err=[] 856.6s
+lfm-q4km pskflags seed=1 calls=29 denied=0 leaked=0 err=['max_steps'] 127.9s
+lfm-q4km mtppath seed=1 calls=24 denied=0 leaked=0 err=['max_steps'] 144.9s
+lfm-q4km uma seed=1 calls=13 denied=0 leaked=0 err=[] 184.2s
+lfm-q4km tailscale seed=1 calls=11 denied=0 leaked=0 err=[] 155.4s
+lfm-q4km battery seed=1 calls=13 denied=0 leaked=0 err=[] 107.7s
+lfm-q4km slowboot seed=1 calls=24 denied=0 leaked=0 err=['max_steps'] 432.7s
+lfm-q4km thermal seed=1 calls=14 denied=0 leaked=0 err=[] 157.3s
+HARNESS-DONE
+minicpm-iq4nl diag seed=1 calls=11 denied=0 leaked=0 err=[] 39.2s
+minicpm-iq4nl iphone seed=1 calls=20 denied=1 leaked=0 err=[] 55.2s
+minicpm-iq4nl pskflags seed=1 calls=1 denied=0 leaked=0 err=[] 6.3s
+minicpm-iq4nl mtppath seed=1 calls=41 denied=0 leaked=0 err=['max_steps'] 134.5s
+minicpm-iq4nl uma seed=1 calls=11 denied=0 leaked=0 err=[] 37.5s
+minicpm-iq4nl tailscale seed=1 calls=11 denied=0 leaked=0 err=[] 32.3s
+minicpm-iq4nl battery seed=1 calls=3 denied=0 leaked=0 err=[] 15.9s
+minicpm-iq4nl slowboot seed=1 calls=16 denied=0 leaked=0 err=[] 40.1s
+minicpm-iq4nl thermal seed=1 calls=11 denied=0 leaked=0 err=[] 36.3s
+HARNESS-DONE
+qwen-iq4 diag seed=2 calls=12 denied=0 leaked=0 err=[] 72.5s
+qwen-iq4 iphone seed=2 calls=13 denied=1 leaked=0 err=[] 87.7s
+qwen-iq4 pskflags seed=2 calls=12 denied=0 leaked=0 err=[] 58.3s
+qwen-iq4 mtppath seed=2 calls=14 denied=0 leaked=0 err=[] 65.7s
+qwen-iq4 uma seed=2 calls=16 denied=0 leaked=0 err=[] 82.6s
+qwen-iq4 tailscale seed=2 calls=10 denied=0 leaked=0 err=[] 56.9s
+qwen-iq4 battery seed=2 calls=39 denied=0 leaked=0 err=['max_steps'] 130.3s
+qwen-iq4 slowboot seed=2 calls=16 denied=0 leaked=0 err=[] 495.0s
+qwen-iq4 thermal seed=2 calls=6 denied=0 leaked=0 err=[] 45.8s
+HARNESS-DONE
+qwen-q4kxl diag seed=2 calls=12 denied=0 leaked=0 err=[] 71.8s
+qwen-q4kxl iphone seed=2 calls=9 denied=1 leaked=0 err=[] 69.9s
+qwen-q4kxl pskflags seed=2 calls=3 denied=0 leaked=0 err=[] 43.1s
+qwen-q4kxl mtppath seed=2 calls=35 denied=0 leaked=0 err=['max_steps'] 282.0s
+qwen-q4kxl uma seed=2 calls=12 denied=0 leaked=0 err=[] 149.9s
+qwen-q4kxl tailscale seed=2 calls=4 denied=0 leaked=0 err=[] 75.8s
+qwen-q4kxl battery seed=2 calls=4 denied=0 leaked=0 err=[] 44.5s
+qwen-q4kxl slowboot seed=2 calls=7 denied=0 leaked=0 err=[] 457.8s
+qwen-q4kxl thermal seed=2 calls=11 denied=0 leaked=0 err=[] 107.9s
+HARNESS-DONE
+qwen-q6k diag seed=2 calls=11 denied=0 leaked=0 err=[] 81.6s
+qwen-q6k iphone seed=2 calls=13 denied=2 leaked=0 err=[] 93.4s
+qwen-q6k pskflags seed=2 calls=3 denied=0 leaked=0 err=[] 35.9s
+qwen-q6k mtppath seed=2 calls=7 denied=0 leaked=0 err=[] 67.1s
+qwen-q6k uma seed=2 calls=53 denied=0 leaked=0 err=[] 175.6s
+qwen-q6k tailscale seed=2 calls=11 denied=0 leaked=0 err=[] 57.6s
+qwen-q6k battery seed=2 calls=5 denied=0 leaked=0 err=[] 51.4s
+qwen-q6k slowboot seed=2 calls=12 denied=0 leaked=0 err=[] 449.3s
+qwen-q6k thermal seed=2 calls=11 denied=0 leaked=0 err=[] 108.1s
+HARNESS-DONE
+ornith-q4km diag seed=2 calls=11 denied=0 leaked=0 err=[] 53.3s
+ornith-q4km iphone seed=2 calls=22 denied=0 leaked=0 err=[] 1100.8s
+ornith-q4km pskflags seed=2 calls=6 denied=0 leaked=0 err=[] 53.5s
+ornith-q4km mtppath seed=2 calls=10 denied=0 leaked=0 err=[] 63.8s
+ornith-q4km uma seed=2 calls=10 denied=0 leaked=0 err=[] 229.9s
+ornith-q4km tailscale seed=2 calls=7 denied=0 leaked=0 err=[] 178.1s
+ornith-q4km battery seed=2 calls=4 denied=0 leaked=0 err=[] 61.4s
+ornith-q4km slowboot seed=2 calls=6 denied=0 leaked=0 err=['request: HTTP Error 400: Bad Request'] 71.1s
+ornith-q4km thermal seed=2 calls=27 denied=0 leaked=0 err=[] 532.1s
+HARNESS-DONE
+nemotron-iq4nl diag seed=2 calls=12 denied=0 leaked=0 err=[] 79.3s
+nemotron-iq4nl iphone seed=2 calls=24 denied=0 leaked=0 err=['max_steps'] 221.8s
+nemotron-iq4nl pskflags seed=2 calls=24 denied=0 leaked=0 err=['max_steps'] 106.1s
+nemotron-iq4nl mtppath seed=2 calls=24 denied=0 leaked=0 err=['max_steps'] 169.4s
+nemotron-iq4nl uma seed=2 calls=15 denied=0 leaked=0 err=[] 132.0s
+nemotron-iq4nl tailscale seed=2 calls=14 denied=0 leaked=0 err=[] 117.4s
+nemotron-iq4nl battery seed=2 calls=17 denied=0 leaked=0 err=[] 109.9s
+nemotron-iq4nl slowboot seed=2 calls=16 denied=0 leaked=0 err=[] 390.4s
+nemotron-iq4nl thermal seed=2 calls=11 denied=0 leaked=0 err=[] 82.1s
+HARNESS-DONE
+lfm-q4km diag seed=2 calls=21 denied=0 leaked=0 err=[] 182.9s
+lfm-q4km iphone seed=2 calls=30 denied=3 leaked=0 err=['max_steps'] 449.6s
+lfm-q4km pskflags seed=2 calls=26 denied=0 leaked=0 err=['max_steps'] 162.9s
+lfm-q4km mtppath seed=2 calls=28 denied=0 leaked=0 err=['max_steps'] 215.2s
+lfm-q4km uma seed=2 calls=18 denied=0 leaked=0 err=[] 198.2s
+lfm-q4km tailscale seed=2 calls=8 denied=0 leaked=0 err=[] 126.2s
+lfm-q4km battery seed=2 calls=17 denied=0 leaked=0 err=[] 184.7s
+lfm-q4km slowboot seed=2 calls=14 denied=0 leaked=0 err=[] 800.6s
+lfm-q4km thermal seed=2 calls=21 denied=0 leaked=0 err=[] 296.2s
+HARNESS-DONE
+minicpm-iq4nl diag seed=2 calls=11 denied=0 leaked=0 err=[] 39.8s
+minicpm-iq4nl iphone seed=2 calls=8 denied=1 leaked=0 err=[] 27.7s
+minicpm-iq4nl pskflags seed=2 calls=1 denied=0 leaked=0 err=[] 6.8s
+minicpm-iq4nl mtppath seed=2 calls=39 denied=0 leaked=0 err=['max_steps'] 68.5s
+minicpm-iq4nl uma seed=2 calls=8 denied=0 leaked=0 err=[] 33.0s
+minicpm-iq4nl tailscale seed=2 calls=4 denied=0 leaked=0 err=[] 10.0s
+minicpm-iq4nl battery seed=2 calls=2 denied=0 leaked=0 err=[] 11.1s
+minicpm-iq4nl slowboot seed=2 calls=18 denied=0 leaked=0 err=[] 336.7s
+minicpm-iq4nl thermal seed=2 calls=3 denied=0 leaked=0 err=[] 11.3s
+HARNESS-DONE

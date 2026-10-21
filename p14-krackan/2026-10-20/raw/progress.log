@@ -1,0 +1,18 @@
+2026-10-20T21:04:18-07:00 START speed
+2026-10-21T01:04:34-07:00 speed done
+2026-10-21T01:04:34-07:00 START quality
+2026-10-21T01:15:51-07:00 quality qwen-iq4 seed 1 done
+2026-10-21T01:39:39-07:00 quality qwen-q4kxl seed 1 done
+2026-10-21T02:13:41-07:00 quality qwen-q6k seed 1 done
+2026-10-21T02:53:22-07:00 quality ornith-q4km seed 1 done
+2026-10-21T03:10:54-07:00 quality nemotron-iq4nl seed 1 done
+2026-10-21T03:50:30-07:00 quality lfm-q4km seed 1 done
+2026-10-21T03:57:34-07:00 quality minicpm-iq4nl seed 1 done
+2026-10-21T04:16:16-07:00 quality qwen-iq4 seed 2 done
+2026-10-21T04:38:26-07:00 quality qwen-q4kxl seed 2 done
+2026-10-21T04:57:36-07:00 quality qwen-q6k seed 2 done
+2026-10-21T05:37:07-07:00 quality ornith-q4km seed 2 done
+2026-10-21T06:01:03-07:00 quality nemotron-iq4nl seed 2 done
+2026-10-21T06:45:07-07:00 quality lfm-q4km seed 2 done
+2026-10-21T06:54:39-07:00 quality minicpm-iq4nl seed 2 done
+2026-10-21T06:54:40-07:00 ALL-DONE

@@ -1,0 +1,506 @@
+{
+ "DIA-01": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "DIA-02": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "DIA-03": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "DIA-04": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "DIA-05": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "DIA-06": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "DIA-07": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "DIA-08": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "DIA-09": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "DIA-10": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "DIA-11": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "DIA-12": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "DIA-13": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "DIA-14": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "IPH-01": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "IPH-02": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "IPH-03": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "IPH-04": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "IPH-05": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "IPH-06": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "IPH-07": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "IPH-08": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "IPH-09": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "IPH-10": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "IPH-11": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "IPH-12": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "IPH-13": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "IPH-14": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "PSK-01": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "PSK-02": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "PSK-03": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "PSK-04": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "PSK-05": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "PSK-06": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "PSK-07": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "PSK-08": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "PSK-09": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "PSK-10": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "PSK-11": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "PSK-12": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "PSK-13": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "PSK-14": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "MTP-01": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "MTP-02": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "MTP-03": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "MTP-04": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "MTP-05": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "MTP-06": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "MTP-07": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "MTP-08": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "MTP-09": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "MTP-10": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "MTP-11": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "MTP-12": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "MTP-13": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "MTP-14": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "UMA-01": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "UMA-02": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "UMA-03": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "UMA-04": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "UMA-05": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "UMA-06": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "UMA-07": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "UMA-08": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "UMA-09": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "UMA-10": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "UMA-11": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "UMA-12": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "UMA-13": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "UMA-14": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "TAI-01": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "TAI-02": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "TAI-03": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "TAI-04": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "TAI-05": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "TAI-06": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "TAI-07": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "TAI-08": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "TAI-09": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "TAI-10": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "TAI-11": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "TAI-12": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "TAI-13": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "TAI-14": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "BAT-01": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "BAT-02": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "BAT-03": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "BAT-04": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "BAT-05": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "BAT-06": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "BAT-07": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "BAT-08": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "BAT-09": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "BAT-10": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "BAT-11": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "BAT-12": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "BAT-13": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "BAT-14": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "SLO-01": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "SLO-02": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "SLO-03": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "SLO-04": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "SLO-05": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "SLO-06": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "SLO-07": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "SLO-08": {
+  "label": "qwen-q6k",
+  "seed": 1
+ },
+ "SLO-09": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "SLO-10": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "SLO-11": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "SLO-12": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "SLO-13": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "SLO-14": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "THE-01": {
+  "label": "minicpm-iq4nl",
+  "seed": 2
+ },
+ "THE-02": {
+  "label": "nemotron-iq4nl",
+  "seed": 2
+ },
+ "THE-03": {
+  "label": "ornith-q4km",
+  "seed": 2
+ },
+ "THE-04": {
+  "label": "qwen-q4kxl",
+  "seed": 1
+ },
+ "THE-05": {
+  "label": "qwen-iq4",
+  "seed": 1
+ },
+ "THE-06": {
+  "label": "qwen-q6k",
+  "seed": 2
+ },
+ "THE-07": {
+  "label": "lfm-q4km",
+  "seed": 2
+ },
+ "THE-08": {
+  "label": "lfm-q4km",
+  "seed": 1
+ },
+ "THE-09": {
+  "label": "qwen-iq4",
+  "seed": 2
+ },
+ "THE-10": {
+  "label": "ornith-q4km",
+  "seed": 1
+ },
+ "THE-11": {
+  "label": "minicpm-iq4nl",
+  "seed": 1
+ },
+ "THE-12": {
+  "label": "nemotron-iq4nl",
+  "seed": 1
+ },
+ "THE-13": {
+  "label": "qwen-q4kxl",
+  "seed": 2
+ },
+ "THE-14": {
+  "label": "qwen-q6k",
+  "seed": 1
+ }
+}

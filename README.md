@@ -37,7 +37,8 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
   *What the Score Measured: Failure Attribution in an Agent Memory Evaluation*
   (Vitale & Guo, Zenodo preprint, [10.5281/zenodo.22980060](https://doi.org/10.5281/zenodo.22980060))
 - **[p14-krackan/](p14-krackan/)** — ROCm vs Vulkan on an AMD Krackan Point iGPU: the compiler beats the
-  backend, and ROCm loses on power, not compute
+  backend, and ROCm loses on power, not compute. Then a [7-model MoE survey](p14-krackan/2026-10-20/) on the
+  same box: the incumbent holds, and the fastest model was the worst agent
 - **[longmemeval/](longmemeval/)** — does agent memory survive a model change? Harness, three-reader run,
   instrumented rerun, four-rater blind judging. Written up in [*What the Score Measured*](https://doi.org/10.5281/zenodo.22980060);
   rubric, test matrix and judging protocol in Guo's [companion report](https://doi.org/10.5281/zenodo.23273896)

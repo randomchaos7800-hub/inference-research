@@ -1,0 +1,8 @@
+# label|binary|model|flags   (quality pass, -c 131072, production-like: MTP where the file has it)
+qwen-iq4|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/mtp/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+qwen-q4kxl|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+qwen-q6k|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/Qwen3.6-35B-A3B-UD-Q6_K.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+ornith-q4km|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/Ornith-1.5-35B-Q4_K_M.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+nemotron-iq4nl|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-IQ4_NL.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+lfm-q4km|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/LFM2.5-24B-A2B-Q4_K_M.gguf|
+minicpm-iq4nl|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/survey/MiniCPM-V-4_7-35B-A3B-IQ4_NL.gguf|
