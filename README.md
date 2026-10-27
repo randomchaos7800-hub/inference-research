@@ -33,6 +33,8 @@ One person, two machines, five eras. From 10.4 tok/s on a mini-PC CPU to a
   order effects, single-variable discipline, what every published figure must carry. Each rule is there because
   breaking it produced a number we had to retract
 - **[tower/experiment-mode.md](tower/experiment-mode.md)** — tower-era operational lockout (freeing the GPUs for a run)
+- **[trust-matters-part2/](trust-matters-part2/)** — receipts for the *Trust Matters Part II* §6.2 three-arm control, rerun 2026-10-27
+  with full retention after the v1 table's SOUL total was caught mis-summed (corrected in v2, [10.5281/zenodo.23689166](https://doi.org/10.5281/zenodo.23689166))
 - **[papers/](papers/)** — *Commodity Hardware for Persistent AI Companions* and
   *What the Score Measured: Failure Attribution in an Agent Memory Evaluation*
   (Vitale & Guo, Zenodo preprint, [10.5281/zenodo.22980060](https://doi.org/10.5281/zenodo.22980060))
