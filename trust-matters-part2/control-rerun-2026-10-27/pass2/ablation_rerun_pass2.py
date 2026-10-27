@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """PASS 2 (same day). Pass 1 used max_tokens=600, which gemini-2.5-pro, kimi-k3 and deepseek-r1-0528 spent
 entirely on hidden reasoning (finish_reason=length, empty content) in 68 turns; nemotron SOUL r2 died on three 504s.
-This pass re-runs those three models in full plus the one nemotron cell at max_tokens=4000 (cap only; the other
-six models finished with finish_reason=stop under 600 and are not re-run).
+This pass re-runs those three models in full plus the one nemotron cell at max_tokens=4000 (cap only). The other
+six models were not re-run; their retained pass-1 turns are not all clean (see classification.md, retained defects).
 
 Rerun of the Trust Matters Part II §6.2 three-arm control (BARE / GENERIC / SOUL), 2026-10-27.
 Same sequence, same conditions, same models (deepseek/deepseek-r1 is no longer on OpenRouter;

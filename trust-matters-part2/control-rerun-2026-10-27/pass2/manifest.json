@@ -60,5 +60,6 @@
   }
  },
  "soul_source": "/home/dino/mike/config/mike_prompt.md",
- "generic_source": "../generic_prompt.md"
+ "generic_source": "../../generic_prompt.md",
+ "models_note": "roster of the full design; this pass issued calls only for deepseek-r1-0528, gemini-2.5-pro, kimi-k3 and nemotron SOUL r2"
 }
