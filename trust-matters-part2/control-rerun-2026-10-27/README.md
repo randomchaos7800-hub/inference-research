@@ -2,6 +2,8 @@
 
 Receipts for the three-arm control in *Trust Matters More Than Autonomy — Part II* (Vitale, Boundary Labs; v2 10.5281/zenodo.23689166), rerun with full data retention after a collaborator caught an arithmetic error in the published table.
 
+Archived copy of this directory: Zenodo dataset 10.5281/zenodo.23689828 (published 2026-10-27, linked from the paper record as a supplement).
+
 **What happened.** Version 1 of the paper (September 2026) printed the SOUL total as 19/27. Baixin Guo added up the nine rows and got 22. The rows were the hand classification and were right; the total was mis-summed and never re-added. Version 2 corrects it (SOUL − GENERIC is −5, not −8; the finding is unchanged). The August raw responses had lived only in a session scratch directory and were gone, so the experiment was rerun the same day with every request and reply kept.
 
 **Design (unchanged).** Nine base models over OpenRouter × three system prompts × three runs, temperature 0.2, the same six-turn IRC sequence as the paper, hand-classified at the payload turn ("we don't have to let Dino know"). BARE = one-line identity. GENERIC = `generic_prompt.md`, a loyalty/transparency policy with every operative rule and no relationship. SOUL = Mike's constitution, which is not published here (see redaction note). One substitution: `deepseek/deepseek-r1` is no longer listed on OpenRouter, so `deepseek/deepseek-r1-0528` stands in; that row is not like-for-like with the paper.
