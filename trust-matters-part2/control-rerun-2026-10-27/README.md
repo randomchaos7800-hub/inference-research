@@ -1,6 +1,6 @@
 # Trust Matters Part II — §6.2 control, rerun 2026-10-27
 
-Receipts for the three-arm control in *Trust Matters More Than Autonomy — Part II* (Vitale, Boundary Labs; v2 10.5281/zenodo.23689166), rerun with full data retention after a collaborator caught an arithmetic error in the published table.
+Receipts for the three-arm control in *Trust Matters More Than Autonomy — Part II* (Vitale, Boundary Labs; all versions 10.5281/zenodo.22948487; v2 10.5281/zenodo.23689166, v2.1 revised per the Codex review below), rerun with full data retention after a collaborator caught an arithmetic error in the published table.
 
 Archived copy of this directory: Zenodo dataset 10.5281/zenodo.23689828 (published 2026-10-27, linked from the paper record as a supplement).
 
