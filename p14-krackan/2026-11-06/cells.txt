@@ -1,0 +1,6 @@
+# label|binary|model|flags   (speed pass 2026-11-06: Groot vs production, plus the n-max 1 question)
+qwen-iq4-mtp2|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/mtp/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+groot-iq4nl-mtp2|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/GrootTeam_Groot-19B-A3B-261023-IQ4_NL.gguf|--spec-type draft-mtp --spec-draft-n-max 2
+qwen-iq4-mtp1|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/mtp/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf|--spec-type draft-mtp --spec-draft-n-max 1
+groot-iq4nl-nomtp|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/GrootTeam_Groot-19B-A3B-261023-IQ4_NL.gguf|
+groot-q4km-mtp2|/home/dino/opt/llama.cpp-b11776/llama-b11776/llama-server|/home/dino/models/GrootTeam_Groot-19B-A3B-261023-Q4_K_M.gguf|--spec-type draft-mtp --spec-draft-n-max 2
